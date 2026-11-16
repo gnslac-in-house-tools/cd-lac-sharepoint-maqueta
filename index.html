@@ -73,8 +73,9 @@ html[data-style="2"]{
   --h-weight:600; --h-track:-.03em; --k-track:.1em; --ht-op:.05;
 }
 /* @personalizar: tokens del Estilo 3 */
-/* ---------- ESTILO 3 · TERRENO CLARO (ADN del 1 en blanco: mono, retícula, puntos; bajo contraste) ---------- */
-html[data-style="3"]{
+/* ---------- ESTILO 3 · TERRENO CLARO (ADN del 1 en blanco: mono, retícula, puntos; bajo contraste) ----------
+   El Estilo 4 hereda este bloque y todas las reglas html:is([data-style="3"],[data-style="4"]); solo redefine lo de abajo. */
+html:is([data-style="3"],[data-style="4"]){
   /* primitivos */
   --p-white:#FFFFFF; --p-snow:#FBFBFA; --p-mist:#F5F5F4; --p-rule:#E6E6E3; --p-ink:#121314;
   --p-graphite:#5F6368; --p-silver:#8A8E93; --p-tail-art:#6E7278;
@@ -99,7 +100,36 @@ html[data-style="3"]{
   --f-brand-sans:"Inter Tight","Segoe UI",sans-serif; --f-brand-mono:"JetBrains Mono",Consolas,monospace;
   --h-weight:300; --h-track:-.035em; --k-track:.14em; --ht-op:.05;
 }
-/* @personalizar: acentos elegibles (5 opciones × 3 estilos). Agregar uno = 3 reglas aquí + 1 swatch en la barra de control. */
+/* @personalizar: tokens del Estilo 4 (rampa azul, neutros fríos, degradados y grano). Hereda tipografía, geometría y "menos texto" del Estilo 3. */
+/* ---------- ESTILO 4 · DEGRADADO AZUL (claro; acento fijo, sin selector) ----------
+   Página blanca o niebla. El degradado aparece solo en piezas puntuales, y en SharePoint cada una es una IMAGEN pre-renderizada. */
+html[data-style="4"]{
+  /* primitivos: rampa azul (de profundo a celeste) + tintes de fondo */
+  --b-950:#071E73; --b-900:#0A2A9A; --b-800:#1537B8; --b-electric:#2A2AD8; --b-700:#2348C8; --b-600:#2A6AD8;
+  --b-500:#4F8CE6; --b-400:#7DB4F2; --b-300:#A8D8F8; --b-200:#CFE7FB; --b-100:#E8F3FD; --b-50:#F4F9FE;
+  /* neutros fríos */
+  --p-white:#FFFFFF; --p-snow:#FBFCFE; --p-mist:#F3F6FA; --p-rule:#E3E8EF; --p-ink:#111522;
+  --p-graphite:#5E6573; --p-silver:#7A86A0; --p-tail-art:#5F6B85;
+  /* highlights por cluster: 4 tonos de la misma familia (blanco encima ≥ 5:1) */
+  --hl-vdc:var(--b-900); --hl-rc:#4A6385; --hl-cd:var(--b-electric); --hl-di:var(--b-600);
+  --on-hl:#FFFFFF;
+  /* semánticos: acento fijo = themePrimary #2348C8 (blanco encima 7.41:1; como texto sobre #FBFCFE 7.22:1) */
+  --accent:var(--b-700); --accent-ink:#FFFFFF; --accent-text:var(--b-700); --on-accent:#FFFFFF; --accent-2:var(--b-600);
+  --bg:var(--p-snow); --bg-neutral:var(--p-mist); --bg-soft:var(--b-50);
+  --surface-2:#F6F8FB;
+  /* arte: trazos de 1 px en azul profundo translúcido */
+  --art-bg:var(--p-snow); --art-fg:rgba(10,42,154,.30); --art-dim:rgba(10,42,154,.09); --art-text:#0B1640; --art-tail:var(--p-tail-art);
+  --art-dot:rgba(10,42,154,.26);
+  --ph-a:#F3F7FC; --ph-b:#E9F0F8; --ph-line:rgba(10,42,154,.24);
+  --grid:rgba(10,42,154,.055);
+  /* grano fino (se hornea en el PNG/WebP): azul marino sobre claro, blanco sobre el degradado intenso */
+  --noise4:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .04 0 0 0 0 .1 0 0 0 0 .45 .3 0 0 0 -.08'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --noise4-lt:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .34 0 0 0 -.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  /* degradados (componente) */
+  --g4-soft:radial-gradient(58% 62% at 80% 20%,rgba(168,216,248,.95) 0%,rgba(168,216,248,0) 70%),radial-gradient(60% 70% at 22% 100%,rgba(125,180,242,.38) 0%,rgba(125,180,242,0) 72%),linear-gradient(160deg,#F4F9FE 0%,#E3EFFC 100%);
+  --g4-deep:radial-gradient(42% 90% at 96% 0%,rgba(168,216,248,.55) 0%,rgba(168,216,248,0) 70%),radial-gradient(50% 120% at 8% 110%,rgba(7,30,115,.75) 0%,rgba(7,30,115,0) 70%),linear-gradient(100deg,#0A2A9A 0%,#1537B8 34%,#2348C8 62%,#2A6AD8 100%);
+}
+/* @personalizar: acentos elegibles (5 opciones × estilos 1 a 3; el Estilo 4 usa azul fijo y desactiva el selector). Agregar uno = 3 reglas aquí + 1 swatch en la barra de control. */
 /* ---------- ACENTO ELEGIBLE = themePrimary del sitio (una sola elección por sitio) ----------
    --accent: relleno / statement · --accent-ink: texto sobre el acento · --accent-text: acento usado como texto (AA) */
 html[data-style="1"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#FF4A4F}
@@ -322,9 +352,9 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .cta .cta-body{position:relative;padding:28px;max-width:560px;color:#fff}
 .cta .cta-body h3{font-size:26px;line-height:1.2;margin:0 0 14px;font-weight:600}
 .cta .btn{background:#fff;color:#111}
-html[data-style="3"] .cta .cta-body{color:var(--text)}
-html[data-style="3"] .cta .cta-body .t-kicker{color:var(--accent-text)!important}
-html[data-style="3"] .cta .btn{background:var(--theme);color:var(--on-theme)}
+html:is([data-style="3"],[data-style="4"]) .cta .cta-body{color:var(--text)}
+html:is([data-style="3"],[data-style="4"]) .cta .cta-body .t-kicker{color:var(--accent-text)!important}
+html:is([data-style="3"],[data-style="4"]) .cta .btn{background:var(--theme);color:var(--on-theme)}
 /* List web part · vista Galería con formato JSON */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .gallery.c3{grid-template-columns:repeat(3,1fr)}
@@ -369,7 +399,7 @@ html[data-style="3"] .cta .btn{background:var(--theme);color:var(--on-theme)}
 .art .mono{font-family:var(--f-art-mono)}
 .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 html[data-style="2"] .grain::after{opacity:.22;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-html[data-style="3"] .grain::after{display:none}
+html:is([data-style="3"],[data-style="4"]) .grain::after{display:none}
 html[data-style="2"] .ph.grain::after,html[data-style="2"] .capthumb.grain::after{opacity:.08}
 /* clases SVG ligadas a tokens (cambian con el estilo) */
 .m-line{fill:none;stroke:var(--art-fg);stroke-width:1}
@@ -397,7 +427,7 @@ html[data-style="2"] .hdr .big{font-weight:600;letter-spacing:-.05em;font-size:4
 .hdr .big .cur{color:var(--accent)}
 .hdr .foot{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:flex;gap:3cqw}
 .hdr .foot b{color:var(--art-text);font-weight:500}
-html[data-style="3"] .hdr{background:var(--art-bg);border-bottom:1px solid var(--rule)}
+html:is([data-style="3"],[data-style="4"]) .hdr{background:var(--art-bg);border-bottom:1px solid var(--rule)}
 /* encabezado de cluster */
 .chdr{aspect-ratio:16/5;width:100%}
 html[data-style="1"] .chdr{background:
@@ -408,8 +438,8 @@ html[data-style="2"] .chdr{background:
   linear-gradient(var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   linear-gradient(90deg,var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   var(--art-bg)}
-html[data-style="3"] .chdr{border-bottom:1px solid var(--rule);background:var(--art-bg)}
-html[data-style="3"] .chdr::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 30%,#000 62%)}
+html:is([data-style="3"],[data-style="4"]) .chdr{border-bottom:1px solid var(--rule);background:var(--art-bg)}
+html:is([data-style="3"],[data-style="4"]) .chdr::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 30%,#000 62%)}
 .chdr .copy{position:absolute;left:4.2cqw;top:10%;bottom:10%;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
 .chdr .num{font-family:var(--f-art-mono);font-size:.85cqw;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:1.4cqw;align-items:center}
 .chdr .num .sw{width:1.1cqw;height:1.1cqw;background:var(--accent);display:inline-block}
@@ -428,7 +458,7 @@ html[data-style="1"] .chdr .sub{color:rgba(242,242,240,.6)}
 .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 html[data-style="1"] .ph{background:radial-gradient(90% 90% at 80% 10%,color-mix(in srgb,var(--t,var(--accent)) 34%,transparent),transparent 65%),linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 /* vistas claras (2 y 3): render atenuado. Cielo casi del color de la página con un leve tono del cluster, suelo apenas más denso, línea fina y un solo trazo de acento */
-html[data-style="2"] .ph,html[data-style="3"] .ph{background:
+html[data-style="2"] .ph,html:is([data-style="3"],[data-style="4"]) .ph{background:
   linear-gradient(180deg,transparent 64%,color-mix(in srgb,var(--t,#8FA3B5) 4%,rgba(17,17,17,.028)) 64.4%,transparent 100%),
   radial-gradient(80% 70% at 78% 18%,color-mix(in srgb,var(--t,#8FA3B5) 9%,transparent),transparent 70%),
   linear-gradient(180deg,var(--ph-a),var(--ph-b));box-shadow:inset 0 0 0 1px var(--rule)}
@@ -437,12 +467,12 @@ html[data-style="2"] .ph,html[data-style="3"] .ph{background:
 .ph .bf{fill:rgba(0,0,0,.12);stroke:var(--ph-line);stroke-width:1.2}
 html[data-style="1"] .ph .bf{fill:rgba(255,255,255,.04)}
 .ph .ba{fill:none;stroke:var(--t,var(--accent));stroke-width:1.6}
-html[data-style="2"] .ph .bl,html[data-style="3"] .ph .bl,html[data-style="2"] .ph .bf,html[data-style="3"] .ph .bf{stroke-width:1;vector-effect:non-scaling-stroke}
-html[data-style="2"] .ph .bf,html[data-style="3"] .ph .bf{fill:rgba(17,17,17,.025)}
-html[data-style="2"] .ph .ba,html[data-style="3"] .ph .ba{stroke:color-mix(in srgb,var(--t,var(--accent)) 72%,#fff);stroke-width:1.25;opacity:.85;vector-effect:non-scaling-stroke}
-html[data-style="2"] .ph .ba + .ba,html[data-style="3"] .ph .ba + .ba{display:none}
+html[data-style="2"] .ph .bl,html:is([data-style="3"],[data-style="4"]) .ph .bl,html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"]) .ph .bf{stroke-width:1;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"]) .ph .bf{fill:rgba(17,17,17,.025)}
+html[data-style="2"] .ph .ba,html:is([data-style="3"],[data-style="4"]) .ph .ba{stroke:color-mix(in srgb,var(--t,var(--accent)) 72%,#fff);stroke-width:1.25;opacity:.85;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .ba + .ba,html:is([data-style="3"],[data-style="4"]) .ph .ba + .ba{display:none}
 .ph .tag{position:absolute;left:10px;bottom:10px;font-family:var(--f-art-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.45);padding:3px 6px;border-radius:2px}
-html[data-style="2"] .ph svg,html[data-style="3"] .ph svg{-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%)}
+html[data-style="2"] .ph svg,html:is([data-style="3"],[data-style="4"]) .ph svg{-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%)}
 html[data-style="2"] .ph .tag{color:var(--text);background:rgba(255,255,255,.88);box-shadow:0 0 0 1px var(--rule)}
 /* diagrama de etapas */
 .dia{padding:3.2cqw 3cqw 2.6cqw;background:var(--art-bg)}
@@ -459,10 +489,10 @@ html[data-style="1"] .dia .bar{background:color-mix(in srgb,var(--c) 14%,transpa
 html[data-style="1"] .dia .bar b{color:var(--c)}
 html[data-style="2"] .dia .bar{background:color-mix(in srgb,var(--c) 10%,#fff);box-shadow:inset 3px 0 0 var(--c);color:var(--art-text)}
 html[data-style="2"] .dia .bar b{color:var(--c)}
-html[data-style="3"] .dia{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
-html[data-style="3"] .dia .bar{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule),inset 2px 0 0 var(--c);color:var(--art-text)}
-html[data-style="3"] .dia .bar b{color:var(--art-tail)}
-html[data-style="3"] .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
+html:is([data-style="3"],[data-style="4"]) .dia{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html:is([data-style="3"],[data-style="4"]) .dia .bar{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule),inset 2px 0 0 var(--c);color:var(--art-text)}
+html:is([data-style="3"],[data-style="4"]) .dia .bar b{color:var(--art-tail)}
+html:is([data-style="3"],[data-style="4"]) .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .dia .bar b{font-family:var(--f-art-mono);font-size:.74cqw;letter-spacing:.1em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:.2cqw}
 .dia .axis{display:flex;justify-content:space-between;margin-top:1.6cqw;font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);padding-left:13cqw}
 .dia .axis span:nth-child(2){flex:1;border-top:1px solid var(--art-fg);margin:0 1.2cqw;align-self:center;position:relative}
@@ -479,26 +509,26 @@ html[data-style="2"] .capthumb .nm{font-weight:600}
 .capthumb .nm small{display:block;font-family:var(--f-art-mono);font-size:4.6cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);margin-top:3cqw;font-weight:400}
 html[data-style="1"] .capthumb{background:radial-gradient(90% 70% at 85% 15%,color-mix(in srgb,var(--c) 40%,transparent),transparent 70%),#0E0F11}
 html[data-style="2"] .capthumb{background:#fff}
-html[data-style="3"] .capthumb{background:var(--p-white)}
-html[data-style="3"] .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
+html:is([data-style="3"],[data-style="4"]) .capthumb{background:var(--p-white)}
+html:is([data-style="3"],[data-style="4"]) .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
 .capthumb{--accent:var(--c)}
 /* vistas claras: el highlight del cluster se atenúa hacia el fondo (sin rellenos saturados) */
-html[data-style="2"] .capthumb,html[data-style="3"] .capthumb{--accent:color-mix(in srgb,var(--c) 78%,#fff)}
+html[data-style="2"] .capthumb,html:is([data-style="3"],[data-style="4"]) .capthumb{--accent:color-mix(in srgb,var(--c) 78%,#fff)}
 .capthumb .sw{position:absolute;right:7cqw;top:7cqw;width:7cqw;height:7cqw;background:var(--c);z-index:2}
-html[data-style="2"] .capthumb .sw,html[data-style="3"] .capthumb .sw{display:none}
+html[data-style="2"] .capthumb .sw,html:is([data-style="3"],[data-style="4"]) .capthumb .sw{display:none}
 /* mapa LAC */
 .mapart{aspect-ratio:792/560;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,var(--art-bg)}
 .mapart .legend{position:absolute;left:4cqw;bottom:4cqw;font-family:var(--f-art-mono);font-size:1.3cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:grid;gap:.6cqw}
 .mapart .legend b{color:var(--art-text);font-weight:500}
 .mapart .legend i{display:inline-block;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--accent);margin-right:1cqw;vertical-align:-.15cqw}
-html[data-style="2"] .mapart .legend i,html[data-style="3"] .mapart .legend i{box-shadow:0 0 0 1px var(--art-text)}
+html[data-style="2"] .mapart .legend i,html:is([data-style="3"],[data-style="4"]) .mapart .legend i{box-shadow:0 0 0 1px var(--art-text)}
 /* proceso (metodología) */
 .proc{padding:3cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 html[data-style="2"] .proc{background:#fff}
-html[data-style="3"] .proc{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
-html[data-style="3"] .proc .st{border-top-width:1px}
-html[data-style="3"] .proc .st::before{height:1px;top:-1px}
-html[data-style="3"] .proc .st .dot{width:7px;height:7px;top:-4px}
+html:is([data-style="3"],[data-style="4"]) .proc{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html:is([data-style="3"],[data-style="4"]) .proc .st{border-top-width:1px}
+html:is([data-style="3"],[data-style="4"]) .proc .st::before{height:1px;top:-1px}
+html:is([data-style="3"],[data-style="4"]) .proc .st .dot{width:7px;height:7px;top:-4px}
 html[data-style="1"] .proc{background:linear-gradient(180deg,#101214,#0B0C0D)}
 .proc .st{border-top:2px solid var(--art-dim);padding:1.6cqw 1.6cqw 0 0;position:relative}
 .proc .st::before{content:"";position:absolute;top:-2px;left:0;height:2px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--k,1))}
@@ -513,24 +543,92 @@ html[data-style="1"] .proc .st p{color:#9AA0A6}
    5b · ESTILO 3 · MENOS TEXTO (solo reglas de estilo; el HTML es el mismo en los 3 estilos)
    Se ocultan kickers redundantes (.s3-hide), subtítulos de tarjeta y metadatos repetidos.
    ========================================================= */
-html[data-style="3"] .s3-hide,
-html[data-style="3"] .t-h2 + .t-p.muted,
-html[data-style="3"] .ql-btn small,
-html[data-style="3"] .ql-card .cap span,
-html[data-style="3"] .hc-card .by,
-html[data-style="3"] .hc-card p,
-html[data-style="3"] .tool p,
-html[data-style="3"] .news .item p,
-html[data-style="3"] .ph .tag,
-html[data-style="3"] .hdr .k i,
-html[data-style="3"] .chdr .sub,
-html[data-style="3"] .chdr .num span:last-child,
-html[data-style="3"] .dia .ttl span:last-child,
-html[data-style="3"] .mapart .legend span:not(:first-child){display:none}
-html[data-style="3"] .ql-btn{padding:12px 14px;font-weight:500}
-html[data-style="3"] .hc-card h4,html[data-style="3"] .ql-card .cap{font-weight:500}
-html[data-style="3"] .hc-card .body{padding:12px 14px 16px}
-html[data-style="3"] .t-kicker{font-size:11px}
+html:is([data-style="3"],[data-style="4"]) .s3-hide,
+html:is([data-style="3"],[data-style="4"]) .t-h2 + .t-p.muted,
+html:is([data-style="3"],[data-style="4"]) .ql-btn small,
+html:is([data-style="3"],[data-style="4"]) .ql-card .cap span,
+html:is([data-style="3"],[data-style="4"]) .hc-card .by,
+html:is([data-style="3"],[data-style="4"]) .hc-card p,
+html:is([data-style="3"],[data-style="4"]) .tool p,
+html:is([data-style="3"],[data-style="4"]) .news .item p,
+html:is([data-style="3"],[data-style="4"]) .ph .tag,
+html:is([data-style="3"],[data-style="4"]) .hdr .k i,
+html:is([data-style="3"],[data-style="4"]) .chdr .sub,
+html:is([data-style="3"],[data-style="4"]) .chdr .num span:last-child,
+html:is([data-style="3"],[data-style="4"]) .dia .ttl span:last-child,
+html:is([data-style="3"],[data-style="4"]) .mapart .legend span:not(:first-child){display:none}
+html:is([data-style="3"],[data-style="4"]) .ql-btn{padding:12px 14px;font-weight:500}
+html:is([data-style="3"],[data-style="4"]) .hc-card h4,html:is([data-style="3"],[data-style="4"]) .ql-card .cap{font-weight:500}
+html:is([data-style="3"],[data-style="4"]) .hc-card .body{padding:12px 14px 16px}
+html:is([data-style="3"],[data-style="4"]) .t-kicker{font-size:11px}
+
+/* =========================================================
+   5c · ESTILO 4 · DEGRADADO AZUL (solo diferencias con el Estilo 3)
+   Página clara. El degradado con grano vive solo en piezas puntuales y cada una es una IMAGEN en SharePoint:
+   panel del hero, miniaturas de capacidad, encabezado de cluster, fondo del CTA, renders de proyecto,
+   cifras bento y la banda "Build with COM" (el único bloque intenso). Los fondos de sección siguen planos.
+   ========================================================= */
+/* hero: lienzo blanco + panel en degradado suave con grano y cruz de filetes de 1 px a la derecha (detrás del mapa) */
+html[data-style="4"] .hdr{--art-dot:rgba(10,42,154,.36)}
+html[data-style="4"] .hdr::before{width:41.5%;-webkit-mask-image:none;mask-image:none;background:
+  linear-gradient(90deg,transparent calc(50% - .5px),rgba(255,255,255,.8) calc(50% - .5px),rgba(255,255,255,.8) calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(180deg,transparent calc(50% - .5px),rgba(255,255,255,.8) calc(50% - .5px),rgba(255,255,255,.8) calc(50% + .5px),transparent calc(50% + .5px)),
+  var(--noise4),var(--g4-soft)}
+html[data-style="4"] .hdr .m-plq{fill:#F7FBFF;opacity:.94}
+/* cursores opacos sobre el panel: la pastilla azul con texto blanco queda ≥ 5:1 */
+html[data-style="4"] #collab > g{opacity:1!important}
+/* miniaturas de capacidad, herramientas y rutas: tinte con orbe difuso; dibujo de 1 px en azul profundo */
+html[data-style="4"] .capthumb{--accent:var(--c);background:var(--noise4),radial-gradient(62% 58% at 80% 18%,color-mix(in srgb,var(--c) 24%,#A8D8F8) 0%,rgba(168,216,248,0) 70%),linear-gradient(170deg,#F6FAFE 0%,#E3EEFB 100%)}
+html[data-style="4"] .capthumb::before{opacity:.7}
+/* encabezado de cluster: orbe del highlight a la derecha; la máscara deja limpio el título */
+html[data-style="4"] .chdr{background:var(--noise4),radial-gradient(46% 95% at 84% 24%,color-mix(in srgb,var(--accent) 22%,#A8D8F8) 0%,rgba(168,216,248,0) 70%),linear-gradient(90deg,var(--p-snow) 0%,var(--p-snow) 40%,#E8F2FD 100%)}
+/* renders de proyecto: placeholders neutros fríos; featured y "More projects" en degradado azul con volúmenes blancos */
+html[data-style="4"] :is(.ph-feat,.hc.proj .ph){background:var(--noise4),radial-gradient(70% 80% at 84% 10%,rgba(168,216,248,.95) 0%,rgba(168,216,248,0) 70%),linear-gradient(180deg,#F1F7FE 0%,#D9E9FA 60%,#C6DDF6 100%);box-shadow:inset 0 0 0 1px rgba(10,42,154,.08)}
+html[data-style="4"] :is(.ph-feat,.hc.proj .ph) .bf{fill:rgba(255,255,255,.45)}
+html[data-style="4"] .ph-feat svg:not(.uvi){opacity:.5}
+html[data-style="4"] .ph-feat svg:not(.uvi) .ba{display:none}
+.ph svg.uvi{display:none;-webkit-mask-image:none!important;mask-image:none!important}
+html[data-style="4"] .ph svg.uvi{display:block}
+/* diagrama: barras con relleno degradado del tono del cluster y filete de 1 px */
+html[data-style="4"] .dia .bar{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 16%,#fff) 0%,color-mix(in srgb,var(--c) 5%,#fff) 70%,#fff 100%);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 16%,var(--rule)),inset 2px 0 0 var(--c)}
+/* metodología: avance en degradado de la rampa */
+html[data-style="4"] .proc .st::before{background:linear-gradient(90deg,var(--b-900),var(--b-600) 60%,var(--b-300))}
+/* nativos con tinte plano (JSON / tema): ícono de herramienta y avatar */
+html[data-style="4"] .tool .ico,html[data-style="4"] .person .av{background:var(--b-100);color:var(--b-900);box-shadow:none}
+/* cifras bento (versión clara de la ref. 693585): tarjetas blancas, filete de 1 px y unidades en barras degradadas */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:none;margin-top:4px}
+.bento .bx{background:#fff;border-radius:var(--r-native);box-shadow:inset 0 0 0 1px var(--rule);padding:14px 14px 12px;display:flex;flex-direction:column;gap:4px;min-height:136px;position:relative;overflow:hidden}
+.bento .bx.hi{background:var(--noise4),linear-gradient(180deg,#FFFFFF 0%,#EDF5FE 50%,#C9E2F9 100%);box-shadow:inset 0 0 0 1px #D3E3F6}
+.bento b{font-size:40px;line-height:1;font-weight:300;letter-spacing:-.03em;color:var(--art-text)}
+.bento span{font-size:13px;line-height:1.3;color:var(--text-2)}
+.u{display:flex;gap:3px;align-items:flex-end;height:26px;margin-top:auto;padding-top:10px}
+.u i{flex:1 1 0;max-width:6px;min-width:2px;height:100%;border-radius:1px;background:linear-gradient(180deg,var(--b-700),var(--b-300))}
+/* banda "Build with COM": degradado intenso con grano y cruz de filetes; texto blanco ≥ 4.5:1 en toda la superficie */
+.band4{background:var(--noise4-lt),var(--g4-deep);color:#fff}
+.band4 .in{max-width:var(--canvas);margin:0 auto;padding:60px 24px 56px;display:grid;grid-template-columns:1.12fr 1fr;gap:48px;align-items:end;position:relative}
+.band4 .k{font-family:var(--f-art-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--b-100);margin:0 0 12px}
+.band4 h2{font-size:40px;line-height:1.08;font-weight:300;letter-spacing:-.035em;margin:0 0 14px}
+.band4 h2 em{font-style:normal;color:var(--b-300)}
+.band4 .sdot{background:var(--b-300)}
+.band4 p{margin:0;font-size:15px}
+.band4 .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;position:relative}
+.band4 .nums::before{content:"";position:absolute;left:-24px;top:-600px;bottom:-600px;width:1px;background:rgba(255,255,255,.26)}
+.band4 .nums::after{content:"";position:absolute;left:-24px;right:-2000px;top:-24px;height:1px;background:rgba(255,255,255,.26)}
+.band4 .c{background:rgba(7,30,115,.24);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);border-radius:var(--r-native);padding:14px 14px 12px;display:flex;flex-direction:column;gap:4px;min-height:132px}
+.band4 .c b{font-size:40px;line-height:1;font-weight:300;letter-spacing:-.03em}
+.band4 .c span{font-size:13px;line-height:1.3}
+.band4 .u i{background:linear-gradient(180deg,#fff,rgba(255,255,255,.35))}
+.ql-buttons.cols3{grid-template-columns:repeat(3,1fr)}
+/* logo con degradado: tinta y acento usan los degradados definidos en #g4-defs (header, footer y panel de logos) */
+html[data-style="4"] :is(.logo-slot,.lg-card) svg{--accent:url(#g4-acc)}
+html[data-style="4"] :is(.logo-slot,.lg-card) svg [fill="currentColor"]{fill:url(#g4-ink)}
+html[data-style="4"] :is(.logo-slot,.lg-card) svg [stroke="currentColor"]{stroke:url(#g4-ink)}
+html[data-style="4"] .lg-card .dk svg [fill="currentColor"]{fill:url(#g4-ink-lt)}
+html[data-style="4"] .lg-card .dk svg [stroke="currentColor"]{stroke:url(#g4-ink-lt)}
+html[data-style="4"] .lg-card .dk svg [fill="var(--bg)"]{fill:var(--b-900)}
+html[data-style="4"] .lg-card .pv.fav span:last-child svg [fill="currentColor"]{fill:currentColor}
+html[data-style="4"] .lg-card .pv.fav span:last-child svg [stroke="currentColor"]{stroke:currentColor}
+html[data-style="4"] .lg-card .pv.fav span:last-child svg [fill="var(--bg)"]{fill:var(--b-700)}
 
 /* Featured community: fila de 4 líderes (tarjeta vertical compacta) */
 .people.row4{grid-template-columns:repeat(4,1fr);gap:16px}
@@ -550,6 +648,10 @@ html[data-style="3"] .t-kicker{font-size:11px}
 .ctl .swatch i{display:block;width:16px;height:16px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
 .ctl .swatch[aria-pressed="true"]{background:rgba(255,255,255,.9)}
 .ctl .swatch[aria-pressed="true"] i{box-shadow:0 0 0 1px #111}
+/* Estilo 4: acento fijo (azul). El grupo se atenúa y el tooltip del grupo lo explica. */
+.ctl .grp.off{opacity:.38;cursor:not-allowed}
+.ctl .grp.off button{pointer-events:none}
+html.no-ctl .ctl{display:none}
 /* panel de logos (herramienta de la maqueta, no es parte del sitio) */
 .drawer{position:fixed;left:0;right:0;bottom:0;height:70vh;z-index:99;background:#161616;color:#EDEDED;border-radius:14px 14px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.4);transform:translateY(102%);visibility:hidden;transition:transform .3s ease,visibility .3s;display:flex;flex-direction:column;font:13px/1.45 "Segoe UI",system-ui,sans-serif}
 .drawer.open{transform:none;visibility:visible}
@@ -606,10 +708,11 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .site-footer .inner{grid-template-columns:1fr 1fr}
   .board{grid-template-columns:1fr 1fr}
   .suite .search{display:none}
+  .band4 .in{grid-template-columns:1fr;gap:32px}
 }
 @media (max-width:639px){
   .cols.l2,.cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr}
-  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.board,.news,.ql-buttons.cols2{grid-template-columns:1fr}
+  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.band4 .nums{grid-template-columns:1fr}
   .sp-canvas{padding:0 16px}
   .t-h1{font-size:34px}.t-h2{font-size:26px}
   .site-actions,.suite .org{display:none}
@@ -623,6 +726,12 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 </head>
 <body>
 <a class="sr" href="#main">Skip to content</a>
+<!-- @personalizar: degradados del logo en el Estilo 4 (tinta, tinta clara para fondos oscuros, acento). En SharePoint el logo se sube como PNG con el degradado horneado. -->
+<svg id="g4-defs" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="g4-ink" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#071E73"/><stop offset=".55" stop-color="#1537B8"/><stop offset="1" stop-color="#2348C8"/></linearGradient>
+  <linearGradient id="g4-ink-lt" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A8D8F8"/></linearGradient>
+  <linearGradient id="g4-acc" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="64" y2="64"><stop offset="0" stop-color="#2A6AD8"/><stop offset="1" stop-color="#7DB4F2"/></linearGradient>
+</defs></svg>
 
 <!-- Suite bar de Microsoft 365 -->
 <div class="suite" role="banner" aria-label="Microsoft 365">
@@ -667,9 +776,9 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button></div>
+  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button><button data-set-style="4" aria-pressed="false">4 · Degradado azul</button></div>
   <span class="lbl">Acento</span>
-  <div class="grp" role="group" aria-label="Color de acento (themePrimary)">
+  <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
     <button class="swatch" data-set-accent="cobalt" aria-pressed="false" title="Cobalt" aria-label="Acento Cobalt"><i style="background:#2A62F0"></i></button>
     <button class="swatch" data-set-accent="lime" aria-pressed="true" title="Lime" aria-label="Acento Lime"><i style="background:#D4F04A"></i></button>
@@ -699,8 +808,10 @@ function R(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imu
 const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'Tres columnas', l13:'Un tercio izquierda (1/3 y 2/3)', l31:'Un tercio derecha (2/3 y 1/3)'};
 const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
+/* Estilo 4: los fondos de sección son planos; todo degradado es una imagen pre-renderizada (el overlay lo dice) */
+const S4 = () => document.documentElement.dataset.style==='4';
 function sec(layout, bg, cols, note=''){
-  const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${note?' · '+note:''}`;
+  const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${S4()&&bg!=='none'?' (plano, sin degradado)':''}${note?' · '+note:''}`;
   if(layout==='full') return `<section class="sp-sec full bg-${bg}" data-sec="${esc(label)}">${cols[0]}</section>`;
   return `<section class="sp-sec bg-${bg}" data-sec="${esc(label)}"><div class="sp-canvas"><div class="cols ${layout}">${cols.map(c=>`<div class="col">${c}</div>`).join('')}</div></div></section>`;
 }
@@ -1260,7 +1371,38 @@ function ctaBg(c){
   const mk=L?`<defs><linearGradient id="ctm-g" gradientUnits="userSpaceOnUse" x1="400" y1="0" x2="490" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="ctm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#ctm-g)"/></mask></defs>`:'';
   const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g${L?' mask="url(#ctm)"':''}>${art}</g></svg>`;
   if(st==='3') return `<div class="cta-bg art" style="background:var(--bg-neutral);box-shadow:inset 0 0 0 1px var(--rule)">${svg}</div>`;
+  if(st==='4') return `<div class="cta-bg art" style="background:var(--noise4),radial-gradient(46% 110% at 88% 10%,color-mix(in srgb,var(--accent) 22%,#A8D8F8) 0%,rgba(168,216,248,0) 70%),linear-gradient(90deg,#F3F6FA 0%,#F3F6FA 45%,#E6F1FD 100%);box-shadow:inset 0 0 0 1px var(--rule)">${svg}</div>`;
   return `<div class="cta-bg art grain" style="--art-bg:#0D0E10;--art-fg:rgba(255,255,255,.55);--art-dim:rgba(255,255,255,.14);--art-dot:rgba(255,255,255,.5);background:radial-gradient(70% 120% at 90% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 65%),#0D0E10">${svg}</div>`;
+}
+/* ---------- arte del Estilo 4 (en SharePoint: imágenes pre-renderizadas con el degradado y el grano horneados) ---------- */
+/* gráfica de área en degradado sobre el render del Urban Vitality Index (ref. 4dc2f9, en claro). Solo se ve en el Estilo 4. */
+function uviChart(){
+  const v=[38,44,41,52,57,55,66,74], b=[40,42,43,45,46,48,49,51], X=i=>28+i*344/7, Y=n=>246-(n-30)*2.55;
+  const pts=a=>a.map((n,i)=>[X(i),Y(n)]);
+  const curve=p=>p.reduce((d,[x,y],i)=>{if(!i)return `M${x.toFixed(1)} ${y.toFixed(1)}`;const[px,py]=p[i-1],mx=(px+x)/2;return d+` C${mx.toFixed(1)} ${py.toFixed(1)} ${mx.toFixed(1)} ${y.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`},'');
+  const P=pts(v), line=curve(P), area=`${line} L${X(7)} 246 L${X(0)} 246 Z`;
+  let s=`<defs><linearGradient id="uviA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2348C8" stop-opacity=".5"/><stop offset=".55" stop-color="#4F8CE6" stop-opacity=".2"/><stop offset="1" stop-color="#A8D8F8" stop-opacity="0"/></linearGradient></defs>`;
+  [126,166,206].forEach(y=>s+=`<line x1="20" y1="${y}" x2="380" y2="${y}" stroke="#fff" stroke-opacity=".85" stroke-width="1" vector-effect="non-scaling-stroke"/>`);
+  P.forEach(([x])=>s+=`<line x1="${x.toFixed(1)}" y1="110" x2="${x.toFixed(1)}" y2="246" stroke="#0A2A9A" stroke-opacity=".07" stroke-width="1" vector-effect="non-scaling-stroke"/>`);
+  s+=`<line x1="20" y1="246" x2="380" y2="246" stroke="#0A2A9A" stroke-opacity=".35" stroke-width="1" vector-effect="non-scaling-stroke"/>`;
+  s+=`<path d="${area}" fill="url(#uviA)"/><path d="${curve(pts(b))}" fill="none" stroke="#0A2A9A" stroke-opacity=".45" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/>`;
+  s+=`<path d="${line}" fill="none" stroke="#2348C8" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`;
+  P.forEach(([x,y],i)=>s+=i<7?`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.4" fill="#fff" stroke="#2348C8" stroke-width="1.2"/>`:`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#2348C8" fill-opacity=".14"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6" fill="#2348C8" stroke="#fff" stroke-width="1.4"/>`);
+  return `<svg class="uvi" viewBox="0 0 400 275" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${s}</svg>`;
+}
+/* unidades: N barritas con relleno degradado (la cifra se lee también como cantidad) */
+const units = n => `<i class="u" aria-hidden="true">${'<i></i>'.repeat(+n)}</i>`;
+/* cifras bento en claro (ref. 693585). La primera tarjeta lleva el degradado suave. */
+function bento4(items, label){
+  return `<div class="art bento" role="img" aria-label="${esc(label)}">${items.map((it,i)=>`<div class="bx${i===0?' hi':''}"><b>${it[0]}</b><span>${esc(it[1])}</span>${units(it[0])}</div>`).join('')}</div>`;
+}
+/* banda "Build with COM": el único bloque intenso de la página. Texto y cifras horneados; todo va en el alt. */
+function band4(){
+  const n=[['14','in evaluation'],['06','in development'],['09','launched']];
+  return `<div class="art band4" role="img" aria-label="Build with COM. Have an idea? Build it with us. From idea to launched LATAM solution. ${n.map(x=>x[0]+' '+x[1]).join(', ')}.">
+    <div class="in"><div><p class="k">Build with COM</p><h2>Have an idea? <em>Build it with us</em><span class="sdot"></span></h2><p>From idea to launched LATAM solution.</p></div>
+    <div class="nums">${n.map(x=>`<div class="c"><b>${x[0]}</b><span>${x[1]}</span>${units(x[0])}</div>`).join('')}</div></div>
+  </div>`;
 }
 
 /* =========================================================
@@ -1282,6 +1424,7 @@ const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><sm
    PÁGINAS
    ========================================================= */
 /* @personalizar: páginas (secciones con sec(layout, fondo, columnas) y web parts con wp()) */
+const comBtns = () => [['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 5 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('');
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   const tools = [
@@ -1298,21 +1441,24 @@ function pageHome(){
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
-      wp('n','Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
+      wp('n',S4()?'Quick links · Filmstrip · miniaturas 1:1 = imágenes con degradado y grano (PNG 2×)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
       wp('i','Image · 1 columna (2408 px) · alt completo · sin vínculo', diagram())
     ]),
     sec('l13','neutral',[
-      wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices across the region</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
+      S4()
+        ? wp('n','Text · Heading 2 + Normal', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p>`)
+          + wp('i','Image · cifras bento con degradado y grano (PNG o WebP a 760 px) · alt con las 4 cifras', bento4([['06','offices across the region'],['04','clusters, one team'],['18','tools and LATAM solutions'],['26','projects with DT impact']],'LAC at a glance: 06 offices across the region, 04 clusters, one team, 18 tools and LATAM solutions, 26 projects with DT impact.'))
+        : wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices across the region</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
       wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
     ],'EXTRA'),
     sec('l31','none',[
-      wp('i','Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"')}</a>`),
+      wp('i',S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"').replace('</svg>','</svg>'+uviChart())}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
-    sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
+    sec('l1','none',[wp('n',S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
     sec('l1','neutral',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools',true)}${h2('Tools to use today.','Explore and learn.')}`),
       wp('n','List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
@@ -1323,10 +1469,14 @@ function pageHome(){
       wp('n','Events · Compact (próxima sesión)', `<div class="wp-title"><h3>Upcoming session</h3><a href="#/learning">See all</a></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}</div>`)
       + wp('n','Quick links · List (quick-start)', `<div class="wp-title"><h3>Quick-start</h3></div><div class="ql-list">${[['book','Rhino-Revit in 15 minutes','Interoperability basics'],['nodes','Speckle: send your first model','Step-by-step guide'],['globe','GIS basics for site analysis','Firmwide resource · curated']].map(q=>`<a href="#/learning">${ic(q[0])}<span><b>${q[1]}</b><span>${q[2]}</span></span></a>`).join('')}</div>`)
     ]),
-    sec('l31','strong',[
+    /* Estilo 4: la banda en degradado es una imagen full-width (los fondos de sección son planos) y los 3 vínculos van debajo */
+    ...(S4() ? [
+      sec('full','none',[wp('i','Image · full-width (2880 px) · banda en degradado con grano horneado (WebP ≤ 400 KB) · texto y cifras en el alt · vínculo a Send your request', `<a href="#/request" aria-label="Build with COM. Send your request" style="display:block;color:inherit;text-decoration:none">${band4()}</a>`)]),
+      sec('l1','none',[wp('n','Quick links · Button ×3 en fila (Forms / página)', `<div class="ql-buttons cols3">${comBtns()}</div>`)])
+    ] : [sec('l31','strong',[
       wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
-      wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${[['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 5 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
-    ]),
+      wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${comBtns()}</div>`)
+    ])]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Featured community',true)}${h2('People you can call.','By area and tool.')}`)
       + wp('n','People · Compact ×4 (liderazgo regional: dirección, VDC, RC, CD; DI en Featured expert)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4">${[P.lucia,P.diego,P.camila,P.sofia].map(personCard).join('')}</div>`),
@@ -1434,6 +1584,7 @@ function route(){
   if(q.get('f'))setFont(q.get('f'));
   if(q.get('a'))setAccent(q.get('a'));
   window.HERO_FF=+(q.get('ff')||0);
+  document.documentElement.classList.toggle('no-ctl',q.get('ctl')==='0');
   if(q.get('logo'))applyLogo(q.get('logo'));
   if(q.get('logos')==='1')setTimeout(()=>setDrawer(true),50);
   const main=$('#main');let html='',cl='';
@@ -1474,7 +1625,10 @@ function setDrawer(open){const d=$('#logosDrawer');d.classList.toggle('open',ope
 function setAccent(a){document.documentElement.dataset.accent=a;document.querySelectorAll('[data-set-accent]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setAccent===a));store('accent',a)}
 function store(k,v){try{localStorage.setItem('dtlac-'+k,v)}catch(e){}}
 function load(k){try{return localStorage.getItem('dtlac-'+k)}catch(e){return null}}
-function setStyle(s,rerender=true){document.documentElement.dataset.style=s;document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);if(rerender)route()}
+function setStyle(s,rerender=true){document.documentElement.dataset.style=s;document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);
+  /* Estilo 4: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos) */
+  const g=$('#accentGrp'),off=s==='4';g.classList.toggle('off',off);g.title=off?'Estilo 4 usa azul fijo':'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
+  if(rerender)route()}
 function setFont(f){document.documentElement.dataset.font=f;document.querySelectorAll('[data-set-font]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setFont===f));store('font',f)}
 function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#wpToggle').setAttribute('aria-pressed',on);store('wp',on?'1':'0')}
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
