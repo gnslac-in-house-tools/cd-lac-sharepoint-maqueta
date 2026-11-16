@@ -181,6 +181,41 @@ html[data-style="5"][data-mode="dark"]{
   --tray:#F4F5F7; --tray-rule:rgba(255,255,255,.16);
   color-scheme:dark;
 }
+/* @personalizar: tokens del Estilo 6 «Terreno vivo» (SOLO oscuro). Colores del Estilo 1 sobre la estructura del Estilo 5.
+   En el DOM es data-style="5" + data-mode="dark" + data-skin="6": hereda TODAS las reglas del 5 (hero de borde a borde, chips,
+   bandejas, tiles, img=1) y este bloque solo cambia la paleta. Reglas propias: bloque CSS «5f · ESTILO 6». */
+html[data-skin="6"][data-mode="dark"]{
+  /* primitivos (Estilo 1): negro carbón, superficies carbón y filete de 1 px */
+  --p-white:#1B1D20; --p-snow:#0B0C0D; --p-mist:#151719; --p-rule:#2E3033; --p-ink:#F2F2F0;
+  /* clusters en sus colores vivos originales (AA ≥ 7:1 sobre #1B1D20) y apoyo luminoso */
+  --c5-vdc-lt:#3FE0D0; --c5-rc-lt:#FF8A4C; --c5-cd-lt:#C3A6FF; --c5-di-lt:#6FB6FF;
+  --c5-lime-lt:#C9EE76; --c5-amber-lt:#F5B544; --c5-rose-lt:#FF9CCB;
+  --bg:#0B0C0D; --bg-neutral:#151719; --bg-soft:color-mix(in srgb,var(--accent) 6%,#0B0C0D); --surface:#1B1D20; --surface-2:#232528; --rule:#2E3033;
+  --text:#F2F2F0; --text-2:#A3A8AD; --text-tail:#7A7F85; --header-bg:#0B0C0D; --header-fg:#F2F2F0; --suite-bg:#000;
+  --link:var(--accent-text);
+  --art-bg:#101113; --art-fg:rgba(242,242,240,.30); --art-dim:rgba(242,242,240,.10); --art-text:#F2F2F0; --art-tail:#8D9399; --art-dot:rgba(242,242,240,.30);
+  --grid:rgba(242,242,240,.05);
+  --tint-vdc:color-mix(in srgb,#3FE0D0 13%,#1B1D20); --tint-rc:color-mix(in srgb,#FF8A4C 13%,#1B1D20); --tint-cd:color-mix(in srgb,#C3A6FF 13%,#1B1D20); --tint-di:color-mix(in srgb,#6FB6FF 13%,#1B1D20);
+  --tint-lime:color-mix(in srgb,#C9EE76 11%,#1B1D20); --tint-amber:color-mix(in srgb,#F5B544 12%,#1B1D20); --tint-rose:color-mix(in srgb,#FF9CCB 12%,#1B1D20);
+  /* oficinas = acento de statement; cursores = clusters + ámbar + rosa con tinta carbón */
+  --oc:var(--accent); --oc-fill:var(--accent); --cur-ink:#0B0C0D;
+  /* media: bandeja NEUTRA MEDIA con padding interno (las capturas blancas no deslumbran); tile de logo claro pequeño */
+  --tray:#2A2D31; --tray-rule:rgba(242,242,240,.10); --tray-ink:#A3A8AD; --tray-dim:.84;
+  --ph-sky:#24272B; --ph-sky2:#2A2D32; --ph-mass:#3B3F45; --ph-mass2:#33363B; --ph-ground:#2E3136; --ph-win:#474C53;
+  /* hero, banda y encabezados: carbón con degradado granulado sutil y un brillo del acento activo arriba a la derecha */
+  --hero-deep:radial-gradient(40% 70% at 100% 0%,color-mix(in srgb,var(--accent) 15%,transparent) 0%,transparent 72%),radial-gradient(46% 80% at 74% 112%,rgba(111,182,255,.09) 0%,transparent 70%),radial-gradient(40% 70% at 0% 100%,rgba(0,0,0,.55) 0%,transparent 70%),linear-gradient(100deg,#0B0C0D 0%,#111315 52%,#1A1C20 100%);
+  /* tablero de impacto: las métricas globales usan el acento */
+  --hl-gl:var(--accent); --ink-gl:var(--accent-text); --tint-gl:color-mix(in srgb,var(--accent) 12%,#1B1D20);
+  --ph-far:#292C30; --ph-tree:#3E4248; --ph-ppl:#26292D;
+  /* Featured project (UVI) en oscuro */
+  --uvi-card:#141517; --uvi-a:#6FB6FF; --uvi-l:#6FB6FF; --uvi-g:rgba(242,242,240,.07); --uvi-ax:rgba(242,242,240,.22); --uvi-base:#7A7F85; --uvi-dot:#141517;
+}
+/* acento de statement del Estilo 6: los 5 del Estilo 1 (lima por defecto) */
+html[data-skin="6"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#FF4A4F}
+html[data-skin="6"][data-accent="cobalt"]{--accent:#2A62F0;--accent-ink:#FFFFFF;--accent-text:#5B8CFF}
+html[data-skin="6"][data-accent="lime"]  {--accent:#D4F04A;--accent-ink:#0B0C0D;--accent-text:#D4F04A}
+html[data-skin="6"][data-accent="amber"] {--accent:#F5A524;--accent-ink:#0B0C0D;--accent-text:#F5A524}
+html[data-skin="6"][data-accent="mono"]  {--accent:#F2F2F0;--accent-ink:#0B0C0D;--accent-text:#F2F2F0}
 /* @personalizar: acentos elegibles (5 opciones × estilos 1 a 3; el Estilo 4 usa azul fijo y desactiva el selector). Agregar uno = 3 reglas aquí + 1 swatch en la barra de control. */
 /* ---------- ACENTO ELEGIBLE = themePrimary del sitio (una sola elección por sitio) ----------
    --accent: relleno / statement · --accent-ink: texto sobre el acento · --accent-text: acento usado como texto (AA) */
@@ -207,6 +242,12 @@ html[data-accent]{
 html[data-style="1"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 7%,#0B0C0D); --grid:rgba(242,242,240,.055)}
 html[data-style="2"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 9%,#F4F2EE); --grid:rgba(17,17,17,.06)}
 html[data-style="3"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 5%,#FBFBFA); --grid:rgba(18,19,20,.05)}
+/* @personalizar: color «global» del tablero de impacto (métricas que no son de un cluster: proyectos, horas totales, oficinas).
+   1 y 4: el acento · 2 y 3: la tinta (su acento puede ser lima, ilegible sobre claro) · 5: lima (lugar) · 6: el acento (bloque del 6) */
+html{--hl-gl:var(--accent); --ink-gl:var(--accent-text,var(--accent))}
+html:is([data-style="2"],[data-style="3"]){--hl-gl:var(--text); --ink-gl:var(--text)}
+html[data-style="5"]{--hl-gl:var(--c5-lime); --ink-gl:var(--c5-lime-ink); --tint-gl:var(--c5-lime-tint)}
+html[data-style="5"][data-mode="dark"]:not([data-skin="6"]){--hl-gl:var(--c5-lime-lt); --ink-gl:var(--c5-lime-lt); --tint-gl:#253539}
 /* fuentes: marca (Brand Center) o fallback nativo. El ARTE siempre conserva la fuente de marca. */
 html{--f-sans:var(--f-brand-sans); --f-mono:var(--f-brand-mono); --f-art:var(--f-brand-sans); --f-art-mono:var(--f-brand-mono)}
 html[data-font="sp"]{--f-sans:var(--f-sp-sans); --f-mono:var(--f-sp-mono)}
@@ -819,6 +860,270 @@ html[data-style="5"] .chdr .c5-media.real{aspect-ratio:16/9}
 .people.row4 .person span{line-height:1.35}
 
 /* =========================================================
+   5e · COMPONENTES DE LA RONDA 8 (los 6 estilos; solo tokens)
+   Fila de accesos, tablero de impacto, Spotlight, Featured expert, liderazgo en línea y onboarding.
+   Color por pieza: --k (gráfico), --ki (texto AA), --kt (tinte). Fuera del 5/6 caen a --hl-* y a una mezcla con la superficie.
+   ========================================================= */
+/* @personalizar: color por cluster de las piezas nuevas (onboarding y tarjetas de rama). Transversales (Productive AI, Community) = neutro + línea punteada */
+:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="vdc"],.onb-detail[data-cluster="vdc"]{--k:var(--hl-vdc);--ki:var(--ink-vdc,var(--hl-vdc));--kt:var(--tint-vdc,color-mix(in srgb,var(--hl-vdc) 9%,var(--surface)))}
+:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="rc"],.onb-detail[data-cluster="rc"]{--k:var(--hl-rc);--ki:var(--ink-rc,var(--hl-rc));--kt:var(--tint-rc,color-mix(in srgb,var(--hl-rc) 9%,var(--surface)))}
+:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="cd"],.onb-detail[data-cluster="cd"]{--k:var(--hl-cd);--ki:var(--ink-cd,var(--hl-cd));--kt:var(--tint-cd,color-mix(in srgb,var(--hl-cd) 9%,var(--surface)))}
+:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="di"],.onb-detail[data-cluster="di"]{--k:var(--hl-di);--ki:var(--ink-di,var(--hl-di));--kt:var(--tint-di,color-mix(in srgb,var(--hl-di) 9%,var(--surface)))}
+:is(.onb-map,.onb-cards,.onb-detail) :is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]),.onb-detail:is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]){--k:var(--text-2);--ki:var(--text);--kt:var(--surface-2)}
+
+/* ---------- fila de 4 accesos bajo el hero (Quick links · Button, 1 fila compacta) ---------- */
+.ql-buttons.cols4{grid-template-columns:repeat(4,1fr)}
+.sp-sec:has(> .sp-canvas [data-quick-row]){padding:24px 0 20px}
+.ql-buttons.ql-row{gap:12px}
+.ql-buttons.ql-row .ql-btn{min-height:48px;padding:7px 14px 7px 7px;gap:12px;font-size:14px;font-weight:500;letter-spacing:-.005em;transition:background .15s,box-shadow .15s}
+.ql-buttons.ql-row .ql-btn > svg:first-child{width:34px;height:34px;padding:8px;border-radius:var(--r-native);color:var(--accent-text,var(--text));background:color-mix(in srgb,var(--accent-text,var(--text)) 11%,transparent)}
+.ql-buttons.ql-row .ql-btn .arr{width:16px;height:16px;transition:transform .18s ease,color .15s}
+.ql-buttons.ql-row .ql-btn:hover{box-shadow:inset 0 0 0 1px var(--accent-text,var(--text))}
+.ql-buttons.ql-row .ql-btn:hover .arr{transform:translateX(3px);color:var(--text)}
+html[data-style="2"] .ql-buttons.ql-row .ql-btn > svg:first-child{color:var(--text);background:var(--accent)}
+
+/* ---------- tablero de impacto ("LAC at a glance"): pestañas, stats seleccionables y mapa de burbujas ---------- */
+.impact{margin-top:18px}
+.impact-tabs{display:flex;gap:2px;padding:3px;margin:0 0 12px;border-radius:calc(var(--r-native) + 2px);background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule)}
+.impact-tab{flex:1 1 auto;min-width:0;min-height:36px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 8px;border:0;border-radius:var(--r-native);background:none;cursor:pointer;font:600 11.5px/1 var(--f-mono);letter-spacing:.08em;color:var(--text-2);transition:background .15s,color .15s,box-shadow .15s}
+.impact-tab::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--k);flex:none}
+.impact-tab:hover{color:var(--text);background:var(--surface-2)}
+.impact-tab[aria-selected="true"]{color:var(--ki);background:var(--kt);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 55%,transparent)}
+.impact-stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.impact-stats li{display:flex;min-width:0}
+.impact-stats li:first-child:nth-last-child(odd){grid-column:1/-1}
+.impact-stat{flex:1;min-width:0;text-align:left;font:inherit;color:var(--text);background:var(--surface);border:0;border-radius:var(--r-native);box-shadow:inset 0 0 0 1px var(--rule);padding:13px 14px 12px;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"num unit" "lab lab";align-items:baseline;gap:6px 8px;transition:background .2s,box-shadow .2s}
+.impact-stat b{grid-area:num;font-size:30px;line-height:1;font-weight:var(--h-weight);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap;transition:color .2s}
+.impact-stats li:first-child:nth-last-child(odd) .impact-stat b{font-size:40px}
+.impact-stat small{grid-area:unit;font:500 10.5px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+.impact-stat span{grid-area:lab;display:flex;align-items:baseline;gap:7px;font-size:13px;line-height:1.3;color:var(--text-2)}
+.impact-stat span::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--k);flex:none;transform:translateY(-1px)}
+.impact-stat:hover{background:var(--surface-2)}
+.impact-stat[aria-pressed="true"]{background:var(--kt);box-shadow:inset 0 0 0 1.5px var(--k),inset 0 4px 0 var(--k)}
+.impact-stat[aria-pressed="true"] b{color:var(--ki)}
+.impact-stat[aria-pressed="true"] span{color:var(--text)}
+html[data-style="2"] .impact-stat b{font-weight:600}
+/* mapa: burbujas proporcionales por ÁREA (r = Rmax·√(v / vmax)), halo del color de la stat, transición suave */
+.impact-map{position:relative}
+.impact-map .mapart .legend{display:none}
+/* en el tablero la oficina es un punto neutro (tinta del arte): el color lo llevan solo las burbujas de la stat */
+.impact-map .mapart .m-off .m-accf{fill:var(--art-text);stroke:var(--art-bg)!important;stroke-width:1.5px!important}
+.impact-map .mapart .m-off .m-acc{display:none}
+.impact-map .mapart{border-radius:var(--r-native)}
+.imp-bubs circle,.imp-bubs g{transition:r .65s cubic-bezier(.2,.7,.2,1),fill .35s,stroke .35s,opacity .35s}
+.imp-b{fill:color-mix(in srgb,var(--k) 20%,transparent);stroke:var(--k);stroke-width:1.5}
+.imp-b.ct{stroke-dasharray:3.5 2.5;fill:color-mix(in srgb,var(--k) 14%,transparent)}
+.imp-cd{fill:var(--k)}
+html:is([data-style="1"],[data-mode="dark"]) .imp-b{fill:color-mix(in srgb,var(--k) 24%,transparent)}
+.imp-vals g{animation:impIn .45s ease both}
+.imp-vals rect{fill:var(--art-bg);opacity:.94}
+.imp-vals text{font-family:var(--f-art);font-weight:600;fill:var(--ki);font-variant-numeric:tabular-nums}
+.imp-vals .lead{stroke:var(--k);stroke-width:1;fill:none;opacity:.7}
+.imp-leg text{font-family:var(--f-art-mono);fill:var(--art-tail);letter-spacing:.08em}
+.imp-leg .cap{fill:var(--art-text);font-family:var(--f-art);font-weight:600;letter-spacing:0}
+.imp-leg .mag{fill:none;stroke:var(--k);stroke-width:1;opacity:.85}
+.imp-leg .tick{stroke:var(--art-tail);stroke-width:.75;stroke-dasharray:1.5 2}
+.imp-leg .box{fill:var(--art-bg);opacity:.9;stroke:var(--rule)}
+@keyframes impIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ---------- Spotlight: retrato grande (5/12) + logro como titular (7/12) ---------- */
+.spotlight{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.spot-photo{aspect-ratio:4/5}
+.spot-body{max-width:620px;padding:12px 0}
+.spotlight .t-kicker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.spotlight .t-kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.spot-title{margin:0 0 30px;font-size:56px;line-height:1;font-weight:var(--h-weight);letter-spacing:-.045em;text-wrap:balance}
+html[data-style="2"] .spot-title{font-weight:600;letter-spacing:-.04em}
+.spot-quote{margin:0 0 26px;padding:2px 0 2px 20px;border-left:2px solid var(--accent);font-size:20px;line-height:1.45;color:var(--text);max-width:42ch}
+.spot-who{margin:0 0 18px;display:flex;flex-direction:column;gap:3px}
+.spot-who b{font-size:16px;font-weight:600}
+.spot-who span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+/* retrato placeholder (sin fotos de personas): silueta neutra + iniciales + etiqueta, como las demás bandejas de media */
+.portrait-ph{position:relative;display:flex;align-items:flex-end;padding:14px;aspect-ratio:4/5;border-radius:var(--r-native);overflow:hidden;
+  font:600 12px/1 var(--f-mono);letter-spacing:.14em;color:var(--text-2);
+  --sil:color-mix(in srgb,var(--text) 13%,var(--surface-2)); --ph-bg1:var(--surface-2); --ph-bg2:var(--surface);
+  background:
+    radial-gradient(15.5% 12.4% at 50% 45%,var(--sil) 0 93%,transparent 100%),
+    linear-gradient(90deg,transparent 44.6%,var(--sil) 45.2% 54.8%,transparent 55.4%) 0 63%/100% 9% no-repeat,
+    radial-gradient(50% 35% at 50% 99%,var(--sil) 0 95%,transparent 100%),
+    radial-gradient(40% 32% at 50% 40%,color-mix(in srgb,var(--text) 6%,transparent),transparent 72%),
+    radial-gradient(70% 55% at 80% 6%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 70%),
+    linear-gradient(175deg,var(--ph-bg1),var(--ph-bg2));
+  box-shadow:inset 0 0 0 1px var(--rule)}
+.portrait-ph::after{content:"Portrait";position:absolute;right:12px;bottom:12px;font:500 10px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);background:color-mix(in srgb,var(--surface) 88%,transparent);box-shadow:0 0 0 1px var(--rule);padding:6px 8px;border-radius:3px}
+html[data-style="5"] .portrait-ph{--sil:var(--ph-mass);--ph-bg1:var(--ph-sky2);--ph-bg2:var(--ph-sky);box-shadow:0 0 0 1px var(--tray-rule);color:var(--tray-ink)}
+html[data-style="5"] .portrait-ph::after{background:rgba(255,255,255,.92);color:var(--tray-ink);box-shadow:0 0 0 1px var(--ph-mass)}
+
+/* ---------- Featured expert (protagonista) + liderazgo regional en 1 línea ---------- */
+.expert{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:center;padding:16px 28px 16px 16px;border-radius:var(--r-native);background:var(--surface);box-shadow:var(--card-shadow)}
+.expert-photo{aspect-ratio:4/5}
+.expert-body{display:flex;flex-direction:column;align-items:flex-start;gap:14px;min-width:0}
+.expert-body .meta-line{color:var(--accent-text,var(--text-2))}
+.expert-name{margin:0;font-size:40px;line-height:1.02;font-weight:var(--h-weight);letter-spacing:-.04em}
+html[data-style="2"] .expert-name{font-weight:600}
+.expert-quote{margin:0;padding:2px 0 2px 16px;border-left:2px solid var(--accent);font-size:18px;line-height:1.45}
+.expert-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.expert-tags li{font-size:12.5px;padding:4px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule);color:var(--text-2)}
+.expert .btn{margin-top:4px}
+.wp-title:has(+ .lead-line) h3{font-size:15px}
+.people.row4.lead-line{display:flex;gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.people.row4.lead-line .person{flex:1 1 0;min-width:0;flex-direction:row;align-items:center;gap:10px;padding:11px 10px 11px 0}
+.people.row4.lead-line .person + .person{padding-left:14px;border-left:1px solid var(--rule)}
+.lead-line .av{width:32px!important;height:32px!important;font-size:12px!important}
+.lead-line a{min-width:0}
+.lead-line b{font-size:13.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lead-line span{font-size:12px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- Onboarding (Learning): tronco a la izquierda, ramas orgánicas a los 4 pilares + 2 transversales ----------
+   Rejilla de 3 filas (ramas de pilar · canal · transversales). El tronco usa subgrid para que «Core tools» quede en el canal.
+   Las ramas de arriba CRECEN hacia arriba (nodo junto al canal, hoja en la punta) y las de abajo cuelgan. drawOnb() traza las curvas. */
+.onb-map{--ch:84px;position:relative;display:grid;grid-template-columns:232px minmax(0,1fr);grid-template-rows:auto var(--ch) auto;column-gap:56px;padding:28px 28px 28px 24px;border-radius:var(--r-native);
+  background:linear-gradient(var(--grid,rgba(127,127,127,.06)) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid,rgba(127,127,127,.06)) 1px,transparent 1px) 0 0/24px 24px,var(--surface);box-shadow:var(--card-shadow)}
+.onb-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:0}
+.onb-trunk,.onb-branches,.onb-leaves{list-style:none;margin:0;padding:0}
+.onb-trunk{grid-column:1;grid-row:1/4;display:grid;grid-template-rows:subgrid;position:relative;z-index:1}
+.onb-trunk li{grid-column:1;padding-left:30px}
+.onb-trunk li:nth-child(1){grid-row:1;align-self:start}
+.onb-trunk li:nth-child(2){grid-row:1;align-self:end;margin-bottom:22px}
+.onb-trunk li:nth-child(3){grid-row:2;align-self:center}
+.onb-branches{grid-column:2;grid-row:1/4;display:grid;grid-template-rows:subgrid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:14px;position:relative;z-index:1}
+.onb-branch{display:flex;flex-direction:column;gap:16px;transition:opacity .25s}
+.onb-branch:nth-child(-n+4){grid-row:1;flex-direction:column-reverse;justify-content:flex-start}
+.onb-branch:nth-child(5){grid-row:3;grid-column:1/3}
+.onb-branch:nth-child(6){grid-row:3;grid-column:3/5}
+.onb-branch:nth-child(n+5){display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.8fr);align-items:start;gap:22px}
+.onb-branch:nth-child(n+5) .onb-leaves{padding:22px 0 0}
+.onb-node{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;text-align:left;font:inherit;color:var(--text);background:var(--surface);border:0;border-radius:var(--r-native);box-shadow:inset 0 0 0 1px var(--rule);padding:12px 14px;transition:box-shadow .2s,background .2s,transform .2s,opacity .25s}
+button.onb-node{cursor:pointer}
+button.onb-node:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k,var(--text)) 60%,var(--rule))}
+.onb-step{font:600 10.5px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.onb-t{font-size:15px;line-height:1.25;font-weight:600}
+.onb-sub{font-size:12.5px;line-height:1.35;color:var(--text-2)}
+.onb-node[data-tipo="trunk"] .onb-t{font-size:14.5px}
+.onb-node[data-tipo="trunk"][aria-pressed="true"]{box-shadow:inset 0 0 0 1.5px var(--text);background:var(--surface-2)}
+/* nodo de rama: pilar, contacto (avatar + nombre) y 2–3 recursos como hojas pequeñas */
+.onb-node[data-tipo="branch"]{padding:14px 14px 12px;gap:4px;box-shadow:inset 0 0 0 1px var(--rule),inset 0 3px 0 var(--k)}
+.onb-node[data-tipo="branch"] .onb-t{display:flex;align-items:center;gap:8px;font-size:15.5px}
+.onb-node[data-tipo="branch"] .onb-t::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--k);flex:none}
+.onb-who{display:flex;align-items:center;gap:8px;margin:8px 0 4px;font-size:12.5px;line-height:1.25;min-width:0}
+.onb-who small{display:block;font-size:11.5px;color:var(--text-2)}
+.onb-av{width:28px;height:28px;border-radius:50%;flex:none;display:grid;place-items:center;font:600 10.5px/1 var(--f-sans);color:var(--ki);background:var(--kt);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 45%,transparent)}
+.onb-res{display:flex;flex-direction:column;gap:4px;margin-top:4px;width:100%}
+.onb-res > span{display:flex;align-items:flex-start;gap:7px;font-size:12px;line-height:1.3;color:var(--text-2)}
+.onb-res > span::before{content:"";flex:none;width:9px;height:9px;margin-top:2px;border-radius:0 60% 0 60%;background:color-mix(in srgb,var(--k) 70%,transparent)}
+.onb-node[data-tipo="branch"][aria-pressed="true"]{background:var(--kt);box-shadow:inset 0 0 0 1.5px var(--k),inset 0 4px 0 var(--k),0 10px 24px rgba(0,0,0,.14);transform:translateY(-2px)}
+/* hoja (primera tarea de proyecto): la punta de la rama, punteada */
+.onb-leaves{padding-left:14px}
+.onb-node[data-tipo="leaf"]{flex-direction:column-reverse;gap:4px;padding:9px 12px;background:transparent;box-shadow:none;border:1px dashed color-mix(in srgb,var(--k) 55%,var(--rule))}
+.onb-node[data-tipo="leaf"] .onb-t{font-size:12.5px;font-weight:500;line-height:1.3}
+.onb-node[data-tipo="leaf"] .onb-sub{font:600 10px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ki)}
+.onb-branch.on .onb-node[data-tipo="leaf"]{background:var(--kt);border-style:solid}
+/* camino activo: resalta tronco → rama → hoja; el resto se atenúa */
+.onb-map.has-branch .onb-branch:not(.on){opacity:.42}
+.onb-links path,.onb-links circle{transition:opacity .25s,stroke-width .25s}
+.onb-trk{fill:none;stroke:var(--text-2);stroke-width:2;stroke-linecap:round;opacity:.7}
+.onb-trk.on{stroke:var(--text);stroke-width:3;opacity:1}
+.onb-dot{fill:var(--surface);stroke:var(--text-2);stroke-width:2}
+.onb-dot.on{fill:var(--text);stroke:var(--text)}
+.onb-fib{fill:none;stroke:var(--k);stroke-width:2;stroke-linecap:round;opacity:.9}
+.onb-fib.x{stroke-dasharray:1 6;stroke-width:2.5}
+.onb-tip{fill:none;stroke:var(--k);stroke-width:1.5;stroke-dasharray:2 4;opacity:.85}
+.onb-map.has-branch :is(.onb-fib,.onb-tip):not(.on){opacity:.12}
+.onb-map.has-branch .onb-fib.on{stroke-width:3.5;opacity:1}
+.onb-map.has-branch .onb-fib.x.on{stroke-width:3.5;stroke-dasharray:1 7}
+/* detalle del nodo activo (abajo a la izquierda, junto a las transversales) */
+.onb-detail{grid-column:1;grid-row:3;align-self:start;position:relative;z-index:1;margin:22px 0 0 30px;padding:14px 14px 12px;border-radius:var(--r-native);background:var(--kt,var(--surface-2));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k,var(--text-2)) 40%,var(--rule));display:flex;flex-direction:column;gap:6px;font-size:13px}
+.onb-detail .onb-t{font-size:16px}
+.onb-detail ul{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:4px}
+.onb-detail li{display:flex;gap:7px;font-size:12.5px;line-height:1.3;color:var(--text)}
+.onb-detail li::before{content:"";flex:none;width:9px;height:9px;margin-top:2px;border-radius:0 60% 0 60%;background:var(--k,var(--text-2))}
+.onb-detail .onb-next{margin:4px 0 0;font-size:12.5px;line-height:1.35}
+.onb-detail .onb-next small{display:block;font:600 10px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ki,var(--text-2))}
+.onb-detail .t-link{font-size:13px}
+/* Your first DT session: agenda numerada compacta + barra de tiempo proporcional */
+.onb-time{display:flex;gap:3px;height:6px;margin:18px 0 0;max-width:620px}
+.onb-time i{display:block;border-radius:1px;background:color-mix(in srgb,var(--accent-text,var(--text)) var(--o,60%),var(--surface-2))}
+.onb-agenda{list-style:none;margin:14px 0 0;padding:0;counter-reset:ag;border-top:1px solid var(--rule);max-width:620px}
+.onb-agenda li{counter-increment:ag;display:grid;grid-template-columns:36px minmax(0,1fr) auto;column-gap:14px;row-gap:2px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)}
+.onb-agenda li::before{content:counter(ag,decimal-leading-zero);grid-row:1/3;font:500 13px/1.4 var(--f-mono);letter-spacing:.06em;color:var(--accent-text,var(--text))}
+.onb-agenda b{grid-column:2;font-size:15px;font-weight:600;line-height:1.35}
+.onb-agenda span{grid-column:2;font-size:13px;line-height:1.4;color:var(--text-2)}
+.onb-agenda small{grid-column:3;grid-row:1;font:500 11px/1 var(--f-mono);letter-spacing:.08em;color:var(--text-2);padding:4px 8px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule);white-space:nowrap}
+/* Choose your branch: una tarjeta por rama, filete del color del pilar */
+.onb-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.onb-card{display:flex;flex-direction:column;gap:12px;padding:18px 18px 16px;border-radius:var(--r-native);background:var(--surface);box-shadow:var(--card-shadow),inset 0 3px 0 var(--k);transition:box-shadow .2s,transform .2s}
+.onb-card h4{margin:0;display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.onb-card h4::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--k);flex:none}
+.onb-card .person .av{background:var(--kt);color:var(--ki);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 45%,transparent)}
+.onb-card .onb-res{list-style:none;margin:0;padding:0}
+.onb-card .onb-res li{display:flex;gap:8px;font-size:13px;line-height:1.35;color:var(--text)}
+.onb-card .onb-res li::before{content:"";flex:none;width:9px;height:9px;margin-top:3px;border-radius:0 60% 0 60%;background:color-mix(in srgb,var(--k) 75%,transparent)}
+.onb-next{margin:auto 0 0;padding:10px 12px;border-radius:var(--r-native);background:var(--kt);font-size:13px;line-height:1.35}
+.onb-next small{display:block;margin-bottom:2px;font:600 10px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ki)}
+.onb-card[data-active]{box-shadow:0 0 0 1.5px var(--k),inset 0 4px 0 var(--k),0 10px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
+
+/* =========================================================
+   5f · ESTILO 6 · TERRENO VIVO (solo diferencias con el 5 oscuro)
+   Paleta del Estilo 1 (carbón, filetes de 1 px, grano, clusters vivos, acento elegible) sobre la estructura del 5.
+   ========================================================= */
+/* hero de borde a borde: carbón con degradado granulado y el mapa multicolor (puntos en degradado de los 4 clusters, oficinas en el acento) */
+html[data-skin="6"] .hdr{--art-bg:#0B0C0D; --art-text:#F2F2F0; --art-tail:#9AA0A6; --art-dot:rgba(242,242,240,.4); --art-fg:rgba(242,242,240,.45); --oc:var(--accent); --oc-fill:var(--accent)}
+html[data-skin="6"] .hdr::before{background:
+  linear-gradient(rgba(242,242,240,.09),rgba(242,242,240,.09)) 60% 0/1px 100% no-repeat,
+  linear-gradient(rgba(242,242,240,.09),rgba(242,242,240,.09)) 100% 50%/40% 1px no-repeat}
+html[data-skin="6"] .hdr .m-dot{fill:url(#g6-map)}
+html[data-skin="6"] .hdr .m-plq{fill:#0B0C0D;opacity:.86}
+html[data-skin="6"] :is(.hdr,.chdr,.band4) .sdot{background:var(--accent)}
+html[data-skin="6"] .hdr .big em{color:var(--art-tail)}
+/* foto real del hero (img=1): en carbón el multiply la borra; va invertida en escala de grises y en screen al 20 % (un «negativo» tenue que solo ilumina) */
+html[data-skin="6"] .hero5-photo{mix-blend-mode:screen;filter:grayscale(1) invert(1) contrast(1.35);opacity:.15}
+/* encabezado de cluster y banda: misma rampa carbón; filete y cuadro en el color vivo del cluster */
+html[data-skin="6"] .chdr{--art-tail:#9AA0A6}
+html[data-skin="6"] .chdr::before{background:linear-gradient(rgba(242,242,240,.09),rgba(242,242,240,.09)) 0 50%/58% 1px no-repeat}
+html[data-skin="6"] .band4 .k{color:var(--text-2)}
+html[data-skin="6"] .band4 h2 em{color:var(--accent-text)}
+html[data-skin="6"] .band4 .c{background:rgba(242,242,240,.035);box-shadow:inset 0 0 0 1px rgba(242,242,240,.12),inset 0 2px 0 var(--k)}
+html[data-skin="6"] .band4 .nums::before,html[data-skin="6"] .band4 .nums::after{background:rgba(242,242,240,.1)}
+/* logo: tinta en degradado del acento activo (#g6-ink), «dt» en carbón y cuadro en hueso */
+html[data-skin="6"][data-mode="dark"] .logo-slot svg{--accent:#F2F2F0}
+html[data-skin="6"][data-mode="dark"] .logo-slot svg [fill="currentColor"]{fill:url(#g6-ink)}
+html[data-skin="6"][data-mode="dark"] .logo-slot svg [stroke="currentColor"]{stroke:url(#g6-ink)}
+html[data-skin="6"][data-mode="dark"] .logo-slot svg [fill="var(--bg)"]{fill:#0B0C0D}
+/* diagrama de clusters (lenguaje del Estilo 1): barra con relleno del cluster al 14 %, filete de 1 px y canto de 3 px */
+html[data-skin="6"] .dia{background:linear-gradient(180deg,#141517,#101113);box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-skin="6"] .dia .bar{background:color-mix(in srgb,var(--c) 13%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 45%,transparent),inset 3px 0 0 var(--c);color:var(--text)}
+html[data-skin="6"] :is(.proc,.capthumb){background:var(--surface)}
+/* MEDIA con blanco en oscuro: bandeja neutra media (#2A2D31) con 6 px de padding interno, filete de 1 px y la imagen atenuada al 84 %.
+   Así las capturas de gBlox y Power BI no deslumbran y conservan sus colores. Los logos de app siguen en un tile claro pequeño. */
+html[data-skin="6"] .tray5{background:var(--tray);box-shadow:0 0 0 1px var(--tray-rule)}
+html[data-skin="6"] .tray5 > .m5{inset:6px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
+html[data-skin="6"] :is(.m5img,.m5.shot > svg){filter:brightness(var(--tray-dim)) contrast(1.02)}
+html[data-skin="6"] .ph[data-real]::after{box-shadow:inset 0 0 0 6px var(--tray),inset 0 0 0 7px rgba(0,0,0,.45)}
+html[data-skin="6"] .ph[data-real]{background:var(--tray)}
+html[data-skin="6"] .ph > .m5.shot{inset:6px;border-radius:3px}
+html[data-skin="6"] .ph:has(> .m5.shot){background:var(--tray)}
+html[data-skin="6"] .ph .tag{background:#202225;color:var(--text-2);border-top-color:var(--rule)}
+html[data-skin="6"] .m5-lab{background:rgba(16,17,19,.86);color:var(--text-2);box-shadow:0 0 0 1px rgba(242,242,240,.14)}
+html[data-skin="6"] .m5.real .m5-bar{background:#33363B;border-bottom-color:#2A2D31}
+html[data-skin="6"] .m5.real .m5-bar i{background:#5A5F66}
+html[data-skin="6"] .m5.real .m5-bar b{background:#232528;box-shadow:0 0 0 1px #3A3E44}
+html[data-skin="6"] .tool .ico{width:44px;height:44px;background:#ECEDEA;box-shadow:none}
+html[data-skin="6"] .tool .ico::before{border-color:#CFD2CC}
+html[data-skin="6"] .tool .ico b{font-size:13.5px;color:#1B1D20}
+/* Featured project: tarjeta carbón con el índice en el azul cielo de DI */
+html[data-skin="6"] .c5-chart{background:var(--uvi-card);box-shadow:0 0 0 1px var(--rule),0 10px 28px rgba(0,0,0,.4)}
+/* retrato placeholder y tablero en carbón */
+html[data-skin="6"] .portrait-ph{--sil:#34373C;--ph-bg1:#26292D;--ph-bg2:#1B1D20;box-shadow:0 0 0 1px var(--rule);color:var(--text-2)}
+html[data-skin="6"] .portrait-ph::after{background:rgba(16,17,19,.86);color:var(--text-2);box-shadow:0 0 0 1px rgba(242,242,240,.14)}
+html[data-skin="6"] .impact-map .mapart{box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-skin="6"] .onb-map{background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/24px 24px,#141517}
+html[data-skin="6"] .onb-node:not([data-tipo="leaf"]){background:var(--surface)}
+html[data-skin="6"] .onb-node[data-tipo="branch"][aria-pressed="true"]{background:var(--kt);box-shadow:inset 0 0 0 1.5px var(--k),inset 0 4px 0 var(--k),0 12px 28px rgba(0,0,0,.5)}
+html[data-skin="6"] .onb-node[data-tipo="trunk"][aria-pressed="true"]{background:var(--surface-2)}
+/* grano del Estilo 1 sobre las piezas de arte grandes (hero, diagrama, mapa) */
+html[data-skin="6"] :is(.dia,.mapart)::after{content:"";display:block;position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:var(--noise5)}
+
+/* =========================================================
    6 · BARRA DE CONTROL Y OVERLAY "VER WEB PARTS"
    ========================================================= */
 .ctl{position:fixed;right:16px;bottom:16px;z-index:100;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:rgba(32,32,32,.92);color:#fff;padding:8px 10px;border-radius:10px;font:12px/1.2 "Segoe UI",system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.3);backdrop-filter:blur(6px);max-width:calc(100vw - 32px)}
@@ -892,11 +1197,23 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .board{grid-template-columns:1fr 1fr}
   .suite .search{display:none}
   .band4 .in{grid-template-columns:1fr;gap:32px}
+  .ql-buttons.cols4{grid-template-columns:repeat(2,1fr)}
+  .spotlight{gap:32px}.spot-title{font-size:40px}
+  .expert{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:20px}
+  .people.row4.lead-line{flex-wrap:wrap}.people.row4.lead-line .person{flex:1 1 45%}
+  /* onboarding: el tronco pasa arriba en fila y las ramas a 2 columnas; sin curvas */
+  .onb-map{display:block;padding:20px}.onb-links{display:none}
+  .onb-trunk{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+  .onb-trunk li{padding-left:0;margin:0!important}
+  .onb-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .onb-branch,.onb-branch:nth-child(-n+4),.onb-branch:nth-child(n+5){grid-row:auto;grid-column:auto;display:flex;flex-direction:column}
+  .onb-detail{margin-top:20px}
+  .onb-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:639px){
   .cols.l2,.cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr}
   .shots5 .w2{grid-column:auto}.shots5 .w2 .fr{aspect-ratio:16/10}
-  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.band4 .nums{grid-template-columns:1fr}
+  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.ql-buttons.cols4,.band4 .nums{grid-template-columns:1fr}
   .sp-canvas{padding:0 16px}
   .t-h1{font-size:34px}.t-h2{font-size:26px}
   .site-actions,.suite .org{display:none}
@@ -904,6 +1221,9 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .dia{overflow-x:auto}
   .ctl{left:16px;right:16px;bottom:10px}
   .news .item{grid-template-columns:110px 1fr}
+  .spotlight,.expert{grid-template-columns:1fr}.spot-title{font-size:34px}
+  .onb-trunk,.onb-branches,.onb-cards{grid-template-columns:1fr}
+  .impact-stat b{font-size:26px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -916,6 +1236,8 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   <linearGradient id="g4-ink-lt" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A8D8F8"/></linearGradient>
   <linearGradient id="g4-acc" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="64" y2="64"><stop offset="0" stop-color="#2A6AD8"/><stop offset="1" stop-color="#7DB4F2"/></linearGradient>
   <linearGradient id="g5-ink-dk" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#2348C8"/><stop offset=".6" stop-color="#2A6AD8"/><stop offset="1" stop-color="#4F8CE6"/></linearGradient>
+  <!-- Estilo 6: degradado del ACENTO ACTIVO (las paradas leen var(--accent); cambia solo con el selector de acento) -->
+  <linearGradient id="g6-ink" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" style="stop-color:color-mix(in srgb,var(--accent) 55%,#FFFFFF)"/><stop offset=".5" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--accent) 62%,#0B0C0D)"/></linearGradient>
 </defs></svg>
 
 <!-- Suite bar de Microsoft 365 -->
@@ -961,7 +1283,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button><button data-set-style="4" aria-pressed="false">4 · Degradado azul</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button></div>
+  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button><button data-set-style="4" aria-pressed="false">4 · Degradado azul</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button><button data-set-style="6" aria-pressed="false">6 · Terreno vivo</button></div>
   <span class="lbl">Acento</span>
   <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
@@ -999,7 +1321,8 @@ const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
 /* Estilo 4: los fondos de sección son planos; todo degradado es una imagen pre-renderizada (el overlay lo dice) */
 const S4 = () => /^[45]$/.test(document.documentElement.dataset.style);   /* Estilos 4 y 5 (el 5 hereda la estructura del 4) */
-const S5 = () => document.documentElement.dataset.style==='5';
+const S5 = () => document.documentElement.dataset.style==='5';   /* también en el 6: monta la estructura del 5 */
+const S6 = () => document.documentElement.dataset.skin==='6';     /* Estilo 6 «Terreno vivo»: data-style="5" + data-mode="dark" + data-skin="6" */
 function sec(layout, bg, cols, note=''){
   const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${S4()&&bg!=='none'?' (plano, sin degradado)':''}${note?' · '+note:''}`;
   if(layout==='full') return `<section class="sp-sec full bg-${bg}" data-sec="${esc(label)}">${cols[0]}</section>`;
@@ -1291,14 +1614,14 @@ function photo5(kind,label='Project photo'){
   const ground=y=>`<rect y="${y}" width="400" height="${300-y}" fill="${G}"/>`;
   if(kind==='tower'){s+=`<rect x="36" y="178" width="96" height="62" fill="${M2}"/><rect x="292" y="166" width="82" height="74" fill="${M}"/><rect x="165" y="46" width="80" height="194" fill="${M}"/><rect x="245" y="60" width="26" height="180" fill="${M2}"/>`;for(let y=58;y<230;y+=13)s+=`<rect x="172" y="${y}" width="66" height="6" fill="${Wn}"/>`;s+=ground(238)+`<circle cx="148" cy="236" r="11" fill="${M2}"/><circle cx="282" cy="238" r="9" fill="${M2}"/>`}
   else if(kind==='city'){/* calle con dos planos de edificios (fondo claro, frente con ventanas), árboles y banqueta */
-    const r=R(7);let x=-10;while(x<400){const w=30+r()*40,h=40+r()*70;s+=`<rect x="${x.toFixed(0)}" y="${(214-h).toFixed(0)}" width="${(w-2).toFixed(0)}" height="${h.toFixed(0)}" fill="#D2D9E2"/>`;x+=w}
+    const r=R(7);let x=-10;while(x<400){const w=30+r()*40,h=40+r()*70;s+=`<rect x="${x.toFixed(0)}" y="${(214-h).toFixed(0)}" width="${(w-2).toFixed(0)}" height="${h.toFixed(0)}" fill="var(--ph-far,#D2D9E2)"/>`;x+=w}
     x=-20;while(x<400){const w=58+r()*46,h=46+r()*64,y=236-h,f=r()>.5?M:M2;s+=`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${(w-6).toFixed(0)}" height="${h.toFixed(0)}" fill="${f}"/>`;
       for(let wy=y+10;wy<224;wy+=14)for(let wx=x+8;wx<x+w-16;wx+=14)s+=`<rect x="${wx.toFixed(0)}" y="${wy.toFixed(0)}" width="7" height="6" fill="${Wn}"/>`;x+=w}
-    s+=ground(236)+`<rect y="236" width="400" height="5" fill="${M2}"/>`;[46,168,300].forEach(tx=>s+=`<rect x="${tx-1}" y="222" width="3" height="16" fill="${M2}"/><circle cx="${tx}" cy="216" r="12" fill="#BCC5D1"/>`)}
+    s+=ground(236)+`<rect y="236" width="400" height="5" fill="${M2}"/>`;[46,168,300].forEach(tx=>s+=`<rect x="${tx-1}" y="222" width="3" height="16" fill="${M2}"/><circle cx="${tx}" cy="216" r="12" fill="var(--ph-tree,#BCC5D1)"/>`)}
   else if(kind==='hill'){s+=`<path d="M0 206 C90 150 190 160 250 176 S350 196 400 186 V300 H0Z" fill="${G}"/><rect x="138" y="140" width="64" height="26" fill="${M}"/><rect x="196" y="156" width="72" height="24" fill="${M2}"/><rect x="92" y="160" width="52" height="22" fill="${M2}"/><path d="M0 238 C120 214 260 250 400 226 V300 H0Z" fill="${M2}" opacity=".45"/>`}
   else if(kind==='facade'){s+=`<rect x="44" y="64" width="312" height="10" fill="${M2}"/><rect x="50" y="74" width="300" height="164" fill="${M}"/>`;for(let i=0;i<6;i++){const x=66+i*48;s+=`<rect x="${x+4}" y="88" width="24" height="38" fill="${Wn}"/><path d="M${x} 238 V172 a16 16 0 0 1 32 0 V238Z" fill="${M2}"/>`}s+=ground(238)}
   else if(kind==='hub'){s+=`<path d="M24 238 Q200 64 376 238Z" fill="${M}"/>`;for(let i=1;i<6;i++)s+=`<path d="M${24+i*58.7} 238 L200 ${96+Math.abs(i-3)*10}" stroke="${Wn}" stroke-width="3"/>`;s+=ground(236)+`<rect x="0" y="236" width="400" height="6" fill="${M2}"/>`}
-  else if(kind==='people'){s+=`<rect width="400" height="300" fill="#E7ECF2"/><rect x="0" y="214" width="400" height="86" fill="${G}"/>`;[[90,120],[170,108],[250,116],[322,126]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="22" fill="${M2}"/><path d="M${x-42} 214 Q${x-40} ${y+32} ${x} ${y+30} Q${x+40} ${y+32} ${x+42} 214Z" fill="${M}"/>`);s+=`<rect x="40" y="206" width="320" height="12" rx="2" fill="${M2}"/>`}
+  else if(kind==='people'){s+=`<rect width="400" height="300" fill="var(--ph-ppl,#E7ECF2)"/><rect x="0" y="214" width="400" height="86" fill="${G}"/>`;[[90,120],[170,108],[250,116],[322,126]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="22" fill="${M2}"/><path d="M${x-42} 214 Q${x-40} ${y+32} ${x} ${y+30} Q${x+40} ${y+32} ${x+42} 214Z" fill="${M}"/>`);s+=`<rect x="40" y="206" width="320" height="12" rx="2" fill="${M2}"/>`}
   else s+=ground(236);
   return `<div class="m5 photo"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg><span class="m5-lab">${PH5_IC.photo}${esc(label)}</span></div>`;
 }
@@ -1463,7 +1786,7 @@ function homeHeader(){
   HERO={W,H,m};
   return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six offices: Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. A few name-tagged cursors drift in the ocean around the map and occasionally connect to a nearby office with a thin line and a soft pulse. Text: Design technology, built across Latin America and the Caribbean.">
     ${IMG5()?img5('massing','hero5-photo'):''}<svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <g id="collabLines"></g>${m.svg}<g id="collab"></g>
+      ${S6()?`<defs><linearGradient id="g6-map" gradientUnits="userSpaceOnUse" x1="1010" y1="40" x2="1500" y2="600"><stop offset="0" style="stop-color:var(--c5-vdc-lt)" stop-opacity=".62"/><stop offset=".36" style="stop-color:var(--c5-di-lt)" stop-opacity=".55"/><stop offset=".68" style="stop-color:var(--c5-cd-lt)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--c5-rc-lt)" stop-opacity=".6"/></linearGradient></defs>`:''}<g id="collabLines"></g>${m.svg}<g id="collab"></g>
     </svg>
     <div class="copy">
       <div class="k"><span>Design Technology</span><i>LAC · 06 offices · 04 clusters</i></div>
@@ -1627,11 +1950,16 @@ function diagram(){
     <div class="axis"><span>First client contact</span><span></span><span>Building in operation</span></div>
   </div>`;
 }
+/* mapa de "LAC at a glance" (tablero de impacto). Capas: puntos → burbujas (data-impact-bubbles) → oficinas y etiquetas → valores y leyenda.
+   IMPM guarda la proyección, la tierra y las cajas de etiqueta para colocar los valores con la misma regla de la ronda 4. */
+let IMPM=null;
 function mapArt(){
   const W=792,H=560;
-  const m=lacMap({box:[300,16,470,528],step:7.4,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[10,8,782,552],avoid:[[20,452,430,100]]});
+  const m=lacMap({box:[300,16,470,528],step:7.4,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[10,8,782,552],avoid:[[16,436,300,112]]});
+  IMPM=m;
+  const svg=m.svg.replace('<g class="m-off">','<g class="imp-bubs" data-impact-bubbles></g><g class="m-off">')+'<g class="imp-vals" data-impact-values></g><g class="imp-leg" data-impact-legend></g>';
   return `<div class="art mapart" role="img" aria-label="Dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six Gensler LAC offices highlighted and connected: Monterrey, Mexico City, San José, Santo Domingo, Bogotá and Buenos Aires.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${m.svg}</svg>
+    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${svg}</svg>
     <div class="legend"><span><i></i><b>06 offices</b></span><span>One regional DT team</span><span>Mexico · Central America · Caribbean · South America</span></div>
   </div>`;
 }
@@ -1663,12 +1991,13 @@ function uviChart(){
   const curve=p=>p.reduce((d,[x,y],i)=>{if(!i)return `M${x.toFixed(1)} ${y.toFixed(1)}`;const[px,py]=p[i-1],mx=(px+x)/2;return d+` C${mx.toFixed(1)} ${py.toFixed(1)} ${mx.toFixed(1)} ${y.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`},'');
   /* Estilo 5: tarjeta blanca sobre la foto. Índice en el color de DI (área en degradado), línea base en gris y 12 indicadores en barras de color */
   if(S5()){
-    const x=i=>14+i*272/7, y=n=>92-(n-34)*1.75, Q=v.map((n,i)=>[x(i),y(n)]), Lc=curve(Q), D='#2289D2', DI='#0B6BAA';
-    let t=`<defs><linearGradient id="uvi5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${D}" stop-opacity=".42"/><stop offset="1" stop-color="${D}" stop-opacity="0"/></linearGradient></defs>`;
-    [28,52,76].forEach(g=>t+=`<line x1="10" y1="${g}" x2="290" y2="${g}" stroke="#EEF1F5"/>`);
-    t+=`<line x1="10" y1="96" x2="290" y2="96" stroke="#C9D0DA"/><path d="${Lc} L${x(7)} 96 L${x(0)} 96Z" fill="url(#uvi5)"/><path d="${curve(b.map((n,i)=>[x(i),y(n)]))}" fill="none" stroke="#8A93AB" stroke-width="1" stroke-dasharray="3 3"/><path d="${Lc}" fill="none" stroke="${DI}" stroke-width="1.6"/>`;
-    Q.forEach(([px,py],i)=>t+=i<7?`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="2.2" fill="#fff" stroke="${DI}" stroke-width="1.2"/>`:`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7" fill="${D}" fill-opacity=".16"/><circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3.4" fill="${DI}" stroke="#fff" stroke-width="1.2"/>`);
-    for(let i=0;i<12;i++){const h=6+((i*7)%11);t+=`<rect x="${14+i*23}" y="${124-h}" width="14" height="${h}" rx="1" fill="${D}" fill-opacity="${h>11?.9:.4}"/>`}
+    /* colores por token (--uvi-*): claro = DI base/tinta sobre blanco; Estilo 6 = azul cielo de DI sobre carbón */
+    const x=i=>14+i*272/7, y=n=>92-(n-34)*1.75, Q=v.map((n,i)=>[x(i),y(n)]), Lc=curve(Q), D='var(--uvi-a,#2289D2)', DI='var(--uvi-l,#0B6BAA)', DOT='var(--uvi-dot,#fff)';
+    let t=`<defs><linearGradient id="uvi5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:${D}" stop-opacity=".42"/><stop offset="1" style="stop-color:${D}" stop-opacity="0"/></linearGradient></defs>`;
+    [28,52,76].forEach(g=>t+=`<line x1="10" y1="${g}" x2="290" y2="${g}" style="stroke:var(--uvi-g,#EEF1F5)"/>`);
+    t+=`<line x1="10" y1="96" x2="290" y2="96" style="stroke:var(--uvi-ax,#C9D0DA)"/><path d="${Lc} L${x(7)} 96 L${x(0)} 96Z" fill="url(#uvi5)"/><path d="${curve(b.map((n,i)=>[x(i),y(n)]))}" fill="none" style="stroke:var(--uvi-base,#8A93AB)" stroke-width="1" stroke-dasharray="3 3"/><path d="${Lc}" fill="none" style="stroke:${DI}" stroke-width="1.6"/>`;
+    Q.forEach(([px,py],i)=>t+=i<7?`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="2.2" style="fill:${DOT};stroke:${DI}" stroke-width="1.2"/>`:`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7" style="fill:${D}" fill-opacity=".16"/><circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3.4" style="fill:${DI};stroke:${DOT}" stroke-width="1.2"/>`);
+    for(let i=0;i<12;i++){const h=6+((i*7)%11);t+=`<rect x="${14+i*23}" y="${124-h}" width="14" height="${h}" rx="1" style="fill:${D}" fill-opacity="${h>11?.9:.4}"/>`}
     return `<div class="c5-chart" aria-hidden="true"><svg viewBox="0 0 300 128" aria-hidden="true">${t}</svg></div>`;
   }
   const P=pts(v), line=curve(P), area=`${line} L${X(7)} 246 L${X(0)} 246 Z`;
@@ -1685,10 +2014,6 @@ function uviChart(){
 /* Estilo 5: cols = colores por barrita (se repiten en ciclo); cada barrita lleva su color con un degradado corto (solo áreas de datos) */
 const units = (n,cols) => `<i class="u" aria-hidden="true">${Array.from({length:+n},(_,k)=>cols?`<i style="background:linear-gradient(180deg,${cols[k%cols.length]},color-mix(in srgb,${cols[k%cols.length]} 45%,transparent))"></i>`:'<i></i>').join('')}</i>`;
 const rep = a => a.flatMap(([c,n])=>Array(n).fill(c));
-/* cifras bento en claro (ref. 693585). La primera tarjeta lleva el degradado suave. it[2] = colores de las unidades (Estilo 5) */
-function bento4(items, label){
-  return `<div class="art bento" role="img" aria-label="${esc(label)}">${items.map((it,i)=>`<div class="bx${i===0?' hi':''}"><b>${it[0]}</b><span>${esc(it[1])}</span>${units(it[0],it[2])}</div>`).join('')}</div>`;
-}
 /* banda "Build with COM": el único bloque intenso de la página. Texto y cifras horneados; todo va en el alt.
    Estilo 5: cada estado lleva su color de apoyo luminoso (ámbar = evaluación, rosa = desarrollo, lima = lanzado) */
 function band4(){
@@ -1730,20 +2055,302 @@ const toolShot = t => S5()?(IMG5()&&IMG_BY['tool:'+t]?`<div class="shot5 tray5">
 /* catálogo de capturas (solo con imágenes reales): apps sin registro propio en la galería de Tools. [id, app, tema del manifiesto, ancho doble] */
 const CAT5=[['gbloxMulti','gBlox','gBlox metrics per building across several towers'],['pbiSpeckle','Power BI + Speckle','Power BI report with embedded Speckle 3D model'],['gbloxCosts','gBlox','gBlox model properties and costs panel'],['gbloxCO2','gBlox.CO2','gBlox.CO2 carbon emissions per building'],['ladybug','Ladybug','Ladybug environmental analysis in Grasshopper'],['flows','Flows','Pedestrian flow agent simulation in a retail project',1],['gbloxProgram','gBlox','gBlox live program and metrics dashboard in Rhino']];
 const toolCatalog = () => IMG5()?sec('l1','none',[wp('i','Image gallery · Tiles · capturas de apps sin registro propio (gBlox, Power BI + Speckle, Ladybug, Flows) · alt del manifiesto',`<div class="wp-title"><h3>Tool gallery</h3></div><div class="shots5">${CAT5.map(c=>`<figure class="${c[3]?'w2':''}"><div class="fr tray5">${frame5(c[0])}</div><figcaption><b>${esc(c[1])}</b>${esc(c[2])}</figcaption></figure>`).join('')}</div>`)]):'';
+/* @personalizar: datos de impacto (métricas por cluster, valor por oficina y por país de clientes) */
+const IMPACT = {
+  oficinas:{MEX:{n:'Mexico City',lat:19.43,lon:-99.13},MTY:{n:'Monterrey',lat:25.69,lon:-100.32},SJO:{n:'San José',lat:9.93,lon:-84.08},SDQ:{n:'Santo Domingo',lat:18.49,lon:-69.93},BOG:{n:'Bogotá',lat:4.71,lon:-74.07},BUE:{n:'Buenos Aires',lat:-34.60,lon:-58.38}},
+  /* países con proyectos de clientes atendidos desde las oficinas (lat/lon aproximadas) */
+  paises:{CL:{n:'Chile',lat:-33.45,lon:-70.67},PE:{n:'Peru',lat:-12.05,lon:-77.04},PA:{n:'Panama',lat:8.98,lon:-79.52},GT:{n:'Guatemala',lat:14.63,lon:-90.51},UY:{n:'Uruguay',lat:-34.90,lon:-56.16}},
+  clusters:[['all','All'],['vdc','VDC'],['rc','Reality Capture'],['cd','Computational Design'],['di','Data Intelligence']],
+  /* inAll: aparece en la lista de "All" junto con las globales. total = suma de oficinas + países */
+  metrics:[
+    {id:'gl-projects',cluster:'global',label:'Projects with DT impact',unidad:'projects',total:26,porOficina:{MEX:6,MTY:4,SJO:3,SDQ:3,BOG:3,BUE:2},porPais:{CL:2,PE:1,PA:1,GT:1}},
+    {id:'gl-hours',cluster:'global',label:'Hours saved (total)',unidad:'hours',total:10210,porOficina:{MEX:2650,MTY:1950,SJO:820,SDQ:780,BOG:1620,BUE:1540},porPais:{CL:310,PE:190,PA:140,GT:90,UY:120}},
+    {id:'gl-offices',cluster:'global',label:'Offices',unidad:'offices',total:6,porOficina:{MEX:1,MTY:1,SJO:1,SDQ:1,BOG:1,BUE:1},porPais:{}},
+    {id:'vdc-models',cluster:'vdc',label:'Models federated',unidad:'models',total:83,porOficina:{MEX:18,MTY:14,SJO:6,SDQ:5,BOG:12,BUE:16},porPais:{CL:4,PE:3,PA:2,GT:1,UY:2}},
+    {id:'vdc-clashes',cluster:'vdc',label:'Clashes resolved',unidad:'clashes',total:5200,porOficina:{MEX:1240,MTY:980,SJO:310,SDQ:260,BOG:720,BUE:1105},porPais:{CL:210,PE:150,PA:90,GT:40,UY:95}},
+    {id:'vdc-hours',cluster:'vdc',label:'Hours saved in coordination',unidad:'hours',total:2720,porOficina:{MEX:620,MTY:540,SJO:160,SDQ:130,BOG:410,BUE:590},porPais:{CL:95,PE:70,PA:40,GT:20,UY:45},inAll:true},
+    {id:'rc-area',cluster:'rc',label:'Area scanned',unidad:'m²',total:735000,porOficina:{MEX:182000,MTY:96000,SJO:64000,SDQ:48000,BOG:121000,BUE:87000},porPais:{CL:54000,PE:38000,PA:21000,GT:9000,UY:15000}},
+    {id:'rc-sites',cluster:'rc',label:'Sites captured',unidad:'sites',total:46,porOficina:{MEX:9,MTY:6,SJO:7,SDQ:4,BOG:8,BUE:5},porPais:{CL:2,PE:2,PA:1,GT:1,UY:1}},
+    {id:'rc-days',cluster:'rc',label:'Survey days saved',unidad:'days',total:177,porOficina:{MEX:38,MTY:22,SJO:26,SDQ:15,BOG:34,BUE:19},porPais:{CL:8,PE:6,PA:4,GT:2,UY:3},inAll:true},
+    {id:'cd-hours',cluster:'cd',label:'Hours saved by scripts',unidad:'hours',total:3345,porOficina:{MEX:820,MTY:610,SJO:240,SDQ:310,BOG:560,BUE:470},porPais:{CL:120,PE:80,PA:55,GT:30,UY:50},inAll:true},
+    {id:'cd-options',cluster:'cd',label:'Design options generated',unidad:'options',total:1360,porOficina:{MEX:340,MTY:260,SJO:90,SDQ:120,BOG:210,BUE:180},porPais:{CL:60,PE:45,PA:20,GT:10,UY:25}},
+    {id:'cd-tools',cluster:'cd',label:'Tools deployed',unidad:'tools',total:21,porOficina:{MEX:5,MTY:4,SJO:2,SDQ:3,BOG:4,BUE:3},porPais:{}},
+    {id:'di-dash',cluster:'di',label:'Live dashboards',unidad:'dashboards',total:33,porOficina:{MEX:7,MTY:5,SJO:3,SDQ:4,BOG:6,BUE:4},porPais:{CL:1,PE:1,PA:1,UY:1}},
+    {id:'di-projects',cluster:'di',label:'Projects with data',unidad:'projects',total:30,porOficina:{MEX:6,MTY:4,SJO:2,SDQ:3,BOG:5,BUE:4},porPais:{CL:2,PE:1,PA:1,GT:1,UY:1}},
+    {id:'di-decisions',cluster:'di',label:'Decisions supported',unidad:'decisions',total:207,porOficina:{MEX:48,MTY:31,SJO:14,SDQ:22,BOG:37,BUE:29},porPais:{CL:9,PE:6,PA:4,GT:2,UY:5}},
+  ]
+};
+
+/* @personalizar: datos del Spotlight (reconocimiento a una persona del equipo, no un líder). Titular ≤45 caracteres, cita de 1 línea */
+const SPOTLIGHT = {
+  kicker:'Spotlight', n:'Fernanda Destacada', r:'Reality Capture Technician', o:'San José',
+  logro:'Scan to model in 2 days, not 2 weeks',
+  cita:'I wanted the scan to answer questions before the site visit.',
+  cta:'Read the story', href:'#/community'
+};
+
+/* @personalizar: ruta de onboarding. Mapa de ramas: tronco (trunk) → ramas por pilar (branch) → primera tarea (leaf).
+   Nodo: {id, tipo:'trunk'|'branch'|'leaf', titulo, sub, cluster, contacto:{n,r,o}, recursos[], parent, href} */
+const ctc = p => ({n:p.n, r:p.r, o:p.o});
+const ONBOARDING = {nodes:[
+  {id:'t-day1',  tipo:'trunk', titulo:'Day 1 · Welcome', sub:'IT, accesses, Teams', cluster:'all', contacto:ctc(P.tomas), recursos:['Laptop and accounts','Teams channels','Welcome checklist'], parent:null, href:'#/learning'},
+  {id:'t-week1', tipo:'trunk', titulo:'Week 1 · DT onboarding session', sub:'What exists, where to look, who to ask', cluster:'all', contacto:ctc(P.lucia), recursos:['Your first DT session','This wiki, a quick tour','Who to ask, by area'], parent:'t-day1', href:'#/learning'},
+  {id:'t-core',  tipo:'trunk', titulo:'Weeks 2–4 · Core tools', sub:'Revit, Rhino, SharePoint wiki, Copilot basics', cluster:'all', contacto:ctc(P.paula), recursos:['Rhino-Revit in 15 minutes','SharePoint wiki basics','Copilot basics'], parent:'t-week1', href:'#/tools'},
+  {id:'b-vdc', tipo:'branch', titulo:'VDC', sub:'Coordination and model QA', cluster:'vdc', contacto:ctc(P.diego), recursos:['BIM coordination basics','ACC coordination clinic','Clash triage checklist'], parent:'t-core', href:'#/clusters/vdc'},
+  {id:'b-rc', tipo:'branch', titulo:'Reality Capture', sub:'Scans, drones, as-built', cluster:'rc', contacto:ctc(P.camila), recursos:['Point clouds in Revit','Scan clinic recording','Capture planning checklist'], parent:'t-core', href:'#/clusters/rc'},
+  {id:'b-cd', tipo:'branch', titulo:'Computational Design', sub:'Scripts and optioneering', cluster:'cd', contacto:ctc(P.sofia), recursos:['Computational Thinking path','Dynamo for repetitive documentation','Grasshopper clinic'], parent:'t-core', href:'#/clusters/cd'},
+  {id:'b-di', tipo:'branch', titulo:'Data Intelligence', sub:'Speckle, Power BI, analytics', cluster:'di', contacto:ctc(P.mateo), recursos:['Power BI for project dashboards','Speckle: send your first model','Data and BI review'], parent:'t-core', href:'#/clusters/di'},
+  {id:'b-ai', tipo:'branch', titulo:'Productive AI', sub:'Copilot and guardrails', cluster:'ai', contacto:ctc(P.renata), recursos:['Productive AI path','Copilot prompts for design teams','Guardrails one-pager'], parent:'t-core', href:'#/learning'},
+  {id:'b-com', tipo:'branch', titulo:'Community', sub:'Champions and meetups', cluster:'comm', contacto:ctc(P.tomas), recursos:['AI Builders meetup','Office champions','Mini-communities'], parent:'t-core', href:'#/community'},
+  {id:'l-vdc', tipo:'leaf', titulo:'Observe one weekly coordination meeting', sub:'First project task', cluster:'vdc', contacto:null, recursos:[], parent:'b-vdc', href:'#/clusters/vdc'},
+  {id:'l-rc', tipo:'leaf', titulo:'Shadow one site capture, process the cloud', sub:'First project task', cluster:'rc', contacto:null, recursos:[], parent:'b-rc', href:'#/clusters/rc'},
+  {id:'l-cd', tipo:'leaf', titulo:'Automate one repetitive task with a script', sub:'First project task', cluster:'cd', contacto:null, recursos:[], parent:'b-cd', href:'#/clusters/cd'},
+  {id:'l-di', tipo:'leaf', titulo:'Publish one live KPI from your model', sub:'First project task', cluster:'di', contacto:null, recursos:[], parent:'b-di', href:'#/clusters/di'},
+  {id:'l-ai', tipo:'leaf', titulo:'Write three reusable prompts for your team', sub:'First project task', cluster:'ai', contacto:null, recursos:[], parent:'b-ai', href:'#/learning'},
+  {id:'l-com', tipo:'leaf', titulo:'Attend one meetup, meet your champion', sub:'First project task', cluster:'comm', contacto:null, recursos:[], parent:'b-com', href:'#/community'},
+]};
+/* @personalizar: agenda de la primera sesión de DT (semana 1) */
+const FIRST_SESSION = [
+  ['What DT LAC is','Four pillars, six offices, one team','10 min'],
+  ['How to use this site','Where to look first, and what lives where','10 min'],
+  ['The four pillars and who to call','VDC, Reality Capture, Computational Design, Data Intelligence','15 min'],
+  ['Courses to start with','Learning paths and recordings, by pillar','10 min'],
+  ['How to ask for support','Requests, ideas and office hours','5 min'],
+];
+
+/* ---------- Home: Quick links en fila, tablero de impacto, Spotlight, Community ---------- */
+const quickRow = () => sec('l1','none',[wp('n','Quick links · Button o Compact en 1 columna (fila horizontal compacta, 4 accesos)', `<div class="ql-buttons cols4 ql-row" data-quick-row>${[['compass','Explore capabilities','#/clusters/vdc'],['tool','Find a tool','#/tools'],['book','Start learning','#/learning'],['bulb','Build with COM','#/request']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}</span>${ic('arrow','arr')}</a>`).join('')}</div>`)]);
+
+/* tablero de impacto: esqueleto con ganchos data-impact-*. Pestañas por cluster, lista de stats del cluster activo y mapa.
+   bindImpact() pinta la lista, llena [data-impact-map-data] con el valor por oficina/país de la stat activa y despacha "impact:change" ({metricId, cluster}) en document */
+const impactSection = () => sec('l13','neutral',[
+  wp('n','Text + Quick links · Compact (tabs por cluster, "All" + 4) + lista de 4–6 stats del cluster activo', `${kick('LAC at a glance')}${h2('Impact,','by cluster.')}<p class="t-p muted">Pick a cluster, then a number, to see where it happened.</p>
+    <div class="impact" data-impact data-cluster="all" data-metric="">
+      <div class="impact-tabs" role="tablist" aria-label="Cluster" data-impact-tabs>${IMPACT.clusters.map(c=>{const k=impK(c[0]==='all'?'global':c[0]);return `<button type="button" role="tab" class="impact-tab" data-impact-cluster="${c[0]}" aria-selected="false" aria-label="${esc(c[1])}" title="${esc(c[1])}" style="${k}">${esc(CL[c[0]]?CL[c[0]].code:c[1])}</button>`}).join('')}</div>
+      <ul class="impact-stats" data-impact-stats></ul>
+    </div>`),
+  wp('i','Power BI (mapa + KPIs) o Image por stat · alternativa Power Apps', `<div class="impact-map" data-impact-map data-metric="">${mapArt()}<ul class="impact-map-data" data-impact-map-data hidden aria-hidden="true"></ul></div>`)
+],'EXTRA');
+const impactFmt = v => Number(v).toLocaleString('en-US');
+function bindImpact(){
+  const root=document.querySelector('[data-impact]'); if(!root) return;
+  const map=document.querySelector('[data-impact-map]'), data=document.querySelector('[data-impact-map-data]'), list=root.querySelector('[data-impact-stats]');
+  const metricsOf=c=>IMPACT.metrics.filter(m=>c==='all'?(m.cluster==='global'||m.inAll):m.cluster===c);
+  function paintList(c){
+    list.innerHTML=metricsOf(c).map(m=>`<li><button type="button" class="impact-stat" data-impact-metric="${m.id}" data-cluster="${m.cluster}" aria-pressed="false" style="${impK(m.cluster)}"><b>${impactFmt(m.total)}</b><span>${esc(m.label)}</span><small>${esc(m.unidad)}</small></button></li>`).join('');
+  }
+  function select(c,id){
+    if(root.dataset.cluster!==c||!list.children.length) paintList(c);
+    const m=IMPACT.metrics.find(x=>x.id===id)||metricsOf(c)[0];
+    root.dataset.cluster=c; root.dataset.metric=m.id; if(map) map.dataset.metric=m.id;
+    root.querySelectorAll('[data-impact-cluster]').forEach(b=>b.setAttribute('aria-selected',b.dataset.impactCluster===c));
+    root.querySelectorAll('[data-impact-metric]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.impactMetric===m.id));
+    const vals=Object.entries(m.porOficina).map(([k,v])=>[k,v,IMPACT.oficinas[k],'office']).concat(Object.entries(m.porPais||{}).map(([k,v])=>[k,v,IMPACT.paises[k],'country']));
+    const max=Math.max(...vals.map(v=>v[1]));
+    if(map) map.style.setProperty('--impact-max',max);
+    if(data) data.innerHTML=vals.map(v=>`<li data-impact-${v[3]}="${v[0]}" data-name="${esc(v[2].n)}" data-lat="${v[2].lat}" data-lon="${v[2].lon}" data-value="${v[1]}" data-share="${(v[1]/max).toFixed(3)}">${esc(v[2].n)}: ${impactFmt(v[1])} ${esc(m.unidad)}</li>`).join('');
+    drawImpactMap(m,max);
+    document.dispatchEvent(new CustomEvent('impact:change',{detail:{metricId:m.id,cluster:c}}));
+  }
+  root.addEventListener('click',e=>{
+    const t=e.target.closest('[data-impact-cluster]'), s=e.target.closest('[data-impact-metric]');
+    if(t) select(t.dataset.impactCluster,null); else if(s) select(root.dataset.cluster,s.dataset.impactMetric);
+  });
+  /* pestañas con flechas (patrón tablist) */
+  root.querySelector('[data-impact-tabs]').addEventListener('keydown',e=>{
+    if(!/^Arrow(Left|Right)$/.test(e.key))return;const tabs=[...root.querySelectorAll('[data-impact-cluster]')],i=tabs.indexOf(document.activeElement);if(i<0)return;
+    const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();select(n.dataset.impactCluster,null);e.preventDefault()});
+  select('all','gl-projects');
+}
+/* @personalizar: escala del mapa de impacto. Burbuja por ÁREA: r = IMP_RMAX · √(valor / máximo de la stat); nunca menos de IMP_RMIN.
+   IMP_TOP = cuántas burbujas llevan su valor (las 2 o 3 mayores). IMP_LAB = lados preferidos de la etiqueta de cada país (hacia el océano). */
+const IMP_RMAX=30, IMP_RMIN=3.5, IMP_TOP=3;
+const IMP_LAB={CL:['w','sw','nw'],PE:['w','sw','nw'],PA:['s','sw','se'],GT:['sw','w','s'],UY:['se','e','s']};
+/* color de una pieza del tablero: gráfico, texto AA y tinte del cluster (global = --hl-gl) */
+function impK(cl){const k=cl==='global'||cl==='all'?'gl':cl;return `--k:var(--hl-${k});--ki:var(--ink-${k},var(--hl-${k}));--kt:var(--tint-${k},color-mix(in srgb,var(--hl-${k}) 10%,var(--surface)))`}
+/* valores redondos para la leyenda de magnitud (1, 2, 5 × 10^n) */
+const impNice = v => {const p=Math.pow(10,Math.floor(Math.log10(v)));return [5,2,1].map(k=>k*p).find(x=>x<=v)||p};
+const impShort = v => v>=10000?(v/1000).toLocaleString('en-US',{maximumFractionDigits:1})+'k':impactFmt(v);
+function drawImpactMap(m,max){
+  const map=document.querySelector('[data-impact-map]'); if(!map||!IMPM)return;
+  const svg=map.querySelector('svg'), gB=svg.querySelector('[data-impact-bubbles]'), gV=svg.querySelector('[data-impact-values]'), gL=svg.querySelector('[data-impact-legend]'), NS='http://www.w3.org/2000/svg';
+  const mk=(t,a,p,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e};
+  map.setAttribute('style',impK(m.cluster)+`;--impact-max:${max}`);
+  const places=Object.entries(IMPACT.oficinas).map(([k,o])=>({k,o,t:'office',v:m.porOficina[k]||0}))
+    .concat(Object.entries(IMPACT.paises).map(([k,o])=>({k,o,t:'country',v:(m.porPais||{})[k]||0})));
+  places.forEach(p=>{[p.x,p.y]=IMPM.proj.P(p.o.lon,p.o.lat);p.r=p.v>0?Math.max(IMP_RMIN,IMP_RMAX*Math.sqrt(p.v/max)):0});
+  /* burbujas: se crean una vez (oficinas debajo, países encima) y luego solo cambian r y color → transición suave */
+  if(!gB.childNodes.length) places.forEach(p=>{const g=mk('g',{'data-place':p.k},gB);
+    mk('circle',{class:'imp-b'+(p.t==='country'?' ct':''),cx:p.x.toFixed(1),cy:p.y.toFixed(1),r:0},g);
+    if(p.t==='country')mk('circle',{class:'imp-cd',cx:p.x.toFixed(1),cy:p.y.toFixed(1),r:2.2},g);
+    mk('title',{},g,'')});
+  places.forEach(p=>{const g=gB.querySelector(`[data-place="${p.k}"]`),c=g.querySelector('.imp-b');
+    c.style.r=p.r.toFixed(1)+'px'; g.style.opacity=p.v>0?1:0; g.querySelector('title').textContent=`${p.o.n}: ${impactFmt(p.v)} ${m.unidad}`});
+  /* valores junto a las 2–3 burbujas mayores. Misma regla de la ronda 4: lado preferido hacia el océano, placa del color del fondo,
+     sin tocar etiquetas, anillos de oficina, la leyenda ni otro valor; si se separa de la burbuja, línea guía corta */
+  gV.innerHTML='';
+  const ranked=places.filter(p=>p.v>0).sort((a,b)=>b.v-a.v), eq=ranked.length&&ranked[0].v===ranked[ranked.length-1].v;
+  /* 3 valores si la 3.ª es ≥ 30 % de la mayor; nunca se etiqueta una burbuja empatada con la siguiente (sería arbitrario) */
+  let nTop=ranked.length>2&&ranked[2].v/ranked[0].v>=.3?IMP_TOP:2;
+  while(nTop>0&&ranked[nTop]&&ranked[nTop].v===ranked[nTop-1].v)nTop--;
+  const top=eq?[]:ranked.slice(0,nTop);
+  const fs=12.5, cw=fs*.6, h=fs+9, pad=6, Bd=[10,8,782,552], legBox=[16,436,300,112], placed=[];
+  const ov=(a,b,g=0)=>a[0]<b[0]+b[2]+g&&a[0]+a[2]+g>b[0]&&a[1]<b[1]+b[3]+g&&a[1]+a[3]+g>b[1];
+  const obst=IMPM.boxes.concat(places.filter(p=>p.v>0).map(p=>[p.x-4,p.y-4,8,8]));
+  const landN=b=>{let n=0;for(const[x,y]of IMPM.land)if(x>b[0]-2&&x<b[0]+b[2]+2&&y>b[1]-2&&y<b[1]+b[3]+2)n++;return n};
+  top.forEach(p=>{
+    const txt=impactFmt(p.v), w=txt.length*cw+pad*2+2, of=OFFICES.find(o=>o.n===p.o.n);
+    const prefs=[...new Set(((p.t==='office'?of&&of.lab:IMP_LAB[p.k])||[]).concat(Object.keys(LAB_DIR)))];
+    let best=null;
+    prefs.forEach((d,pi)=>{const[ux,uy]=LAB_DIR[d];
+      for(let dist=p.r+5;dist<=p.r+52;dist+=3){const ax=p.x+ux*dist,ay=p.y+uy*dist;
+        const b=[ux>.1?ax:ux<-.1?ax-w:ax-w/2, uy>.1?ay:uy<-.1?ay-h:ay-h/2, w, h];
+        let c=(b[0]<Bd[0]||b[1]<Bd[1]||b[0]+b[2]>Bd[2]||b[1]+b[3]>Bd[3])?1000:0;
+        obst.forEach(o=>{if(ov(b,o,3))c+=400});placed.forEach(o=>{if(ov(b,o,4))c+=600});if(ov(b,legBox,4))c+=1000;
+        places.forEach(q=>{if(q!==p&&q.r>0){const k=q.r*.85;if(ov(b,[q.x-k,q.y-k,2*k,2*k],2))c+=260}});
+        c+=landN(b)*5;const tot=c+pi*9+(dist-p.r)*.7;if(!best||tot<best.tot)best={b,tot,ux,uy}}});
+    placed.push(best.b);
+    const [bx,by,bw,bh]=best.b, g=mk('g',{},gV);
+    const tx=Math.max(bx,Math.min(p.x,bx+bw)), ty=Math.max(by,Math.min(p.y,by+bh)), sx=p.x+best.ux*p.r, sy=p.y+best.uy*p.r;
+    if(Math.hypot(tx-sx,ty-sy)>7)mk('path',{class:'lead',d:`M${sx.toFixed(1)} ${sy.toFixed(1)} L${tx.toFixed(1)} ${ty.toFixed(1)}`},g);
+    mk('rect',{x:bx.toFixed(1),y:by.toFixed(1),width:bw.toFixed(1),height:bh,rx:2,style:'stroke:color-mix(in srgb,var(--k) 55%,transparent);stroke-width:1'},g);
+    mk('text',{x:(bx+pad+1).toFixed(1),y:(by+bh/2+fs*.36).toFixed(1),'font-size':fs},g,txt);
+  });
+  /* mini leyenda de magnitud (abajo a la izquierda, en el océano): métrica, círculos anidados con valores redondos y clave oficina / país */
+  gL.innerHTML='';
+  const [lx,ly,lw,lh]=legBox; mk('rect',{class:'box',x:lx,y:ly,width:lw,height:lh,rx:4},gL);
+  mk('text',{class:'cap',x:lx+14,y:ly+21,'font-size':12.5},gL,m.label);
+  mk('text',{x:lx+14,y:ly+37,'font-size':10},gL,`${impactFmt(m.total)} ${m.unidad}`.toUpperCase());
+  const L=[...new Set([impNice(max),impNice(max/4),impNice(max/20)])].filter(v=>v>=1&&v<=max).slice(0,3), base=ly+lh-10, cx=lx+14+IMP_RMAX;
+  let prevY=-1e9;
+  L.forEach((v,i)=>{const r=Math.max(IMP_RMIN,IMP_RMAX*Math.sqrt(v/max)), yt=base-2*r, yl=Math.max(yt,prevY+12);prevY=yl;
+    mk('circle',{class:'mag',cx,cy:(base-r).toFixed(1),r:r.toFixed(1)},gL);
+    mk('path',{class:'tick',d:`M${cx} ${yt.toFixed(1)} L${cx+IMP_RMAX+4} ${yt.toFixed(1)} L${cx+IMP_RMAX+10} ${yl.toFixed(1)}`,fill:'none'},gL);
+    mk('text',{x:cx+IMP_RMAX+14,y:(yl+3.5).toFixed(1),'font-size':10},gL,impShort(v))});
+  const kx=lx+168;
+  mk('circle',{class:'imp-b',cx:kx+5,cy:base-28,r:5},gL);mk('text',{x:kx+16,y:base-24.5,'font-size':10},gL,'06 OFFICES');
+  mk('circle',{class:'imp-b ct',cx:kx+5,cy:base-8,r:5},gL);mk('text',{x:kx+16,y:base-4.5,'font-size':10},gL,'CLIENT COUNTRIES');
+  /* alt dinámico: la imagen dice qué stat muestra y sus valores (en SharePoint: una imagen por stat o el visual de Power BI) */
+  const art=map.querySelector('.mapart');
+  if(art)art.setAttribute('aria-label',`Bubble map of Latin America and the Caribbean: ${m.label} (${m.unidad}) by office and client country. Bubble area is proportional to the value. `+ranked.map(p=>`${p.o.n} ${impactFmt(p.v)}`).join(', ')+'.');
+}
+
+const spotlightSection = () => { const s=SPOTLIGHT; return sec('l1','none',[wp('n','News · Top story (1 noticia destacada, layout Top story) o Hero de 1 pieza · foto de retrato + kicker + titular + cita + vínculo', `<article class="spotlight" data-spotlight>
+    <div class="portrait-ph spot-photo" data-photo="portrait" role="img" aria-label="Portrait placeholder: ${esc(s.n)}">${ini(s.n)}</div>
+    <div class="spot-body"><p class="t-kicker">${esc(s.kicker)}</p><h3 class="spot-title">${esc(s.logro)}</h3><blockquote class="spot-quote">“${esc(s.cita)}”</blockquote>
+      <p class="spot-who"><b>${esc(s.n)}</b> <span>${esc(s.r)} · ${esc(s.o)}</span></p><a class="t-link" href="${s.href}">${esc(s.cta)}</a></div></article>`)]); };
+
+const communityHome = () => sec('l31','none',[
+  wp('n','Text · Fixed width', kick('Featured community',true))
+  + wp('n','Image + Text (experto destacado, protagonista) + Quick links (CTA Ask Mateo)', `<div class="wp-title"><h3>Featured expert</h3></div><article class="expert" data-expert>
+      <div class="portrait-ph expert-photo" data-photo="portrait" role="img" aria-label="Portrait placeholder: ${esc(P.mateo.n)}">${ini(P.mateo.n)}</div>
+      <div class="expert-body"><p class="meta-line">${esc(P.mateo.r.toUpperCase())} · ${esc(P.mateo.o.toUpperCase())}</p><h3 class="expert-name">${esc(P.mateo.n)}</h3>
+        <blockquote class="expert-quote">“Most teams are two scripts away from live project data.”</blockquote>
+        <ul class="expert-tags">${['Speckle','Power BI','Spatial analytics'].map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+        <a class="btn" href="#/community">Ask Mateo</a></div></article>`)
+  + wp('n','People · Compact ×4 en una línea (liderazgo regional: avatar pequeño, nombre y área)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4 lead-line" data-lead-line>${[[P.lucia,'Direction'],[P.diego,'VDC'],[P.camila,'Reality Capture'],[P.sofia,'Computational Design']].map(x=>`<div class="person sm lead-chip"><span class="av" aria-hidden="true">${ini(x[0].n)}</span><a href="#/community"><b>${esc(x[0].n)}</b><span>${x[1]}</span></a></div>`).join('')}</div>`),
+  wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
+]);
+
+/* ---------- Learning: Onboarding ---------- */
+/* nodo del mapa: tronco y rama son botones (se seleccionan); la hoja es la punta de la rama.
+   Tronco: «Day 1 · Welcome» se parte en paso (mono) + título. Rama: pilar, contacto (avatar con iniciales + nombre) y 2–3 recursos como hojas pequeñas */
+const onbNode = n => {const c=n.contacto, ttl=n.titulo.split(' · ');
+  let inner=`<b class="onb-t">${esc(n.titulo)}</b><span class="onb-sub">${esc(n.sub)}</span>`;
+  if(n.tipo==='trunk'&&ttl.length>1) inner=`<span class="onb-step">${esc(ttl[0])}</span><b class="onb-t">${esc(ttl.slice(1).join(' · '))}</b><span class="onb-sub">${esc(n.sub)}</span>`;
+  if(n.tipo==='branch') inner+=`${c?`<span class="onb-who"><span class="onb-av" aria-hidden="true">${ini(c.n)}</span><span>${esc(c.n)}<small>${esc(c.o)}</small></span></span>`:''}<span class="onb-res">${n.recursos.slice(0,3).map(r=>`<span>${esc(r)}</span>`).join('')}</span>`;
+  const at=`data-onb-node="${n.id}" data-tipo="${n.tipo}" data-cluster="${n.cluster}" data-parent="${n.parent||''}"`;
+  return n.tipo!=='leaf'?`<button type="button" class="onb-node" ${at} aria-pressed="false">${inner}</button>`:`<div class="onb-node" ${at}>${inner}</div>`;};
+function onboardingMap(){
+  const N=ONBOARDING.nodes, by=t=>N.filter(n=>n.tipo===t);
+  const alt='Onboarding map. Trunk: '+by('trunk').map(n=>n.titulo).join(', then ')+'. Branches: '+by('branch').map(n=>n.titulo).join(', ')+'. Each branch ends in a first project task.';
+  return `<div class="onb-map" data-onb-map data-active="" role="group" aria-label="${esc(alt)}"><svg class="onb-links" data-onb-links aria-hidden="true"></svg>
+    <ol class="onb-trunk" data-onb-trunk>${by('trunk').map(n=>`<li>${onbNode(n)}</li>`).join('')}</ol>
+    <ul class="onb-branches" data-onb-branches>${by('branch').map(b=>`<li class="onb-branch" data-cluster="${b.cluster}">${onbNode(b)}<ul class="onb-leaves">${N.filter(l=>l.parent===b.id).map(l=>`<li>${onbNode(l)}</li>`).join('')}</ul></li>`).join('')}</ul>
+    <div class="onb-detail" data-onb-detail aria-live="polite"></div></div>`;
+}
+/* detalle del nodo activo: título, contacto, recursos, siguiente paso (ramas) y vínculo. Solo usa los datos de ONBOARDING */
+function onbDetail(id){
+  const N=ONBOARDING.nodes, n=N.find(x=>x.id===id)||N[0], c=n.contacto, leaf=N.find(x=>x.parent===n.id&&x.tipo==='leaf'), ttl=n.titulo.split(' · ');
+  return {cluster:n.cluster, html:`${n.tipo==='trunk'&&ttl.length>1?`<span class="onb-step">${esc(ttl[0])}</span><b class="onb-t">${esc(ttl.slice(1).join(' · '))}</b>`:`<b class="onb-t">${esc(n.titulo)}</b>`}<span class="onb-sub">${esc(n.sub)}</span>
+    ${c?`<span class="onb-who"><span class="onb-av" aria-hidden="true">${ini(c.n)}</span><span>${esc(c.n)}<small>${esc(c.r)} · ${esc(c.o)}</small></span></span>`:''}
+    <ul>${n.recursos.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>${leaf?`<p class="onb-next"><small>Next step</small>${esc(leaf.titulo)}</p>`:''}<a class="t-link" href="${n.href}">Open ${esc(n.titulo)}</a>`};
+}
+const onboardingSections = () => [
+  sec('l1','none',[
+    wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Onboarding')}${h2('Start here,','then pick a branch.')}<p class="t-p muted">One trunk for everyone. Four pillars and two cross-cutting branches.</p>`),
+    wp('i','Image (pre-rendered) · alternativa Power Apps (power-up interactivo) · mapa de ramas, alt completo', onboardingMap())
+  ]),
+  sec('l31','none',[
+    wp('n','Text · Fixed width + Heading 2 + Normal (agenda numerada, 5 puntos)', `${kick('Week 1')}${h2('Your first','DT session.')}<div class="onb-time" aria-hidden="true">${FIRST_SESSION.map((a,i)=>`<i style="flex:${parseInt(a[2])||1} 1 0;--o:${92-i*15}%"></i>`).join('')}</div><ol class="onb-agenda" data-onb-agenda>${FIRST_SESSION.map(a=>`<li><b>${esc(a[0])}</b><span>${esc(a[1])}</span><small>${esc(a[2])}</small></li>`).join('')}</ol>`),
+    wp('n','Quick links · List', `<div class="wp-title"><h3>Before the session</h3></div><div class="ql-list">${[['cal','Book your session','#/request','Pick a Week 1 slot'],['book','Welcome checklist','#/learning','IT, accesses, Teams'],['people','Who to ask, by area','#/community','Leaders and champions']].map(q=>`<a href="${q[2]}">${ic(q[0])}<span><b>${q[1]}</b><span>${q[3]}</span></span></a>`).join('')}</div>`)
+  ]),
+  sec('l1','neutral',[wp('n','Quick links · Grid / People · Compact (una tarjeta por rama: contacto, recursos y próximo paso)', `<div class="wp-title"><h3>Choose your branch</h3></div><div class="onb-cards" data-onb-cards>${ONBOARDING.nodes.filter(n=>n.tipo==='branch').map(b=>{const l=ONBOARDING.nodes.find(x=>x.parent===b.id);return `<article class="onb-card" data-onb-card="${b.id}" data-cluster="${b.cluster}"><h4>${esc(b.titulo)}</h4>${person({n:b.contacto.n,r:b.contacto.r,o:b.contacto.o},false,true)}<ul class="onb-res">${b.recursos.map(r=>`<li>${esc(r)}</li>`).join('')}</ul><p class="onb-next"><small>Next step</small> ${esc(l.titulo)}</p><a class="t-link" href="${b.href}">Open ${esc(b.titulo)}</a></article>`}).join('')}</div>`)])
+].join('');
+/* curvas del mapa de onboarding: se miden los nodos ya maquetados (por eso funciona con cualquier texto) y se trazan en el SVG de fondo.
+   Tronco = línea vertical con estaciones. Desde «Core tools» salen 6 fibras que se abren en carriles (uno por rama, sin cruces:
+   la rama más cercana va en el carril exterior) y se desvían con curvas suaves hacia su nodo; arriba crecen, abajo cuelgan. */
+function drawOnb(map){
+  const svg=map.querySelector('[data-onb-links]'); if(!svg||getComputedStyle(svg).display==='none')return;
+  const R=map.getBoundingClientRect(), f=v=>v.toFixed(1);
+  const rel=el=>{const r=el.getBoundingClientRect();return {l:r.left-R.left,t:r.top-R.top,r:r.right-R.left,b:r.bottom-R.top,cy:r.top-R.top+r.height/2}};
+  svg.setAttribute('viewBox',`0 0 ${f(R.width)} ${f(R.height)}`);
+  const tn=[...map.querySelectorAll('.onb-trunk [data-onb-node]')], T=tn.map(rel), lx=T[0].l-16;
+  let s='';
+  for(let i=0;i<T.length-1;i++)s+=`<path class="onb-trk" data-to="${tn[i+1].dataset.onbNode}" d="M${f(lx)} ${f(T[i].cy)} L${f(lx)} ${f(T[i+1].cy)}"/>`;
+  const core=T[T.length-1], x0=core.r, y0=core.cy, br=[...map.querySelectorAll('.onb-branch')];
+  /* orden de carriles (de arriba abajo): ramas de arriba por columna, luego las de abajo de la más lejana a la más cercana */
+  const up=br.filter((_,i)=>i<4), dn=br.filter((_,i)=>i>=4).reverse(), lanes=up.concat(dn), gap=6.5;
+  lanes.forEach((li,k)=>{
+    const node=li.querySelector('[data-tipo="branch"]'), leaf=li.querySelector('[data-tipo="leaf"]'), id=node.dataset.onbNode, n=rel(node), isUp=up.includes(li);
+    const yl=y0+(k-(lanes.length-1)/2)*gap, tx=n.l+26, ty=isUp?n.b:n.t, x=node.dataset.cluster==='ai'||node.dataset.cluster==='comm'?' x':'';
+    const st=`--k:${getComputedStyle(node).getPropertyValue('--k')}`;
+    s+=`<path class="onb-fib${x}" data-b="${id}" style="${st}" d="M${f(x0)} ${f(y0)} C${f(x0+20)} ${f(y0)} ${f(x0+16)} ${f(yl)} ${f(x0+40)} ${f(yl)} L${f(tx-38)} ${f(yl)} C${f(tx-10)} ${f(yl)} ${f(tx)} ${f(yl+(ty-yl)*.25)} ${f(tx)} ${f(ty)}"/>`;
+    if(leaf){const L=rel(leaf);
+      s+=L.l>=n.r-2?`<path class="onb-tip" data-b="${id}" style="${st}" d="M${f(n.r)} ${f(n.t+22)} C${f(n.r+10)} ${f(n.t+22)} ${f(L.l-10)} ${f(L.t+18)} ${f(L.l)} ${f(L.t+18)}"/>`
+        :`<path class="onb-tip" data-b="${id}" style="${st}" d="M${f(tx)} ${f(isUp?n.t:n.b)} L${f(tx)} ${f(isUp?L.b:L.t)}"/>`}
+  });
+  s+=`<circle class="onb-dot" cx="${f(x0)}" cy="${f(y0)}" r="3.5" data-id="core"/>`;
+  T.forEach((t,i)=>s+=`<path class="onb-trk stub" data-to="${tn[i].dataset.onbNode}" d="M${f(lx)} ${f(t.cy)} L${f(t.l)} ${f(t.cy)}"/><circle class="onb-dot" cx="${f(lx)}" cy="${f(t.cy)}" r="5.5" data-id="${tn[i].dataset.onbNode}"/>`);
+  svg.innerHTML=s;
+  onbPaint(map);
+}
+/* camino activo: ancestros del nodo (tronco completo si es una rama) + su fibra y su hoja */
+function onbPaint(map){
+  const id=map.dataset.active, N=ONBOARDING.nodes, n=N.find(x=>x.id===id), chain=[];
+  for(let c=n;c;c=N.find(x=>x.id===c.parent))chain.push(c.id);
+  const isB=!!n&&n.tipo==='branch', trunkOn=t=>isB||chain.includes(t)||(!n&&t==='t-day1');
+  map.classList.toggle('has-branch',isB);
+  map.querySelectorAll('.onb-trk').forEach(p=>p.classList.toggle('on',trunkOn(p.dataset.to)));
+  map.querySelectorAll('.onb-dot').forEach(p=>p.classList.toggle('on',p.dataset.id==='core'?isB:trunkOn(p.dataset.id)));
+  map.querySelectorAll('.onb-fib,.onb-tip').forEach(p=>p.classList.toggle('on',p.dataset.b===id));
+  map.querySelectorAll('.onb-branch').forEach(li=>li.classList.toggle('on',!!li.querySelector(`[data-onb-node="${id}"]`)&&isB));
+}
+function bindOnboarding(){
+  const map=document.querySelector('[data-onb-map]'); if(!map) return;
+  const det=map.querySelector('[data-onb-detail]');
+  const select=(id,fire=true)=>{
+    map.querySelectorAll('button[data-onb-node]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.onbNode===id));
+    map.dataset.active=id;
+    const d=onbDetail(id||'t-day1'); if(det){det.dataset.cluster=d.cluster;det.innerHTML=d.html}
+    document.querySelectorAll('[data-onb-card]').forEach(c=>c.toggleAttribute('data-active',c.dataset.onbCard===id));
+    onbPaint(map);
+    if(fire)document.dispatchEvent(new CustomEvent('onboarding:select',{detail:{nodeId:id}}));
+  };
+  map.addEventListener('click',e=>{const b=e.target.closest('button[data-onb-node]'); if(!b) return;
+    select(b.getAttribute('aria-pressed')==='true'?'':b.dataset.onbNode)});
+  select('',false);
+  drawOnb(map);
+  if(window.ResizeObserver){const ro=new ResizeObserver(()=>drawOnb(map));ro.observe(map)}
+  if(document.fonts)document.fonts.ready.then(()=>drawOnb(map));
+}
+
+
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
-  const tools = [
-    ['SP','Speckle','Workflow tool',['Data Intelligence','Integrated workflows'],'Live','Open data exchange between Revit, Rhino and Power BI.'],
-    ['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live','Prompts and guardrails for design teams, curated for LAC.'],
-    ['gB','gBlox','Gensler tool',['Computational Design'],'Live','Rapid test-fits and massing blocks for early studies.'],
-    ['TA','Terrain Analysis','LATAM solution',['Reality Capture','Computational Design'],'Pilot','Slope, cut-and-fill and drainage from survey or GIS data.'],
-  ].map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><p>${t[5]}</p><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('');
   return [
     sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
-    sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean',true)}<h1 class="t-h1">One regional team. <span class="tail">Every project</span><span class="sdot"></span></h1><p class="t-p">Four clusters. Six offices. We build with you.</p>`),
-      wp('n','Quick links · Button (4 acciones)', `<div class="ql-buttons">${[['compass','Explore capabilities','#/clusters/vdc','VDC, Reality Capture, CD, Data'],['tool','Find a tool','#/tools','Gensler tools and LATAM solutions'],['book','Start learning','#/learning','Paths, workshops, recordings'],['bulb','Build with COM','#/request','Request support or submit an idea']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
-    ]),
+    quickRow(),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
       wp('n',S5()?'Quick links · Filmstrip · miniatura 1:1 = foto de proyecto en bandeja blanca + código del cluster (PNG 600 px)':S4()?'Quick links · Filmstrip · miniaturas 1:1 = imágenes con degradado y grano (PNG 2×)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
@@ -1752,22 +2359,12 @@ function pageHome(){
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
       wp('i','Image · 1 columna (2408 px) · alt completo · sin vínculo', diagram())
     ]),
-    sec('l13','neutral',[
-      S4()
-        ? wp('n','Text · Heading 2 + Normal', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p>`)
-          + wp('i','Image · cifras bento con degradado y grano (PNG o WebP a 760 px) · alt con las 4 cifras', bento4(S5()?[['06','offices across the region',['var(--s-lime)']],['04','clusters, one team',['var(--hl-vdc)','var(--hl-rc)','var(--hl-cd)','var(--hl-di)']],['18','tools and LATAM solutions',['var(--s-amber)']],['26','projects with DT impact',rep([['var(--hl-vdc)',8],['var(--hl-rc)',5],['var(--hl-cd)',7],['var(--hl-di)',6]])]]:[['06','offices across the region'],['04','clusters, one team'],['18','tools and LATAM solutions'],['26','projects with DT impact']],'LAC at a glance: 06 offices across the region, 04 clusters, one team, 18 tools and LATAM solutions, 26 projects with DT impact.'))
-        : wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices across the region</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
-      wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
-    ],'EXTRA'),
+    impactSection(),
     sec('l31','none',[
       wp('i',S5()?'Image · 1 vínculo al caso de estudio · '+(IMG5()?'imagen real del proyecto':'foto de proyecto')+' en bandeja + gráfica de datos DI + pie mono (PNG 1584 px, fondo blanco)':S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${(f=>IMG5()?f.replace('<span class="tag">',uviChart()+'<span class="tag">'):f.replace('</svg>','</svg>'+uviChart()))(ph('city','di','Data Intelligence · Mexico City','Urban Vitality Index for Mexico City corridors','feat').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"'))}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
     sec('l1','none',[wp('n',S5()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniatura = '+(IMG5()?'imagen de miniatura de la página (imagen real 16:9)':'foto de proyecto 16:9 (fondo blanco)')+' · filete = color del cluster':S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
-    sec('l1','neutral',[
-      wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools',true)}${h2('Tools to use today.','Explore and learn.')}`),
-      wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools (Featured = Sí) · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
-    ]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning',true)}${h2('Computational Thinking,','a 6-module path.')}<p class="t-p muted">Self-paced capsules. A live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
       + wp('n','Highlighted content · Cards · Videos de Stream (Learning)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Recent workshops</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Workshop · Nov 6, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Workshop · Oct 23, 2026','#/learning','play')}${hcCard('Copilot prompts for design teams','people','di','Recording · 35 min','Workshop · Oct 9, 2026','#/learning','play')}</div>`),
@@ -1782,12 +2379,8 @@ function pageHome(){
       wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
       wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${comBtns()}</div>`)
     ])]),
-    sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 2', `${kick('Featured community',true)}${h2('People you can call.','By area and tool.')}`)
-      + wp('n','People · Compact ×4 (liderazgo regional: dirección, VDC, RC, CD; DI en Featured expert)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4">${[P.lucia,P.diego,P.camila,P.sofia].map(personCard).join('')}</div>`),
-      wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:10px"><span class="av" style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">SANTO DOMINGO · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px;margin:0">“Most teams are two scripts away from live project data.”</p>`)
-      + wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
-    ]),
+    spotlightSection(),
+    communityHome(),
     sec('l1','neutral',[wp('n','News · Top story'+imgNote(' · thumbnail = imagen de miniatura de la noticia')+' (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc','','Buenos Aires and Monterrey now share one ACC coordination standard')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2],'',n[0])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
     sec('l1','none',[wp('n','Quick links · Compact (EXTRA: curado de firmwide)', `<div class="wp-title"><h3>Curated from firmwide</h3></div><div class="ql-compact">${[['ext','Gensler DT firmwide'],['ext','Digital Capsules library'],['ext','BIM standards (firmwide)'],['ext','Productive AI hub'],['ext','Power BI template gallery'],['ext','Speckle at Gensler']].map(q=>`<a href="#/home">${ic(q[0])}${q[1]}</a>`).join('')}</div>`)],'EXTRA'),
   ].join('');
@@ -1847,6 +2440,7 @@ function pageTools(){
 function pageLearning(){
   const paths=[['Computational Thinking','6 modules · Mindset to People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
   return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
+  + onboardingSections()
   + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
 }
@@ -1909,6 +2503,11 @@ function route(){
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
+  bindImpact();bindOnboarding();
+  /* estado inicial para capturas: imp=<id de métrica> selecciona su cluster y su stat; onb=<id de nodo> selecciona ese nodo del onboarding */
+  const im=IMPACT.metrics.find(x=>x.id===q.get('imp'));
+  if(im){const cl=im.cluster==='global'?'all':im.cluster;document.querySelector(`[data-impact-cluster="${cl}"]`)?.click();document.querySelector(`[data-impact-metric="${im.id}"]`)?.click()}
+  if(q.get('onb'))document.querySelector(`button[data-onb-node="${q.get('onb')}"]`)?.click();
   startCollab();
 }
 /* @personalizar: logos (inline desde maqueta/logos/*.svg; tinta = currentColor, acento = var(--accent)) */
@@ -1933,16 +2532,20 @@ function setDrawer(open){const d=$('#logosDrawer');d.classList.toggle('open',ope
 function setAccent(a){document.documentElement.dataset.accent=a;document.querySelectorAll('[data-set-accent]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setAccent===a));store('accent',a)}
 function store(k,v){try{localStorage.setItem('dtlac-'+k,v)}catch(e){}}
 function load(k){try{return localStorage.getItem('dtlac-'+k)}catch(e){return null}}
-function setStyle(s,rerender=true){document.documentElement.dataset.style=s;document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);
-  /* Estilos 4 y 5: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos) */
+function setStyle(s,rerender=true){s=/^[1-6]$/.test(s)?s:'1';const H=document.documentElement,was6=H.dataset.skin==='6';
+  /* Estilo 6 «Terreno vivo»: monta la estructura del 5 (data-style="5"), siempre oscuro, con la paleta del 1 (data-skin="6") */
+  H.dataset.style=s==='6'?'5':s; if(s==='6')H.dataset.skin='6'; else delete H.dataset.skin;
+  document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);
+  if(s==='6')setMode('dark'); else if(was6)setMode(load('mode')||'light');
+  /* Estilos 4 y 5: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos). El 6 usa los 5 acentos del 1 */
   const g=$('#accentGrp'),off=s==='4'||s==='5';g.classList.toggle('off',off);g.title=off?`Estilo ${s} usa azul fijo`:'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
-  /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva) */
-  const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?'Solo en el Estilo 5':'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
-  /* Imágenes Sí / No: también solo en el Estilo 5 (los placeholders realistas son la opción No, por defecto) */
-  const ig=$('#imgGrp');ig.classList.toggle('off',moff);ig.title=moff?'Solo en el Estilo 5':'';ig.setAttribute('aria-disabled',moff);ig.querySelectorAll('button').forEach(b=>b.disabled=moff);
+  /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva). El 6 es solo oscuro */
+  const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?(s==='6'?'El Estilo 6 es solo oscuro':'Solo en el Estilo 5'):'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
+  /* Imágenes Sí / No: solo en los Estilos 5 y 6 (los placeholders realistas son la opción No, por defecto) */
+  const ioff=!(s==='5'||s==='6'),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 5 y 6':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
   if(rerender)route()}
 function setImg(v){v=v==='1'?'1':'0';document.documentElement.dataset.img=v;document.querySelectorAll('[data-set-img]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setImg===v));store('img',v)}
-function setMode(m){m=m==='dark'?'dark':'light';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));store('mode',m)}
+function setMode(m){m=m==='dark'?'dark':'light';const s6=document.documentElement.dataset.skin==='6';if(s6)m='dark';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));if(!s6)store('mode',m)}
 function setFont(f){document.documentElement.dataset.font=f;document.querySelectorAll('[data-set-font]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setFont===f));store('font',f)}
 function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#wpToggle').setAttribute('aria-pressed',on);store('wp',on?'1':'0')}
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
