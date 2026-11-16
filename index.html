@@ -785,6 +785,33 @@ html[data-style="5"] .cta .cta-body{max-width:58%}
 /* avatar neutro (llegarán fotos); el azul no se usa como color secundario */
 html[data-style="5"][data-mode="dark"] nav.topnav .active{border-bottom-color:var(--accent-text)}
 html[data-style="5"][data-mode="dark"] .ql-btn svg{color:var(--accent-text)}
+/* ---------- Ronda 7 · imágenes reales (toggle «Imágenes: Sí», hash img=1) ----------
+   Siempre dentro de la bandeja o marco existente (claros también en oscuro), object-fit: cover y encuadre por imagen (IMGS[].pos). */
+.m5img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--tray,#fff)}
+html[data-style="5"] .ph[data-real]{background:var(--tray)}
+html[data-style="5"] .ph[data-real]::after{content:"";display:block;background:none;opacity:1;mix-blend-mode:normal;position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--tray-rule);pointer-events:none;z-index:1}
+html[data-style="5"] .ph[data-real] .tag{z-index:2}
+/* captura en marco de navegador: barra de 16 px (3 puntos + dirección) y la captura debajo */
+.m5.real .m5-bar{position:absolute;left:0;right:0;top:0;height:16px;display:flex;align-items:center;gap:4px;padding:0 8px;background:#EEF1F5;border-bottom:1px solid #E3E8EF;z-index:1}
+.m5.real .m5-bar i{width:6px;height:6px;border-radius:50%;background:#C9D0DA;flex:none}
+.m5.real .m5-bar b{margin-left:8px;width:42%;height:8px;border-radius:4px;background:#FFFFFF;box-shadow:0 0 0 1px #DDE2E9}
+.m5.real .m5img{top:17px;height:calc(100% - 17px)}
+/* hero: foto en escala de grises, en multiply bajo el degradado (solo oscurece: el blanco y el celeste ganan contraste);
+   se desvanece antes del mapa para no competir con los puntos ni las etiquetas */
+.hero5-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;filter:grayscale(1) contrast(1.2);opacity:.46;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 42%,rgba(0,0,0,.22) 61%,rgba(0,0,0,.1) 100%);mask-image:linear-gradient(90deg,#000 0%,#000 42%,rgba(0,0,0,.22) 61%,rgba(0,0,0,.1) 100%)}
+/* Featured project con captura real: la gráfica DI se encoge para dejar ver el modelo */
+html[data-style="5"] .ph-feat[data-real] .c5-chart{width:38%;right:14px;bottom:50px}
+/* encabezado de cluster con imagen real: bandeja 16:9 (las piezas reales son 16:9) */
+html[data-style="5"] .chdr .c5-media.real{aspect-ratio:16/9}
+/* catálogo de capturas de la página Tools (web part Image gallery · Tiles) */
+.shots5{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.shots5 figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.shots5 .fr{aspect-ratio:16/10}
+.shots5 .w2{grid-column:span 2}
+.shots5 .w2 .fr{aspect-ratio:auto;flex:1;min-height:0}
+.shots5 figcaption{font-size:13px;line-height:1.35;color:var(--text-2)}
+.shots5 figcaption b{display:block;font-size:14px;font-weight:600;color:var(--text)}
 
 /* Featured community: fila de 4 líderes (tarjeta vertical compacta) */
 .people.row4{grid-template-columns:repeat(4,1fr);gap:16px}
@@ -859,7 +886,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 @media (max-width:1023px){
   .cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr 1fr}
   .cols.l13>.col:last-child,.cols.l31>.col:first-child{grid-column:1/-1}
-  .ql-film,.gallery,.hc.c4,.people.row4{grid-template-columns:repeat(2,1fr)}
+  .ql-film,.gallery,.hc.c4,.people.row4,.shots5{grid-template-columns:repeat(2,1fr)}
   .mega .inner{grid-template-columns:1fr 1fr}
   .site-footer .inner{grid-template-columns:1fr 1fr}
   .board{grid-template-columns:1fr 1fr}
@@ -868,7 +895,8 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 }
 @media (max-width:639px){
   .cols.l2,.cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr}
-  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.band4 .nums{grid-template-columns:1fr}
+  .shots5 .w2{grid-column:auto}.shots5 .w2 .fr{aspect-ratio:16/10}
+  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.band4 .nums{grid-template-columns:1fr}
   .sp-canvas{padding:0 16px}
   .t-h1{font-size:34px}.t-h2{font-size:26px}
   .site-actions,.suite .org{display:none}
@@ -946,6 +974,8 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div>
   <span class="lbl">Modo</span>
   <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div>
+  <span class="lbl">Imágenes</span>
+  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (solo Estilo 5)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
   <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
   <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
@@ -1283,7 +1313,54 @@ function shot5(v='dash'){
   if(v==='chat'){[[86,72,170],[86,124,210]].forEach(([x,y,w])=>s+=`<rect x="${x}" y="${y}" width="${w}" height="40" rx="8" fill="${P}" stroke="#E3E8EF"/><rect x="${x+12}" y="${y+12}" width="${w-60}" height="6" rx="3" fill="${K}"/><rect x="${x+12}" y="${y+24}" width="${w-90}" height="6" rx="3" fill="${K}"/>`);s+=`<rect x="240" y="98" width="150" height="22" rx="8" fill="#E3E8EF"/><rect x="86" y="212" width="304" height="26" rx="13" fill="#FFFFFF" stroke="${K2}"/><circle cx="374" cy="225" r="8" fill="${K2}"/>`}
   return `<div class="m5 shot"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg><span class="m5-lab">${PH5_IC.shot}App screenshot</span></div>`;
 }
-const ph = (kind, tint, tag='') => `<div class="ph grain" style="--t:var(--hl-${tint})">${S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):bld(kind)}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`;
+/* @personalizar: imágenes reales del Estilo 5 (toggle «Imágenes: Sí / No» de la barra; hash img=1). Fuente: maqueta/img/manifiesto.json
+   (archivo, ancho, alto, alt). pos = object-position (encuadre por imagen); z = escala extra
+   que recorta el margen gris de las piezas sacadas de láminas (≤ 1.13, sin pixelar). Las fotos de personas (persona-*) NO se usan: el sitio es público.
+   Si un espacio no tiene imagen asignada, conserva su placeholder realista (photo5 / shot5). */
+const IMG5 = () => S5() && document.documentElement.dataset.img==='1';
+const IMGS = {
+  massing:{f:'proj-massing-model-render.jpg',w:1600,h:900,pos:'50% 58%',alt:'Clean white 3D massing model of a mixed-use development with colored towers'},
+  speckleRhino:{f:'tool-speckle-rhino-model.jpg',w:1600,h:998,pos:'0% 50%',alt:'Speckle web viewer displaying a detailed architectural model in the browser'},
+  torreIza:{f:'proj-torre-iza-monterrey.jpg',w:1600,h:900,pos:'50% 50%',z:1.1,feat:{pos:'50% 100%',z:1.04},alt:'Interactive app comparing three tower massing options for a Monterrey high-rise'},
+  resort:{f:'proj-speckle-resort-review.jpg',w:1513,h:879,pos:'50% 50%',alt:'Residential building model reviewed with comments inside the Speckle viewer'},
+  alajuela:{f:'proj-alajuela-mall-configurator.jpg',w:1600,h:900,pos:'50% 50%',z:1.13,alt:'Shopping center configuration tool with site map and program metrics in Costa Rica'},
+  retailLayout:{f:'proj-retail-layout-generator.jpg',w:1600,h:900,pos:'50% 50%',z:1.12,feat:{pos:'100% 100%',z:1.04},alt:'Generative floor plan layout tool with color-coded zones and compliance checks'},
+  spatial:{f:'proj-spatial-analytics-retail.jpg',w:1600,h:867,pos:'50% 50%',alt:'Spatial Analytics app showing a 3D retail layout with zone-level data panels'},
+  speckleDash:{f:'tool-speckle-model-dashboard.jpg',w:1600,h:900,pos:'70% 50%',alt:'Speckle dashboard with model data charts and colored floor-by-floor views'},
+  flows:{f:'tool-flows-agents-simulation.jpg',w:1600,h:705,pos:'50% 50%',alt:'Pedestrian flow simulation heat trails on a dark retail floor plan'},
+  gbloxProgram:{f:'tool-gblox-program-metrics.jpg',w:1600,h:693,pos:'30% 50%',alt:'gBlox plugin in Rhino updating area, FAR and program metrics on a tower massing'},
+  gbloxMulti:{f:'tool-gblox-multi-tower.jpg',w:1600,h:900,pos:'40% 50%',alt:'gBlox dashboard with several colored towers and per-building metrics'},
+  gbloxCosts:{f:'tool-gblox-properties-costs.jpg',w:1600,h:780,pos:'20% 50%',alt:'gBlox model properties and cost panel over a site massing in Rhino'},
+  gbloxCO2:{f:'tool-gblox-co2-emissions.jpg',w:1600,h:885,pos:'45% 50%',alt:'gBlox CO2 carbon metrics and building emissions breakdown beside tower models'},
+  gbloxGif:{f:'gif-gblox-co2-metrics.gif',w:1280,h:800,pos:'50% 50%',z:1.07,alt:'Animated gBlox demo showing live carbon metrics on a tower massing in Rhino'},
+  pbiUnits:{f:'tool-powerbi-units-dashboard.jpg',w:1600,h:900,pos:'50% 30%',alt:'Power BI dashboard with unit types, program donut chart and a 3D site model'},
+  pbiSpeckle:{f:'tool-powerbi-speckle-report.jpg',w:1600,h:908,pos:'60% 50%',alt:'Power BI report combining areas by category charts with an embedded 3D model'},
+  ladybug:{f:'tool-ladybug-grasshopper.jpg',w:960,h:468,pos:'22% 50%',alt:'Rhino and Grasshopper window with a tower colored by Ladybug environmental analysis'},
+  terrain:{f:'tool-terrain-analysis.jpg',w:1600,h:828,pos:'42% 50%',alt:'Terrain Analysis Tool interface with contour lines and a terrain mesh in Rhino'},
+  wind:{f:'rc-wind-simulation-buildings.jpg',w:908,h:627,pos:'50% 45%',alt:'Wind flow vector simulation colored around white building volumes'},
+  landUse:{f:'tool-land-use-metrics-panel.jpg',w:957,h:750,pos:'50% 0%',alt:'Land use metrics panel with built-up area, gross floor area and population'},
+  pillars:{f:'diagram-five-pillars.jpg',w:1600,h:900,pos:'50% 50%',z:1.1,alt:'Five colorful pillar cards representing the Computational Design toolbox'},
+  doors:{f:'diagram-three-doors.jpg',w:1600,h:900,pos:'50% 50%',z:1.75,alt:'Three gradient cards for Tools, Workshops and Processes entry points'},
+  coverCD:{f:'cover-cd-latam-gradient.jpg',w:1600,h:900,pos:'50% 50%',alt:'Computational Design LATAM brand cover with soft gradient orbs'}
+};
+/* espacio → imagen, por título del caso, video o noticia. En SharePoint una página tiene UNA miniatura: el mismo caso muestra la misma imagen en Home, Projects y su cluster. */
+const IMG_BY = {
+  'Urban Vitality Index for Mexico City corridors':'speckleRhino', 'Monterrey tower: one federated model':'torreIza',
+  'Pedestrian Flows for the Bogotá transit hub':'retailLayout', 'Terrain Analysis for a hillside campus':'alajuela',
+  'Santo Domingo colonial façade: scan-to-BIM':'resort', 'Speckle → Power BI project dashboards':'spatial',
+  'Dynamo for repetitive documentation':'wind', 'Computational Thinking':'doors',
+  'Buenos Aires and Monterrey now share one ACC coordination standard':'landUse',
+  'cluster:cd':'coverCD', 'cluster:di':'pillars',
+  'tool:SP':'speckleDash', 'tool:gB':'gbloxGif', 'tool:TA':'terrain', 'tool:PB':'pbiUnits'
+};
+/* ctx = encuadre alterno por contexto (p. ej. feat = bandeja 16:11 del Featured project), definido dentro de la entrada de IMGS */
+function img5(id,cls='m5img',ctx=''){if(!IMGS[id])return '';const m={...IMGS[id],...(ctx&&IMGS[id][ctx]||{})};return `<img class="${cls}" src="img/${m.f}" alt="${esc(m.alt)}" width="${m.w}" height="${m.h}" loading="lazy" style="object-position:${m.pos}${m.z?`;transform:scale(${m.z});transform-origin:${m.pos}`:''}">`}
+const media5 = (key,ctx='') => IMG5()&&IMG_BY[key] ? img5(IMG_BY[key],'m5img',ctx) : '';
+/* captura real dentro del marco de navegador (barra de 16 px) */
+const frame5 = id => `<div class="m5 shot real"><span class="m5-bar" aria-hidden="true"><i></i><i></i><i></i><b></b></span>${img5(id)}</div>`;
+const imgNote = s => IMG5()?s:'';
+const ph = (kind, tint, tag='', key='', ctx='') => {const im=S5()&&media5(key,ctx);
+  return `<div class="ph grain" style="--t:var(--hl-${tint})"${im?' data-real':''}>${im||(S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):bld(kind))}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`};
 
 /* =========================================================
    CONTENIDO SEMILLA (inglés; personas ficticias)
@@ -1385,7 +1462,7 @@ function homeHeader(){
   const m=lacMap({box:[985,16,560,588],step:7.6,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[972,6,1594,614]});
   HERO={W,H,m};
   return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six offices: Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. A few name-tagged cursors drift in the ocean around the map and occasionally connect to a nearby office with a thin line and a soft pulse. Text: Design technology, built across Latin America and the Caribbean.">
-    <svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    ${IMG5()?img5('massing','hero5-photo'):''}<svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <g id="collabLines"></g>${m.svg}<g id="collab"></g>
     </svg>
     <div class="copy">
@@ -1505,7 +1582,7 @@ function clusterHeader(c){
   const s5=S5(); if(s5) art='';
   const mk=`<defs><linearGradient id="chm-g" gradientUnits="userSpaceOnUse" x1="860" y1="0" x2="980" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="chm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#chm-g)"/></mask></defs>`;
   return `<div class="art chdr grain" role="img" style="--c:var(--c5-${c.key}-lt)" aria-label="${esc(c.name)}. LAC cluster ${c.n} of 04. Header image ${s5?'on the blue gradient, with a project photo of the cluster':'with the cluster motif in its highlight color'}.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>${s5?`<div class="c5-media tray5">${photo5(c.proj.ph)}</div>`:''}
+    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>${s5?(media5('cluster:'+c.key)?`<div class="c5-media tray5 real">${media5('cluster:'+c.key)}</div>`:`<div class="c5-media tray5">${photo5(c.proj.ph)}</div>`):''}
     <div class="copy">
       <div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
       <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
@@ -1520,7 +1597,7 @@ let CAPN=0;
 function capThumb(c,o={}){
   const W=300,H=300,L=document.documentElement.dataset.style!=='1',id='cm'+(++CAPN),fd=o.fade||[150,178];let art='';
   /* Estilo 5: foto del proyecto del cluster en bandeja + código en la tinta del cluster (mismos spans .n y .nm para los reemplazos de Learning y Community) */
-  if(S5()) return `<div class="capthumb grain${o.fit?' wide':''}" style="--c:var(--hl-${c.key});--ci:var(--ink-${c.key})"><div class="c5-ph">${photo5(c.proj.ph)}</div><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
+  if(S5()) return `<div class="capthumb grain${o.fit?' wide':''}" style="--c:var(--hl-${c.key});--ci:var(--ink-${c.key})"><div class="c5-ph">${(o.img&&media5(o.img))||photo5(c.proj.ph)}</div><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
   if(c.motif==='iso') art=L?isoSlabs(W,H,{cx:200,top:30,gap:19,a:60,acc:2,n:5,grid:2,fs:0}):isoSlabs(W,H,{cx:200,top:26,gap:19,a:64,acc:2,fs:0});
   if(c.motif==='cloud') art=L?pointCloud(W,H,{x:116,y:40,w:156,h:100,seed:4,dens:.34,jit:1.2,noise:36,sweep:false,subtle:13,dotOp:.6}):pointCloud(W,H,{x:105,y:44,w:175,h:108,seed:4});
   if(c.motif==='flow') art=L?fanCurves({o:[112,148],ex:272,ey0:42,ey1:148,n:8,acc:2}):flowField(W,H,{x0:60,n:70,seed:4.1});
@@ -1631,7 +1708,7 @@ const kick = (t,red=false) => `<p class="t-kicker${red?' s3-hide':''}">${esc(t)}
 const fin = t => t.endsWith('.') ? esc(t.slice(0,-1))+'<span class="sdot"></span>' : esc(t);
 const tailFin = t => t.endsWith('.') ? `<span class="tail">${esc(t.slice(0,-1))}</span><span class="sdot"></span>` : `<span class="tail">${esc(t)}</span>`;
 const h2 = (a,b='') => `<h2 class="t-h2">${b?esc(a)+' '+tailFin(b):fin(a)}</h2>`;
-const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}">${ph(kind,tint)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
+const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}">${ph(kind,tint,'',t)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
 const person = (p,desc=true,sm=false) => `<div class="person ${sm?'sm':''}"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)} · ${esc(p.o)}</span>${desc&&p.d?`<p>${esc(p.d)}</p>`:''}</a></div>`;
 /* tarjeta compacta para la fila de 4 (mismo rol que en Community: sale de P) */
 const personCard = p => `<div class="person sm"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)}</span><span class="meta-line" style="margin-top:2px;font-size:11px">${esc(p.o.toUpperCase())}</span></a></div>`;
@@ -1649,7 +1726,10 @@ const chip = (x,st=false) => {const k=CHIPK[x], kc=k&&(['lime','amber','rose'].i
 /* herramientas en el Estilo 5: tile de logo de app (monograma, "app logo") + captura en bandeja con marco de navegador */
 const APPM={SP:'Sp',CP:'Cp',PB:'PBI',DY:'Dy',RR:'Rh',gB:'gB',TA:'TA',UV:'UV'}, SHOTV={SP:'model',CP:'chat',PB:'dash',DY:'model',RR:'model',gB:'model',TA:'map',UV:'map'};
 const toolIco = t => `<span class="ico">${S5()?`<b>${APPM[t]||t}</b><small>app logo</small>`:t}</span>`;
-const toolShot = t => S5()?`<div class="shot5 tray5">${shot5(SHOTV[t]||'dash')}</div>`:'';
+const toolShot = t => S5()?(IMG5()&&IMG_BY['tool:'+t]?`<div class="shot5 tray5">${frame5(IMG_BY['tool:'+t])}</div>`:`<div class="shot5 tray5">${shot5(SHOTV[t]||'dash')}</div>`):'';
+/* catálogo de capturas (solo con imágenes reales): apps sin registro propio en la galería de Tools. [id, app, tema del manifiesto, ancho doble] */
+const CAT5=[['gbloxMulti','gBlox','gBlox metrics per building across several towers'],['pbiSpeckle','Power BI + Speckle','Power BI report with embedded Speckle 3D model'],['gbloxCosts','gBlox','gBlox model properties and costs panel'],['gbloxCO2','gBlox.CO2','gBlox.CO2 carbon emissions per building'],['ladybug','Ladybug','Ladybug environmental analysis in Grasshopper'],['flows','Flows','Pedestrian flow agent simulation in a retail project',1],['gbloxProgram','gBlox','gBlox live program and metrics dashboard in Rhino']];
+const toolCatalog = () => IMG5()?sec('l1','none',[wp('i','Image gallery · Tiles · capturas de apps sin registro propio (gBlox, Power BI + Speckle, Ladybug, Flows) · alt del manifiesto',`<div class="wp-title"><h3>Tool gallery</h3></div><div class="shots5">${CAT5.map(c=>`<figure class="${c[3]?'w2':''}"><div class="fr tray5">${frame5(c[0])}</div><figcaption><b>${esc(c[1])}</b>${esc(c[2])}</figcaption></figure>`).join('')}</div>`)]):'';
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   const tools = [
@@ -1659,7 +1739,7 @@ function pageHome(){
     ['TA','Terrain Analysis','LATAM solution',['Reality Capture','Computational Design'],'Pilot','Slope, cut-and-fill and drainage from survey or GIS data.'],
   ].map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><p>${t[5]}</p><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('');
   return [
-    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados':'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
+    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean',true)}<h1 class="t-h1">One regional team. <span class="tail">Every project</span><span class="sdot"></span></h1><p class="t-p">Four clusters. Six offices. We build with you.</p>`),
       wp('n','Quick links · Button (4 acciones)', `<div class="ql-buttons">${[['compass','Explore capabilities','#/clusters/vdc','VDC, Reality Capture, CD, Data'],['tool','Find a tool','#/tools','Gensler tools and LATAM solutions'],['book','Start learning','#/learning','Paths, workshops, recordings'],['bulb','Build with COM','#/request','Request support or submit an idea']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
@@ -1680,17 +1760,17 @@ function pageHome(){
       wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
     ],'EXTRA'),
     sec('l31','none',[
-      wp('i',S5()?'Image · 1 vínculo al caso de estudio · foto de proyecto en bandeja + gráfica de datos DI + pie mono (PNG 1584 px, fondo blanco)':S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"').replace('</svg>','</svg>'+uviChart())}</a>`),
+      wp('i',S5()?'Image · 1 vínculo al caso de estudio · '+(IMG5()?'imagen real del proyecto':'foto de proyecto')+' en bandeja + gráfica de datos DI + pie mono (PNG 1584 px, fondo blanco)':S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${(f=>IMG5()?f.replace('<span class="tag">',uviChart()+'<span class="tag">'):f.replace('</svg>','</svg>'+uviChart()))(ph('city','di','Data Intelligence · Mexico City','Urban Vitality Index for Mexico City corridors','feat').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"'))}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
-    sec('l1','none',[wp('n',S5()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniatura = foto de proyecto 16:9 (fondo blanco) · filete = color del cluster':S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
+    sec('l1','none',[wp('n',S5()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniatura = '+(IMG5()?'imagen de miniatura de la página (imagen real 16:9)':'foto de proyecto 16:9 (fondo blanco)')+' · filete = color del cluster':S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
     sec('l1','neutral',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools',true)}${h2('Tools to use today.','Explore and learn.')}`),
-      wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools (Featured = Sí) · columnas Imagen: captura (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
+      wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools (Featured = Sí) · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
     ]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning',true)}${h2('Computational Thinking,','a 6-module path.')}<p class="t-p muted">Self-paced capsules. A live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
-      + wp('n','Highlighted content · Cards · Videos de Stream (Learning)', `<div class="wp-title"><h3>Recent workshops</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Workshop · Nov 6, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Workshop · Oct 23, 2026','#/learning','play')}${hcCard('Copilot prompts for design teams','people','di','Recording · 35 min','Workshop · Oct 9, 2026','#/learning','play')}</div>`),
+      + wp('n','Highlighted content · Cards · Videos de Stream (Learning)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Recent workshops</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Workshop · Nov 6, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Workshop · Oct 23, 2026','#/learning','play')}${hcCard('Copilot prompts for design teams','people','di','Recording · 35 min','Workshop · Oct 9, 2026','#/learning','play')}</div>`),
       wp('n','Events · Compact (próxima sesión)', `<div class="wp-title"><h3>Upcoming session</h3><a href="#/learning">See all</a></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}</div>`)
       + wp('n','Quick links · List (quick-start)', `<div class="wp-title"><h3>Quick-start</h3></div><div class="ql-list">${[['book','Rhino-Revit in 15 minutes','Interoperability basics'],['nodes','Speckle: send your first model','Step-by-step guide'],['globe','GIS basics for site analysis','Firmwide resource · curated']].map(q=>`<a href="#/learning">${ic(q[0])}<span><b>${q[1]}</b><span>${q[2]}</span></span></a>`).join('')}</div>`)
     ]),
@@ -1708,7 +1788,7 @@ function pageHome(){
       wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:10px"><span class="av" style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">SANTO DOMINGO · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px;margin:0">“Most teams are two scripts away from live project data.”</p>`)
       + wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
     ]),
-    sec('l1','neutral',[wp('n','News · Top story (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
+    sec('l1','neutral',[wp('n','News · Top story'+imgNote(' · thumbnail = imagen de miniatura de la noticia')+' (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc','','Buenos Aires and Monterrey now share one ACC coordination standard')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2],'',n[0])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
     sec('l1','none',[wp('n','Quick links · Compact (EXTRA: curado de firmwide)', `<div class="wp-title"><h3>Curated from firmwide</h3></div><div class="ql-compact">${[['ext','Gensler DT firmwide'],['ext','Digital Capsules library'],['ext','BIM standards (firmwide)'],['ext','Productive AI hub'],['ext','Power BI template gallery'],['ext','Speckle at Gensler']].map(q=>`<a href="#/home">${ic(q[0])}${q[1]}</a>`).join('')}</div>`)],'EXTRA'),
   ].join('');
 }
@@ -1717,16 +1797,16 @@ function pageCluster(k){
   const c=CL[k];
   const others=ORDER.filter(x=>x!==k);
   return [
-    sec('full','none',[wp('i','Image · full-width 16:5 (Banner borrado) · alt completo',clusterHeader(c))]),
+    sec('full','none',[wp('i','Image · full-width 16:5 (Banner borrado) · alt completo'+(media5('cluster:'+k)?' · degradado + imagen real del cluster horneados':''),clusterHeader(c))]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 1 + Normal', `${kick(`LAC cluster ${c.n} · ${c.name}`,true)}<h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
       wp('n','Quick links · Compact (herramientas núcleo → registros de Tools)', `<div class="wp-title"><h3>Core tools</h3><a href="#/tools">All tools</a></div><div class="ql-list">${c.tools.map(t=>`<a href="#/tools">${ic(t[0])}<span><b>${esc(t[1])}</b><span>Tool record · filtered by ${esc(c.code)}</span></span></a>`).join('')}</div>`)
     ]),
     sec('l31','neutral',[
-      wp('i','Image · 1 vínculo al caso de estudio', `<a href="#/projects" aria-label="Read the case study: ${esc(c.proj.t)}">${ph(c.proj.ph,k,c.name+' · '+c.proj.office).replace('class="ph grain"','class="ph grain" style="--t:var(--hl-'+k+');aspect-ratio:16/11;border-radius:var(--r-native)"')}</a>`),
+      wp('i','Image · 1 vínculo al caso de estudio'+(media5(c.proj.t)?' · imagen real del proyecto':''), `<a href="#/projects" aria-label="Read the case study: ${esc(c.proj.t)}">${ph(c.proj.ph,k,c.name+' · '+c.proj.office,c.proj.t,'feat').replace('class="ph grain"','class="ph grain" style="--t:var(--hl-'+k+');aspect-ratio:16/11;border-radius:var(--r-native)"')}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + Heading 2 (cifras)', `${kick('Featured project · '+c.proj.status)}<h2 class="t-h2" style="font-size:26px">${esc(c.proj.t)}</h2><p class="t-p"><b>Challenge.</b> <span class="muted" style="color:var(--text-2)">${esc(c.proj.ch)}</span></p><p class="t-p"><b>Solution.</b> <span style="color:var(--text-2)">${esc(c.proj.so)}</span></p><div class="stat-grid">${c.proj.st.slice(0,4).map(s=>`<div class="stat"><b>${esc(s[0])}${s[2]?`<small>${s[2]}</small>`:''}</b><span>${esc(s[1].replace(/^% |^mm /,''))}</span></div>`).join('')}</div><p class="meta-line">CONTRIBUTORS · ${c.proj.who.map(esc).join(' · ').toUpperCase()}</p>`)
     ]),
-    sec('l1','none',[wp('n',`Highlighted content · Cards · Lista Projects (Cluster = ${c.code})`, `<div class="wp-title"><h3>More ${esc(c.page)} projects</h3><a href="#/projects">See all</a></div><div class="hc">${c.cards.map(x=>hcCard(x[0],x[1],k,`${c.code} · ${x[2]}`,'Case study · Published','#/projects')).join('')}</div>`)]),
+    sec('l1','none',[wp('n',`Highlighted content · Cards · Lista Projects (Cluster = ${c.code})`+imgNote(' · miniatura = imagen de miniatura de la página'), `<div class="wp-title"><h3>More ${esc(c.page)} projects</h3><a href="#/projects">See all</a></div><div class="hc">${c.cards.map(x=>hcCard(x[0],x[1],k,`${c.code} · ${x[2]}`,'Case study · Published','#/projects')).join('')}</div>`)]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Methodology')}${h2('How we work','with project teams.')}`),
       wp('i','Image · proceso en 4 pasos (highlight del cluster) · alt completo', procArt(c))
@@ -1754,20 +1834,21 @@ function pageProjects(){
   const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
   return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
   + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
-  + sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (todas)', `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
+  + sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (todas)'+imgNote(' · miniatura = imagen de miniatura de la página (imagen real 16:9)'), `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
   + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Case studies are reviewed once a year.</p>`),wp('n','Button', `<a class="btn" href="#/request">Propose a case study</a>`)]);
 }
 function pageTools(){
   const T=[['SP','Speckle','Workflow tool',['DI','Integrated workflows'],'Live'],['PB','Power BI templates','Gensler tool',['DI'],'Live'],['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live'],['DY','Dynamo for Revit','Workflow tool',['CD','VDC'],'Live'],['RR','Rhino.Inside.Revit','Workflow tool',['CD'],'Live'],['gB','gBlox','Gensler tool',['CD'],'Live'],['TA','Terrain Analysis','LATAM solution',['RC','CD'],'Pilot'],['UV','Urban Vitality Index','LATAM solution',['DI'],'Live']];
   return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions and experiments.')
-  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
+  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
+  + toolCatalog()
   + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Availability is reviewed every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
 }
 function pageLearning(){
   const paths=[['Computational Thinking','6 modules · Mindset to People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
   return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
-  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
-  + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)', `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
+  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
+  + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
 }
 function pageCommunity(){
   return banner('Community','Who can help me?','Leaders, champions, experts.','Find people by office, capability and tool.')
@@ -1806,6 +1887,7 @@ function route(){
   const q=new URLSearchParams(h[1]||'');
   if(q.get('s'))setStyle(q.get('s'),false);
   if(q.get('m'))setMode(q.get('m'));
+  if(q.get('img'))setImg(q.get('img'));
   if(q.get('wp'))setWp(q.get('wp')==='1');
   if(q.get('f'))setFont(q.get('f'));
   if(q.get('a'))setAccent(q.get('a'));
@@ -1856,19 +1938,25 @@ function setStyle(s,rerender=true){document.documentElement.dataset.style=s;docu
   const g=$('#accentGrp'),off=s==='4'||s==='5';g.classList.toggle('off',off);g.title=off?`Estilo ${s} usa azul fijo`:'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
   /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva) */
   const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?'Solo en el Estilo 5':'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
+  /* Imágenes Sí / No: también solo en el Estilo 5 (los placeholders realistas son la opción No, por defecto) */
+  const ig=$('#imgGrp');ig.classList.toggle('off',moff);ig.title=moff?'Solo en el Estilo 5':'';ig.setAttribute('aria-disabled',moff);ig.querySelectorAll('button').forEach(b=>b.disabled=moff);
   if(rerender)route()}
+function setImg(v){v=v==='1'?'1':'0';document.documentElement.dataset.img=v;document.querySelectorAll('[data-set-img]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setImg===v));store('img',v)}
 function setMode(m){m=m==='dark'?'dark':'light';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));store('mode',m)}
 function setFont(f){document.documentElement.dataset.font=f;document.querySelectorAll('[data-set-font]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setFont===f));store('font',f)}
 function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#wpToggle').setAttribute('aria-pressed',on);store('wp',on?'1':'0')}
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
 document.querySelectorAll('[data-set-font]').forEach(b=>b.addEventListener('click',()=>setFont(b.dataset.setFont)));
 document.querySelectorAll('[data-set-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.setMode)));
+/* el contenido se arma en JS: al cambiar de imágenes se vuelve a pintar la página (y se actualiza img= si viene en el hash) */
+document.querySelectorAll('[data-set-img]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.setImg;setImg(v);
+  if(/[?&]img=/.test(location.hash))history.replaceState(null,'',location.hash.replace(/([?&]img=)[^&]*/,'$1'+v));route()}));
 $('#wpToggle').addEventListener('click',()=>setWp(!document.documentElement.classList.contains('show-wp')));
 document.querySelectorAll('[data-set-accent]').forEach(b=>b.addEventListener('click',()=>setAccent(b.dataset.setAccent)));
 $('#logosBtn').addEventListener('click',()=>setDrawer(!$('#logosDrawer').classList.contains('open')));
 $('#logosClose').addEventListener('click',()=>setDrawer(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').classList.contains('open'))setDrawer(false)});
-setStyle(load('style')||'1',false);setMode(load('mode')||'light');setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
+setStyle(load('style')||'1',false);setMode(load('mode')||'light');setImg(load('img')||'0');setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
 buildLogos();applyLogo(load('logo3')||'L00');
 buildNav();route();
 window.addEventListener('hashchange',route);
