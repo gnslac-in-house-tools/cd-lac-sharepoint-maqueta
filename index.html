@@ -10,7 +10,7 @@
 <style>
 /* =========================================================
    0 · TOKENS — primitivo → semántico → componente
-   Dos juegos (data-style 1 / 2). Mismos componentes.
+   Tres juegos (data-style 1 / 2 / 3). Mismos componentes.
    ========================================================= */
 :root{
   --canvas:1204px; --gap:32px; --sec-pad:40px; --wp-gap:24px;
@@ -66,13 +66,40 @@ html[data-style="2"]{
   --suite-bg:#1F1F1F; --suite-fg:#FFFFFF; --header-bg:var(--p-white); --header-fg:var(--p-ink);
   --card-shadow:0 0 0 1px var(--p-rule);
   --accent:var(--p-lime); --on-accent:var(--p-ink); --accent-2:var(--p-blue);
-  --art-bg:var(--p-paper); --art-fg:rgba(17,17,17,.78); --art-dim:rgba(17,17,17,.12); --art-text:var(--p-ink); --art-tail:#8C8C88;
+  --art-bg:var(--p-paper); --art-fg:rgba(17,17,17,.42); --art-dim:rgba(17,17,17,.10); --art-text:var(--p-ink); --art-tail:#8C8C88;
   --art-dot:rgba(17,17,17,.62);
-  --ph-a:#C9D0D6; --ph-b:#8F9AA3; --ph-line:rgba(255,255,255,.7);
+  --ph-a:#F1EFEA; --ph-b:#E7E4DE; --ph-line:rgba(17,17,17,.22);
   --f-brand-sans:"Instrument Sans","Segoe UI",sans-serif; --f-brand-mono:"IBM Plex Mono",Consolas,monospace;
   --h-weight:600; --h-track:-.03em; --k-track:.1em; --ht-op:.05;
 }
-/* @personalizar: acentos elegibles (5 opciones × 2 estilos). Agregar uno = 2 reglas aquí + 1 swatch en la barra de control. */
+/* @personalizar: tokens del Estilo 3 */
+/* ---------- ESTILO 3 · TERRENO CLARO (ADN del 1 en blanco: mono, retícula, puntos; bajo contraste) ---------- */
+html[data-style="3"]{
+  /* primitivos */
+  --p-white:#FFFFFF; --p-snow:#FBFBFA; --p-mist:#F5F5F4; --p-rule:#E6E6E3; --p-ink:#121314;
+  --p-graphite:#5F6368; --p-silver:#8A8E93; --p-tail-art:#6E7278;
+  --p-sage:#4F7F7A; --p-clay:#A3684B; --p-slate:#5A6AA6; --p-heather:#7B6AA6;
+  /* highlights por cluster (desaturados; blanco encima ≥ 4.5:1) */
+  --hl-vdc:var(--p-sage); --hl-rc:var(--p-clay); --hl-cd:var(--p-slate); --hl-di:var(--p-heather);
+  --on-hl:#FFFFFF;
+  /* semánticos */
+  --theme:var(--p-ink); --on-theme:#FFFFFF;
+  --bg:var(--p-snow); --bg-neutral:var(--p-mist); --bg-soft:#F3F3F1; --bg-strong:var(--p-ink); --on-strong:#FFFFFF; --on-strong-2:#B4B6B9;
+  --surface:var(--p-white); --surface-2:#F7F7F6; --rule:var(--p-rule);
+  --text:var(--p-ink); --text-2:var(--p-graphite); --text-tail:var(--p-silver);
+  --link:var(--p-ink);
+  --suite-bg:#1F1F1F; --suite-fg:#FFFFFF; --header-bg:var(--p-white); --header-fg:var(--p-ink);
+  --card-shadow:0 0 0 1px var(--p-rule);
+  /* arte: trazos de 1 px en gris medio-claro, puntos tenues */
+  --accent:var(--p-ink); --on-accent:#FFFFFF; --accent-2:var(--p-slate);
+  --art-bg:var(--p-snow); --art-fg:rgba(18,19,20,.30); --art-dim:rgba(18,19,20,.075); --art-text:var(--p-ink); --art-tail:var(--p-tail-art);
+  --art-dot:rgba(18,19,20,.24);
+  --ph-a:#F4F4F2; --ph-b:#ECECE9; --ph-line:rgba(18,19,20,.2);
+  /* misma tipografía que el Estilo 1 */
+  --f-brand-sans:"Inter Tight","Segoe UI",sans-serif; --f-brand-mono:"JetBrains Mono",Consolas,monospace;
+  --h-weight:300; --h-track:-.035em; --k-track:.14em; --ht-op:.05;
+}
+/* @personalizar: acentos elegibles (5 opciones × 3 estilos). Agregar uno = 3 reglas aquí + 1 swatch en la barra de control. */
 /* ---------- ACENTO ELEGIBLE = themePrimary del sitio (una sola elección por sitio) ----------
    --accent: relleno / statement · --accent-ink: texto sobre el acento · --accent-text: acento usado como texto (AA) */
 html[data-style="1"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#FF4A4F}
@@ -85,6 +112,11 @@ html[data-style="2"][data-accent="cobalt"]{--accent:#2A62F0;--accent-ink:#FFFFFF
 html[data-style="2"][data-accent="lime"]  {--accent:#C8F03A;--accent-ink:#111111;--accent-text:#4F5E00}
 html[data-style="2"][data-accent="amber"] {--accent:#F5A524;--accent-ink:#111111;--accent-text:#8A5200}
 html[data-style="2"][data-accent="mono"]  {--accent:#111111;--accent-ink:#FFFFFF;--accent-text:#111111}
+html[data-style="3"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#C8151C}
+html[data-style="3"][data-accent="cobalt"]{--accent:#2A62F0;--accent-ink:#FFFFFF;--accent-text:#1F4FD6}
+html[data-style="3"][data-accent="lime"]  {--accent:#C8F03A;--accent-ink:#121314;--accent-text:#4F5E00}
+html[data-style="3"][data-accent="amber"] {--accent:#F5A524;--accent-ink:#121314;--accent-text:#8A5200}
+html[data-style="3"][data-accent="mono"]  {--accent:#121314;--accent-ink:#FFFFFF;--accent-text:#121314}
 html[data-accent]{
   --theme:var(--accent); --on-theme:var(--accent-ink); --link:var(--accent-text);
   --bg-strong:var(--accent); --on-strong:var(--accent-ink); --on-strong-2:color-mix(in srgb,var(--accent-ink) 80%,var(--accent));
@@ -92,6 +124,7 @@ html[data-accent]{
 }
 html[data-style="1"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 7%,#0B0C0D); --grid:rgba(242,242,240,.055)}
 html[data-style="2"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 9%,#F4F2EE); --grid:rgba(17,17,17,.06)}
+html[data-style="3"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 5%,#FBFBFA); --grid:rgba(18,19,20,.05)}
 /* fuentes: marca (Brand Center) o fallback nativo. El ARTE siempre conserva la fuente de marca. */
 html{--f-sans:var(--f-brand-sans); --f-mono:var(--f-brand-mono); --f-art:var(--f-brand-sans); --f-art-mono:var(--f-brand-mono)}
 html[data-font="sp"]{--f-sans:var(--f-sp-sans); --f-mono:var(--f-sp-mono)}
@@ -289,6 +322,9 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .cta .cta-body{position:relative;padding:28px;max-width:560px;color:#fff}
 .cta .cta-body h3{font-size:26px;line-height:1.2;margin:0 0 14px;font-weight:600}
 .cta .btn{background:#fff;color:#111}
+html[data-style="3"] .cta .cta-body{color:var(--text)}
+html[data-style="3"] .cta .cta-body .t-kicker{color:var(--accent-text)!important}
+html[data-style="3"] .cta .btn{background:var(--theme);color:var(--on-theme)}
 /* List web part · vista Galería con formato JSON */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .gallery.c3{grid-template-columns:repeat(3,1fr)}
@@ -333,6 +369,8 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .art .mono{font-family:var(--f-art-mono)}
 .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 html[data-style="2"] .grain::after{opacity:.22;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+html[data-style="3"] .grain::after{display:none}
+html[data-style="2"] .ph.grain::after,html[data-style="2"] .capthumb.grain::after{opacity:.08}
 /* clases SVG ligadas a tokens (cambian con el estilo) */
 .m-line{fill:none;stroke:var(--art-fg);stroke-width:1}
 .m-dim{fill:none;stroke:var(--art-dim);stroke-width:1}
@@ -342,6 +380,10 @@ html[data-style="2"] .grain::after{opacity:.22;mix-blend-mode:multiply;backgroun
 .m-occ{fill:var(--art-bg);stroke:var(--art-fg);stroke-width:1}
 .m-txt{fill:var(--art-text);font-family:var(--f-art-mono)}
 .m-txt2{fill:var(--art-tail);font-family:var(--f-art-mono)}
+/* etiquetas del mapa: placa del color del fondo + línea guía corta (ver lacMap) */
+.m-plq{fill:var(--art-bg);opacity:.92}
+.m-lead{fill:none;stroke:var(--art-text);stroke-width:1;opacity:.45}
+html[data-style="1"] .m-lead{opacity:.5}
 /* encabezado Home */
 .hdr{aspect-ratio:16/6.2;width:100%;background:radial-gradient(40% 70% at 80% 50%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 72%),var(--art-bg)}
 .hdr::before{content:"";position:absolute;top:0;bottom:0;right:0;width:44%;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%);mask-image:linear-gradient(90deg,transparent,#000 22%)}
@@ -355,6 +397,7 @@ html[data-style="2"] .hdr .big{font-weight:600;letter-spacing:-.05em;font-size:4
 .hdr .big .cur{color:var(--accent)}
 .hdr .foot{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:flex;gap:3cqw}
 .hdr .foot b{color:var(--art-text);font-weight:500}
+html[data-style="3"] .hdr{background:var(--art-bg);border-bottom:1px solid var(--rule)}
 /* encabezado de cluster */
 .chdr{aspect-ratio:16/5;width:100%}
 html[data-style="1"] .chdr{background:
@@ -365,6 +408,8 @@ html[data-style="2"] .chdr{background:
   linear-gradient(var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   linear-gradient(90deg,var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   var(--art-bg)}
+html[data-style="3"] .chdr{border-bottom:1px solid var(--rule);background:var(--art-bg)}
+html[data-style="3"] .chdr::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 30%,#000 62%)}
 .chdr .copy{position:absolute;left:4.2cqw;top:10%;bottom:10%;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
 .chdr .num{font-family:var(--f-art-mono);font-size:.85cqw;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:1.4cqw;align-items:center}
 .chdr .num .sw{width:1.1cqw;height:1.1cqw;background:var(--accent);display:inline-block}
@@ -382,13 +427,23 @@ html[data-style="1"] .chdr .sub{color:rgba(242,242,240,.6)}
 /* foto placeholder */
 .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 html[data-style="1"] .ph{background:radial-gradient(90% 90% at 80% 10%,color-mix(in srgb,var(--t,var(--accent)) 34%,transparent),transparent 65%),linear-gradient(160deg,var(--ph-a),var(--ph-b))}
-html[data-style="2"] .ph{background:linear-gradient(180deg,color-mix(in srgb,var(--t,#8FA3B5) 22%,#D9DEE2) 0%,#AEB8C0 58%,#7D858B 59%,#5F666B 100%)}
+/* vistas claras (2 y 3): render atenuado. Cielo casi del color de la página con un leve tono del cluster, suelo apenas más denso, línea fina y un solo trazo de acento */
+html[data-style="2"] .ph,html[data-style="3"] .ph{background:
+  linear-gradient(180deg,transparent 64%,color-mix(in srgb,var(--t,#8FA3B5) 4%,rgba(17,17,17,.028)) 64.4%,transparent 100%),
+  radial-gradient(80% 70% at 78% 18%,color-mix(in srgb,var(--t,#8FA3B5) 9%,transparent),transparent 70%),
+  linear-gradient(180deg,var(--ph-a),var(--ph-b));box-shadow:inset 0 0 0 1px var(--rule)}
 .ph svg{position:absolute;inset:0;width:100%;height:100%}
 .ph .bl{fill:none;stroke:var(--ph-line);stroke-width:1.2}
 .ph .bf{fill:rgba(0,0,0,.12);stroke:var(--ph-line);stroke-width:1.2}
 html[data-style="1"] .ph .bf{fill:rgba(255,255,255,.04)}
 .ph .ba{fill:none;stroke:var(--t,var(--accent));stroke-width:1.6}
+html[data-style="2"] .ph .bl,html[data-style="3"] .ph .bl,html[data-style="2"] .ph .bf,html[data-style="3"] .ph .bf{stroke-width:1;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .bf,html[data-style="3"] .ph .bf{fill:rgba(17,17,17,.025)}
+html[data-style="2"] .ph .ba,html[data-style="3"] .ph .ba{stroke:color-mix(in srgb,var(--t,var(--accent)) 72%,#fff);stroke-width:1.25;opacity:.85;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .ba + .ba,html[data-style="3"] .ph .ba + .ba{display:none}
 .ph .tag{position:absolute;left:10px;bottom:10px;font-family:var(--f-art-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.45);padding:3px 6px;border-radius:2px}
+html[data-style="2"] .ph svg,html[data-style="3"] .ph svg{-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%)}
+html[data-style="2"] .ph .tag{color:var(--text);background:rgba(255,255,255,.88);box-shadow:0 0 0 1px var(--rule)}
 /* diagrama de etapas */
 .dia{padding:3.2cqw 3cqw 2.6cqw;background:var(--art-bg)}
 html[data-style="1"] .dia{background:linear-gradient(180deg,#0E1012,#0B0C0D)}
@@ -404,6 +459,10 @@ html[data-style="1"] .dia .bar{background:color-mix(in srgb,var(--c) 14%,transpa
 html[data-style="1"] .dia .bar b{color:var(--c)}
 html[data-style="2"] .dia .bar{background:color-mix(in srgb,var(--c) 10%,#fff);box-shadow:inset 3px 0 0 var(--c);color:var(--art-text)}
 html[data-style="2"] .dia .bar b{color:var(--c)}
+html[data-style="3"] .dia{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-style="3"] .dia .bar{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule),inset 2px 0 0 var(--c);color:var(--art-text)}
+html[data-style="3"] .dia .bar b{color:var(--art-tail)}
+html[data-style="3"] .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .dia .bar b{font-family:var(--f-art-mono);font-size:.74cqw;letter-spacing:.1em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:.2cqw}
 .dia .axis{display:flex;justify-content:space-between;margin-top:1.6cqw;font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);padding-left:13cqw}
 .dia .axis span:nth-child(2){flex:1;border-top:1px solid var(--art-fg);margin:0 1.2cqw;align-self:center;position:relative}
@@ -420,17 +479,26 @@ html[data-style="2"] .capthumb .nm{font-weight:600}
 .capthumb .nm small{display:block;font-family:var(--f-art-mono);font-size:4.6cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);margin-top:3cqw;font-weight:400}
 html[data-style="1"] .capthumb{background:radial-gradient(90% 70% at 85% 15%,color-mix(in srgb,var(--c) 40%,transparent),transparent 70%),#0E0F11}
 html[data-style="2"] .capthumb{background:#fff}
+html[data-style="3"] .capthumb{background:var(--p-white)}
+html[data-style="3"] .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
+.capthumb{--accent:var(--c)}
+/* vistas claras: el highlight del cluster se atenúa hacia el fondo (sin rellenos saturados) */
+html[data-style="2"] .capthumb,html[data-style="3"] .capthumb{--accent:color-mix(in srgb,var(--c) 78%,#fff)}
 .capthumb .sw{position:absolute;right:7cqw;top:7cqw;width:7cqw;height:7cqw;background:var(--c);z-index:2}
-html[data-style="2"] .capthumb .sw{border-radius:50%}
+html[data-style="2"] .capthumb .sw,html[data-style="3"] .capthumb .sw{display:none}
 /* mapa LAC */
 .mapart{aspect-ratio:792/560;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,var(--art-bg)}
 .mapart .legend{position:absolute;left:4cqw;bottom:4cqw;font-family:var(--f-art-mono);font-size:1.3cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:grid;gap:.6cqw}
 .mapart .legend b{color:var(--art-text);font-weight:500}
 .mapart .legend i{display:inline-block;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--accent);margin-right:1cqw;vertical-align:-.15cqw}
-html[data-style="2"] .mapart .legend i{box-shadow:0 0 0 1px #111}
+html[data-style="2"] .mapart .legend i,html[data-style="3"] .mapart .legend i{box-shadow:0 0 0 1px var(--art-text)}
 /* proceso (metodología) */
 .proc{padding:3cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 html[data-style="2"] .proc{background:#fff}
+html[data-style="3"] .proc{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-style="3"] .proc .st{border-top-width:1px}
+html[data-style="3"] .proc .st::before{height:1px;top:-1px}
+html[data-style="3"] .proc .st .dot{width:7px;height:7px;top:-4px}
 html[data-style="1"] .proc{background:linear-gradient(180deg,#101214,#0B0C0D)}
 .proc .st{border-top:2px solid var(--art-dim);padding:1.6cqw 1.6cqw 0 0;position:relative}
 .proc .st::before{content:"";position:absolute;top:-2px;left:0;height:2px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--k,1))}
@@ -440,6 +508,34 @@ html[data-style="2"] .proc .st h5{font-weight:600}
 .proc .st p{margin:0;font-size:1.05cqw;line-height:1.35;color:var(--art-tail);max-width:22cqw}
 html[data-style="1"] .proc .st p{color:#9AA0A6}
 .proc .st .dot{position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+
+/* =========================================================
+   5b · ESTILO 3 · MENOS TEXTO (solo reglas de estilo; el HTML es el mismo en los 3 estilos)
+   Se ocultan kickers redundantes (.s3-hide), subtítulos de tarjeta y metadatos repetidos.
+   ========================================================= */
+html[data-style="3"] .s3-hide,
+html[data-style="3"] .t-h2 + .t-p.muted,
+html[data-style="3"] .ql-btn small,
+html[data-style="3"] .ql-card .cap span,
+html[data-style="3"] .hc-card .by,
+html[data-style="3"] .hc-card p,
+html[data-style="3"] .tool p,
+html[data-style="3"] .news .item p,
+html[data-style="3"] .ph .tag,
+html[data-style="3"] .hdr .k i,
+html[data-style="3"] .chdr .sub,
+html[data-style="3"] .chdr .num span:last-child,
+html[data-style="3"] .dia .ttl span:last-child,
+html[data-style="3"] .mapart .legend span:not(:first-child){display:none}
+html[data-style="3"] .ql-btn{padding:12px 14px;font-weight:500}
+html[data-style="3"] .hc-card h4,html[data-style="3"] .ql-card .cap{font-weight:500}
+html[data-style="3"] .hc-card .body{padding:12px 14px 16px}
+html[data-style="3"] .t-kicker{font-size:11px}
+
+/* Featured community: fila de 4 líderes (tarjeta vertical compacta) */
+.people.row4{grid-template-columns:repeat(4,1fr);gap:16px}
+.people.row4 .person{flex-direction:column;gap:8px}
+.people.row4 .person span{line-height:1.35}
 
 /* =========================================================
    6 · BARRA DE CONTROL Y OVERLAY "VER WEB PARTS"
@@ -505,7 +601,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 @media (max-width:1023px){
   .cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr 1fr}
   .cols.l13>.col:last-child,.cols.l31>.col:first-child{grid-column:1/-1}
-  .ql-film,.gallery,.hc.c4{grid-template-columns:repeat(2,1fr)}
+  .ql-film,.gallery,.hc.c4,.people.row4{grid-template-columns:repeat(2,1fr)}
   .mega .inner{grid-template-columns:1fr 1fr}
   .site-footer .inner{grid-template-columns:1fr 1fr}
   .board{grid-template-columns:1fr 1fr}
@@ -571,7 +667,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button></div>
+  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button></div>
   <span class="lbl">Acento</span>
   <div class="grp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
@@ -600,7 +696,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function R(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 /* @personalizar: nombres del overlay "Ver web parts" (layouts y fondos); cada web part se etiqueta en wp(kind, nombre, html) */
-const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'Tres columnas', l13:'Un tercio izquierda (1/3–2/3)', l31:'Un tercio derecha (2/3–1/3)'};
+const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'Tres columnas', l13:'Un tercio izquierda (1/3 y 2/3)', l31:'Un tercio derecha (2/3 y 1/3)'};
 const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
 function sec(layout, bg, cols, note=''){
@@ -694,11 +790,12 @@ const LAC = {
   /* islas menores: un punto cada una (Bahamas, Antillas Menores, Trinidad) */
   dots:[[-77.4,25.0],[-76.0,24.0],[-74.5,22.6],[-61.8,17.1],[-61.5,16.2],[-61.0,14.6],[-61.2,13.2],[-61.7,12.1],[-61.3,10.5],[-60.0,13.1]],
 };
-/* @personalizar: oficinas (nombre + lat/lon reales) */
+/* @personalizar: oficinas (nombre + lat/lon reales + lab = lados preferidos de la etiqueta, hacia el océano) */
 const OFFICES = [
-  {n:'Mexico City',lat:19.43,lon:-99.13},{n:'Monterrey',lat:25.69,lon:-100.32},{n:'San José',lat:9.93,lon:-84.08},
-  {n:'Santo Domingo',lat:18.49,lon:-69.93},{n:'Bogotá',lat:4.71,lon:-74.07},{n:'Buenos Aires',lat:-34.60,lon:-58.38}];
-const LABEL_LEFT=['Mexico City','San José'];
+  {n:'Mexico City',lat:19.43,lon:-99.13,lab:['w','sw']},{n:'Monterrey',lat:25.69,lon:-100.32,lab:['ne','e','n']},{n:'San José',lat:9.93,lon:-84.08,lab:['sw','w']},
+  {n:'Santo Domingo',lat:18.49,lon:-69.93,lab:['se','s','ne','e']},{n:'Bogotá',lat:4.71,lon:-74.07,lab:['w','sw']},{n:'Buenos Aires',lat:-34.60,lon:-58.38,lab:['e','se','ne']}];
+/* direcciones de etiqueta: vector unitario */
+const LAB_DIR={e:[1,0],w:[-1,0],n:[0,-1],s:[0,1],ne:[.7071,-.7071],nw:[-.7071,-.7071],se:[.7071,.7071],sw:[-.7071,.7071]};
 function pip(pt,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[xi,yi]=poly[i],[xj,yj]=poly[j];if(((yi>pt[1])!==(yj>pt[1]))&&(pt[0]<(xj-xi)*(pt[1]-yi)/(yj-yi)+xi))c=!c}return c}
 const mercY=lat=>Math.log(Math.tan(Math.PI/4+lat*Math.PI/360));
 /* proyección Mercator ajustada (sin deformar) a una caja [x,y,w,h] */
@@ -727,14 +824,52 @@ function lacMap(o){
   const off=OFFICES.map(of=>{const[x,y]=pr.P(of.lon,of.lat);return{x,y,n:of.n}});
   if(o.links){[[0,1],[0,2],[0,3],[2,4],[3,4],[4,5]].forEach(([a,b])=>{const A=off[a],B=off[b];const mx=(A.x+B.x)/2+(B.y-A.y)*.15,my=(A.y+B.y)/2-(B.x-A.x)*.15;s+=`<path d="M${A.x.toFixed(1)} ${A.y.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${B.x.toFixed(1)} ${B.y.toFixed(1)}" class="m-acc" style="stroke-dasharray:3 4;opacity:${o.links}"/>`})}
   const lr=Math.max(3.2,r*2.6), boxes=[];
-  off.forEach(f=>{
-    s+=`<circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${(lr*2.1).toFixed(1)}" class="m-acc" style="opacity:.4"/><circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${lr.toFixed(1)}" class="m-accf" style="stroke:var(--art-text);stroke-width:${o.style2?1:0}"/>`;
-    const left=LABEL_LEFT.includes(f.n), tw=f.n.length*(fs*.6+1), tx=left?f.x-lr*3.1:f.x+lr*3.1;
-    s+=`<text x="${tx.toFixed(1)}" y="${(f.y+fs*.36).toFixed(1)}" text-anchor="${left?'end':'start'}" class="m-txt" font-size="${fs}" letter-spacing="1">${f.n.toUpperCase()}</text>`;
-    boxes.push([f.x-lr*2.2,f.y-lr*2.2,lr*4.4,lr*4.4]);
-    boxes.push([left?tx-tw:tx,f.y-fs*.7,tw,fs*1.4]);
+  /* etiquetas: se prueba cada lado preferido (OFFICES[].lab, hacia el océano) con distancias crecientes;
+     gana la primera placa que no toca tierra, otra etiqueta, otra oficina, los límites (o.bounds) ni las zonas o.avoid.
+     Si se separa del punto, lleva una línea guía corta. La placa es del color del fondo para no competir con los puntos. */
+  const cw=fs*.6+1, pad=4, h=fs+7, d0=lr*2.4, dMax=d0+fs*7;
+  const Bd=o.bounds||[-1e5,-1e5,1e5,1e5], avoid=o.avoid||[];
+  const ov=(a,b,m=0)=>a[0]<b[0]+b[2]+m&&a[0]+a[2]+m>b[0]&&a[1]<b[1]+b[3]+m&&a[1]+a[3]+m>b[1];
+  const landIn=(b,m)=>{let n=0;for(const[x,y]of land)if(x>b[0]-m&&x<b[0]+b[2]+m&&y>b[1]-m&&y<b[1]+b[3]+m)n++;return n};
+  const rings=off.map(f=>[f.x-lr*2.3,f.y-lr*2.3,lr*4.6,lr*4.6]), placed=[];
+  const clash=(b,i)=>{let c=0;
+    if(b[0]<Bd[0]||b[1]<Bd[1]||b[0]+b[2]>Bd[2]||b[1]+b[3]>Bd[3])c+=1000;
+    c+=landIn(b,r+1.5)*10;
+    placed.forEach(p=>{if(ov(b,p,4))c+=500});
+    rings.forEach((g,j)=>{if(ov(b,g,2))c+=j===i?1000:300});
+    avoid.forEach(a=>{if(ov(b,a))c+=1000});
+    return c};
+  const labs=off.map((f,i)=>{
+    const w=f.n.length*cw-1+pad*2, prefs=[...new Set((OFFICES[i].lab||['e']).concat(Object.keys(LAB_DIR)))];
+    let best=null;
+    for(let pi=0;pi<prefs.length;pi++){
+      const [ux,uy]=LAB_DIR[prefs[pi]];
+      for(let d=d0;d<=dMax;d+=fs*.5){
+        const ax=f.x+ux*d, ay=f.y+uy*d;
+        for(const sh of (ux===0?[0,-.3,.3]:[0])){
+          const b=[ux>.1?ax:ux<-.1?ax-w:ax-w/2+sh*w, uy>.1?ay:uy<-.1?ay-h:ay-h/2, w, h];
+          const col=clash(b,i), tot=col+pi*6+(d-d0)*.4;
+          if(!best||tot<best.tot)best={b,col,tot,ux,uy};
+        }
+      }
+      if(best.col===0)break;
+    }
+    placed.push(best.b);return best;
   });
-  return {svg:s,off,land,boxes,proj:pr};
+  // líneas guía (del borde del anillo al borde de la placa)
+  labs.forEach((L,i)=>{const f=off[i],[bx,by,bw,bh]=L.b;
+    const tx=Math.max(bx,Math.min(f.x,bx+bw)), ty=Math.max(by,Math.min(f.y,by+bh));
+    const sx=f.x+L.ux*lr*2.3, sy=f.y+L.uy*lr*2.3;
+    if(Math.hypot(tx-sx,ty-sy)>4){s+=`<path class="m-lead" d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${tx.toFixed(1)} ${ty.toFixed(1)}"/>`;
+      boxes.push([Math.min(sx,tx)-2,Math.min(sy,ty)-2,Math.abs(tx-sx)+4,Math.abs(ty-sy)+4])}});
+  off.forEach(f=>{
+    s+=`<circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${(lr*2.1).toFixed(1)}" class="m-acc" style="opacity:.4"/><circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${lr.toFixed(1)}" class="m-accf" style="stroke:var(--art-text);stroke-width:${o.light?1:0}"/>`;
+    boxes.push([f.x-lr*2.2,f.y-lr*2.2,lr*4.4,lr*4.4]);
+  });
+  labs.forEach((L,i)=>{const[bx,by,bw,bh]=L.b;
+    s+=`<rect class="m-plq" x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh}" rx="2"/><text x="${(bx+pad).toFixed(1)}" y="${(by+bh/2+fs*.36).toFixed(1)}" class="m-txt" font-size="${fs}" letter-spacing="1">${off[i].n.toUpperCase()}</text>`;
+    boxes.push(L.b)});
+  return {svg:s,off,land,boxes,labs,proj:pr};
 }
 /* 3 · campo de semitono (puntos con tamaño variable) */
 function halftone(w,h,o){
@@ -749,14 +884,14 @@ function halftone(w,h,o){
 }
 /* 4 · VDC: losas isométricas explotadas */
 function isoSlabs(w,h,o){
-  const cx=o.cx||w*.72, top=o.top||h*.16, n=6, gap=o.gap||h*.115, a=o.a||w*.16, b=a*.5;
+  const cx=o.cx||w*.72, top=o.top||h*.16, n=o.n||6, gap=o.gap||h*.115, a=o.a||w*.16, b=a*.5, gl=o.grid===undefined?4:o.grid;
   let s='';
   for(let k=n-1;k>=0;k--){
     const y=top+k*gap; const acc=k===o.acc;
     const pts=`${cx},${y} ${cx+a},${y+b} ${cx},${y+2*b} ${cx-a},${y+b}`;
     s+=`<polygon points="${pts}" class="${acc?'m-acc':'m-line'}" style="fill:var(--art-bg);fill-opacity:${acc?.6:.82}"/>`;
     // retícula de columnas en la losa
-    for(let g=1;g<4;g++){const t=g/4;
+    for(let g=1;g<gl;g++){const t=g/gl;
       s+=`<line x1="${cx-a+a*t}" y1="${y+b-b*t}" x2="${cx+a*t}" y2="${y+2*b-b*t}" class="${acc?'m-acc':'m-dim'}"/>`;
       s+=`<line x1="${cx-a+a*t}" y1="${y+b+b*t}" x2="${cx+a*t}" y2="${y+b*t}" class="${acc?'m-acc':'m-dim'}"/>`;}
     if(k<n-1){[[cx-a,y+b],[cx+a,y+b],[cx,y+2*b]].forEach(([px,py])=>{s+=`<line x1="${px}" y1="${py}" x2="${px}" y2="${py+gap}" class="m-dim" style="stroke-dasharray:2 4"/>`})}
@@ -779,13 +914,17 @@ function pointCloud(w,h,o){
     for(let k=0;k<=12;k++){const t1=Math.PI*k/12,t2=Math.PI*(k+1)/12;segs.push({x1:ax+aw/2-Math.cos(t1)*aw/2,y1:ay-Math.sin(t1)*aw*.6,x2:ax+aw/2-Math.cos(t2)*aw/2,y2:ay-Math.sin(t2)*aw*.6,d:.5})}
     L(ax,Y+H*.22,ax+aw,Y+H*.22,.4);L(ax,Y+H*.36,ax+aw,Y+H*.36,.4);L(ax,Y+H*.22,ax,Y+H*.36,.4);L(ax+aw,Y+H*.22,ax+aw,Y+H*.36,.4);
   }
-  segs.forEach(g=>{const len=Math.hypot(g.x2-g.x1,g.y2-g.y1);const n=Math.round(len*g.d*.9);
-    for(let i=0;i<n;i++){const t=rnd();const j=(rnd()-.5)*2.4,k=(rnd()-.5)*2.4;const x=g.x1+(g.x2-g.x1)*t+j,y=g.y1+(g.y2-g.y1)*t+k;
-      const sweep=Math.abs(x-(X+W*.68))<W*.05;
-      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(rnd()*.8+.45).toFixed(2)}" class="${sweep?'m-accf':'m-dot'}"/>`}});
-  for(let i=0;i<500;i++){const x=X+rnd()*W,y=Y+H*.14+rnd()*H*.86;s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r=".5" class="m-dot" style="opacity:.45"/>`}
+  const dens=o.dens||.9, jit=o.jit||2.4, sweepOn=o.sweep!==false;
+  segs.forEach(g=>{const len=Math.hypot(g.x2-g.x1,g.y2-g.y1);const n=Math.round(len*g.d*dens);
+    for(let i=0;i<n;i++){const t=rnd();const j=(rnd()-.5)*jit,k=(rnd()-.5)*jit;const x=g.x1+(g.x2-g.x1)*t+j,y=g.y1+(g.y2-g.y1)*t+k;
+      const sweep=sweepOn&&Math.abs(x-(X+W*.68))<W*.05;
+      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(rnd()*.8+.45).toFixed(2)}" class="${sweep?'m-accf':'m-dot'}"${o.dotOp?` style="opacity:${o.dotOp}"`:''}/>`}});
+  for(let i=0;i<(o.noise===undefined?500:o.noise);i++){const x=X+rnd()*W,y=Y+H*.14+rnd()*H*.86;s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r=".5" class="m-dot" style="opacity:.45"/>`}
   // estación de escaneo
   const sx=X+W*.68,sy=Y+H*1.08;
+  if(o.subtle){ // diana sutil: 1 anillo + punto, sin línea de barrido
+    s+=`<ellipse cx="${sx}" cy="${sy}" rx="${o.subtle*1.6}" ry="${o.subtle*.45}" class="m-acc" style="stroke-width:1;opacity:.7"/><circle cx="${sx}" cy="${sy}" r="2.2" class="m-accf"/>`;
+    return s}
   s+=`<line x1="${sx}" y1="${Y-H*.06}" x2="${sx}" y2="${sy}" class="m-acc" style="opacity:.7"/>`;
   [10,22,36].forEach(r=>s+=`<ellipse cx="${sx}" cy="${sy}" rx="${r*1.6}" ry="${r*.45}" class="m-acc" style="opacity:${1-r/48}"/>`);
   s+=`<circle cx="${sx}" cy="${sy}" r="4" class="m-accf"/>`;
@@ -793,16 +932,25 @@ function pointCloud(w,h,o){
 }
 /* 6 · Computational Design: campo de flujo paramétrico */
 function flowField(w,h,o){
-  const rnd=R(o.seed||3);let s='';const n=o.n||260;
+  const rnd=R(o.seed||3);let s='';const n=o.n||260, y0=o.y0||0, y1=o.y1||h, xs=o.xs||o.x0, accEvery=o.accEvery||23, stp=o.step||7;
   const ang=(x,y)=>Math.sin(x*.0062+o.seed)*1.6+Math.cos(y*.0091-x*.002)*1.3+Math.sin((x-y)*.003)*.8;
-  for(let i=0;i<n;i++){let x=o.x0+rnd()*(w-o.x0),y=rnd()*h;let d=`M${x.toFixed(1)} ${y.toFixed(1)}`;
+  for(let i=0;i<n;i++){let x=xs+rnd()*(w-xs),y=y0+rnd()*(y1-y0);let d=`M${x.toFixed(1)} ${y.toFixed(1)}`;
     const steps=18+Math.floor(rnd()*26);
-    for(let k=0;k<steps;k++){const a=ang(x,y);x+=Math.cos(a)*7;y+=Math.sin(a)*7;if(x<o.x0-40)break;d+=` L${x.toFixed(1)} ${y.toFixed(1)}`}
-    const acc=i%23===0;
+    for(let k=0;k<steps;k++){const a=ang(x,y);x+=Math.cos(a)*stp;y+=Math.sin(a)*stp;if(x<o.x0-(o.bound?0:40)||(o.bound&&(y<y0||y>y1)))break;d+=` L${x.toFixed(1)} ${y.toFixed(1)}`}
+    const acc=i%accEvery===0;
     s+=`<path d="${d}" class="${acc?'m-acc':'m-line'}" style="opacity:${acc?1:.35+rnd()*.4}"/>`;
   }
   // nodos de optimización
-  for(let i=0;i<9;i++){const x=o.x0+180+rnd()*(w-o.x0-240),y=40+rnd()*(h-80);s+=`<rect x="${x-4}" y="${y-4}" width="8" height="8" class="m-accf"/><text x="${x+10}" y="${y+4}" class="m-txt2" font-size="10" letter-spacing="1">OPT.${String(i+1).padStart(2,'0')}</text>`}
+  for(let i=0;i<(o.nodes===undefined?9:o.nodes);i++){const x=o.x0+180+rnd()*(w-o.x0-240),y=40+rnd()*(h-80);s+=`<rect x="${x-4}" y="${y-4}" width="8" height="8" class="m-accf"/><text x="${x+10}" y="${y+4}" class="m-txt2" font-size="10" letter-spacing="1">OPT.${String(i+1).padStart(2,'0')}</text>`}
+  return s;
+}
+/* 6b · Computational Design (vistas claras): abanico paramétrico limpio. Curvas desde un origen, una sola en acento, sin nodos */
+function fanCurves(o){
+  const [ox,oy]=o.o, n=o.n||9;let s='';
+  for(let i=0;i<n;i++){const t=i/(n-1), ex=o.ex, ey=o.ey0+(o.ey1-o.ey0)*t, acc=i===o.acc;
+    s+=`<path d="M${ox} ${oy} C${ox+(ex-ox)*.38} ${oy} ${ox+(ex-ox)*.55} ${ey} ${ex} ${ey}" class="${acc?'m-acc':'m-line'}" style="stroke-width:1;opacity:${acc?.9:.55+.3*Math.sin(t*Math.PI)}"/>`}
+  s+=`<circle cx="${ox}" cy="${oy}" r="2" class="m-dot"/>`;
+  for(let i=0;i<n;i++){const ey=o.ey0+(o.ey1-o.ey0)*i/(n-1);s+=`<circle cx="${o.ex}" cy="${ey}" r="1.3" class="${i===o.acc?'m-accf':'m-dot'}"/>`}
   return s;
 }
 /* 7 · Data Intelligence: barras de datos sobre terreno (pin-art isométrico) */
@@ -814,8 +962,9 @@ function dataBars(w,h,o){
     const v=Math.max(0,Math.sin(c*.33+o.seed)*.5+Math.cos(r*.45-c*.12)*.6+Math.exp(-((c-22)**2+(r-5)**2)/18)*2.4);
     items.push({x,y,v,r,c});
   }
-  items.sort((a,b)=>a.y-b.y).forEach(it=>{const hh=it.v*(o.amp||42);const acc=it.v>2.05;
-    s+=`<line x1="${it.x.toFixed(1)}" y1="${it.y.toFixed(1)}" x2="${it.x.toFixed(1)}" y2="${(it.y-hh).toFixed(1)}" class="${acc?'m-acc':'m-line'}" style="opacity:${acc?1:.55}"/><circle cx="${it.x.toFixed(1)}" cy="${(it.y-hh).toFixed(1)}" r="${acc?2.2:1.2}" class="${acc?'m-accf':'m-dot'}"/>`});
+  const thr=o.top?items.map(i=>i.v).sort((a,b)=>b-a)[o.top-1]:(o.thr||2.05), lop=o.lop||.55;
+  items.sort((a,b)=>a.y-b.y).forEach(it=>{const hh=it.v*(o.amp||42);const acc=o.top?it.v>=thr:it.v>thr;
+    s+=`<line x1="${it.x.toFixed(1)}" y1="${it.y.toFixed(1)}" x2="${it.x.toFixed(1)}" y2="${(it.y-hh).toFixed(1)}" class="${acc?'m-acc':'m-line'}" style="opacity:${acc?1:lop}"/><circle cx="${it.x.toFixed(1)}" cy="${(it.y-hh).toFixed(1)}" r="${acc?2.2:1.2}" class="${acc?'m-accf':'m-dot'}"/>`});
   return s;
 }
 /* 8 · placeholders de foto (render de arquitectura simplificado) */
@@ -840,6 +989,7 @@ const P = {
   lucia:{n:'Lucía Demo',r:'Design Technology Director, LAC',o:'Mexico City',d:'Sets the regional DT roadmap and the COM development funnel.'},
   diego:{n:'Diego Ejemplo',r:'Regional VDC Lead',o:'Buenos Aires',d:'Coordination standards, ACC and model QA across LAC.'},
   sofia:{n:'Sofía Muestra',r:'Computational Design Lead',o:'Bogotá',d:'Grasshopper, Dynamo and optioneering for early design.'},
+  elena:{n:'Elena Ensayo',r:'Reality Capture Lead',o:'San José'},
   mateo:{n:'Mateo Prueba',r:'Data Intelligence Lead',o:'Santo Domingo',d:'Speckle, Power BI and spatial analytics.'},
   camila:{n:'Camila Ficticia',r:'Reality Capture Lead',o:'San José',d:'Laser scanning, drone photogrammetry and as-built checks.'},
   andres:{n:'Andrés Modelo',r:'VDC Champion',o:'Monterrey'},
@@ -856,11 +1006,11 @@ const ini = n => n.split(' ').map(x=>x[0]).join('').slice(0,2);
 const CL = {
   vdc:{key:'vdc',n:'01',code:'VDC',name:'Virtual Design & Construction',motif:'iso',page:'VDC',
     h1:'Coordinated models.',tail:'Fewer surprises on site.',
-    vp:'We federate disciplines, run clash cycles and keep the model honest from Schematic Design to handover — so LAC project teams spend site time building, not fixing.',
+    vp:'Federated models and clash cycles, from SD to handover.',
     tools:[['cube','Revit + Navisworks'],['nodes','Autodesk Construction Cloud'],['chart','Speckle'],['tool','Dynamo for Revit']],
-    proj:{t:'Monterrey mixed-use tower: one federated model, nine disciplines',office:'Monterrey',ph:'tower',
-      ch:'Nine consultants, three time zones and a fast-track schedule made coordination a weekly fire drill.',
-      so:'A BIM Execution Plan, ACC model hub and Speckle streams with automated clash reports every Friday.',
+    proj:{t:'Monterrey tower: one federated model',office:'Monterrey',ph:'tower',
+      ch:'Nine consultants and a fast-track schedule.',
+      so:'BEP, ACC model hub and weekly automated clash reports.',
       st:[['1,240','clashes resolved before IFC'],['−18','% RFIs vs. last tower','%'],['9','disciplines federated'],['6','weeks saved in CDs']],
       who:[P.diego.n,P.andres.n,P.ivan.n],status:'Published · Case study'},
     cards:[['Model QA dashboards for Santo Domingo hotel fit-outs','hub','Santo Domingo'],['4D sequencing for a Buenos Aires HQ','city','Buenos Aires'],['ACC rollout playbook for LAC offices','screen','Regional']],
@@ -872,11 +1022,11 @@ const CL = {
     contact:{ch:'#dt-lac-vdc',mail:'vdc.lac@example.com',hours:'Office hours · Tuesdays 10:00 CST'}},
   rc:{key:'rc',n:'02',code:'RC',name:'Reality Capture',motif:'cloud',page:'Reality Capture',
     h1:'The existing world,',tail:'measured before we draw.',
-    vp:'Laser scanning, drone photogrammetry and terrain analysis give LAC teams reliable existing conditions — and later, proof that what was built matches the model.',
+    vp:'Scans and drone data for reliable existing conditions.',
     tools:[['scan','Leica BLK360 + ReCap'],['globe','Drone photogrammetry'],['cube','Point cloud to Revit'],['chart','CloudCompare']],
-    proj:{t:'Santo Domingo colonial façade: scan-to-BIM for an adaptive reuse',office:'Santo Domingo',ph:'facade',
-      ch:'A colonial-era façade in the Ciudad Colonial with no reliable drawings, under heritage protection and a tight survey window.',
-      so:'Two days of terrestrial scanning plus a drone flight, registered into one cloud and modeled at LOD 300.',
+    proj:{t:'Santo Domingo colonial façade: scan-to-BIM',office:'Santo Domingo',ph:'facade',
+      ch:'A heritage façade with no reliable drawings.',
+      so:'Terrestrial scans plus a drone flight, modeled at LOD 300.',
       st:[['±4','mm registration accuracy','mm'],['2','days on site'],['38','façade elements modeled'],['0','surveys repeated']],
       who:[P.camila.n,P.julian.n,P.renata.n],status:'Published · Case study'},
     cards:[['Terrain Analysis for a hillside campus','hill','San José'],['Construction progress scans, monthly','city','Mexico City'],['Drone survey checklist for site visits','screen','Regional']],
@@ -888,14 +1038,14 @@ const CL = {
     contact:{ch:'#dt-lac-reality-capture',mail:'rc.lac@example.com',hours:'Scan requests · 2 weeks lead time'}},
   cd:{key:'cd',n:'03',code:'CD',name:'Computational Design',motif:'flow',page:'Computational Design',
     h1:'Parametric options,',tail:'decided with evidence.',
-    vp:'We build the scripts, analyses and workflows that let teams explore more options early — massing, climate, pedestrian flows — and carry the winner into Revit.',
+    vp:'Scripts and analyses to explore more options early.',
     tools:[['nodes','Rhino + Grasshopper'],['tool','Dynamo'],['cube','Rhino.Inside.Revit'],['compass','gBlox']],
     proj:{t:'Pedestrian Flows for the Bogotá transit hub',office:'Bogotá',ph:'hub',
-      ch:'Peak-hour crowding at a new intermodal hub, with three competing concourse layouts.',
-      so:'Agent-based pedestrian simulation in Grasshopper, compared across options and reviewed live with the client.',
+      ch:'Peak-hour crowding and three competing layouts.',
+      so:'Agent-based simulation in Grasshopper, reviewed live.',
       st:[['3','layouts simulated'],['−27','% peak congestion','%'],['14k','agents per run'],['2','client workshops']],
       who:[P.sofia.n,P.valeria.n,P.renata.n],status:'Published · Case study'},
-    cards:[['Climate analysis toolkit for early massing','city','Santo Domingo'],['Rhino–Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional']],
+    cards:[['Climate analysis toolkit for early massing','city','Santo Domingo'],['Rhino-Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional']],
     steps:[['Frame the question','Which decision, which metric, which data.'],['Script & simulate','Grasshopper, Dynamo or Python.'],['Compare options','Dashboards the team can read.'],['Hand over','Clean geometry and reusable scripts.']],
     services:['Massing & optioneering','Climate and daylight analysis','Pedestrian Flows','Design automation'],
     skills:['Grasshopper, Dynamo, Python','Ladybug tools','Rhino.Inside.Revit','gBlox test-fits'],
@@ -904,11 +1054,11 @@ const CL = {
     contact:{ch:'#dt-lac-computational',mail:'cd.lac@example.com',hours:'Script clinic · Thursdays 16:00 CST'}},
   di:{key:'di',n:'04',code:'DI',name:'Data Intelligence',motif:'bars',page:'Data Intelligence',
     h1:'From project data',tail:'to better decisions.',
-    vp:'Power BI dashboards, Speckle data streams and spatial analytics that turn models, sites and cities into evidence — for our teams and for our clients.',
+    vp:'Dashboards and spatial analytics that turn data into evidence.',
     tools:[['chart','Power BI'],['nodes','Speckle'],['globe','GIS (ArcGIS / QGIS)'],['chat','Microsoft Copilot']],
     proj:{t:'Urban Vitality Index for Mexico City corridors',office:'Mexico City',ph:'city',
-      ch:'The client needed to prioritize investment across 38 blocks with scattered, inconsistent data.',
-      so:'A GIS model and Power BI dashboard combining 12 indicators into one index the client can update.',
+      ch:'Prioritizing investment across 38 blocks of scattered data.',
+      so:'A GIS model and Power BI index the client can update.',
       st:[['38','blocks analyzed'],['12','urban indicators'],['6','days, down from 4 weeks'],['1','index the client owns']],
       who:[P.mateo.n,P.renata.n,P.lucia.n],status:'Published · Impact story'},
     cards:[['Speckle → Power BI project dashboards','screen','Bogotá'],['Spatial analytics for retail network','city','Buenos Aires'],['Copilot prompts for data teams','people','Regional']],
@@ -928,9 +1078,9 @@ const ORDER = ['vdc','rc','cd','di'];
 let HERO=null;
 function homeHeader(){
   const W=1600,H=620;
-  const m=lacMap({box:[985,16,560,588],step:7.6,fs:11,links:0,style2:document.documentElement.dataset.style==='2'});
+  const m=lacMap({box:[985,16,560,588],step:7.6,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[972,6,1594,614]});
   HERO={W,H,m};
-  return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six offices — Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. A few name-tagged cursors drift in the ocean around the map and occasionally connect to a nearby office with a thin line and a soft pulse. Text: Design technology, built across Latin America and the Caribbean.">
+  return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six offices: Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. A few name-tagged cursors drift in the ocean around the map and occasionally connect to a nearby office with a thin line and a soft pulse. Text: Design technology, built across Latin America and the Caribbean.">
     <svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <g id="collabLines"></g>${m.svg}<g id="collab"></g>
     </svg>
@@ -956,33 +1106,38 @@ function startCollab(){
   const inBox=(x,y,bs)=>bs.some(b=>x>=b[0]&&x<=b[0]+b[2]&&y>=b[1]&&y<=b[1]+b[3]);
   const P=16, zones=m.boxes.map(b=>[b[0]-P,b[1]-P,b[2]+2*P,b[3]+2*P]), XMIN=960;
   const blocked=(x,y)=>{if(x<XMIN)return true;const c=Math.floor(x/CS),r=Math.floor(y/CS);if(r>=0&&c>=0&&r<rows&&c<cols&&occ[r*cols+c])return true;return inBox(x,y,zones)};
-  const blockedC=(x,y)=>blocked(x,y)||blocked(x+48,y+26)||blocked(x+48,y+10)||blocked(x+6,y+26);
+  /* el cursor completo (flecha + pastilla de ancho w) no puede tocar tierra ni las zonas de etiqueta */
+  const blockedC=(x,y,w=64)=>{for(const[px,py]of[[x,y],[x+w/2,y],[x+w,y+16],[x+w,y+31],[x+w/2,y+31],[x+6,y+31],[x,y+16]])if(blocked(px,py))return true;
+    return zones.some(b=>x-2<b[0]+b[2]&&x+w+2>b[0]&&y-2<b[1]+b[3]&&y+33>b[1])};
   const COLS=[['var(--accent)','var(--accent-ink)'],['var(--hl-vdc)','var(--on-hl)'],['var(--hl-rc)','var(--on-hl)'],['var(--hl-cd)','var(--on-hl)'],['var(--hl-di)','var(--on-hl)']];
   const NAMES=['Ana','Leo','Mara','Iker','Sol','Nadia'];
   const lineZones=m.boxes.map(b=>[b[0]-6,b[1]-6,b[2]+12,b[3]+12]);
   const segFree=(x1,y1,x2,y2,skip)=>{const bs=lineZones.filter((_,j)=>j!==skip),n=Math.ceil(Math.hypot(x2-x1,y2-y1)/5);for(let i=1;i<n;i++){const t=i/n;if(inBox(x1+(x2-x1)*t,y1+(y2-y1)*t,bs))return false}return true};
   const reach=(x,y)=>off.some((o,i)=>Math.hypot(o.x-x,o.y-y)<300&&segFree(x,y,o.x,o.y,2*i));
-  const freePt=(need)=>{for(let i=0;i<1500;i++){const x=XMIN+10+rnd()*(W-XMIN+20),y=10+rnd()*(H-40);if(!blockedC(x,y)&&x<W-20&&(!need||reach(x,y)))return[x,y]}return[W+40,H/2]};
+  const freePt=(need,w)=>{for(let i=0;i<1500;i++){const x=XMIN+10+rnd()*(W-XMIN+20),y=10+rnd()*(H-40);if(!blockedC(x,y,w)&&x<W-20&&(!need||reach(x,y)))return[x,y]}return[W+40,H/2]};
   const cur=NAMES.map((name,i)=>{
     const [fill,ink]=COLS[i%COLS.length];
     const g=mk('g',{style:'opacity:.85'},gC);
     mk('path',{d:'M0 0 L0 15 L4 11.1 L6.7 17.1 L9.3 15.9 L6.8 10.1 L12 9.9 Z',style:`fill:${fill};stroke:var(--art-bg);stroke-width:1.2;stroke-linejoin:round`},g);
     mk('rect',{x:10,y:16,width:name.length*6.4+12,height:15,rx:3,style:`fill:${fill}`},g);
     const t=mk('text',{x:16,y:27,style:`fill:${ink}`},g); t.textContent=name;
-    const [x,y]=freePt(i<2);
-    return {g,fill,x,y,ang:rnd()*Math.PI*2,spd:11+rnd()*7,seed:rnd()*100};
+    const w=10+name.length*6.4+12, [x,y]=freePt(i<2,w);
+    return {g,fill,w,x,y,ang:rnd()*Math.PI*2,spd:11+rnd()*7,seed:rnd()*100};
   });
   const place=c=>c.g.setAttribute('transform',`translate(${c.x.toFixed(1)},${c.y.toFixed(1)})`);
   const step=(c,dt,now)=>{
     c.ang+=(Math.sin(now/2600+c.seed)*.5+Math.sin(now/5300+c.seed*1.7)*.35)*dt;
     const look=30;
-    if(blockedC(c.x+Math.cos(c.ang)*look,c.y+Math.sin(c.ang)*look)){
+    if(blockedC(c.x+Math.cos(c.ang)*look,c.y+Math.sin(c.ang)*look,c.w)){
       let found=null;
-      for(let k=1;k<=12&&found===null;k++)for(const sg of[1,-1]){const b=c.ang+sg*k*.3;if(!blockedC(c.x+Math.cos(b)*look,c.y+Math.sin(b)*look)){found=b;break}}
+      for(let k=1;k<=12&&found===null;k++)for(const sg of[1,-1]){const b=c.ang+sg*k*.3;if(!blockedC(c.x+Math.cos(b)*look,c.y+Math.sin(b)*look,c.w)){found=b;break}}
       c.ang=found===null?c.ang+Math.PI*dt:c.ang+(found-c.ang)*Math.min(1,dt*2.5);
     }
+    /* los cursores no se encimen: si otro queda cerca, gira para alejarse */
+    const oth=cur.find(d=>d!==c&&Math.abs((d.x+d.w/2)-(c.x+c.w/2))<(d.w+c.w)/2+14&&Math.abs(d.y-c.y)<46);
+    if(oth){const away=Math.atan2(c.y-oth.y,(c.x+c.w/2)-(oth.x+oth.w/2));c.ang+=Math.atan2(Math.sin(away-c.ang),Math.cos(away-c.ang))*Math.min(1,dt*3)}
     const nx=c.x+Math.cos(c.ang)*c.spd*dt, ny=c.y+Math.sin(c.ang)*c.spd*dt;
-    if(!blockedC(nx,ny)){c.x=nx;c.y=ny}
+    if(!blockedC(nx,ny,c.w)){c.x=nx;c.y=ny}
     if(c.x>W+70||c.y<-70||c.y>H+70){const s=rnd();
       if(s<.4){c.x=W+60;c.y=40+rnd()*(H-80);c.ang=Math.PI+(rnd()-.5)*.8}
       else if(s<.7){c.x=XMIN+140+rnd()*(W-XMIN-140);c.y=-60;c.ang=Math.PI/2+(rnd()-.5)*.8}
@@ -1030,13 +1185,15 @@ function startCollab(){
   collabRAF=requestAnimationFrame(frame);
 }
 function clusterHeader(c){
-  const W=1600,H=500;let art='';
-  if(c.motif==='iso') art=isoSlabs(W,H,{cx:1180,top:40,gap:62,a:250,acc:2,fs:13});
-  if(c.motif==='cloud') art=pointCloud(W,H,{x:840,y:70,w:620,h:360,seed:9});
-  if(c.motif==='flow') art=flowField(W,H,{x0:820,n:300,seed:2.2});
-  if(c.motif==='bars') art=dataBars(W,H,{ox:1080,oy:150,cols:34,rows:14,dx:17,dy:16,amp:46,seed:1.1});
-  return `<div class="art chdr grain" role="img" aria-label="${esc(c.name)} — LAC cluster ${c.n} of 04. Header image with the cluster motif in its highlight color.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${art}</svg>
+  const W=1600,H=500,L=document.documentElement.dataset.style!=='1';let art='';
+  /* vistas claras: menos trazos, sin nodos y acento en 1 detalle. Una máscara desvanece el dibujo antes del título. */
+  if(c.motif==='iso') art=L?isoSlabs(W,H,{cx:1150,top:52,gap:52,a:208,acc:2,n:5,grid:2,fs:12}):isoSlabs(W,H,{cx:1130,top:40,gap:62,a:250,acc:2,fs:13});
+  if(c.motif==='cloud') art=L?pointCloud(W,H,{x:900,y:84,w:560,h:310,seed:9,dens:.42,jit:1.6,noise:110,sweep:false,subtle:24,dotOp:.6}):pointCloud(W,H,{x:840,y:70,w:620,h:360,seed:9});
+  if(c.motif==='flow') art=L?fanCurves({o:[1010,410],ex:1520,ey0:70,ey1:410,n:12,acc:4}):flowField(W,H,{x0:820,n:300,seed:2.2});
+  if(c.motif==='bars') art=L?dataBars(W,H,{ox:1130,oy:150,cols:28,rows:12,dx:17,dy:16,amp:40,seed:1.1,top:3,lop:.42}):dataBars(W,H,{ox:1080,oy:150,cols:34,rows:14,dx:17,dy:16,amp:46,seed:1.1});
+  const mk=`<defs><linearGradient id="chm-g" gradientUnits="userSpaceOnUse" x1="860" y1="0" x2="980" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="chm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#chm-g)"/></mask></defs>`;
+  return `<div class="art chdr grain" role="img" aria-label="${esc(c.name)}. LAC cluster ${c.n} of 04. Header image with the cluster motif in its highlight color.">
+    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>
     <div class="copy">
       <div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
       <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
@@ -1044,31 +1201,36 @@ function clusterHeader(c){
     </div>
   </div>`;
 }
-function capThumb(c){
-  const W=300,H=300;let art='';
-  if(c.motif==='iso') art=isoSlabs(W,H,{cx:200,top:42,gap:20,a:66,acc:2,fs:0});
-  if(c.motif==='cloud') art=pointCloud(W,H,{x:105,y:62,w:175,h:118,seed:4});
-  if(c.motif==='flow') art=flowField(W,H,{x0:60,n:70,seed:4.1}).replace(/<text[^>]*>[^<]*<\/text>/g,'');
-  if(c.motif==='bars') art=dataBars(W,H,{ox:185,oy:62,cols:16,rows:10,dx:10,dy:10,amp:30,seed:1.6});
+/* miniatura 1:1 de capacidad. Vistas claras (2 y 3): dibujo limpio y tenue, acento en 1 solo detalle.
+   En todos los estilos una máscara desvanece el dibujo antes de la zona del título (o.fade = [inicio, fin] en px del viewBox).
+   Miniaturas apaisadas (rutas, comunidades): o.fit = [escala, y superior] encoge el dibujo hacia la esquina superior derecha. */
+let CAPN=0;
+function capThumb(c,o={}){
+  const W=300,H=300,L=document.documentElement.dataset.style!=='1',id='cm'+(++CAPN),fd=o.fade||[150,178];let art='';
+  if(c.motif==='iso') art=L?isoSlabs(W,H,{cx:200,top:30,gap:19,a:60,acc:2,n:5,grid:2,fs:0}):isoSlabs(W,H,{cx:200,top:26,gap:19,a:64,acc:2,fs:0});
+  if(c.motif==='cloud') art=L?pointCloud(W,H,{x:116,y:40,w:156,h:100,seed:4,dens:.34,jit:1.2,noise:36,sweep:false,subtle:13,dotOp:.6}):pointCloud(W,H,{x:105,y:44,w:175,h:108,seed:4});
+  if(c.motif==='flow') art=L?fanCurves({o:[112,148],ex:272,ey0:42,ey1:148,n:8,acc:2}):flowField(W,H,{x0:60,n:70,seed:4.1});
+  if(c.motif==='bars') art=L?dataBars(W,H,{ox:196,oy:58,cols:11,rows:7,dx:12,dy:12,amp:24,seed:1.6,top:1,lop:.5}):dataBars(W,H,{ox:185,oy:62,cols:16,rows:10,dx:10,dy:10,amp:30,seed:1.6});
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
-  return `<div class="capthumb grain" style="--c:var(--hl-${c.key});--accent:var(--hl-${c.key})"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">${art}</svg><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
+  const mask=`<defs><linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${fd[0]}" x2="0" y2="${fd[1]}"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#${id}g)"/><rect x="0" y="0" width="${W*.3}" height="${H*.2}" fill="#000"/></mask></defs>`;
+  return `<div class="capthumb grain" style="--c:var(--hl-${c.key})"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">${mask}<g mask="url(#${id})"><g${o.fit?` transform="translate(${(W*(1-o.fit[0])).toFixed(1)} ${(o.fit[1]-20*o.fit[0]).toFixed(1)}) scale(${o.fit[0]})"`:''}>${art}</g></g></svg><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
 }
 function diagram(){
   const stages=[['01','Pursuit & client contact'],['02','Strategy & programming'],['03','Concept design'],['04','Schematic design'],['05','Design development'],['06','Construction documents'],['07','Construction'],['08','Handover & operations']];
   const rows=[
     {k:'di',l:'Data Intelligence',bars:[[1,3,'Site & market analytics · Urban Vitality Index · GIS'],[8,8,'Post-occupancy dashboards']]},
-    {k:'cd',l:'Computational Design',bars:[[2,5,'Massing optioneering · Climate analysis · Pedestrian Flows · Rhino–Revit']]},
+    {k:'cd',l:'Computational Design',bars:[[2,5,'Massing optioneering · Climate analysis · Pedestrian Flows · Rhino-Revit']]},
     {k:'rc',l:'Reality Capture',bars:[[1,2,'Existing conditions scans · Terrain Analysis'],[7,8,'Progress scans · As-built verification']]},
     {k:'vdc',l:'VDC',bars:[[4,7,'BEP · Federated coordination · Clash detection · 4D sequencing · Model QA']]},
   ];
   const head=`<div></div>`+stages.map(s=>`<div class="stage"><b>${s[0]}</b>${esc(s[1])}</div>`).join('');
   // filas con barras posicionadas por fila
   const rowsHtml=rows.map(r=>{
-    const bars=r.bars.map(b=>`<div class="bar" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'–'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
+    const bars=r.bars.map(b=>`<div class="bar" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'-'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
     return `<div class="grid" style="grid-template-columns:13cqw 1fr"><div class="lab"><i style="background:var(--hl-${r.k})"></i>${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
   }).join('');
-  return `<div class="art dia grain" role="img" aria-label="Clusters diagram. Eight stages of an architecture project from pursuit and client contact to handover and operations. Data Intelligence enters at stages 1–3 (site and market analytics, Urban Vitality Index, GIS) and 8 (post-occupancy dashboards). Computational Design at stages 2–5 (massing optioneering, climate analysis, Pedestrian Flows, Rhino–Revit). Reality Capture at stages 1–2 (existing conditions scans, Terrain Analysis) and 7–8 (progress scans, as-built verification). VDC at stages 4–7 (BEP, federated coordination, clash detection, 4D sequencing, model QA).">
-    <div class="ttl"><h4>Where each cluster enters <em>the life of a project</em><span class="sdot"></span></h4><span>Design Technology LAC · 4 clusters × 8 stages</span></div>
+  return `<div class="art dia grain" role="img" aria-label="Clusters diagram. Eight stages of an architecture project from pursuit and client contact to handover and operations. Data Intelligence enters at stages 1 to 3 (site and market analytics, Urban Vitality Index, GIS) and 8 (post-occupancy dashboards). Computational Design at stages 2 to 5 (massing optioneering, climate analysis, Pedestrian Flows, Rhino-Revit). Reality Capture at stages 1 to 2 (existing conditions scans, Terrain Analysis) and 7 to 8 (progress scans, as-built verification). VDC at stages 4 to 7 (BEP, federated coordination, clash detection, 4D sequencing, model QA).">
+    <div class="ttl"><h4>Where each cluster enters <em>your project</em><span class="sdot"></span></h4><span>Design Technology LAC · 4 clusters × 8 stages</span></div>
     <div class="grid">${head}</div>
     ${rowsHtml}
     <div class="axis"><span>First client contact</span><span></span><span>Building in operation</span></div>
@@ -1076,37 +1238,44 @@ function diagram(){
 }
 function mapArt(){
   const W=792,H=560;
-  const m=lacMap({box:[300,16,470,528],step:7.4,fs:11,links:0,style2:document.documentElement.dataset.style==='2'});
+  const m=lacMap({box:[300,16,470,528],step:7.4,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[10,8,782,552],avoid:[[20,452,430,100]]});
   return `<div class="art mapart" role="img" aria-label="Dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six Gensler LAC offices highlighted and connected: Monterrey, Mexico City, San José, Santo Domingo, Bogotá and Buenos Aires.">
     <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${m.svg}</svg>
     <div class="legend"><span><i></i><b>06 offices</b></span><span>One regional DT team</span><span>Mexico · Central America · Caribbean · South America</span></div>
   </div>`;
 }
 function procArt(c){
-  return `<div class="art proc grain" role="img" aria-label="${esc(c.name)} methodology in four steps: ${c.steps.map((s,i)=>`${i+1}. ${s[0]} — ${s[1]}`).join(' ')}">
+  return `<div class="art proc grain" role="img" aria-label="${esc(c.name)} methodology in four steps: ${c.steps.map((s,i)=>`${i+1}. ${s[0]}: ${s[1]}`).join(' ')}">
     ${c.steps.map((s,i)=>`<div class="st" style="--k:${(i+1)/4}"><span class="dot" style="left:0"></span><span class="n">0${i+1} / 04</span><h5>${esc(s[0])}</h5><p>${esc(s[1])}</p></div>`).join('')}
   </div>`;
 }
 function ctaBg(c){
-  const W=800,H=300;let art='';
-  if(c.motif==='iso') art=isoSlabs(W,H,{cx:620,top:20,gap:34,a:140,acc:3,fs:0});
-  if(c.motif==='cloud') art=pointCloud(W,H,{x:470,y:40,w:280,h:200,seed:5});
-  if(c.motif==='flow') art=flowField(W,H,{x0:300,n:150,seed:5.5});
-  if(c.motif==='bars') art=dataBars(W,H,{ox:560,oy:60,cols:20,rows:10,dx:13,dy:12,amp:34,seed:2.2});
+  const W=800,H=300,st=document.documentElement.dataset.style,L=st!=='1';let art='';
+  /* vistas claras: dibujo más limpio a la derecha; una máscara lo desvanece antes del texto. En el Estilo 3 el fondo es claro. */
+  if(c.motif==='iso') art=L?isoSlabs(W,H,{cx:640,top:22,gap:26,a:112,acc:2,n:5,grid:2,fs:0}):isoSlabs(W,H,{cx:620,top:20,gap:34,a:140,acc:3,fs:0});
+  if(c.motif==='cloud') art=L?pointCloud(W,H,{x:500,y:40,w:250,h:170,seed:5,dens:.4,jit:1.4,noise:50,sweep:false,subtle:16,dotOp:.6}):pointCloud(W,H,{x:470,y:40,w:280,h:200,seed:5});
+  if(c.motif==='flow') art=L?fanCurves({o:[548,196],ex:772,ey0:40,ey1:196,n:8,acc:3}):flowField(W,H,{x0:300,n:150,seed:5.5});
+  if(c.motif==='bars') art=L?dataBars(W,H,{ox:610,oy:56,cols:15,rows:9,dx:12,dy:12,amp:28,seed:2.2,top:2,lop:.45}):dataBars(W,H,{ox:560,oy:60,cols:20,rows:10,dx:13,dy:12,amp:34,seed:2.2});
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
-  return `<div class="cta-bg art grain" style="--art-bg:#0D0E10;--art-fg:rgba(255,255,255,.55);--art-dim:rgba(255,255,255,.14);--art-dot:rgba(255,255,255,.5);background:radial-gradient(70% 120% at 90% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 65%),#0D0E10"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${art}</svg></div>`;
+  const mk=L?`<defs><linearGradient id="ctm-g" gradientUnits="userSpaceOnUse" x1="400" y1="0" x2="490" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="ctm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#ctm-g)"/></mask></defs>`:'';
+  const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g${L?' mask="url(#ctm)"':''}>${art}</g></svg>`;
+  if(st==='3') return `<div class="cta-bg art" style="background:var(--bg-neutral);box-shadow:inset 0 0 0 1px var(--rule)">${svg}</div>`;
+  return `<div class="cta-bg art grain" style="--art-bg:#0D0E10;--art-fg:rgba(255,255,255,.55);--art-dim:rgba(255,255,255,.14);--art-dot:rgba(255,255,255,.5);background:radial-gradient(70% 120% at 90% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 65%),#0D0E10">${svg}</div>`;
 }
 
 /* =========================================================
    BLOQUES REUTILIZABLES (los mismos en Home y clusters)
    ========================================================= */
-const kick = t => `<p class="t-kicker">${esc(t)}</p>`;
+/* kick(texto, redundante): los kickers redundantes llevan .s3-hide (se ocultan solo en el Estilo 3) */
+const kick = (t,red=false) => `<p class="t-kicker${red?' s3-hide':''}">${esc(t)}</p>`;
 /* fin(): quita el punto final y lo cambia por el punto de acento */
 const fin = t => t.endsWith('.') ? esc(t.slice(0,-1))+'<span class="sdot"></span>' : esc(t);
 const tailFin = t => t.endsWith('.') ? `<span class="tail">${esc(t.slice(0,-1))}</span><span class="sdot"></span>` : `<span class="tail">${esc(t)}</span>`;
 const h2 = (a,b='') => `<h2 class="t-h2">${b?esc(a)+' '+tailFin(b):fin(a)}</h2>`;
 const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}">${ph(kind,tint)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
 const person = (p,desc=true,sm=false) => `<div class="person ${sm?'sm':''}"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)} · ${esc(p.o)}</span>${desc&&p.d?`<p>${esc(p.d)}</p>`:''}</a></div>`;
+/* tarjeta compacta para la fila de 4 (mismo rol que en Community: sale de P) */
+const personCard = p => `<div class="person sm"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)}</span><span class="meta-line" style="margin-top:2px;font-size:11px">${esc(p.o.toUpperCase())}</span></a></div>`;
 const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><small>${m}</small><b>${d}</b></span><span><h4>${esc(t)}</h4><span>${esc(s)}</span></span></a>`;
 
 /* =========================================================
@@ -1124,45 +1293,44 @@ function pageHome(){
   return [
     sec('full','none',[wp('i','Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean')}<h1 class="t-h1">One regional team for every project <span class="tail">— from first sketch to last scan</span><span class="sdot"></span></h1><p class="t-p">Four clusters across six offices. We help Gensler LAC project teams compute, coordinate, capture and measure — and when the tool doesn’t exist yet, we build it with you.</p>`),
+      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean',true)}<h1 class="t-h1">One regional team. <span class="tail">Every project</span><span class="sdot"></span></h1><p class="t-p">Four clusters. Six offices. We build with you.</p>`),
       wp('n','Quick links · Button (4 acciones)', `<div class="ql-buttons">${[['compass','Explore capabilities','#/clusters/vdc','VDC, Reality Capture, CD, Data'],['tool','Find a tool','#/tools','Gensler tools and LATAM solutions'],['book','Start learning','#/learning','Paths, workshops, recordings'],['bulb','Build with COM','#/request','Request support or submit an idea']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
-    ]),
-    sec('l1','none',[
-      wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram')}${h2('Where we join your project','— and with which skills.')}<p class="t-p muted">From the first client conversation to a building in operation, each cluster enters at a different stage. Use it to know who to call, and when.</p>`),
-      wp('i','Image · 1 columna (2408 px) · alt completo · sin vínculo', diagram())
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
       wp('n','Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
     ]),
+    sec('l1','none',[
+      wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
+      wp('i','Image · 1 columna (2408 px) · alt completo · sin vínculo', diagram())
+    ]),
     sec('l13','neutral',[
-      wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM relevance, linked to the authoritative firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices with a DT champion</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
+      wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices across the region</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
       wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
     ],'EXTRA'),
     sec('l31','none',[
       wp('i','Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"')}</a>`),
-      wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update. GIS + Power BI, built with the client’s planning team.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
+      wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
     sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
     sec('l1','neutral',[
-      wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools')}${h2('Tools you can use today.','Explore, learn, get support.')}`),
+      wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools',true)}${h2('Tools to use today.','Explore and learn.')}`),
       wp('n','List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
     ]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning')}${h2('Computational Thinking,','a learning path in 6 modules.')}<p class="t-p muted">Digital Capsules organized around Mindset, Processes, Tools, Projects and People. Self-paced, with a live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
+      wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning',true)}${h2('Computational Thinking,','a 6-module path.')}<p class="t-p muted">Self-paced capsules. A live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
       + wp('n','Highlighted content · Cards · Videos de Stream (Learning)', `<div class="wp-title"><h3>Recent workshops</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Workshop · Nov 6, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Workshop · Oct 23, 2026','#/learning','play')}${hcCard('Copilot prompts for design teams','people','di','Recording · 35 min','Workshop · Oct 9, 2026','#/learning','play')}</div>`),
       wp('n','Events · Compact (próxima sesión)', `<div class="wp-title"><h3>Upcoming session</h3><a href="#/learning">See all</a></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}</div>`)
-      + wp('n','Quick links · List (quick-start)', `<div class="wp-title"><h3>Quick-start</h3></div><div class="ql-list">${[['book','Rhino–Revit in 15 minutes','Interoperability basics'],['nodes','Speckle: send your first model','Step-by-step guide'],['globe','GIS basics for site analysis','Firmwide resource · curated']].map(q=>`<a href="#/learning">${ic(q[0])}<span><b>${q[1]}</b><span>${q[2]}</span></span></a>`).join('')}</div>`)
+      + wp('n','Quick links · List (quick-start)', `<div class="wp-title"><h3>Quick-start</h3></div><div class="ql-list">${[['book','Rhino-Revit in 15 minutes','Interoperability basics'],['nodes','Speckle: send your first model','Step-by-step guide'],['globe','GIS basics for site analysis','Firmwide resource · curated']].map(q=>`<a href="#/learning">${ic(q[0])}<span><b>${q[1]}</b><span>${q[2]}</span></span></a>`).join('')}</div>`)
     ]),
     sec('l31','strong',[
-      wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea or a stuck workflow?','Build it with us.')}<p class="t-p">Ideas move through the development funnel — Idea, Evaluation, In development, Launched — and the best ones become LATAM solutions.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
+      wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
       wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${[['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 5 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
     ]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 2', `${kick('Featured community')}${h2('People you can call.','By office, capability and tool.')}`)
-      + wp('n','People · Descriptive (liderazgo regional)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people desc">${[P.lucia,P.diego,P.sofia].map(p=>person(p)).join('')}</div>`)
-      + wp('n','People · Compact (office champions)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people">${[P.tomas,P.andres,P.ivan,P.julian,P.renata,P.paula].map(p=>person(p,false,true)).join('')}</div>`),
-      wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:12px"><span class="av" style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">SANTO DOMINGO · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px">“Ask me about connecting models to dashboards. Most teams are two scripts away from live project data.”</p>`)
+      wp('n','Text · Fixed width + Heading 2', `${kick('Featured community',true)}${h2('People you can call.','By area and tool.')}`)
+      + wp('n','People · Compact ×4 (liderazgo regional: dirección, VDC, RC, CD; DI en Featured expert)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4">${[P.lucia,P.diego,P.camila,P.sofia].map(personCard).join('')}</div>`),
+      wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:10px"><span class="av" style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">SANTO DOMINGO · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px;margin:0">“Most teams are two scripts away from live project data.”</p>`)
       + wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
     ]),
     sec('l1','neutral',[wp('n','News · Top story (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
@@ -1176,7 +1344,7 @@ function pageCluster(k){
   return [
     sec('full','none',[wp('i','Image · full-width 16:5 (Banner borrado) · alt completo',clusterHeader(c))]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick(`LAC cluster ${c.n} · ${c.name}`)}<h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
+      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick(`LAC cluster ${c.n} · ${c.name}`,true)}<h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
       wp('n','Quick links · Compact (herramientas núcleo → registros de Tools)', `<div class="wp-title"><h3>Core tools</h3><a href="#/tools">All tools</a></div><div class="ql-list">${c.tools.map(t=>`<a href="#/tools">${ic(t[0])}<span><b>${esc(t[1])}</b><span>Tool record · filtered by ${esc(c.code)}</span></span></a>`).join('')}</div>`)
     ]),
     sec('l31','neutral',[
@@ -1198,7 +1366,7 @@ function pageCluster(k){
       wp('n','People · Descriptive (perfiles de Community)', `<div class="people desc">${c.leaders.map(p=>person({...p,d:p.d||`${c.code} contact for ${p.o} projects.`})).join('')}</div>`)
     ]),
     sec('l31','none',[
-      wp('n','Call to action · imagen de fondo pre-renderizada', `<div class="cta">${ctaBg(c)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Contact · ${esc(c.name)}</p><h3>Thinking about ${esc(c.page)} on your project? Let’s talk early.</h3><a class="btn" href="#/request">Start a conversation ${ic('arrow').replace('<svg','<svg width="16" height="16"')}</a></div></div>`),
+      wp('n','Call to action · imagen de fondo pre-renderizada', `<div class="cta">${ctaBg(c)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Contact · ${esc(c.name)}</p><h3>${esc(c.page)} on your project? Let’s talk early.</h3><a class="btn" href="#/request">Start a conversation ${ic('arrow').replace('<svg','<svg width="16" height="16"')}</a></div></div>`),
       wp('n','Text · Heading 3 + Normal + vínculos', `<h3 class="t-h3">Other ways to reach us</h3><p class="t-p muted" style="font-size:14px">Teams channel<br><a class="t-link" href="#/community">${esc(c.contact.ch)}</a></p><p class="t-p muted" style="font-size:14px">Email<br><a class="t-link" href="#/request">${esc(c.contact.mail)}</a></p><p class="t-p muted" style="font-size:14px">${esc(c.contact.hours)}</p>`)
       + wp('n','Quick links · Compact (otros clusters)', `<div class="wp-title"><h3>Other clusters</h3></div><div class="ql-list">${others.map(o=>`<a href="#/clusters/${o}">${ic('arrow')}<span><b>${esc(CL[o].name)}</b></span></a>`).join('')}</div>`)
     ]),
@@ -1209,33 +1377,33 @@ const banner = (k,t,tail,p) => sec('l1','none',[wp('n','Banner · layout Plain (
 
 function pageProjects(){
   const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
-  return banner('Projects','Where has DT created value?','Case studies by cluster.','Every case study is one page, tagged by cluster, office and tools used — so it also appears on the cluster and tool pages.')
+  return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
   + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
   + sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (todas)', `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
-  + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Project contacts and COM contributors review case studies once a year.</p>`),wp('n','Button', `<a class="btn" href="#/request">Propose a case study</a>`)]);
+  + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Case studies are reviewed once a year.</p>`),wp('n','Button', `<a class="btn" href="#/request">Propose a case study</a>`)]);
 }
 function pageTools(){
   const T=[['SP','Speckle','Workflow tool',['DI','Integrated workflows'],'Live'],['PB','Power BI templates','Gensler tool',['DI'],'Live'],['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live'],['DY','Dynamo for Revit','Workflow tool',['CD','VDC'],'Live'],['RR','Rhino.Inside.Revit','Workflow tool',['CD'],'Live'],['gB','gBlox','Gensler tool',['CD'],'Live'],['TA','Terrain Analysis','LATAM solution',['RC','CD'],'Pilot'],['UV','Urban Vitality Index','LATAM solution',['DI'],'Live']];
-  return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions, workflow tools and experiments. Each tool lists its capabilities, owner, learning and experts.')
+  return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions and experiments.')
   + sec('l1','none',[wp('n','List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool"><div class="top"><span class="ico">${t[0]}</span><div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>`<span class="chip">${x}</span>`).join('')}<span class="chip st">${t[4]}</span></div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
-  + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Tool owners and champions review availability every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
+  + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Availability is reviewed every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
 }
 function pageLearning(){
-  const paths=[['Computational Thinking','6 modules · Mindset → People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
-  return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Learning resources reference Tool and Capability records, so each tool page shows its own tutorials automatically.')
-  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]]).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
+  const paths=[['Computational Thinking','6 modules · Mindset to People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
+  return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
+  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)', `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
 }
 function pageCommunity(){
-  return banner('Community','Who can help me?','Leaders, champions, experts.','Find people by office, capability and tool expertise. Profiles are kept by each person and their community lead.')
+  return banner('Community','Who can help me?','Leaders, champions, experts.','Find people by office, capability and tool.')
   + sec('l1','none',[wp('n','People · Descriptive', `<div class="wp-title"><h3>Regional leadership</h3></div><div class="people desc">${[P.lucia,P.diego,P.sofia,P.mateo,P.camila].map(p=>person(p)).join('')}</div>`)])
-  + sec('l1','neutral',[wp('n','Quick links · Grid · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Mini-communities</h3></div><div class="ql-film">${[['Digital Innovation','cd','Monthly showcase'],['AI Builders','di','Prompt & agent lab'],['Reality Capture','rc','Scan clinic'],['Data & BI','di','Dashboard review']].map(m=>`<a class="ql-card" href="#/community"><div class="thumb" style="aspect-ratio:16/10">${capThumb(CL[m[1]]).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:10cqw">${esc(m[0])}</span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(m[0])}<span>${esc(m[2])} · Join on Teams</span></div></a>`).join('')}</div>`)])
+  + sec('l1','neutral',[wp('n','Quick links · Grid · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Mini-communities</h3></div><div class="ql-film">${[['Digital Innovation','cd','Monthly showcase'],['AI Builders','di','Prompt & agent lab'],['Reality Capture','rc','Scan clinic'],['Data & BI','di','Dashboard review']].map(m=>`<a class="ql-card" href="#/community"><div class="thumb" style="aspect-ratio:16/10">${capThumb(CL[m[1]],{fit:[.72,62],fade:[170,188]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:10cqw">${esc(m[0])}</span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(m[0])}<span>${esc(m[2])} · Join on Teams</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','People · Compact (champions por oficina)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people">${[P.andres,P.valeria,P.tomas,P.renata,P.julian,P.paula,P.ivan].map(p=>person(p,false,true)).join('')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Events</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City')}${ev('Jan','15','DT LAC kickoff 2027','Hybrid · all offices')}</div>`)]);
 }
 function pageRequest(){
   const lanes=[['Idea',14,[['Clash triage with Copilot','VDC'],['Facade panel optimizer','CD']]],['Evaluation',6,[['Drone-to-mesh pipeline','RC'],['Retail KPI template','DI']]],['In development',6,[['Terrain Analysis v2','RC'],['Speckle → Power BI connector','DI']]],['Launched',9,[['Urban Vitality Index','DI'],['gBlox LAC test-fits','CD']]]];
-  return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request project support, submit an idea and follow it through the development funnel. The COM program owner updates the board monthly.')
-  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week? A tool you wish existed?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Santo Domingo hotel fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
+  return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
+  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Santo Domingo hotel fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
   + sec('l1','neutral',[wp('n','List · Board view agrupado por Status (por verificar en web part)', `<div class="wp-title"><h3>Development funnel</h3><a href="#/request">Open board</a></div><div class="board">${lanes.map(l=>`<div class="lane"><h4>${l[0]} <span>${l[1]}</span></h4>${l[2].map(c=>`<div class="kcard"><b>${esc(c[0])}</b><span class="chip">${c[1]}</span></div>`).join('')}</div>`).join('')}</div>`)]);
 }
 
@@ -1298,7 +1466,7 @@ function logoCard(L){return `<article class="lg-card" data-id="${L.id}"><div cla
   <div class="lg-prev"><div class="pv dk sq">${L.sym}</div><div class="pv lt sq">${L.sym}</div><div class="pv fav">24 px<span class="dk" style="background:#0B0C0D;color:#F2F2F0">${L.sym}</span><span style="background:#F4F2EE;color:#111">${L.sym}</span><span style="background:var(--accent);color:var(--accent-ink)">${L.sym}</span></div></div>
   <button class="lg-use" type="button" aria-pressed="false">Usar en la maqueta</button></article>`}
 function buildLogos(){
-  const G=[['ref','Actual'],['geo','Geométricos · L01–L04'],['red','Territorio y red · L05–L08']];
+  const G=[['ref','Actual'],['geo','Geométricos · L01 a L04'],['red','Territorio y red · L05 a L08']];
   $('#logosBody').innerHTML=G.map(([g,t])=>`<h3 class="grp-t">${t}</h3><div class="dr-grid">${LOGOS.filter(l=>l.group===g).map(logoCard).join('')}</div>`).join('');
   document.querySelectorAll('.lg-use').forEach(b=>b.addEventListener('click',()=>applyLogo(b.closest('.lg-card').dataset.id)));
 }
