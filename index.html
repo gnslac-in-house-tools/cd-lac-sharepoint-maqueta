@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-style="1" data-font="brand">
+<html lang="en" data-style="1" data-font="brand" data-accent="lime">
 <head><meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +23,7 @@
   --lab-n:#137333; --lab-i:#A15C00; --lab-p:#742774;
 }
 
+/* @personalizar: tokens del Estilo 1 (primitivos, highlights por cluster, semánticos, arte, fuentes) */
 /* ---------- ESTILO 1 · TERRENO DE DATOS (oscuro) ---------- */
 html[data-style="1"]{
   /* primitivos */
@@ -49,6 +50,7 @@ html[data-style="1"]{
   --f-brand-sans:"Inter Tight","Segoe UI",sans-serif; --f-brand-mono:"JetBrains Mono",Consolas,monospace;
   --h-weight:300; --h-track:-.035em; --k-track:.14em; --ht-op:.10;
 }
+/* @personalizar: tokens del Estilo 2 */
 /* ---------- ESTILO 2 · ESTUDIO EDITORIAL CLARO ---------- */
 html[data-style="2"]{
   --p-paper:#F4F2EE; --p-white:#FFFFFF; --p-stone:#ECEAE4; --p-rule:#D9D7D0; --p-ink:#111111; --p-coal:#161616;
@@ -70,6 +72,26 @@ html[data-style="2"]{
   --f-brand-sans:"Instrument Sans","Segoe UI",sans-serif; --f-brand-mono:"IBM Plex Mono",Consolas,monospace;
   --h-weight:600; --h-track:-.03em; --k-track:.1em; --ht-op:.05;
 }
+/* @personalizar: acentos elegibles (5 opciones × 2 estilos). Agregar uno = 2 reglas aquí + 1 swatch en la barra de control. */
+/* ---------- ACENTO ELEGIBLE = themePrimary del sitio (una sola elección por sitio) ----------
+   --accent: relleno / statement · --accent-ink: texto sobre el acento · --accent-text: acento usado como texto (AA) */
+html[data-style="1"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#FF4A4F}
+html[data-style="1"][data-accent="cobalt"]{--accent:#2A62F0;--accent-ink:#FFFFFF;--accent-text:#5B8CFF}
+html[data-style="1"][data-accent="lime"]  {--accent:#D4F04A;--accent-ink:#0B0C0D;--accent-text:#D4F04A}
+html[data-style="1"][data-accent="amber"] {--accent:#F5A524;--accent-ink:#0B0C0D;--accent-text:#F5A524}
+html[data-style="1"][data-accent="mono"]  {--accent:#F2F2F0;--accent-ink:#0B0C0D;--accent-text:#F2F2F0}
+html[data-style="2"][data-accent="red"]   {--accent:#E11F26;--accent-ink:#FFFFFF;--accent-text:#C8151C}
+html[data-style="2"][data-accent="cobalt"]{--accent:#2A62F0;--accent-ink:#FFFFFF;--accent-text:#1F4FD6}
+html[data-style="2"][data-accent="lime"]  {--accent:#C8F03A;--accent-ink:#111111;--accent-text:#4F5E00}
+html[data-style="2"][data-accent="amber"] {--accent:#F5A524;--accent-ink:#111111;--accent-text:#8A5200}
+html[data-style="2"][data-accent="mono"]  {--accent:#111111;--accent-ink:#FFFFFF;--accent-text:#111111}
+html[data-accent]{
+  --theme:var(--accent); --on-theme:var(--accent-ink); --link:var(--accent-text);
+  --bg-strong:var(--accent); --on-strong:var(--accent-ink); --on-strong-2:color-mix(in srgb,var(--accent-ink) 80%,var(--accent));
+  --on-accent:var(--accent-ink);
+}
+html[data-style="1"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 7%,#0B0C0D); --grid:rgba(242,242,240,.055)}
+html[data-style="2"][data-accent]{--bg-soft:color-mix(in srgb,var(--accent) 9%,#F4F2EE); --grid:rgba(17,17,17,.06)}
 /* fuentes: marca (Brand Center) o fallback nativo. El ARTE siempre conserva la fuente de marca. */
 html{--f-sans:var(--f-brand-sans); --f-mono:var(--f-brand-mono); --f-art:var(--f-brand-sans); --f-art-mono:var(--f-brand-mono)}
 html[data-font="sp"]{--f-sans:var(--f-sp-sans); --f-mono:var(--f-sp-mono)}
@@ -86,8 +108,7 @@ html[data-font="sp"]{--f-sans:var(--f-sp-sans); --f-mono:var(--f-sp-mono)}
 html,body{margin:0}
 body{background:var(--bg);color:var(--text);font-family:var(--f-sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .2s}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--theme);outline-offset:2px}
-html[data-style="2"] :focus-visible{outline-color:#2F55D4}
+:focus-visible{outline:2px solid var(--accent-text);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 img,svg{display:block}
 
@@ -159,9 +180,8 @@ nav.topnav button[aria-expanded="true"] .chev{transform:rotate(180deg)}
    4 · WEB PARTS NATIVOS (con tema aplicado)
    ========================================================= */
 /* Text */
-.t-kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:var(--k-track);text-transform:uppercase;color:var(--text-2);margin:0 0 10px}
-html[data-style="1"] .t-kicker{color:var(--theme)}
-html[data-style="1"] .bg-strong .t-kicker{color:var(--on-strong)}
+.t-kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:var(--k-track);text-transform:uppercase;color:var(--accent-text);margin:0 0 10px}
+.bg-strong .t-kicker{color:var(--on-strong)}
 .t-h1{font-size:44px;line-height:1.06;font-weight:var(--h-weight);letter-spacing:var(--h-track);margin:0 0 16px}
 .t-h2{font-size:32px;line-height:1.12;font-weight:var(--h-weight);letter-spacing:var(--h-track);margin:0 0 12px}
 .t-h3{font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0 0 8px}
@@ -172,7 +192,7 @@ html[data-style="1"] .bg-strong .t-kicker{color:var(--on-strong)}
 .t-link:hover{text-decoration-thickness:2px}
 .t-list{margin:0;padding:0 0 0 18px;display:grid;gap:6px;color:var(--text)}
 .t-list li::marker{color:var(--text-2)}
-.t-quote{border-left:3px solid var(--theme);padding:2px 0 2px 16px;margin:0;font-size:18px;line-height:1.45}
+.t-quote{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:0;font-size:18px;line-height:1.45}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin:18px 0 6px}
 .stat b{display:block;font-size:40px;line-height:1;font-weight:var(--h-weight);letter-spacing:-.03em}
 .stat b small{font-size:.5em;color:var(--text-tail);font-weight:400;margin-left:2px}
@@ -189,8 +209,7 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .ql-buttons.cols2{grid-template-columns:1fr 1fr}
 .ql-btn{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--r-native);background:var(--surface);box-shadow:var(--card-shadow);text-decoration:none;color:var(--text);font-weight:600;font-size:15px;transition:background .15s}
 .ql-btn:hover{background:var(--surface-2)}
-.ql-btn svg{width:20px;height:20px;flex:none;color:var(--theme)}
-html[data-style="2"] .ql-btn svg{color:var(--text)}
+.ql-btn svg{width:20px;height:20px;flex:none;color:var(--accent-text)}
 .ql-btn .arr{margin-left:auto;width:16px;height:16px;color:var(--text-2)}
 .ql-btn small{display:block;font-weight:400;font-size:13px;color:var(--text-2)}
 .bg-strong .ql-btn{background:transparent;box-shadow:inset 0 0 0 1px var(--on-strong);color:var(--on-strong)}
@@ -257,8 +276,7 @@ html[data-style="2"] .ql-btn svg{color:var(--text)}
 .ev{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--text)}
 .ev:hover h4{text-decoration:underline}
 .ev .date{text-align:center;border-radius:var(--r-native);padding:6px 0;box-shadow:inset 0 0 0 1px var(--rule)}
-.ev .date small{display:block;font-size:11px;text-transform:uppercase;color:var(--theme);font-weight:600}
-html[data-style="2"] .ev .date small{color:var(--text-2)}
+.ev .date small{display:block;font-size:11px;text-transform:uppercase;color:var(--accent-text);font-weight:600}
 .ev .date b{display:block;font-size:22px;line-height:1.1;font-weight:600}
 .ev h4{margin:2px 0 2px;font-size:15px;line-height:1.3}
 .ev span{font-size:13px;color:var(--text-2)}
@@ -325,18 +343,18 @@ html[data-style="2"] .grain::after{opacity:.22;mix-blend-mode:multiply;backgroun
 .m-txt{fill:var(--art-text);font-family:var(--f-art-mono)}
 .m-txt2{fill:var(--art-tail);font-family:var(--f-art-mono)}
 /* encabezado Home */
-.hdr{aspect-ratio:16/5.4;width:100%}
-.hdr .copy{position:absolute;left:4.2cqw;top:9%;bottom:9%;display:flex;flex-direction:column;justify-content:space-between;z-index:2;max-width:64cqw}
+.hdr{aspect-ratio:16/6.2;width:100%;background:radial-gradient(40% 70% at 80% 50%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 72%),var(--art-bg)}
+.hdr::before{content:"";position:absolute;top:0;bottom:0;right:0;width:44%;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%);mask-image:linear-gradient(90deg,transparent,#000 22%)}
+.hdr svg.fill{z-index:1}
+.hdr .copy{position:absolute;left:4.2cqw;top:10%;bottom:10%;display:flex;flex-direction:column;justify-content:space-between;z-index:2;max-width:54cqw}
 .hdr .k{font-family:var(--f-art-mono);font-size:.85cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--art-text);display:flex;gap:2.2cqw}
 .hdr .k i{font-style:normal;color:var(--art-tail)}
-.hdr .big{font-size:5.1cqw;line-height:.92;letter-spacing:-.045em;font-weight:var(--h-weight);margin:0}
-html[data-style="2"] .hdr .big{font-weight:600;letter-spacing:-.05em}
+.hdr .big{font-size:5.2cqw;line-height:.92;letter-spacing:-.045em;font-weight:var(--h-weight);margin:0}
+html[data-style="2"] .hdr .big{font-weight:600;letter-spacing:-.05em;font-size:4.6cqw}
 .hdr .big em{font-style:normal;color:var(--art-tail)}
 .hdr .big .cur{color:var(--accent)}
-html[data-style="2"] .hdr .big .cur{color:var(--art-text)}
 .hdr .foot{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:flex;gap:3cqw}
 .hdr .foot b{color:var(--art-text);font-weight:500}
-html[data-style="1"] .hdr{background:radial-gradient(60% 90% at 78% 30%,color-mix(in srgb,var(--accent-2) 14%,transparent),transparent 70%),var(--art-bg)}
 /* encabezado de cluster */
 .chdr{aspect-ratio:16/5;width:100%}
 html[data-style="1"] .chdr{background:
@@ -355,6 +373,8 @@ html[data-style="2"] .chdr .big{font-weight:600}
 .chdr .big .cur{color:var(--accent)}
 .chdr .sub{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail)}
 html[data-style="1"] .chdr .sub{color:rgba(242,242,240,.6)}
+/* cursores multiplayer del hero */
+#collab text{font-family:var(--f-art);font-weight:600;font-size:11.5px}
 /* foto placeholder */
 .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 html[data-style="1"] .ph{background:radial-gradient(90% 90% at 80% 10%,color-mix(in srgb,var(--t,var(--accent)) 34%,transparent),transparent 65%),linear-gradient(160deg,var(--ph-a),var(--ph-b))}
@@ -399,7 +419,7 @@ html[data-style="2"] .capthumb{background:#fff}
 .capthumb .sw{position:absolute;right:7cqw;top:7cqw;width:7cqw;height:7cqw;background:var(--c);z-index:2}
 html[data-style="2"] .capthumb .sw{border-radius:50%}
 /* mapa LAC */
-.mapart{aspect-ratio:792/560}
+.mapart{aspect-ratio:792/560;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,var(--art-bg)}
 .mapart .legend{position:absolute;left:4cqw;bottom:4cqw;font-family:var(--f-art-mono);font-size:1.3cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:grid;gap:.6cqw}
 .mapart .legend b{color:var(--art-text);font-weight:500}
 .mapart .legend i{display:inline-block;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--accent);margin-right:1cqw;vertical-align:-.15cqw}
@@ -426,6 +446,39 @@ html[data-style="1"] .proc .st p{color:#9AA0A6}
 .ctl button[aria-pressed="true"]{background:#fff;color:#111;font-weight:600}
 .ctl .lbl{opacity:.6;margin-left:4px}
 .ctl :focus-visible{outline:2px solid #6FB6FF;outline-offset:1px}
+.ctl .swatch{padding:5px 6px}
+.ctl .swatch i{display:block;width:16px;height:16px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.ctl .swatch[aria-pressed="true"]{background:rgba(255,255,255,.9)}
+.ctl .swatch[aria-pressed="true"] i{box-shadow:0 0 0 1px #111}
+/* panel de logos (herramienta de la maqueta, no es parte del sitio) */
+.drawer{position:fixed;left:0;right:0;bottom:0;height:70vh;z-index:99;background:#161616;color:#EDEDED;border-radius:14px 14px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.4);transform:translateY(102%);visibility:hidden;transition:transform .3s ease,visibility .3s;display:flex;flex-direction:column;font:13px/1.45 "Segoe UI",system-ui,sans-serif}
+.drawer.open{transform:none;visibility:visible}
+.dr-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:16px 24px 12px;border-bottom:1px solid #2A2A2A}
+.dr-head h2{margin:0;font-size:17px}
+.dr-head p{margin:4px 0 0;color:#A8A8A8}
+.dr-close{background:#2A2A2A;color:#fff;border:0;border-radius:6px;width:32px;height:32px;cursor:pointer;font-size:14px;flex:none}
+.dr-body{overflow:auto;padding:4px 24px 96px}
+.dr-body h3.grp-t{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9A9A9A;margin:18px 0 10px;font-weight:600}
+.dr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.lg-card{background:#1F1F1F;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:9px;box-shadow:0 0 0 1px #2C2C2C}
+.lg-card.sel{box-shadow:0 0 0 2px #fff}
+.lg-sym{height:118px;border-radius:8px;display:grid;place-items:center;background:var(--bg);color:var(--text)}
+.lg-sym svg{width:80px;height:80px}
+.lg-card h4{margin:2px 0 0;font-size:14px}
+.lg-card p{margin:0;color:#B5B5B5;font-size:12.5px}
+.lg-prev{display:grid;grid-template-columns:48px 48px 1fr;gap:6px;align-items:stretch}
+.pv{border-radius:6px;display:grid;place-items:center;padding:7px}
+.pv svg{width:100%;height:100%}
+.pv.dk{background:#0B0C0D;color:#F2F2F0}.pv.lt{background:#F4F2EE;color:#111}
+.pv.sq{height:48px}
+.pv.hz{height:48px;padding:8px 10px}
+.pv.fav{display:flex;gap:10px;align-items:center;justify-content:flex-start;padding:0 10px;height:48px;font-size:11px;color:#9A9A9A;background:#2A2A2A}
+.pv.fav span{width:24px;height:24px;display:block;border-radius:3px;padding:2px}
+.lg-hz2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lg-use{align-self:flex-start;background:#fff;color:#111;border:0;border-radius:6px;padding:7px 12px;font:600 12.5px "Segoe UI",sans-serif;cursor:pointer}
+.lg-use[aria-pressed="true"]{background:#3a3a3a;color:#fff}
+.logo-slot{display:block;width:44px;height:44px;flex:none;color:var(--text)}
+.logo-slot svg{width:100%;height:100%;display:block}
 html.show-wp .sp-sec{outline:1px dashed rgba(127,127,127,.7);outline-offset:-1px}
 html.show-wp .sp-sec:not(.full){padding-top:calc(var(--sec-pad) + 26px)!important}
 html.show-wp .sp-sec::before{content:"SECCIÓN · " attr(data-sec);position:absolute;left:8px;top:6px;z-index:30;font:600 10px/1 "Segoe UI",sans-serif;letter-spacing:.04em;background:#333;color:#fff;padding:4px 6px;border-radius:3px}
@@ -483,15 +536,11 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   </span>
 </div>
 
+<!-- @personalizar: header del sitio (nombre, subtítulo; el logo se inyecta en #siteLogo) -->
 <!-- Header del Communication Site (layout Standard) -->
 <header class="site-header" id="siteHeader">
   <div class="row">
-    <svg class="logo" viewBox="0 0 44 44" aria-hidden="true">
-      <rect width="44" height="44" fill="var(--text)"/>
-      <text x="7" y="31" font-family="var(--f-art)" font-weight="700" font-size="21" letter-spacing="-1.2" fill="var(--bg)">dt</text>
-      <rect x="32" y="26" width="5" height="5" fill="var(--accent)"/>
-      <rect x="32" y="7" width="5" height="5" fill="none" stroke="var(--bg)" stroke-width="1"/>
-    </svg>
+    <span class="logo-slot" id="siteLogo" aria-hidden="true"></span>
     <div class="site-title">Design Technology LAC<small>Gensler · Latin America &amp; Caribbean</small></div>
     <div class="site-actions" aria-hidden="true"><span>☆ Following</span><span>⤴ Share</span></div>
   </div>
@@ -501,10 +550,11 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 
 <main id="main" tabindex="-1"></main>
 
+<!-- @personalizar: footer (vínculos) -->
 <footer class="site-footer">
   <div class="inner">
     <div class="brand">
-      <svg class="logo" viewBox="0 0 44 44" aria-hidden="true" style="width:36px;height:36px"><rect width="44" height="44" fill="var(--text)"/><text x="7" y="31" font-family="var(--f-art)" font-weight="700" font-size="21" letter-spacing="-1.2" fill="var(--bg)">dt</text><rect x="32" y="26" width="5" height="5" fill="var(--accent)"/></svg>
+      <span class="logo-slot" id="footLogo" aria-hidden="true" style="width:36px;height:36px"></span>
       <div><b>Design Technology LAC</b><p>Regional ecosystem for Design Technology at Gensler Latin America &amp; Caribbean. Content owners review this site on the cadence defined in Governance.</p></div>
     </div>
     <div><h4>Explore</h4><ul><li><a href="#/clusters/vdc">LAC Clusters</a></li><li><a href="#/projects">Projects</a></li><li><a href="#/tools">Tools</a></li></ul></div>
@@ -513,14 +563,29 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   </div>
 </footer>
 
+<!-- @personalizar: barra de control (estilos, acentos, fuente, overlay, logos) -->
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
   <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button></div>
+  <span class="lbl">Acento</span>
+  <div class="grp" role="group" aria-label="Color de acento (themePrimary)">
+    <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
+    <button class="swatch" data-set-accent="cobalt" aria-pressed="false" title="Cobalt" aria-label="Acento Cobalt"><i style="background:#2A62F0"></i></button>
+    <button class="swatch" data-set-accent="lime" aria-pressed="true" title="Lime" aria-label="Acento Lime"><i style="background:#D4F04A"></i></button>
+    <button class="swatch" data-set-accent="amber" aria-pressed="false" title="Amber" aria-label="Acento Amber"><i style="background:#F5A524"></i></button>
+    <button class="swatch" data-set-accent="mono" aria-pressed="false" title="Bone / Ink (monocromo)" aria-label="Acento monocromo Bone / Ink"><i style="background:linear-gradient(135deg,#F2F2F0 50%,#111 50%)"></i></button>
+  </div>
   <span class="lbl">Fuente</span>
   <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div>
   <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
+  <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
+</div>
+
+<div class="drawer" id="logosDrawer" role="dialog" aria-modal="false" aria-labelledby="logosTitle">
+  <div class="dr-head"><div><h2 id="logosTitle">Opciones de logo</h2><p>Símbolo sobre el fondo del estilo actual, lockup en oscuro y claro, favicon a 24 px y vista sobre el acento. «Usar en la maqueta» cambia el logo del header y del footer.</p></div><button class="dr-close" id="logosClose" aria-label="Cerrar panel de logos">✕</button></div>
+  <div class="dr-body" id="logosBody"></div>
 </div>
 
 <script>
@@ -530,6 +595,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function R(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+/* @personalizar: nombres del overlay "Ver web parts" (layouts y fondos); cada web part se etiqueta en wp(kind, nombre, html) */
 const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'Tres columnas', l13:'Un tercio izquierda (1/3–2/3)', l31:'Un tercio derecha (2/3–1/3)'};
 const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
@@ -587,16 +653,18 @@ function ridges(w,h,o){
   return s;
 }
 /* 2 · mapa de puntos de LAC */
+/* @personalizar: silueta del mapa de puntos (polígonos lon/lat) */
 const LAC = {
-  main:[[-114.8,32.5],[-111,31.3],[-108.2,31.3],[-106.5,31.8],[-104.5,29.6],[-102.7,29.8],[-101.4,29.8],[-99.5,27.5],[-97.4,25.9],[-97.7,24],[-97.3,21.8],[-96.1,19.3],[-94.5,18.2],[-92,18.6],[-90.5,19.9],[-90.3,21.1],[-87.1,21.5],[-87.5,19.5],[-88.2,17.5],[-88.8,15.8],[-86,16],[-83.3,15],[-83.6,11.5],[-83,10],[-81.5,9],[-79.5,9.6],[-77.4,8.7],[-76,9.4],[-75.3,10.8],[-74,11.3],[-72,12.3],[-71.5,11],[-70,12.1],[-68,10.6],[-64,10.6],[-61.8,10.7],[-60,8.5],[-57.5,6],[-54,5.8],[-51.6,4.2],[-50,1.8],[-49.5,0],[-48,-1],[-44.5,-2.5],[-41,-2.9],[-38.5,-3.7],[-35.2,-5.5],[-34.9,-8],[-37,-11],[-38.9,-13.5],[-39.2,-17.5],[-40.5,-20.5],[-42,-23],[-44.5,-23.3],[-48.5,-26],[-48.8,-28.6],[-50.5,-31],[-52.5,-33.5],[-53.4,-33.8],[-55,-35],[-57,-35.2],[-57.5,-36.5],[-56.7,-36.6],[-57.6,-38.2],[-62,-38.9],[-62.3,-40.6],[-65,-41],[-63.8,-42.5],[-65,-45],[-67.5,-46.5],[-65.8,-47.8],[-68.3,-50.2],[-69,-52],[-68.6,-54.8],[-71,-55],[-74.5,-52.5],[-75.6,-48],[-74.5,-44],[-73.6,-40],[-73.4,-37],[-71.6,-33],[-71.4,-28.5],[-70.4,-23.5],[-70.3,-18.4],[-71.4,-17.6],[-75,-15.3],[-76.3,-13.4],[-78.2,-10],[-79.6,-7.3],[-81.3,-5.5],[-80.3,-3.4],[-80.9,-2.2],[-80,0],[-80,1],[-78.8,1.5],[-77.4,4],[-77.3,6.6],[-77.9,7.2],[-80.5,7.4],[-82,8.2],[-83.6,8.5],[-85.7,10],[-85.9,11.2],[-87.6,13],[-89.8,13.5],[-91.5,14],[-92.3,14.6],[-94,16.1],[-96.5,15.7],[-98.5,16.3],[-101,17.5],[-103.5,18.3],[-105.5,20.5],[-105.2,21.9],[-106,23],[-108,25],[-109.4,26.5],[-110.6,27.9],[-112.2,29.3],[-113.5,31.3]],
+  main:[[-114.8,32.5],[-111,31.3],[-108.2,31.3],[-106.5,31.8],[-104.5,29.6],[-102.7,29.8],[-101.4,29.8],[-99.5,27.5],[-97.4,25.9],[-97.7,24],[-97.3,21.8],[-96.1,19.3],[-94.5,18.2],[-92,18.6],[-90.5,19.9],[-90.3,21.1],[-87.1,21.5],[-87.5,19.5],[-88.2,17.5],[-88.8,15.8],[-86,16],[-83.3,15],[-83.6,11.5],[-83,10],[-81.5,9],[-79.5,9.6],[-77.4,8.7],[-76,9.4],[-75.3,10.8],[-74,11.3],[-72,12.3],[-71.5,11],[-70,12.1],[-68,10.6],[-64,10.6],[-61.8,10.7],[-60,8.5],[-57.5,6],[-54,5.8],[-51.6,4.2],[-50,1.8],[-49.5,0],[-48,-1],[-44.5,-2.5],[-41,-2.9],[-38.5,-3.7],[-35.2,-5.5],[-34.9,-8],[-37,-11],[-38.9,-13.5],[-39.2,-17.5],[-40.5,-20.5],[-42,-23],[-44.5,-23.3],[-48.5,-26],[-48.8,-28.6],[-50.5,-31],[-52.5,-33.5],[-53.4,-33.8],[-54.9,-34.9],[-56.2,-34.9],[-57.8,-34.45],[-58.6,-34.1],[-58.3,-34.9],[-57.2,-35.6],[-57.5,-36.5],[-56.7,-36.6],[-57.6,-38.2],[-62,-38.9],[-62.3,-40.6],[-65,-41],[-63.8,-42.5],[-65,-45],[-67.5,-46.5],[-65.8,-47.8],[-68.3,-50.2],[-69,-52],[-68.6,-54.8],[-71,-55],[-74.5,-52.5],[-75.6,-48],[-74.5,-44],[-73.6,-40],[-73.4,-37],[-71.6,-33],[-71.4,-28.5],[-70.4,-23.5],[-70.3,-18.4],[-71.4,-17.6],[-75,-15.3],[-76.3,-13.4],[-78.2,-10],[-79.6,-7.3],[-81.3,-5.5],[-80.3,-3.4],[-80.9,-2.2],[-80,0],[-80,1],[-78.8,1.5],[-77.4,4],[-77.3,6.6],[-77.9,7.2],[-80.5,7.4],[-82,8.2],[-83.6,8.5],[-85.7,10],[-85.9,11.2],[-87.6,13],[-89.8,13.5],[-91.5,14],[-92.3,14.6],[-94,16.1],[-96.5,15.7],[-98.5,16.3],[-101,17.5],[-103.5,18.3],[-105.5,20.5],[-105.2,21.9],[-106,23],[-108,25],[-109.4,26.5],[-110.6,27.9],[-112.2,29.3],[-113.5,31.3]],
   baja:[[-117.1,32.5],[-116.5,31],[-115.7,30],[-114.2,28],[-114.1,27.5],[-112.2,25.8],[-110.3,23],[-109.4,23.2],[-110,24.2],[-111.6,26.5],[-112.8,28.5],[-114.7,30.8],[-114.8,32.5]],
   cuba:[[-84.9,21.9],[-83,22.9],[-80.5,23.1],[-77.5,21.8],[-74.2,20.2],[-75.5,19.9],[-77.7,19.9],[-78.5,21.5],[-81.5,22.1],[-83.5,21.8]],
   hisp:[[-74.4,19.8],[-72.8,19.9],[-70,19.7],[-68.4,18.6],[-70,18.2],[-71.4,17.6],[-74.4,18.4]],
-  extra:[[-77.3,18.2],[-66.4,18.2],[-61.5,16.2],[-61,14.6],[-61.2,13.2],[-61.7,12.1],[-61.2,10.6],[-77.5,24.5],[-76,23.5],[-64.7,32.3]],
+  extra:[[-70.6,19.1],[-71.6,19.3],[-72.6,18.9],[-69.6,18.75],[-73.6,18.4],[-70.4,18.4],[-68.8,18.6],[-77.3,18.2],[-76.6,18.1],[-66.4,18.2],[-61.5,16.2],[-61,14.6],[-61.2,13.2],[-61.7,12.1],[-61.2,10.6],[-77.5,24.5],[-76,23.5],[-64.7,32.3]],
 };
+/* @personalizar: oficinas (nombre + lon/lat). Las líneas de red están en lacMap() → links (índices de este arreglo). */
 const OFFICES = [
-  {n:'Mexico City',lon:-99.13,lat:19.43},{n:'Monterrey',lon:-100.3,lat:25.67},{n:'Guadalajara',lon:-103.35,lat:20.67},
-  {n:'San José',lon:-84.09,lat:9.93},{n:'Bogotá',lon:-74.07,lat:4.71},{n:'Lima',lon:-77.04,lat:-12.05},{n:'São Paulo',lon:-46.63,lat:-23.55}];
+  {n:'Mexico City',lon:-99.13,lat:19.43},{n:'Monterrey',lon:-100.3,lat:25.67},{n:'San José',lon:-84.09,lat:9.93},
+  {n:'Santo Domingo',lon:-69.93,lat:18.48},{n:'Bogotá',lon:-74.07,lat:4.71},{n:'Buenos Aires',lon:-58.38,lat:-34.6}];
 function pip(pt,poly){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[xi,yi]=poly[i],[xj,yj]=poly[j];if(((yi>pt[1])!==(yj>pt[1]))&&(pt[0]<(xj-xi)*(pt[1]-yi)/(yj-yi)+xi))c=!c}return c}
 function lacMap(w,h,o={}){
   const step=o.step||1.15, x0=-119, x1=-32, y0=34, y1=-57;
@@ -611,11 +679,12 @@ function lacMap(w,h,o={}){
   LAC.extra.forEach(([lon,lat])=>{const[x,y]=P(lon,lat);s+=`<circle class="m-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(r*.8).toFixed(2)}"/>`});
   // red entre oficinas
   const pts=OFFICES.map(of=>P(of.lon,of.lat));
-  const links=[[0,1],[0,2],[0,3],[3,4],[4,5],[4,6],[5,6],[1,4]];
-  links.forEach(([a,b])=>{const[ax,ay]=pts[a],[bx,by]=pts[b];const mx=(ax+bx)/2+(by-ay)*.18,my=(ay+by)/2-(bx-ax)*.18;s+=`<path d="M${ax} ${ay} Q${mx} ${my} ${bx} ${by}" class="m-acc" style="stroke-dasharray:3 4;opacity:.75"/>`});
+  if(o.out)OFFICES.forEach((of,i)=>o.out.push({x:pts[i][0]+(o.gx||0),y:pts[i][1]+(o.gy||0),n:of.n}));
+  const links=[[0,1],[0,2],[0,3],[2,4],[3,4],[4,5],[2,3]];
+  links.forEach(([a,b])=>{const[ax,ay]=pts[a],[bx,by]=pts[b];const mx=(ax+bx)/2+(by-ay)*.18,my=(ay+by)/2-(bx-ax)*.18;s+=`<path d="M${ax} ${ay} Q${mx} ${my} ${bx} ${by}" class="m-acc" style="stroke-dasharray:3 4;opacity:${o.linkOp||.75}"/>`});
   OFFICES.forEach((of,i)=>{const[x,y]=pts[i];const lr=r*3.4;
     s+=`<circle cx="${x}" cy="${y}" r="${lr*2.1}" class="m-acc" style="opacity:.45"/><circle cx="${x}" cy="${y}" r="${lr}" class="m-accf" style="stroke:var(--art-text);stroke-width:${o.style2?1:0}"/>`;
-    if(o.labels){const left=['Guadalajara','Lima','San José'].includes(of.n);s+=`<text x="${left?x-lr*2.6:x+lr*2.6}" y="${y+4}" text-anchor="${left?'end':'start'}" class="m-txt" font-size="${o.fs||11}" letter-spacing="1">${of.n.toUpperCase()}</text>`}
+    if(o.labels){const left=['Mexico City','San José'].includes(of.n);s+=`<text x="${left?x-lr*2.6:x+lr*2.6}" y="${y+4}" text-anchor="${left?'end':'start'}" class="m-txt" font-size="${o.fs||11}" letter-spacing="1">${of.n.toUpperCase()}</text>`}
   });
   return s;
 }
@@ -718,22 +787,24 @@ const ph = (kind, tint, tag='') => `<div class="ph grain" style="--t:var(--hl-${
 /* =========================================================
    CONTENIDO SEMILLA (inglés; personas ficticias)
    ========================================================= */
+/* @personalizar: personas (ficticias) */
 const P = {
   lucia:{n:'Lucía Demo',r:'Design Technology Director, LAC',o:'Mexico City',d:'Sets the regional DT roadmap and the COM development funnel.'},
-  diego:{n:'Diego Ejemplo',r:'Regional VDC Lead',o:'São Paulo',d:'Coordination standards, ACC and model QA across LAC.'},
+  diego:{n:'Diego Ejemplo',r:'Regional VDC Lead',o:'Buenos Aires',d:'Coordination standards, ACC and model QA across LAC.'},
   sofia:{n:'Sofía Muestra',r:'Computational Design Lead',o:'Bogotá',d:'Grasshopper, Dynamo and optioneering for early design.'},
-  mateo:{n:'Mateo Prueba',r:'Data Intelligence Lead',o:'Lima',d:'Speckle, Power BI and spatial analytics.'},
+  mateo:{n:'Mateo Prueba',r:'Data Intelligence Lead',o:'Santo Domingo',d:'Speckle, Power BI and spatial analytics.'},
   camila:{n:'Camila Ficticia',r:'Reality Capture Lead',o:'San José',d:'Laser scanning, drone photogrammetry and as-built checks.'},
   andres:{n:'Andrés Modelo',r:'VDC Champion',o:'Monterrey'},
-  valeria:{n:'Valeria Boceto',r:'Computational Design Champion',o:'Guadalajara'},
+  valeria:{n:'Valeria Boceto',r:'Computational Design Champion',o:'Monterrey'},
   tomas:{n:'Tomás Borrador',r:'DT Champion',o:'Mexico City'},
   renata:{n:'Renata Esbozo',r:'Data Champion',o:'Bogotá'},
-  julian:{n:'Julián Maqueta',r:'Reality Capture Champion',o:'Lima'},
-  paula:{n:'Paula Plantilla',r:'DT Champion',o:'São Paulo'},
+  julian:{n:'Julián Maqueta',r:'Reality Capture Champion',o:'Santo Domingo'},
+  paula:{n:'Paula Plantilla',r:'DT Champion',o:'Buenos Aires'},
   ivan:{n:'Iván Prototipo',r:'VDC Specialist',o:'San José'},
 };
 const ini = n => n.split(' ').map(x=>x[0]).join('').slice(0,2);
 
+/* @personalizar: datos semilla de los clusters (texto, herramientas, proyecto, metodología, líderes, contacto) */
 const CL = {
   vdc:{key:'vdc',n:'01',code:'VDC',name:'Virtual Design & Construction',motif:'iso',page:'VDC',
     h1:'Coordinated models.',tail:'Fewer surprises on site.',
@@ -744,7 +815,7 @@ const CL = {
       so:'A BIM Execution Plan, ACC model hub and Speckle streams with automated clash reports every Friday.',
       st:[['1,240','clashes resolved before IFC'],['−18','% RFIs vs. last tower','%'],['9','disciplines federated'],['6','weeks saved in CDs']],
       who:[P.diego.n,P.andres.n,P.ivan.n],status:'Published · Case study'},
-    cards:[['Model QA dashboards for Lima retail fit-outs','hub','Lima'],['4D sequencing for a São Paulo HQ','city','São Paulo'],['ACC rollout playbook for LAC offices','screen','Regional']],
+    cards:[['Model QA dashboards for Santo Domingo hotel fit-outs','hub','Santo Domingo'],['4D sequencing for a Buenos Aires HQ','city','Buenos Aires'],['ACC rollout playbook for LAC offices','screen','Regional']],
     steps:[['Model audit','Health check of templates, levels and naming.'],['BEP & setup','Execution plan, ACC hub, federation rules.'],['Clash cycles','Weekly federated runs with tracked issues.'],['4D & handover','Sequencing, COBie data and as-built model.']],
     services:['BIM Execution Plans','Federated coordination','Clash detection & issue tracking','4D sequencing'],
     skills:['Revit, Navisworks, ACC','Dynamo automation','Speckle data exchange','Model QA scripting'],
@@ -755,8 +826,8 @@ const CL = {
     h1:'The existing world,',tail:'measured before we draw.',
     vp:'Laser scanning, drone photogrammetry and terrain analysis give LAC teams reliable existing conditions — and later, proof that what was built matches the model.',
     tools:[['scan','Leica BLK360 + ReCap'],['globe','Drone photogrammetry'],['cube','Point cloud to Revit'],['chart','CloudCompare']],
-    proj:{t:'Lima heritage façade: scan-to-BIM for an adaptive reuse',office:'Lima',ph:'facade',
-      ch:'A 1920s façade with no reliable drawings, under heritage protection and a tight survey window.',
+    proj:{t:'Santo Domingo colonial façade: scan-to-BIM for an adaptive reuse',office:'Santo Domingo',ph:'facade',
+      ch:'A colonial-era façade in the Ciudad Colonial with no reliable drawings, under heritage protection and a tight survey window.',
       so:'Two days of terrestrial scanning plus a drone flight, registered into one cloud and modeled at LOD 300.',
       st:[['±4','mm registration accuracy','mm'],['2','days on site'],['38','façade elements modeled'],['0','surveys repeated']],
       who:[P.camila.n,P.julian.n,P.renata.n],status:'Published · Case study'},
@@ -776,7 +847,7 @@ const CL = {
       so:'Agent-based pedestrian simulation in Grasshopper, compared across options and reviewed live with the client.',
       st:[['3','layouts simulated'],['−27','% peak congestion','%'],['14k','agents per run'],['2','client workshops']],
       who:[P.sofia.n,P.valeria.n,P.renata.n],status:'Published · Case study'},
-    cards:[['Climate analysis toolkit for early massing','city','Guadalajara'],['Rhino–Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional']],
+    cards:[['Climate analysis toolkit for early massing','city','Santo Domingo'],['Rhino–Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional']],
     steps:[['Frame the question','Which decision, which metric, which data.'],['Script & simulate','Grasshopper, Dynamo or Python.'],['Compare options','Dashboards the team can read.'],['Hand over','Clean geometry and reusable scripts.']],
     services:['Massing & optioneering','Climate and daylight analysis','Pedestrian Flows','Design automation'],
     skills:['Grasshopper, Dynamo, Python','Ladybug tools','Rhino.Inside.Revit','gBlox test-fits'],
@@ -792,7 +863,7 @@ const CL = {
       so:'A GIS model and Power BI dashboard combining 12 indicators into one index the client can update.',
       st:[['38','blocks analyzed'],['12','urban indicators'],['6','days, down from 4 weeks'],['1','index the client owns']],
       who:[P.mateo.n,P.renata.n,P.lucia.n],status:'Published · Impact story'},
-    cards:[['Speckle → Power BI project dashboards','screen','Lima'],['Spatial analytics for retail network','city','São Paulo'],['Copilot prompts for data teams','people','Regional']],
+    cards:[['Speckle → Power BI project dashboards','screen','Bogotá'],['Spatial analytics for retail network','city','Buenos Aires'],['Copilot prompts for data teams','people','Regional']],
     steps:[['Find the data','Models, GIS, surveys, client sources.'],['Connect','Speckle streams and clean pipelines.'],['Visualize','Power BI built for decisions.'],['Hand over','Dashboards the client can maintain.']],
     services:['Project dashboards','Spatial analytics & GIS','Urban Vitality Index','Productive AI adoption'],
     skills:['Power BI, DAX','Speckle, Python','ArcGIS, QGIS','Copilot workflows'],
@@ -805,19 +876,81 @@ const ORDER = ['vdc','rc','cd','di'];
 /* =========================================================
    PIEZAS DE ARTE COMPUESTAS
    ========================================================= */
+/* @personalizar: hero de Home (texto horneado, mapa, cursores). En SharePoint se exporta como GIF/MP4. */
+let HERO=null;
 function homeHeader(){
-  const W=1600,H=540;
-  return `<div class="art hdr grain" role="img" aria-label="Design Technology LAC. Header image: data terrain wireframe and a dot map of Latin America and the Caribbean with seven offices — Mexico City, Monterrey, Guadalajara, San José, Bogotá, Lima and São Paulo. Text: Design technology, built across Latin America and the Caribbean.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <g>${ridges(W,H,{rows:16,top:392,amp:120,cx:.62,cx2:.86,sp:.1,seed:1.3,acc:10})}</g>
-      <g transform="translate(1010,34)">${lacMap(540,480,{step:1.25,fw:.95,labels:false,style2:document.documentElement.dataset.style==='2'})}</g>
+  const W=1600,H=620,MX=925,MY=6,MW=650,MH=608,out=[];
+  const map=lacMap(MW,MH,{step:.9,fw:.98,labels:true,fs:12,linkOp:.3,out,gx:MX,gy:MY,style2:document.documentElement.dataset.style==='2'});
+  HERO={off:out};
+  return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean, from Mexico to Patagonia, with six offices — Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. Colored name-tagged cursors move between offices and draw connecting lines and triangles, like people collaborating on a shared canvas. Text: Design technology, built across Latin America and the Caribbean.">
+    <svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g id="collabLines"></g>
+      <g transform="translate(${MX},${MY})">${map}</g>
+      <g id="collab"></g>
     </svg>
     <div class="copy">
-      <div class="k"><span>Design Technology</span><i>LAC · 07 offices · 04 clusters</i></div>
+      <div class="k"><span>Design Technology</span><i>LAC · 06 offices · 04 clusters</i></div>
       <h1 class="big">Design technology,<br><em>built across Latin America<br>&amp; the Caribbean</em><span class="cur">_</span></h1>
       <div class="foot"><span><b>VDC</b></span><span><b>Reality Capture</b></span><span><b>Computational Design</b></span><span><b>Data Intelligence</b></span></div>
     </div>
   </div>`;
+}
+/* cursores "multiplayer" entre oficinas (en SharePoint: GIF o MP4 pre-renderizado) */
+let collabRAF=0;
+function startCollab(){
+  cancelAnimationFrame(collabRAF);
+  const svg=document.getElementById('heroSvg'); if(!svg||!HERO)return;
+  const gL=svg.querySelector('#collabLines'), gC=svg.querySelector('#collab'), NS='http://www.w3.org/2000/svg';
+  const off=HERO.off, rnd=R(42);
+  const mk=(tag,at,par)=>{const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);if(par)par.appendChild(e);return e};
+  const COLS=[['var(--accent)','var(--accent-ink)'],['var(--hl-vdc)','var(--on-hl)'],['var(--hl-rc)','var(--on-hl)'],['var(--hl-cd)','var(--on-hl)'],['var(--hl-di)','var(--on-hl)']];
+  const NAMES=['Ana','Leo','Mara','Tomás','Inés','Raúl','Sol','Iker','Nadia'];
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fades=[];
+  const pick=(not)=>{let k;do{k=Math.floor(rnd()*off.length)}while(not.includes(k));return k};
+  const hov=()=>{const a=rnd()*Math.PI*2,r=22+rnd()*26;return[Math.cos(a)*r,Math.sin(a)*r]};
+  const cur=NAMES.map((name,i)=>{
+    const [fill,ink]=COLS[i%COLS.length];
+    const g=mk('g',{},gC);
+    mk('path',{d:'M0 0 L0 17 L4.6 12.6 L7.6 19.4 L10.6 18 L7.7 11.4 L13.6 11.2 Z',style:`fill:${fill};stroke:var(--art-bg);stroke-width:1.4;stroke-linejoin:round`},g);
+    const pw=name.length*7.4+16;
+    mk('rect',{x:12,y:19,width:pw,height:19,rx:4,style:`fill:${fill}`},g);
+    const t=mk('text',{x:20,y:32.5,style:`fill:${ink}`},g); t.textContent=name;
+    const a=[5,3,4,0,2,5,1,4,3][i]%off.length, b=pick([a]);
+    return {g,fill,a,b,t:rnd()*.9,dur:3800+rnd()*3200,wait:0,bend:(rnd()-.5)*.7,seed:rnd()*100,ha:hov(),hb:hov(),line:null};
+  });
+  const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  const posOf=(c,now)=>{const A=off[c.a],B=off[c.b];const ax=A.x+c.ha[0],ay=A.y+c.ha[1],bx=B.x+c.hb[0],by=B.y+c.hb[1];
+    const mx=(ax+bx)/2+(by-ay)*c.bend,my=(ay+by)/2-(bx-ax)*c.bend;const e=ease(Math.min(1,c.t));
+    let x=(1-e)*(1-e)*ax+2*(1-e)*e*mx+e*e*bx,y=(1-e)*(1-e)*ay+2*(1-e)*e*my+e*e*by;
+    x+=Math.sin(now/700+c.seed)*2.6;y+=Math.cos(now/950+c.seed)*2.6;return[x,y]};
+  const newLine=c=>{const A=off[c.a];c.line=mk('line',{x1:A.x,y1:A.y,x2:A.x,y2:A.y,style:`stroke:${c.fill};stroke-width:1.6;stroke-linecap:round`},gL)};
+  const pulse=(o,fill,now)=>{const e=mk('circle',{cx:o.x,cy:o.y,r:6,style:`fill:none;stroke:${fill};stroke-width:1.5`},gL);fades.push({el:e,born:now,life:1100,pulse:true})};
+  const tri=(a,b,fill,now,life=5200)=>{const c=pick([a,b]);const P=[off[a],off[b],off[c]].map(o=>o.x.toFixed(1)+','+o.y.toFixed(1)).join(' ');
+    const e=mk('polygon',{points:P,style:`fill:${fill};fill-opacity:.09;stroke:${fill};stroke-width:1.2;stroke-dasharray:5 4`},gL);fades.push({el:e,born:now,life,tri:true})};
+  const place=(c,now)=>{const[x,y]=posOf(c,now);c.g.setAttribute('transform',`translate(${x.toFixed(1)},${y.toFixed(1)})`);if(c.line){c.line.setAttribute('x2',x.toFixed(1));c.line.setAttribute('y2',y.toFixed(1))}};
+  const t0=performance.now();
+  cur.forEach(c=>{newLine(c);place(c,t0)});
+  tri(0,4,COLS[0][0],t0-1500);tri(2,5,COLS[3][0],t0-600);
+  if(reduce){fades.forEach(f=>f.el.style.opacity=.85);return}
+  let last=t0;
+  const frame=now=>{
+    if(!svg.isConnected)return;
+    const dt=Math.min(64,now-last);last=now;
+    cur.forEach(c=>{
+      if(c.wait>0){c.wait-=dt;if(c.wait<=0){c.a=c.b;c.b=pick([c.a]);c.ha=c.hb;c.hb=hov();c.t=0;c.dur=3800+rnd()*3200;c.bend=(rnd()-.5)*.7;newLine(c)}}
+      else{c.t+=dt/c.dur;if(c.t>=1){c.t=1;const B=off[c.b];if(c.line){c.line.setAttribute('x2',B.x);c.line.setAttribute('y2',B.y);fades.push({el:c.line,born:now,life:4200});c.line=null}
+        pulse(B,c.fill,now);if(rnd()<.5)tri(c.a,c.b,c.fill,now);c.wait=500+rnd()*1500}}
+      place(c,now);
+    });
+    for(let i=fades.length-1;i>=0;i--){const f=fades[i],k=(now-f.born)/f.life;
+      if(k>=1){f.el.remove();fades.splice(i,1);continue}
+      if(f.pulse){f.el.setAttribute('r',6+k*22);f.el.style.opacity=1-k}
+      else if(f.tri){f.el.style.opacity=k<.12?k/.12:1-Math.max(0,(k-.45)/.55)}
+      else f.el.style.opacity=k<.5?1:1-(k-.5)/.5;}
+    collabRAF=requestAnimationFrame(frame);
+  };
+  collabRAF=requestAnimationFrame(frame);
 }
 function clusterHeader(c){
   const W=1600,H=500;let art='';
@@ -866,9 +999,9 @@ function diagram(){
 }
 function mapArt(){
   const W=792,H=560;
-  return `<div class="art mapart grain" role="img" aria-label="Dot map of Latin America and the Caribbean with seven Gensler LAC offices highlighted and connected: Monterrey, Guadalajara, Mexico City, San José, Bogotá, Lima and São Paulo.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${halftone(W,H,{step:18,seed:2,fade:.0}).replace(/class="m-dot"/g,'class="m-dot" style="opacity:var(--ht-op)"')}${lacMap(W,H,{step:1.05,fw:.86,ox:240,labels:true,fs:11,style2:document.documentElement.dataset.style==='2'})}</svg>
-    <div class="legend"><span><i></i><b>07 offices</b></span><span>One regional DT team</span><span>Mexico · Central America · South America</span></div>
+  return `<div class="art mapart" role="img" aria-label="Dot map of Latin America and the Caribbean, from Mexico to Patagonia, with six Gensler LAC offices highlighted and connected: Monterrey, Mexico City, San José, Santo Domingo, Bogotá and Buenos Aires.">
+    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${lacMap(W,H,{step:1,fw:.9,ox:262,labels:true,fs:11,style2:document.documentElement.dataset.style==='2'})}</svg>
+    <div class="legend"><span><i></i><b>06 offices</b></span><span>One regional DT team</span><span>Mexico · Central America · Caribbean · South America</span></div>
   </div>`;
 }
 function procArt(c){
@@ -898,6 +1031,7 @@ const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><sm
 /* =========================================================
    PÁGINAS
    ========================================================= */
+/* @personalizar: páginas (secciones con sec(layout, fondo, columnas) y web parts con wp()) */
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   const tools = [
@@ -907,9 +1041,9 @@ function pageHome(){
     ['TA','Terrain Analysis','LATAM solution',['Reality Capture','Computational Design'],'Pilot','Slope, cut-and-fill and drainage from survey or GIS data.'],
   ].map(t=>`<div class="tool"><div class="top"><span class="ico">${t[0]}</span><div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><p>${t[5]}</p><div class="chips">${t[3].map(x=>`<span class="chip">${x}</span>`).join('')}<span class="chip st">${t[4]}</span></div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('');
   return [
-    sec('full','none',[wp('i','Image · full-width 16:5 · alt completo',homeHeader())]),
+    sec('full','none',[wp('i','Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean')}<h1 class="t-h1">One regional team for every project <span class="tail">— from first sketch to last scan.</span></h1><p class="t-p">Four clusters across seven offices. We help Gensler LAC project teams compute, coordinate, capture and measure — and when the tool doesn’t exist yet, we build it with you.</p>`),
+      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean')}<h1 class="t-h1">One regional team for every project <span class="tail">— from first sketch to last scan.</span></h1><p class="t-p">Four clusters across six offices. We help Gensler LAC project teams compute, coordinate, capture and measure — and when the tool doesn’t exist yet, we build it with you.</p>`),
       wp('n','Quick links · Button (4 acciones)', `<div class="ql-buttons">${[['compass','Explore capabilities','#/clusters/vdc','VDC, Reality Capture, CD, Data'],['tool','Find a tool','#/tools','Gensler tools and LATAM solutions'],['book','Start learning','#/learning','Paths, workshops, recordings'],['bulb','Build with COM','#/request','Request support or submit an idea']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
     ]),
     sec('l1','none',[
@@ -921,7 +1055,7 @@ function pageHome(){
       wp('n','Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
     ]),
     sec('l13','neutral',[
-      wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM relevance, linked to the authoritative firmwide source.</p><div class="stat-grid"><div class="stat"><b>07</b><span>offices with a DT champion</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
+      wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM relevance, linked to the authoritative firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices with a DT champion</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
       wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
     ],'EXTRA'),
     sec('l31','none',[
@@ -946,11 +1080,11 @@ function pageHome(){
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Featured community')}${h2('People you can call.','By office, capability and tool.')}`)
       + wp('n','People · Descriptive (liderazgo regional)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people desc">${[P.lucia,P.diego,P.sofia].map(p=>person(p)).join('')}</div>`)
-      + wp('n','People · Compact (office champions)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people">${[P.andres,P.valeria,P.tomas,P.renata,P.julian,P.paula].map(p=>person(p,false,true)).join('')}</div>`),
-      wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:12px"><span class="av" style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">LIMA · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px">“Ask me about connecting models to dashboards. Most teams are two scripts away from live project data.”</p>`)
+      + wp('n','People · Compact (office champions)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people">${[P.tomas,P.andres,P.ivan,P.julian,P.renata,P.paula].map(p=>person(p,false,true)).join('')}</div>`),
+      wp('n','Image + Text (experto destacado)', `<div class="wp-title"><h3>Featured expert</h3></div><div style="display:flex;gap:14px;align-items:center;margin-bottom:12px"><span class="av" style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:600;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)" aria-hidden="true">MP</span><div><b style="font-size:17px">${P.mateo.n}</b><div class="meta-line">SANTO DOMINGO · SPECKLE · POWER BI</div></div></div><p class="t-p muted" style="font-size:14px">“Ask me about connecting models to dashboards. Most teams are two scripts away from live project data.”</p>`)
       + wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
     ]),
-    sec('l1','neutral',[wp('n','News · Top story (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc')}<h4>São Paulo and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
+    sec('l1','neutral',[wp('n','News · Top story (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
     sec('l1','none',[wp('n','Quick links · Compact (EXTRA: curado de firmwide)', `<div class="wp-title"><h3>Curated from firmwide</h3></div><div class="ql-compact">${[['ext','Gensler DT firmwide'],['ext','Digital Capsules library'],['ext','BIM standards (firmwide)'],['ext','Productive AI hub'],['ext','Power BI template gallery'],['ext','Speckle at Gensler']].map(q=>`<a href="#/home">${ic(q[0])}${q[1]}</a>`).join('')}</div>`)],'EXTRA'),
   ].join('');
 }
@@ -993,7 +1127,7 @@ function pageCluster(k){
 const banner = (k,t,tail,p) => sec('l1','none',[wp('n','Banner · layout Plain (título de página)', `<div class="banner">${kick(k)}<h1 class="t-h1">${esc(t)} <span class="tail">${esc(tail)}</span></h1><p class="t-p muted">${esc(p)}</p></div>`)]);
 
 function pageProjects(){
-  const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Lima heritage façade: scan-to-BIM','facade','rc','RC · Lima'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Lima']];
+  const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
   return banner('Projects','Where has DT created value?','Case studies by cluster.','Every case study is one page, tagged by cluster, office and tools used — so it also appears on the cluster and tool pages.')
   + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
   + sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (todas)', `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
@@ -1020,13 +1154,14 @@ function pageCommunity(){
 function pageRequest(){
   const lanes=[['Idea',14,[['Clash triage with Copilot','VDC'],['Facade panel optimizer','CD']]],['Evaluation',6,[['Drone-to-mesh pipeline','RC'],['Retail KPI template','DI']]],['In development',6,[['Terrain Analysis v2','RC'],['Speckle → Power BI connector','DI']]],['Launched',9,[['Urban Vitality Index','DI'],['gBlox LAC test-fits','CD']]]];
   return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request project support, submit an idea and follow it through the development funnel. The COM program owner updates the board monthly.')
-  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week? A tool you wish existed?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Lima retail fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
+  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week? A tool you wish existed?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Santo Domingo hotel fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
   + sec('l1','neutral',[wp('n','List · Board view agrupado por Status (por verificar en web part)', `<div class="wp-title"><h3>Development funnel</h3><a href="#/request">Open board</a></div><div class="board">${lanes.map(l=>`<div class="lane"><h4>${l[0]} <span>${l[1]}</span></h4>${l[2].map(c=>`<div class="kcard"><b>${esc(c[0])}</b><span class="chip">${c[1]}</span></div>`).join('')}</div>`).join('')}</div>`)]);
 }
 
 /* =========================================================
    NAVEGACIÓN, ROUTER Y CONTROLES
    ========================================================= */
+/* @personalizar: navegación (agregar página = entrada aquí + case en route() + función pageX()) */
 const NAV=[['home','Home'],['clusters','LAC Clusters'],['projects','Projects'],['tools','Tools'],['learning','Learning'],['community','Community'],['request','Send your request']];
 function buildNav(){
   $('#topnav').innerHTML=NAV.map(([k,l])=>k==='clusters'
@@ -1048,6 +1183,9 @@ function route(){
   if(q.get('s'))setStyle(q.get('s'),false);
   if(q.get('wp'))setWp(q.get('wp')==='1');
   if(q.get('f'))setFont(q.get('f'));
+  if(q.get('a'))setAccent(q.get('a'));
+  if(q.get('logo'))applyLogo(q.get('logo'));
+  if(q.get('logos')==='1')setTimeout(()=>setDrawer(true),50);
   const main=$('#main');let html='',cl='';
   switch(parts[0]){
     case 'clusters': cl=CL[parts[1]]?parts[1]:'vdc'; html=pageCluster(cl); break;
@@ -1062,7 +1200,28 @@ function route(){
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
+  startCollab();
 }
+/* @personalizar: logos (inline desde maqueta/logos/*.svg; tinta = currentColor, acento = var(--accent)) */
+const LOGO_DATA = [{"id": "L01", "group": "geo", "name": "Retícula dt", "why": "monograma \"dt\" armado con puntos sobre una retícula de 7×7; los puntos vacíos dejan ver la retícula. Cita el mapa de puntos y la nube de puntos (Reality Capture) del estilo \"Terreno de datos\".", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M2.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 6.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M36.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M53.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M5.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M48 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0\"/><circle cx=\"57.5\" cy=\"57.5\" r=\"3.7\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M2.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 6.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M36.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M53.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M5.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M48 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0\"/><circle cx=\"57.5\" cy=\"57.5\" r=\"3.7\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L02", "group": "geo", "name": "Nodo 4", "why": "grafo de 4 nodos en los puntos cardinales (VDC, Reality Capture, Computational Design, Data Intelligence) conectados entre sí y a un nodo central en acento: el equipo regional como hub.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"3.5\" d=\"M32 8L56 32M32 8L32 32M56 32L32 56M56 32L32 32M32 56L8 32M32 56L32 32M8 32L32 8M8 32L32 32\"/><path fill=\"currentColor\" d=\"M25.5 8a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M49.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M25.5 56a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M1.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"3.5\" d=\"M32 8L56 32M32 8L32 32M56 32L32 56M56 32L32 32M32 56L8 32M32 56L32 32M8 32L32 8M8 32L32 32\"/><path fill=\"currentColor\" d=\"M25.5 8a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M49.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M25.5 56a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M1.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L03", "group": "geo", "name": "Dos cursores", "why": "dos punteros en la misma orientación, uno en tinta y otro en acento, como en un lienzo multiusuario: colaboración en tiempo real entre oficinas y equipos de proyecto.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M4 2L4 36L13 28L19 41L25 38L19 26L30 26Z\"/><path style=\"fill:var(--accent,#E11F26)\" d=\"M35 23L35 57L44 49L50 62L56 59L50 47L61 47Z\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M4 2L4 36L13 28L19 41L25 38L19 26L30 26Z\"/><path style=\"fill:var(--accent,#E11F26)\" d=\"M35 23L35 57L44 49L50 62L56 59L50 47L61 47Z\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L04", "group": "geo", "name": "dt_ terminal", "why": "\"dt\" en trazo monolineal geométrico seguido de un guion bajo de terminal en acento, como un prompt listo para escribir: tecnología, scripts y automatización.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"6\" d=\"M28.5 6.5V50M28.5 37a10 10 0 1 1 -20 0a10 10 0 1 1 20 0M40 12.5V41a6 6 0 0 0 6 6H50M34 27H49\"/><rect x=\"50\" y=\"54\" width=\"12\" height=\"6\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"6\" d=\"M28.5 6.5V50M28.5 37a10 10 0 1 1 -20 0a10 10 0 1 1 20 0M40 12.5V41a6 6 0 0 0 6 6H50M34 27H49\"/><rect x=\"50\" y=\"54\" width=\"12\" height=\"6\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L05", "group": "red", "name": "Constelación", "why": "Las 6 oficinas (MTY, CDMX, SJO, BOG, SDQ, BUE) como nodos en posición geográfica estilizada, unidos por una red: la región como un solo sistema conectado. La diagonal norte-sur dibuja la silueta de LAC sin caer en el mapa literal ni en el folclor.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M11 8L17 20L28 31L39 38L49 57M28 31L47 18L39 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g style=\"fill:var(--accent,#E11F26)\"><circle cx=\"11\" cy=\"8\" r=\"3.6\"/><circle cx=\"17\" cy=\"20\" r=\"3.6\"/><circle cx=\"47\" cy=\"18\" r=\"3.6\"/><circle cx=\"28\" cy=\"31\" r=\"3.6\"/><circle cx=\"39\" cy=\"38\" r=\"3.6\"/><circle cx=\"49\" cy=\"57\" r=\"4.5\"/></g></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M11 8L17 20L28 31L39 38L49 57M28 31L47 18L39 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g style=\"fill:var(--accent,#E11F26)\"><circle cx=\"11\" cy=\"8\" r=\"3.6\"/><circle cx=\"17\" cy=\"20\" r=\"3.6\"/><circle cx=\"47\" cy=\"18\" r=\"3.6\"/><circle cx=\"28\" cy=\"31\" r=\"3.6\"/><circle cx=\"39\" cy=\"38\" r=\"3.6\"/><circle cx=\"49\" cy=\"57\" r=\"4.5\"/></g><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L06", "group": "red", "name": "Eje", "why": "Un meridiano vertical con una rama por oficina, a izquierda o derecha según su longitud; el ecuador, en acento, cruza el eje. Cinco oficinas quedan al norte y una al sur: un diagrama técnico (tipo espina o escala) que se lee como herramienta de medición.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M32 4V60M32 8H14M32 15H16M32 21H48M32 27H24M32 33H40M32 55H51\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/><g fill=\"currentColor\"><circle cx=\"14\" cy=\"8\" r=\"3.25\"/><circle cx=\"16\" cy=\"15\" r=\"3.25\"/><circle cx=\"48\" cy=\"21\" r=\"3.25\"/><circle cx=\"24\" cy=\"27\" r=\"3.25\"/><circle cx=\"40\" cy=\"33\" r=\"3.25\"/><circle cx=\"51\" cy=\"55\" r=\"3.25\"/></g><path d=\"M21 43H43\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"4\" stroke-linecap=\"round\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M32 4V60M32 8H14M32 15H16M32 21H48M32 27H24M32 33H40M32 55H51\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/><g fill=\"currentColor\"><circle cx=\"14\" cy=\"8\" r=\"3.25\"/><circle cx=\"16\" cy=\"15\" r=\"3.25\"/><circle cx=\"48\" cy=\"21\" r=\"3.25\"/><circle cx=\"24\" cy=\"27\" r=\"3.25\"/><circle cx=\"40\" cy=\"33\" r=\"3.25\"/><circle cx=\"51\" cy=\"55\" r=\"3.25\"/></g><path d=\"M21 43H43\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"4\" stroke-linecap=\"round\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L07", "group": "red", "name": "D/T", "why": "Monograma \"D/T\" de geometría constructiva cuyo slash en acento corta la retícula: la barra de ruta (\"dt/lac\") y el \"/\" de Design/Technology. Es el más legible y el más neutro; funciona como wordmark sin depender de una fuente instalada.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M5 15H11A17 17 0 0 1 11 49H5ZM11.5 21.5V42.5A10.5 10.5 0 0 0 11.5 21.5ZM42 15H61V21.5H54.75V49H48.25V21.5H42Z\" fill=\"currentColor\" fill-rule=\"evenodd\"/><path d=\"M30 56L41 8\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"5.5\" stroke-linecap=\"butt\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M5 15H11A17 17 0 0 1 11 49H5ZM11.5 21.5V42.5A10.5 10.5 0 0 0 11.5 21.5ZM42 15H61V21.5H54.75V49H48.25V21.5H42Z\" fill=\"currentColor\" fill-rule=\"evenodd\"/><path d=\"M30 56L41 8\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"5.5\" stroke-linecap=\"butt\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L08", "group": "red", "name": "Cota", "why": "Un pin de ubicación hecho de tres curvas de nivel: el contorno, una cota intermedia irregular y la cumbre en acento. Une lugar (las oficinas) con terreno y dato (reality capture, topografía, nubes de puntos).", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M32 60L15.20 37.60A21 21 0 1 1 48.80 37.60ZM24 12C30 9.5 37 12 41 17C45 22 44 29 39 32C35 34.5 32 31 27 33.5C22 36 17 33 16.5 27C16 21 18.5 14.5 24 12Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/><ellipse cx=\"29.5\" cy=\"21.5\" rx=\"7\" ry=\"4.25\" transform=\"rotate(-18 29.5 21.5)\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M32 60L15.20 37.60A21 21 0 1 1 48.80 37.60ZM24 12C30 9.5 37 12 41 17C45 22 44 29 39 32C35 34.5 32 31 27 33.5C22 36 17 33 16.5 27C16 21 18.5 14.5 24 12Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/><ellipse cx=\"29.5\" cy=\"21.5\" rx=\"7\" ry=\"4.25\" transform=\"rotate(-18 29.5 21.5)\" style=\"fill:var(--accent,#E11F26)\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}];
+const MONO_SYM=`<svg viewBox="0 0 44 44"><rect width="44" height="44" fill="currentColor"/><text x="7" y="31" font-family="var(--f-art)" font-weight="700" font-size="21" letter-spacing="-1.2" fill="var(--bg)">dt</text><rect x="32" y="26" width="5" height="5" fill="var(--accent)"/></svg>`;
+const MONO_HOR=`<svg viewBox="0 0 240 44"><rect width="44" height="44" fill="currentColor"/><text x="7" y="31" font-family="var(--f-art)" font-weight="700" font-size="21" letter-spacing="-1.2" fill="#888">dt</text><rect x="32" y="26" width="5" height="5" fill="var(--accent)"/><text x="56" y="20" font-family="var(--f-art)" font-weight="600" font-size="15" fill="currentColor">Design Technology</text><text x="56" y="36" font-family="var(--f-art-mono)" font-size="10" letter-spacing="1.5" fill="currentColor" opacity=".7">LAC · GENSLER</text></svg>`;
+const LOGOS=LOGO_DATA.concat([{id:'L00',group:'ref',name:'Monograma provisional «dt»',why:'El de la primera ronda de la maqueta. Queda como referencia para volver al original.',sym:MONO_SYM,hor:MONO_HOR}]);
+function logoById(id){return LOGOS.find(l=>l.id===id)||LOGOS[0]}
+function applyLogo(id){const L=logoById(id);$('#siteLogo').innerHTML=L.sym;$('#footLogo').innerHTML=L.sym;store('logo',L.id);
+  document.querySelectorAll('.lg-card').forEach(c=>{const on=c.dataset.id===L.id,b=c.querySelector('.lg-use');c.classList.toggle('sel',on);b.setAttribute('aria-pressed',on);b.textContent=on?'En uso en la maqueta':'Usar en la maqueta'})}
+function logoCard(L){return `<article class="lg-card" data-id="${L.id}"><div class="lg-sym">${L.sym}</div>
+  <div class="lg-hz2"><div class="pv dk hz">${L.hor}</div><div class="pv lt hz">${L.hor}</div></div>
+  <h4>${L.id} · ${esc(L.name)}</h4><p>${esc(L.why.charAt(0).toUpperCase()+L.why.slice(1))}</p>
+  <div class="lg-prev"><div class="pv dk sq">${L.sym}</div><div class="pv lt sq">${L.sym}</div><div class="pv fav">24 px<span class="dk" style="background:#0B0C0D;color:#F2F2F0">${L.sym}</span><span style="background:#F4F2EE;color:#111">${L.sym}</span><span style="background:var(--accent);color:var(--accent-ink)">${L.sym}</span></div></div>
+  <button class="lg-use" type="button" aria-pressed="false">Usar en la maqueta</button></article>`}
+function buildLogos(){
+  const G=[['geo','Geométricos · L01–L04'],['red','Territorio y red · L05–L08'],['ref','Referencia']];
+  $('#logosBody').innerHTML=G.map(([g,t])=>`<h3 class="grp-t">${t}</h3><div class="dr-grid">${LOGOS.filter(l=>l.group===g).map(logoCard).join('')}</div>`).join('');
+  document.querySelectorAll('.lg-use').forEach(b=>b.addEventListener('click',()=>applyLogo(b.closest('.lg-card').dataset.id)));
+}
+function setDrawer(open){const d=$('#logosDrawer');d.classList.toggle('open',open);$('#logosBtn').setAttribute('aria-expanded',open);if(open)$('#logosClose').focus({preventScroll:true});else $('#logosBtn').focus({preventScroll:true})}
+function setAccent(a){document.documentElement.dataset.accent=a;document.querySelectorAll('[data-set-accent]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setAccent===a));store('accent',a)}
 function store(k,v){try{localStorage.setItem('dtlac-'+k,v)}catch(e){}}
 function load(k){try{return localStorage.getItem('dtlac-'+k)}catch(e){return null}}
 function setStyle(s,rerender=true){document.documentElement.dataset.style=s;document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);if(rerender)route()}
@@ -1071,7 +1230,12 @@ function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#w
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
 document.querySelectorAll('[data-set-font]').forEach(b=>b.addEventListener('click',()=>setFont(b.dataset.setFont)));
 $('#wpToggle').addEventListener('click',()=>setWp(!document.documentElement.classList.contains('show-wp')));
-setStyle(load('style')||'1',false);setFont(load('font')||'brand');setWp(load('wp')==='1');
+document.querySelectorAll('[data-set-accent]').forEach(b=>b.addEventListener('click',()=>setAccent(b.dataset.setAccent)));
+$('#logosBtn').addEventListener('click',()=>setDrawer(!$('#logosDrawer').classList.contains('open')));
+$('#logosClose').addEventListener('click',()=>setDrawer(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').classList.contains('open'))setDrawer(false)});
+setStyle(load('style')||'1',false);setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
+buildLogos();applyLogo(load('logo')||'L07');
 buildNav();route();
 window.addEventListener('hashchange',route);
 </script>
