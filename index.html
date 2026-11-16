@@ -74,8 +74,8 @@ html[data-style="2"]{
 }
 /* @personalizar: tokens del Estilo 3 */
 /* ---------- ESTILO 3 · TERRENO CLARO (ADN del 1 en blanco: mono, retícula, puntos; bajo contraste) ----------
-   El Estilo 4 hereda este bloque y todas las reglas html:is([data-style="3"],[data-style="4"]); solo redefine lo de abajo. */
-html:is([data-style="3"],[data-style="4"]){
+   El Estilo 4 hereda este bloque y todas las reglas html:is([data-style="3"],[data-style="4"],[data-style="5"]); solo redefine lo de abajo. */
+html:is([data-style="3"],[data-style="4"],[data-style="5"]){
   /* primitivos */
   --p-white:#FFFFFF; --p-snow:#FBFBFA; --p-mist:#F5F5F4; --p-rule:#E6E6E3; --p-ink:#121314;
   --p-graphite:#5F6368; --p-silver:#8A8E93; --p-tail-art:#6E7278;
@@ -103,7 +103,7 @@ html:is([data-style="3"],[data-style="4"]){
 /* @personalizar: tokens del Estilo 4 (rampa azul, neutros fríos, degradados y grano). Hereda tipografía, geometría y "menos texto" del Estilo 3. */
 /* ---------- ESTILO 4 · DEGRADADO AZUL (claro; acento fijo, sin selector) ----------
    Página blanca o niebla. El degradado aparece solo en piezas puntuales, y en SharePoint cada una es una IMAGEN pre-renderizada. */
-html[data-style="4"]{
+html:is([data-style="4"],[data-style="5"]){
   /* primitivos: rampa azul (de profundo a celeste) + tintes de fondo */
   --b-950:#071E73; --b-900:#0A2A9A; --b-800:#1537B8; --b-electric:#2A2AD8; --b-700:#2348C8; --b-600:#2A6AD8;
   --b-500:#4F8CE6; --b-400:#7DB4F2; --b-300:#A8D8F8; --b-200:#CFE7FB; --b-100:#E8F3FD; --b-50:#F4F9FE;
@@ -128,6 +128,58 @@ html[data-style="4"]{
   /* degradados (componente) */
   --g4-soft:radial-gradient(58% 62% at 80% 20%,rgba(168,216,248,.95) 0%,rgba(168,216,248,0) 70%),radial-gradient(60% 70% at 22% 100%,rgba(125,180,242,.38) 0%,rgba(125,180,242,0) 72%),linear-gradient(160deg,#F4F9FE 0%,#E3EFFC 100%);
   --g4-deep:radial-gradient(42% 90% at 96% 0%,rgba(168,216,248,.55) 0%,rgba(168,216,248,0) 70%),radial-gradient(50% 120% at 8% 110%,rgba(7,30,115,.75) 0%,rgba(7,30,115,0) 70%),linear-gradient(100deg,#0A2A9A 0%,#1537B8 34%,#2348C8 62%,#2A6AD8 100%);
+}
+/* @personalizar: tokens del Estilo 5 (paleta secundaria, media, modo oscuro). Hereda del 4 la rampa azul, el grano y los degradados, y del 3 la tipografía y "menos texto". */
+/* ---------- ESTILO 5 · AZUL VIVO (claro por defecto; oscuro con data-mode="dark") ----------
+   El azul (#2348C8 y su rampa) es SOLO el color de statement: hero, banda, punto de remate, botones, vínculos y logo.
+   Todo lo demás usa la PALETA SECUNDARIA: 4 clusters + 3 de apoyo. Cada color tiene 4 versiones:
+   -lt  luminosa: sobre azul profundo (hero, banda) y en modo oscuro · base: gráficos sobre claro (≥ 3:1 vs blanco)
+   -ink texto sobre claro (AA ≥ 4.5:1 sobre blanco, Neutral y su tinte) · -tint fondo de chip o barra sobre claro */
+html[data-style="5"]{
+  /* paleta secundaria · clusters (tonos del Estilo 1, afinados) */
+  --c5-vdc-lt:#45DCC9; --c5-vdc:#0E9C8C; --c5-vdc-ink:#0A7064; --c5-vdc-tint:#E7F5F3;
+  --c5-rc-lt:#FF9A62;  --c5-rc:#E05F27;  --c5-rc-ink:#B4461A;  --c5-rc-tint:#FCEFE9;
+  --c5-cd-lt:#C7B0FF;  --c5-cd:#8A63EE;  --c5-cd-ink:#6B42D8;  --c5-cd-tint:#F3EFFD;
+  --c5-di-lt:#7FCBFF;  --c5-di:#2289D2;  --c5-di-ink:#0B6BAA;  --c5-di-tint:#E9F3FB;
+  /* paleta secundaria · apoyo (lima = activo/lugar, ámbar = en proceso/herramientas, rosa = personas) */
+  --c5-lime-lt:#C9EE76;  --c5-lime:#6E9A0A;  --c5-lime-ink:#4D6B00;  --c5-lime-tint:#F0F5E6;
+  --c5-amber-lt:#FFC870; --c5-amber:#BF7A06; --c5-amber-ink:#8A5200; --c5-amber-tint:#FAF2E4;
+  --c5-rose-lt:#FFA8D0;  --c5-rose:#D9478E;  --c5-rose-ink:#B02E6C;  --c5-rose-tint:#FBECF3;
+  /* semánticos de color secundario (cambian en modo oscuro y sobre azul) */
+  --hl-vdc:var(--c5-vdc); --hl-rc:var(--c5-rc); --hl-cd:var(--c5-cd); --hl-di:var(--c5-di); --on-hl:#0B1020;
+  --ink-vdc:var(--c5-vdc-ink); --ink-rc:var(--c5-rc-ink); --ink-cd:var(--c5-cd-ink); --ink-di:var(--c5-di-ink);
+  --ink-lime:var(--c5-lime-ink); --ink-amber:var(--c5-amber-ink); --ink-rose:var(--c5-rose-ink);
+  --tint-vdc:var(--c5-vdc-tint); --tint-rc:var(--c5-rc-tint); --tint-cd:var(--c5-cd-tint); --tint-di:var(--c5-di-tint);
+  --tint-lime:var(--c5-lime-tint); --tint-amber:var(--c5-amber-tint); --tint-rose:var(--c5-rose-tint);
+  --s-lime:var(--c5-lime); --s-amber:var(--c5-amber); --s-rose:var(--c5-rose);
+  /* arte en claro: trazos, puntos y retícula en pizarra neutra (el azul queda para el statement) */
+  --art-text:#111522; --art-fg:rgba(40,50,75,.28); --art-dim:rgba(40,50,75,.10); --art-dot:rgba(40,50,75,.26); --grid:rgba(40,50,75,.05);
+  /* oficinas en los mapas: lima (lugar); relleno luminoso con aro de tinta (en claro) y aro en lima base. Cursores: clusters + ámbar + rosa (nunca lima ni azul) */
+  --oc:var(--c5-lime); --oc-fill:var(--c5-lime-lt);
+  --cur0:var(--c5-vdc-lt); --cur1:var(--c5-rc-lt); --cur2:var(--c5-cd-lt); --cur3:var(--c5-di-lt); --cur4:var(--c5-amber-lt); --cur5:var(--c5-rose-lt); --cur-ink:#0B1020;
+  /* sistema de media: bandeja SIEMPRE clara (también en oscuro), borde de 1 px y radio fijo */
+  --tray:#FFFFFF; --tray-rule:#E3E8EF; --tray-r:6px; --tray-ink:#5F6B85;
+  --ph-sky:#E4E9F0; --ph-sky2:#F1F4F8; --ph-mass:#C5CDD8; --ph-mass2:#B3BCC9; --ph-ground:#D3D9E1; --ph-win:#DCE2EA;
+  /* grano blanco más fino que el del 4 (sobre superficies grandes el de la banda se veía moteado) */
+  --noise5:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .16 0 0 0 -.05'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --hero-deep:radial-gradient(38% 62% at 100% 0%,rgba(42,106,216,.95) 0%,rgba(42,106,216,0) 72%),radial-gradient(40% 70% at 0% 100%,rgba(7,30,115,.9) 0%,rgba(7,30,115,0) 70%),linear-gradient(100deg,#071E73 0%,#0A2A9A 38%,#1537B8 70%,#2348C8 100%);
+}
+/* modo oscuro del Estilo 5: azul noche (no negro), clusters en su versión luminosa, bandejas de media claras */
+html[data-style="5"][data-mode="dark"]{
+  --p-white:#121A30; --p-snow:#0B1020; --p-mist:#0F1629; --p-rule:#26304D; --p-ink:#EEF2FA;
+  --bg:#0B1020; --bg-neutral:#0F1629; --bg-soft:#101A36; --surface:#121A30; --surface-2:#18223D; --rule:#26304D;
+  --text:#EEF2FA; --text-2:#A9B4CC; --text-tail:#8A93AB; --header-bg:#0E1528; --header-fg:#EEF2FA; --suite-bg:#05070D;
+  --accent-text:#8FB8FF; --link:#8FB8FF;
+  --art-bg:#121A30; --art-fg:rgba(238,242,250,.30); --art-dim:rgba(238,242,250,.10); --art-text:#EEF2FA; --art-tail:#9AA6C2; --art-dot:rgba(238,242,250,.30);
+  --grid:rgba(238,242,250,.045);
+  --hl-vdc:var(--c5-vdc-lt); --hl-rc:var(--c5-rc-lt); --hl-cd:var(--c5-cd-lt); --hl-di:var(--c5-di-lt);
+  --ink-vdc:var(--c5-vdc-lt); --ink-rc:var(--c5-rc-lt); --ink-cd:var(--c5-cd-lt); --ink-di:var(--c5-di-lt);
+  --ink-lime:var(--c5-lime-lt); --ink-amber:var(--c5-amber-lt); --ink-rose:var(--c5-rose-lt);
+  --tint-vdc:#1A3446; --tint-rc:#33293A; --tint-cd:#2A2D52; --tint-di:#1F3150; --tint-lime:#253539; --tint-amber:#30303A; --tint-rose:#322B47;
+  --s-lime:var(--c5-lime-lt); --s-amber:var(--c5-amber-lt); --s-rose:var(--c5-rose-lt);
+  --oc:var(--c5-lime-lt);
+  --tray:#F4F5F7; --tray-rule:rgba(255,255,255,.16);
+  color-scheme:dark;
 }
 /* @personalizar: acentos elegibles (5 opciones × estilos 1 a 3; el Estilo 4 usa azul fijo y desactiva el selector). Agregar uno = 3 reglas aquí + 1 swatch en la barra de control. */
 /* ---------- ACENTO ELEGIBLE = themePrimary del sitio (una sola elección por sitio) ----------
@@ -352,9 +404,9 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .cta .cta-body{position:relative;padding:28px;max-width:560px;color:#fff}
 .cta .cta-body h3{font-size:26px;line-height:1.2;margin:0 0 14px;font-weight:600}
 .cta .btn{background:#fff;color:#111}
-html:is([data-style="3"],[data-style="4"]) .cta .cta-body{color:var(--text)}
-html:is([data-style="3"],[data-style="4"]) .cta .cta-body .t-kicker{color:var(--accent-text)!important}
-html:is([data-style="3"],[data-style="4"]) .cta .btn{background:var(--theme);color:var(--on-theme)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .cta .cta-body{color:var(--text)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .cta .cta-body .t-kicker{color:var(--accent-text)!important}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .cta .btn{background:var(--theme);color:var(--on-theme)}
 /* List web part · vista Galería con formato JSON */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .gallery.c3{grid-template-columns:repeat(3,1fr)}
@@ -399,7 +451,7 @@ html:is([data-style="3"],[data-style="4"]) .cta .btn{background:var(--theme);col
 .art .mono{font-family:var(--f-art-mono)}
 .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 html[data-style="2"] .grain::after{opacity:.22;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-html:is([data-style="3"],[data-style="4"]) .grain::after{display:none}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .grain::after{display:none}
 html[data-style="2"] .ph.grain::after,html[data-style="2"] .capthumb.grain::after{opacity:.08}
 /* clases SVG ligadas a tokens (cambian con el estilo) */
 .m-line{fill:none;stroke:var(--art-fg);stroke-width:1}
@@ -427,7 +479,7 @@ html[data-style="2"] .hdr .big{font-weight:600;letter-spacing:-.05em;font-size:4
 .hdr .big .cur{color:var(--accent)}
 .hdr .foot{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:flex;gap:3cqw}
 .hdr .foot b{color:var(--art-text);font-weight:500}
-html:is([data-style="3"],[data-style="4"]) .hdr{background:var(--art-bg);border-bottom:1px solid var(--rule)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hdr{background:var(--art-bg);border-bottom:1px solid var(--rule)}
 /* encabezado de cluster */
 .chdr{aspect-ratio:16/5;width:100%}
 html[data-style="1"] .chdr{background:
@@ -438,8 +490,8 @@ html[data-style="2"] .chdr{background:
   linear-gradient(var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   linear-gradient(90deg,var(--art-dim) 1px,transparent 1px) 0 0/ 4cqw 4cqw,
   var(--art-bg)}
-html:is([data-style="3"],[data-style="4"]) .chdr{border-bottom:1px solid var(--rule);background:var(--art-bg)}
-html:is([data-style="3"],[data-style="4"]) .chdr::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 30%,#000 62%)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .chdr{border-bottom:1px solid var(--rule);background:var(--art-bg)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .chdr::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/2.5cqw 2.5cqw;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 62%);mask-image:linear-gradient(90deg,transparent 30%,#000 62%)}
 .chdr .copy{position:absolute;left:4.2cqw;top:10%;bottom:10%;display:flex;flex-direction:column;justify-content:space-between;z-index:2}
 .chdr .num{font-family:var(--f-art-mono);font-size:.85cqw;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:1.4cqw;align-items:center}
 .chdr .num .sw{width:1.1cqw;height:1.1cqw;background:var(--accent);display:inline-block}
@@ -458,7 +510,7 @@ html[data-style="1"] .chdr .sub{color:rgba(242,242,240,.6)}
 .ph{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 html[data-style="1"] .ph{background:radial-gradient(90% 90% at 80% 10%,color-mix(in srgb,var(--t,var(--accent)) 34%,transparent),transparent 65%),linear-gradient(160deg,var(--ph-a),var(--ph-b))}
 /* vistas claras (2 y 3): render atenuado. Cielo casi del color de la página con un leve tono del cluster, suelo apenas más denso, línea fina y un solo trazo de acento */
-html[data-style="2"] .ph,html:is([data-style="3"],[data-style="4"]) .ph{background:
+html[data-style="2"] .ph,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph{background:
   linear-gradient(180deg,transparent 64%,color-mix(in srgb,var(--t,#8FA3B5) 4%,rgba(17,17,17,.028)) 64.4%,transparent 100%),
   radial-gradient(80% 70% at 78% 18%,color-mix(in srgb,var(--t,#8FA3B5) 9%,transparent),transparent 70%),
   linear-gradient(180deg,var(--ph-a),var(--ph-b));box-shadow:inset 0 0 0 1px var(--rule)}
@@ -467,12 +519,12 @@ html[data-style="2"] .ph,html:is([data-style="3"],[data-style="4"]) .ph{backgrou
 .ph .bf{fill:rgba(0,0,0,.12);stroke:var(--ph-line);stroke-width:1.2}
 html[data-style="1"] .ph .bf{fill:rgba(255,255,255,.04)}
 .ph .ba{fill:none;stroke:var(--t,var(--accent));stroke-width:1.6}
-html[data-style="2"] .ph .bl,html:is([data-style="3"],[data-style="4"]) .ph .bl,html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"]) .ph .bf{stroke-width:1;vector-effect:non-scaling-stroke}
-html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"]) .ph .bf{fill:rgba(17,17,17,.025)}
-html[data-style="2"] .ph .ba,html:is([data-style="3"],[data-style="4"]) .ph .ba{stroke:color-mix(in srgb,var(--t,var(--accent)) 72%,#fff);stroke-width:1.25;opacity:.85;vector-effect:non-scaling-stroke}
-html[data-style="2"] .ph .ba + .ba,html:is([data-style="3"],[data-style="4"]) .ph .ba + .ba{display:none}
+html[data-style="2"] .ph .bl,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .bl,html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .bf{stroke-width:1;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .bf,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .bf{fill:rgba(17,17,17,.025)}
+html[data-style="2"] .ph .ba,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .ba{stroke:color-mix(in srgb,var(--t,var(--accent)) 72%,#fff);stroke-width:1.25;opacity:.85;vector-effect:non-scaling-stroke}
+html[data-style="2"] .ph .ba + .ba,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .ba + .ba{display:none}
 .ph .tag{position:absolute;left:10px;bottom:10px;font-family:var(--f-art-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.45);padding:3px 6px;border-radius:2px}
-html[data-style="2"] .ph svg,html:is([data-style="3"],[data-style="4"]) .ph svg{-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%)}
+html[data-style="2"] .ph svg,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph svg{-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.3) 0%,#000 62%)}
 html[data-style="2"] .ph .tag{color:var(--text);background:rgba(255,255,255,.88);box-shadow:0 0 0 1px var(--rule)}
 /* diagrama de etapas */
 .dia{padding:3.2cqw 3cqw 2.6cqw;background:var(--art-bg)}
@@ -489,10 +541,10 @@ html[data-style="1"] .dia .bar{background:color-mix(in srgb,var(--c) 14%,transpa
 html[data-style="1"] .dia .bar b{color:var(--c)}
 html[data-style="2"] .dia .bar{background:color-mix(in srgb,var(--c) 10%,#fff);box-shadow:inset 3px 0 0 var(--c);color:var(--art-text)}
 html[data-style="2"] .dia .bar b{color:var(--c)}
-html:is([data-style="3"],[data-style="4"]) .dia{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
-html:is([data-style="3"],[data-style="4"]) .dia .bar{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule),inset 2px 0 0 var(--c);color:var(--art-text)}
-html:is([data-style="3"],[data-style="4"]) .dia .bar b{color:var(--art-tail)}
-html:is([data-style="3"],[data-style="4"]) .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .dia{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .dia .bar{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule),inset 2px 0 0 var(--c);color:var(--art-text)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .dia .bar b{color:var(--art-tail)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .dia .bar b{font-family:var(--f-art-mono);font-size:.74cqw;letter-spacing:.1em;text-transform:uppercase;font-weight:500;display:block;margin-bottom:.2cqw}
 .dia .axis{display:flex;justify-content:space-between;margin-top:1.6cqw;font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);padding-left:13cqw}
 .dia .axis span:nth-child(2){flex:1;border-top:1px solid var(--art-fg);margin:0 1.2cqw;align-self:center;position:relative}
@@ -509,26 +561,26 @@ html[data-style="2"] .capthumb .nm{font-weight:600}
 .capthumb .nm small{display:block;font-family:var(--f-art-mono);font-size:4.6cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);margin-top:3cqw;font-weight:400}
 html[data-style="1"] .capthumb{background:radial-gradient(90% 70% at 85% 15%,color-mix(in srgb,var(--c) 40%,transparent),transparent 70%),#0E0F11}
 html[data-style="2"] .capthumb{background:#fff}
-html:is([data-style="3"],[data-style="4"]) .capthumb{background:var(--p-white)}
-html:is([data-style="3"],[data-style="4"]) .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .capthumb{background:var(--p-white)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
 .capthumb{--accent:var(--c)}
 /* vistas claras: el highlight del cluster se atenúa hacia el fondo (sin rellenos saturados) */
-html[data-style="2"] .capthumb,html:is([data-style="3"],[data-style="4"]) .capthumb{--accent:color-mix(in srgb,var(--c) 78%,#fff)}
+html[data-style="2"] .capthumb,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .capthumb{--accent:color-mix(in srgb,var(--c) 78%,#fff)}
 .capthumb .sw{position:absolute;right:7cqw;top:7cqw;width:7cqw;height:7cqw;background:var(--c);z-index:2}
-html[data-style="2"] .capthumb .sw,html:is([data-style="3"],[data-style="4"]) .capthumb .sw{display:none}
+html[data-style="2"] .capthumb .sw,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .capthumb .sw{display:none}
 /* mapa LAC */
 .mapart{aspect-ratio:792/560;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/3cqw 3cqw,var(--art-bg)}
 .mapart .legend{position:absolute;left:4cqw;bottom:4cqw;font-family:var(--f-art-mono);font-size:1.3cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);display:grid;gap:.6cqw}
 .mapart .legend b{color:var(--art-text);font-weight:500}
 .mapart .legend i{display:inline-block;width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--accent);margin-right:1cqw;vertical-align:-.15cqw}
-html[data-style="2"] .mapart .legend i,html:is([data-style="3"],[data-style="4"]) .mapart .legend i{box-shadow:0 0 0 1px var(--art-text)}
+html[data-style="2"] .mapart .legend i,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .mapart .legend i{box-shadow:0 0 0 1px var(--art-text)}
 /* proceso (metodología) */
 .proc{padding:3cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 html[data-style="2"] .proc{background:#fff}
-html:is([data-style="3"],[data-style="4"]) .proc{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
-html:is([data-style="3"],[data-style="4"]) .proc .st{border-top-width:1px}
-html:is([data-style="3"],[data-style="4"]) .proc .st::before{height:1px;top:-1px}
-html:is([data-style="3"],[data-style="4"]) .proc .st .dot{width:7px;height:7px;top:-4px}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .proc{background:var(--p-white);box-shadow:inset 0 0 0 1px var(--rule)}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .proc .st{border-top-width:1px}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .proc .st::before{height:1px;top:-1px}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .proc .st .dot{width:7px;height:7px;top:-4px}
 html[data-style="1"] .proc{background:linear-gradient(180deg,#101214,#0B0C0D)}
 .proc .st{border-top:2px solid var(--art-dim);padding:1.6cqw 1.6cqw 0 0;position:relative}
 .proc .st::before{content:"";position:absolute;top:-2px;left:0;height:2px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(var(--k,1))}
@@ -543,24 +595,24 @@ html[data-style="1"] .proc .st p{color:#9AA0A6}
    5b · ESTILO 3 · MENOS TEXTO (solo reglas de estilo; el HTML es el mismo en los 3 estilos)
    Se ocultan kickers redundantes (.s3-hide), subtítulos de tarjeta y metadatos repetidos.
    ========================================================= */
-html:is([data-style="3"],[data-style="4"]) .s3-hide,
-html:is([data-style="3"],[data-style="4"]) .t-h2 + .t-p.muted,
-html:is([data-style="3"],[data-style="4"]) .ql-btn small,
-html:is([data-style="3"],[data-style="4"]) .ql-card .cap span,
-html:is([data-style="3"],[data-style="4"]) .hc-card .by,
-html:is([data-style="3"],[data-style="4"]) .hc-card p,
-html:is([data-style="3"],[data-style="4"]) .tool p,
-html:is([data-style="3"],[data-style="4"]) .news .item p,
-html:is([data-style="3"],[data-style="4"]) .ph .tag,
-html:is([data-style="3"],[data-style="4"]) .hdr .k i,
-html:is([data-style="3"],[data-style="4"]) .chdr .sub,
-html:is([data-style="3"],[data-style="4"]) .chdr .num span:last-child,
-html:is([data-style="3"],[data-style="4"]) .dia .ttl span:last-child,
-html:is([data-style="3"],[data-style="4"]) .mapart .legend span:not(:first-child){display:none}
-html:is([data-style="3"],[data-style="4"]) .ql-btn{padding:12px 14px;font-weight:500}
-html:is([data-style="3"],[data-style="4"]) .hc-card h4,html:is([data-style="3"],[data-style="4"]) .ql-card .cap{font-weight:500}
-html:is([data-style="3"],[data-style="4"]) .hc-card .body{padding:12px 14px 16px}
-html:is([data-style="3"],[data-style="4"]) .t-kicker{font-size:11px}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .s3-hide,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .t-h2 + .t-p.muted,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ql-btn small,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ql-card .cap span,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hc-card .by,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hc-card p,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .tool p,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .news .item p,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ph .tag,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hdr .k i,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .chdr .sub,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .chdr .num span:last-child,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .dia .ttl span:last-child,
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .mapart .legend span:not(:first-child){display:none}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ql-btn{padding:12px 14px;font-weight:500}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hc-card h4,html:is([data-style="3"],[data-style="4"],[data-style="5"]) .ql-card .cap{font-weight:500}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .hc-card .body{padding:12px 14px 16px}
+html:is([data-style="3"],[data-style="4"],[data-style="5"]) .t-kicker{font-size:11px}
 
 /* =========================================================
    5c · ESTILO 4 · DEGRADADO AZUL (solo diferencias con el Estilo 3)
@@ -576,7 +628,7 @@ html[data-style="4"] .hdr::before{width:41.5%;-webkit-mask-image:none;mask-image
   var(--noise4),var(--g4-soft)}
 html[data-style="4"] .hdr .m-plq{fill:#F7FBFF;opacity:.94}
 /* cursores opacos sobre el panel: la pastilla azul con texto blanco queda ≥ 5:1 */
-html[data-style="4"] #collab > g{opacity:1!important}
+html:is([data-style="4"],[data-style="5"]) #collab > g{opacity:1!important}
 /* miniaturas de capacidad, herramientas y rutas: tinte con orbe difuso; dibujo de 1 px en azul profundo */
 html[data-style="4"] .capthumb{--accent:var(--c);background:var(--noise4),radial-gradient(62% 58% at 80% 18%,color-mix(in srgb,var(--c) 24%,#A8D8F8) 0%,rgba(168,216,248,0) 70%),linear-gradient(170deg,#F6FAFE 0%,#E3EEFB 100%)}
 html[data-style="4"] .capthumb::before{opacity:.7}
@@ -620,15 +672,119 @@ html[data-style="4"] .tool .ico,html[data-style="4"] .person .av{background:var(
 .band4 .u i{background:linear-gradient(180deg,#fff,rgba(255,255,255,.35))}
 .ql-buttons.cols3{grid-template-columns:repeat(3,1fr)}
 /* logo con degradado: tinta y acento usan los degradados definidos en #g4-defs (header, footer y panel de logos) */
-html[data-style="4"] :is(.logo-slot,.lg-card) svg{--accent:url(#g4-acc)}
-html[data-style="4"] :is(.logo-slot,.lg-card) svg [fill="currentColor"]{fill:url(#g4-ink)}
-html[data-style="4"] :is(.logo-slot,.lg-card) svg [stroke="currentColor"]{stroke:url(#g4-ink)}
-html[data-style="4"] .lg-card .dk svg [fill="currentColor"]{fill:url(#g4-ink-lt)}
-html[data-style="4"] .lg-card .dk svg [stroke="currentColor"]{stroke:url(#g4-ink-lt)}
-html[data-style="4"] .lg-card .dk svg [fill="var(--bg)"]{fill:var(--b-900)}
-html[data-style="4"] .lg-card .pv.fav span:last-child svg [fill="currentColor"]{fill:currentColor}
-html[data-style="4"] .lg-card .pv.fav span:last-child svg [stroke="currentColor"]{stroke:currentColor}
-html[data-style="4"] .lg-card .pv.fav span:last-child svg [fill="var(--bg)"]{fill:var(--b-700)}
+html:is([data-style="4"],[data-style="5"]) :is(.logo-slot,.lg-card) svg{--accent:url(#g4-acc)}
+html:is([data-style="4"],[data-style="5"]) :is(.logo-slot,.lg-card) svg [fill="currentColor"]{fill:url(#g4-ink)}
+html:is([data-style="4"],[data-style="5"]) :is(.logo-slot,.lg-card) svg [stroke="currentColor"]{stroke:url(#g4-ink)}
+html:is([data-style="4"],[data-style="5"]) .lg-card .dk svg [fill="currentColor"]{fill:url(#g4-ink-lt)}
+html:is([data-style="4"],[data-style="5"]) .lg-card .dk svg [stroke="currentColor"]{stroke:url(#g4-ink-lt)}
+html:is([data-style="4"],[data-style="5"]) .lg-card .dk svg [fill="var(--bg)"]{fill:var(--b-900)}
+html:is([data-style="4"],[data-style="5"]) .lg-card .pv.fav span:last-child svg [fill="currentColor"]{fill:currentColor}
+html:is([data-style="4"],[data-style="5"]) .lg-card .pv.fav span:last-child svg [stroke="currentColor"]{stroke:currentColor}
+html:is([data-style="4"],[data-style="5"]) .lg-card .pv.fav span:last-child svg [fill="var(--bg)"]{fill:var(--b-700)}
+/* Estilo 5 oscuro: el logo pasa a la rampa viva (#2A6AD8 → #7DB4F2) para leerse sobre azul noche */
+html[data-style="5"][data-mode="dark"] .logo-slot svg{--accent:url(#g4-ink-lt)}
+html[data-style="5"][data-mode="dark"] .logo-slot svg [fill="currentColor"]{fill:url(#g5-ink-dk)}
+html[data-style="5"][data-mode="dark"] .logo-slot svg [stroke="currentColor"]{stroke:url(#g5-ink-dk)}
+html[data-style="5"][data-mode="dark"] .logo-slot svg [fill="var(--bg)"]{fill:#FFFFFF}
+
+/* =========================================================
+   5d · ESTILO 5 · AZUL VIVO (solo diferencias con el 4)
+   Azul = statement (hero y banda de borde a borde, punto, botones, vínculos, logo).
+   Color = paleta secundaria (clusters + lima, ámbar, rosa) en chips, barras, datos, cursores y filetes.
+   Sin abstracción: cada imagen es un placeholder realista dentro de una BANDEJA DE MEDIA clara.
+   ========================================================= */
+/* hero: degradado azul de borde a borde (detrás del titular y del mapa), grano blanco y cruz de filetes */
+html[data-style="5"] .hdr{background:var(--noise5),var(--hero-deep);border-bottom:0;
+  --art-bg:#0A2A9A; --art-text:#FFFFFF; --art-tail:#A8D8F8; --art-dot:rgba(255,255,255,.42); --art-fg:rgba(255,255,255,.5); --oc:var(--c5-lime-lt); --oc-fill:var(--c5-lime-lt)}
+html[data-style="5"] .hdr::before{width:100%;-webkit-mask-image:none;mask-image:none;background:
+  linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)) 60% 0/1px 100% no-repeat,
+  linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)) 100% 50%/40% 1px no-repeat}
+html[data-style="5"] .hdr .m-plq{fill:#071E73;opacity:.86}
+html[data-style="5"] .hdr .m-lead{opacity:.55}
+/* punto de remate: azul de statement; en oscuro, su versión clara (#8FB8FF, 9.4:1) */
+html[data-style="5"][data-mode="dark"] .sdot{background:var(--accent-text)}
+html[data-style="5"] :is(.hdr,.chdr,.band4) .sdot{background:var(--b-300)}
+/* nombres de cluster del hero en su versión luminosa (≥ 5.5:1 sobre el azul profundo) */
+html[data-style="5"] .hdr .foot b{display:inline-flex;align-items:center;gap:.6cqw}
+html[data-style="5"] .hdr .foot b::before{content:"";width:.5cqw;height:.5cqw;border-radius:1px;background:currentColor}
+html[data-style="5"] .hdr .foot span:nth-child(1) b{color:var(--c5-vdc-lt)}
+html[data-style="5"] .hdr .foot span:nth-child(2) b{color:var(--c5-rc-lt)}
+html[data-style="5"] .hdr .foot span:nth-child(3) b{color:var(--c5-cd-lt)}
+html[data-style="5"] .hdr .foot span:nth-child(4) b{color:var(--c5-di-lt)}
+/* oficinas en los mapas: lima (lugar); en claro, lima base con aro de tinta */
+html[data-style="5"] .m-off .m-accf{fill:var(--oc-fill)}
+html[data-style="5"] .m-off .m-acc{stroke:var(--oc);opacity:.75!important}
+html[data-style="5"] .mapart .legend i{background:var(--oc-fill)}
+html[data-style="5"] .capthumb .nm small{line-height:1.25}
+/* encabezado de cluster: misma rampa del hero, filete inferior y cuadro en el color del cluster, foto real a la derecha */
+html[data-style="5"] .chdr{background:var(--noise5),var(--hero-deep);border-bottom:0;color:#fff;--art-text:#FFFFFF;--art-tail:#A8D8F8}
+html[data-style="5"] .chdr::before{-webkit-mask-image:none;mask-image:none;background:linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)) 0 50%/58% 1px no-repeat}
+html[data-style="5"] .chdr::after{content:"";display:block;opacity:1;mix-blend-mode:normal;top:auto;position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--c);z-index:3}
+html[data-style="5"] .chdr .num .sw{background:var(--c);border-radius:1px}
+html[data-style="5"] .chdr .big{font-size:6.4cqw}
+html[data-style="5"] .chdr .c5-media{position:absolute;right:4.2cqw;top:11%;bottom:14%;aspect-ratio:4/3;z-index:2}
+/* ---------- sistema de media: bandeja (imagen o captura), tile de logo de app y foto de proyecto ---------- */
+.m5{position:absolute;inset:0;overflow:hidden;background:var(--tray,#fff)}
+.m5 svg{position:absolute;inset:0;width:100%;height:100%}
+.m5-lab{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font:500 10px/1 var(--f-art-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--tray-ink,#5F6B85);background:rgba(255,255,255,.92);box-shadow:0 0 0 1px var(--ph-mass,#C5CDD8);padding:6px 8px;border-radius:3px}
+.m5-lab svg{position:static;width:12px;height:12px}
+.m5.shot .m5-lab{top:auto;bottom:10px;left:auto;right:10px;transform:none}
+.tray5{position:relative;background:var(--tray);box-shadow:0 0 0 1px var(--tray-rule);border-radius:var(--tray-r);overflow:hidden}
+/* placeholders de foto (.ph) = bandeja clara; el pie mono va debajo de la foto */
+html[data-style="5"] .ph{background:var(--tray);box-shadow:inset 0 0 0 1px var(--tray-rule)}
+html[data-style="5"] .ph svg{-webkit-mask-image:none;mask-image:none}
+html[data-style="5"] .ph .tag{display:block;left:0;right:0;bottom:0;border-radius:0;background:#FFFFFF;color:var(--tray-ink);border-top:1px solid #E3E8EF;padding:8px 12px;letter-spacing:.1em}
+html[data-style="5"] :is(.hc-card,.news) .ph::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--t);z-index:3}
+html[data-style="5"] .ph-feat .m5-lab{top:34%}
+/* gráfica de datos del Featured project (Urban Vitality Index): tarjeta blanca sobre la foto, área en degradado del cluster */
+.c5-chart{position:absolute;right:16px;bottom:52px;width:46%;background:#FFFFFF;border-radius:var(--tray-r);box-shadow:0 0 0 1px #E3E8EF,0 8px 24px rgba(11,22,64,.10);padding:10px 12px 8px;z-index:2}
+.c5-chart svg{position:static!important;width:100%!important;height:auto!important}
+/* miniaturas de capacidad, rutas y comunidades: foto en bandeja + código en tinta del cluster + filete superior */
+html[data-style="5"] .capthumb{background:var(--surface);box-shadow:inset 0 3px 0 var(--c)}
+html[data-style="5"] .capthumb::before{display:none}
+html[data-style="5"] .capthumb .c5-ph{position:absolute;left:6cqw;right:6cqw;top:8cqw;height:52%;border-radius:var(--tray-r);overflow:hidden;box-shadow:0 0 0 1px var(--tray-rule)}
+html[data-style="5"] .capthumb .n{display:none}
+html[data-style="5"] .capthumb .nm{left:6cqw;bottom:6cqw;color:var(--ci);font-weight:400}
+html[data-style="5"] .capthumb .nm small{color:var(--text-2)}
+html[data-style="5"] .capthumb.wide .c5-ph{left:auto;right:4cqw;top:5cqw;bottom:5cqw;height:auto;width:46%}
+html[data-style="5"] .capthumb.wide .nm{left:5cqw;bottom:5cqw;max-width:44%;font-size:6.4cqw!important;line-height:1}
+html[data-style="5"] .capthumb.wide .nm small{font-size:2.9cqw;letter-spacing:.08em;margin-top:2cqw}
+/* diagrama de clusters (lenguaje del Estilo 1, limpieza del 4): barras en el color del cluster con relleno degradado */
+html[data-style="5"] .dia .bar{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 16%,var(--surface)) 0%,color-mix(in srgb,var(--c) 4%,var(--surface)) 100%);box-shadow:inset 3px 0 0 var(--c);color:var(--text)}
+html[data-style="5"] .dia .bar b{color:var(--ci)}
+html[data-style="5"] .dia .lab{color:var(--ci)}
+html[data-style="5"] .dia .lab i{width:.7cqw;height:.7cqw;border-radius:2px;box-shadow:none}
+html[data-style="5"] .dia .ttl h4 em{color:var(--text-tail)}
+/* metodología: avance en el color del cluster */
+html[data-style="5"] .proc .st::before,html[data-style="5"] .proc .st .dot{background:var(--accent)}
+/* cifras de "LAC at a glance": tarjetas limpias; las unidades son la mini gráfica de color */
+html[data-style="5"] .bento .bx,html[data-style="5"] .bento .bx.hi{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-style="5"] .bento b{color:var(--text)}
+html[data-style="5"] .u i{max-width:7px;border-radius:1px}
+/* banda "Build with COM": misma rampa del hero; estados en su color luminoso (ámbar, rosa, lima) */
+html[data-style="5"] .band4{background:var(--noise5),var(--hero-deep)}
+html[data-style="5"] .band4 .c{background:rgba(7,30,115,.32);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),inset 0 2px 0 var(--k)}
+html[data-style="5"] .band4 .c span{display:flex;align-items:center;gap:6px}
+html[data-style="5"] .band4 .c span::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--k);flex:none}
+/* chips: cluster y estado con color (punto + tinte + tinta AA); los temas quedan neutros */
+html[data-style="5"] .chip.k{background:var(--kt);color:var(--ki);box-shadow:none;display:inline-flex;align-items:center;gap:6px}
+html[data-style="5"] .chip.k::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--kc);flex:none}
+/* herramientas: captura en bandeja (marco de navegador) + tile de logo de app (blanco, padding fijo, igual en claro y oscuro) */
+.tool .shot5{display:none}
+html[data-style="5"] .tool .shot5{display:block;aspect-ratio:16/10;margin-bottom:4px}
+html[data-style="5"] .tool .ico{width:52px;height:52px;flex:none;background:#FFFFFF;box-shadow:inset 0 0 0 1px #E3E8EF;border-radius:var(--tray-r);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#2A3142;font-family:var(--f-art)}
+html[data-style="5"] .tool .ico::before{content:"";position:absolute;inset:12%;border:1px dashed #D5DBE4;border-radius:3px}
+html[data-style="5"] .tool .ico b{font-size:15px;font-weight:600;letter-spacing:-.02em;line-height:1}
+html[data-style="5"] .tool .ico small{font:500 6.5px/1 var(--f-art-mono);letter-spacing:.06em;text-transform:uppercase;color:#6B7488}
+.tool .ico small{display:none}
+html[data-style="5"] .tool .ico small{display:block}
+/* CTA de cluster: superficie limpia con filete del cluster y foto real a la derecha */
+html[data-style="5"] .cta .cta-bg{background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule),inset 0 3px 0 var(--c)}
+html[data-style="5"] .cta .c5-media{position:absolute;right:16px;top:16px;bottom:16px;width:36%}
+html[data-style="5"] .cta .cta-body{max-width:58%}
+/* avatar neutro (llegarán fotos); el azul no se usa como color secundario */
+html[data-style="5"][data-mode="dark"] nav.topnav .active{border-bottom-color:var(--accent-text)}
+html[data-style="5"][data-mode="dark"] .ql-btn svg{color:var(--accent-text)}
 
 /* Featured community: fila de 4 líderes (tarjeta vertical compacta) */
 .people.row4{grid-template-columns:repeat(4,1fr);gap:16px}
@@ -731,6 +887,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   <linearGradient id="g4-ink" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#071E73"/><stop offset=".55" stop-color="#1537B8"/><stop offset="1" stop-color="#2348C8"/></linearGradient>
   <linearGradient id="g4-ink-lt" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A8D8F8"/></linearGradient>
   <linearGradient id="g4-acc" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="64" y2="64"><stop offset="0" stop-color="#2A6AD8"/><stop offset="1" stop-color="#7DB4F2"/></linearGradient>
+  <linearGradient id="g5-ink-dk" gradientUnits="userSpaceOnUse" x1="4" y1="2" x2="52" y2="62"><stop offset="0" stop-color="#2348C8"/><stop offset=".6" stop-color="#2A6AD8"/><stop offset="1" stop-color="#4F8CE6"/></linearGradient>
 </defs></svg>
 
 <!-- Suite bar de Microsoft 365 -->
@@ -776,7 +933,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button><button data-set-style="4" aria-pressed="false">4 · Degradado azul</button></div>
+  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="2" aria-pressed="false">2 · Estudio editorial</button><button data-set-style="3" aria-pressed="false">3 · Terreno claro</button><button data-set-style="4" aria-pressed="false">4 · Degradado azul</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button></div>
   <span class="lbl">Acento</span>
   <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
@@ -787,6 +944,8 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   </div>
   <span class="lbl">Fuente</span>
   <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div>
+  <span class="lbl">Modo</span>
+  <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div>
   <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
   <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
@@ -809,7 +968,8 @@ const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'
 const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
 /* Estilo 4: los fondos de sección son planos; todo degradado es una imagen pre-renderizada (el overlay lo dice) */
-const S4 = () => document.documentElement.dataset.style==='4';
+const S4 = () => /^[45]$/.test(document.documentElement.dataset.style);   /* Estilos 4 y 5 (el 5 hereda la estructura del 4) */
+const S5 = () => document.documentElement.dataset.style==='5';
 function sec(layout, bg, cols, note=''){
   const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${S4()&&bg!=='none'?' (plano, sin degradado)':''}${note?' · '+note:''}`;
   if(layout==='full') return `<section class="sp-sec full bg-${bg}" data-sec="${esc(label)}">${cols[0]}</section>`;
@@ -974,7 +1134,7 @@ function lacMap(o){
     if(Math.hypot(tx-sx,ty-sy)>4){s+=`<path class="m-lead" d="M${sx.toFixed(1)} ${sy.toFixed(1)} L${tx.toFixed(1)} ${ty.toFixed(1)}"/>`;
       boxes.push([Math.min(sx,tx)-2,Math.min(sy,ty)-2,Math.abs(tx-sx)+4,Math.abs(ty-sy)+4])}});
   off.forEach(f=>{
-    s+=`<circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${(lr*2.1).toFixed(1)}" class="m-acc" style="opacity:.4"/><circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${lr.toFixed(1)}" class="m-accf" style="stroke:var(--art-text);stroke-width:${o.light?1:0}"/>`;
+    s+=`<g class="m-off"><circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${(lr*2.1).toFixed(1)}" class="m-acc" style="opacity:.4"/><circle cx="${f.x.toFixed(1)}" cy="${f.y.toFixed(1)}" r="${lr.toFixed(1)}" class="m-accf" style="stroke:var(--art-text);stroke-width:${o.light?1:0}"/></g>`;
     boxes.push([f.x-lr*2.2,f.y-lr*2.2,lr*4.4,lr*4.4]);
   });
   labs.forEach((L,i)=>{const[bx,by,bw,bh]=L.b;
@@ -1090,7 +1250,40 @@ function bld(kind){
   if(kind==='people'){for(let i=0;i<5;i++){const x=70+i*65;s+=`<circle cx="${x}" cy="105" r="16" class="bl"/><path d="M${x-28} 175 q28 -50 56 0" class="bl"/>`}s+=`<line x1="40" y1="180" x2="360" y2="180" class="ba"/>`}
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`;
 }
-const ph = (kind, tint, tag='') => `<div class="ph grain" style="--t:var(--hl-${tint})">${bld(kind)}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`;
+/* 9 · Estilo 5: placeholders REALISTAS de contenido (no son arte; dicen qué imagen real va en cada lugar).
+   Foto de proyecto = cielo, edificio y suelo simplificados en grises fríos + etiqueta "Project photo".
+   Captura de app = marco de navegador con esqueleto de UI + etiqueta "App screenshot". Siempre dentro de una bandeja clara. */
+const PH5_IC={photo:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><circle cx="5.5" cy="6" r="1.3"/><path d="m2 12 4-4 3 3 2-2 3 3"/></svg>',
+  shot:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><path d="M1.5 5.5h13M4 4h.01M6 4h.01"/></svg>'};
+function photo5(kind,label='Project photo'){
+  const M='var(--ph-mass)',M2='var(--ph-mass2)',G='var(--ph-ground)',Wn='var(--ph-win)';
+  let s=`<rect width="400" height="300" fill="var(--ph-sky)"/><rect y="110" width="400" height="130" fill="var(--ph-sky2)" opacity=".7"/>`;
+  const ground=y=>`<rect y="${y}" width="400" height="${300-y}" fill="${G}"/>`;
+  if(kind==='tower'){s+=`<rect x="36" y="178" width="96" height="62" fill="${M2}"/><rect x="292" y="166" width="82" height="74" fill="${M}"/><rect x="165" y="46" width="80" height="194" fill="${M}"/><rect x="245" y="60" width="26" height="180" fill="${M2}"/>`;for(let y=58;y<230;y+=13)s+=`<rect x="172" y="${y}" width="66" height="6" fill="${Wn}"/>`;s+=ground(238)+`<circle cx="148" cy="236" r="11" fill="${M2}"/><circle cx="282" cy="238" r="9" fill="${M2}"/>`}
+  else if(kind==='city'){/* calle con dos planos de edificios (fondo claro, frente con ventanas), árboles y banqueta */
+    const r=R(7);let x=-10;while(x<400){const w=30+r()*40,h=40+r()*70;s+=`<rect x="${x.toFixed(0)}" y="${(214-h).toFixed(0)}" width="${(w-2).toFixed(0)}" height="${h.toFixed(0)}" fill="#D2D9E2"/>`;x+=w}
+    x=-20;while(x<400){const w=58+r()*46,h=46+r()*64,y=236-h,f=r()>.5?M:M2;s+=`<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="${(w-6).toFixed(0)}" height="${h.toFixed(0)}" fill="${f}"/>`;
+      for(let wy=y+10;wy<224;wy+=14)for(let wx=x+8;wx<x+w-16;wx+=14)s+=`<rect x="${wx.toFixed(0)}" y="${wy.toFixed(0)}" width="7" height="6" fill="${Wn}"/>`;x+=w}
+    s+=ground(236)+`<rect y="236" width="400" height="5" fill="${M2}"/>`;[46,168,300].forEach(tx=>s+=`<rect x="${tx-1}" y="222" width="3" height="16" fill="${M2}"/><circle cx="${tx}" cy="216" r="12" fill="#BCC5D1"/>`)}
+  else if(kind==='hill'){s+=`<path d="M0 206 C90 150 190 160 250 176 S350 196 400 186 V300 H0Z" fill="${G}"/><rect x="138" y="140" width="64" height="26" fill="${M}"/><rect x="196" y="156" width="72" height="24" fill="${M2}"/><rect x="92" y="160" width="52" height="22" fill="${M2}"/><path d="M0 238 C120 214 260 250 400 226 V300 H0Z" fill="${M2}" opacity=".45"/>`}
+  else if(kind==='facade'){s+=`<rect x="44" y="64" width="312" height="10" fill="${M2}"/><rect x="50" y="74" width="300" height="164" fill="${M}"/>`;for(let i=0;i<6;i++){const x=66+i*48;s+=`<rect x="${x+4}" y="88" width="24" height="38" fill="${Wn}"/><path d="M${x} 238 V172 a16 16 0 0 1 32 0 V238Z" fill="${M2}"/>`}s+=ground(238)}
+  else if(kind==='hub'){s+=`<path d="M24 238 Q200 64 376 238Z" fill="${M}"/>`;for(let i=1;i<6;i++)s+=`<path d="M${24+i*58.7} 238 L200 ${96+Math.abs(i-3)*10}" stroke="${Wn}" stroke-width="3"/>`;s+=ground(236)+`<rect x="0" y="236" width="400" height="6" fill="${M2}"/>`}
+  else if(kind==='people'){s+=`<rect width="400" height="300" fill="#E7ECF2"/><rect x="0" y="214" width="400" height="86" fill="${G}"/>`;[[90,120],[170,108],[250,116],[322,126]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="22" fill="${M2}"/><path d="M${x-42} 214 Q${x-40} ${y+32} ${x} ${y+30} Q${x+40} ${y+32} ${x+42} 214Z" fill="${M}"/>`);s+=`<rect x="40" y="206" width="320" height="12" rx="2" fill="${M2}"/>`}
+  else s+=ground(236);
+  return `<div class="m5 photo"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg><span class="m5-lab">${PH5_IC.photo}${esc(label)}</span></div>`;
+}
+function shot5(v='dash'){
+  const K='#DDE2E9',K2='#CDD4DE',P='#F6F8FA';
+  let s=`<rect width="400" height="250" fill="#FFFFFF"/><rect width="400" height="22" fill="#EEF1F5"/>${[12,22,32].map(x=>`<circle cx="${x}" cy="11" r="3" fill="#C9D0DA"/>`).join('')}<rect x="50" y="6" width="190" height="10" rx="5" fill="#FFFFFF" stroke="${K}"/>`;
+  s+=`<rect x="0" y="22" width="72" height="228" fill="${P}"/><line x1="72" y1="22" x2="72" y2="250" stroke="#E3E8EF"/>`;for(let i=0;i<7;i++)s+=`<rect x="12" y="${38+i*17}" width="${44-(i%3)*9}" height="6" rx="3" fill="${K}"/>`;
+  s+=`<rect x="86" y="36" width="118" height="9" rx="2" fill="${K2}"/><rect x="86" y="51" width="70" height="6" rx="3" fill="${K}"/>`;
+  if(v==='dash'){[86,190,294].forEach(x=>s+=`<rect x="${x}" y="68" width="96" height="40" rx="3" fill="${P}" stroke="#E3E8EF"/><rect x="${x+8}" y="78" width="40" height="6" rx="3" fill="${K}"/><rect x="${x+8}" y="90" width="26" height="10" rx="2" fill="${K2}"/>`);s+=`<rect x="86" y="118" width="304" height="122" rx="3" fill="${P}" stroke="#E3E8EF"/>`;[44,70,58,88,76,96,84,104].forEach((h,i)=>s+=`<rect x="${102+i*35}" y="${228-h}" width="20" height="${h}" fill="${K2}"/>`)}
+  if(v==='model'){s+=`<rect x="86" y="68" width="304" height="172" rx="3" fill="#F3F5F8" stroke="#E3E8EF"/>`;[0,1,2,3].forEach(i=>{const y=84+i*18;s+=`<path d="M238 ${y} L290 ${y+18} L238 ${y+36} L186 ${y+18}Z" fill="${i===3?K2:'#FFFFFF'}" stroke="#B7C0CC"/>`});s+=`<rect x="96" y="78" width="54" height="16" rx="3" fill="#FFFFFF" stroke="#E3E8EF"/><rect x="330" y="78" width="50" height="60" rx="3" fill="#FFFFFF" stroke="#E3E8EF"/>`}
+  if(v==='map'){s+=`<rect x="86" y="68" width="304" height="172" rx="3" fill="#EEF2F6" stroke="#E3E8EF"/><path d="M110 120 C150 92 210 104 240 132 S320 160 360 132 L372 200 C320 222 250 214 200 228 S130 222 104 204Z" fill="#DCE2EA"/>`;[0,1,2,3].forEach(i=>s+=`<path d="M${130+i*8} ${150+i*6} C180 ${126+i*8} 250 ${150+i*7} ${340-i*8} ${154+i*6}" fill="none" stroke="#C3CBD6"/>`);s+=`<circle cx="236" cy="168" r="6" fill="${K2}" stroke="#FFFFFF" stroke-width="2"/>`}
+  if(v==='chat'){[[86,72,170],[86,124,210]].forEach(([x,y,w])=>s+=`<rect x="${x}" y="${y}" width="${w}" height="40" rx="8" fill="${P}" stroke="#E3E8EF"/><rect x="${x+12}" y="${y+12}" width="${w-60}" height="6" rx="3" fill="${K}"/><rect x="${x+12}" y="${y+24}" width="${w-90}" height="6" rx="3" fill="${K}"/>`);s+=`<rect x="240" y="98" width="150" height="22" rx="8" fill="#E3E8EF"/><rect x="86" y="212" width="304" height="26" rx="13" fill="#FFFFFF" stroke="${K2}"/><circle cx="374" cy="225" r="8" fill="${K2}"/>`}
+  return `<div class="m5 shot"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg><span class="m5-lab">${PH5_IC.shot}App screenshot</span></div>`;
+}
+const ph = (kind, tint, tag='') => `<div class="ph grain" style="--t:var(--hl-${tint})">${S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):bld(kind)}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`;
 
 /* =========================================================
    CONTENIDO SEMILLA (inglés; personas ficticias)
@@ -1220,10 +1413,16 @@ function startCollab(){
   /* el cursor completo (flecha + pastilla de ancho w) no puede tocar tierra ni las zonas de etiqueta */
   const blockedC=(x,y,w=64)=>{for(const[px,py]of[[x,y],[x+w/2,y],[x+w,y+16],[x+w,y+31],[x+w/2,y+31],[x+6,y+31],[x,y+16]])if(blocked(px,py))return true;
     return zones.some(b=>x-2<b[0]+b[2]&&x+w+2>b[0]&&y-2<b[1]+b[3]&&y+33>b[1])};
-  const COLS=[['var(--accent)','var(--accent-ink)'],['var(--hl-vdc)','var(--on-hl)'],['var(--hl-rc)','var(--on-hl)'],['var(--hl-cd)','var(--on-hl)'],['var(--hl-di)','var(--on-hl)']];
+  /* Estilo 5: --cur0..5 = paleta secundaria luminosa (sobre el azul) con tinta oscura; en los demás estilos caen al acento y a los highlights */
+  const COLS=[['var(--cur0,var(--accent))','var(--cur-ink,var(--accent-ink))'],['var(--cur1,var(--hl-vdc))','var(--cur-ink,var(--on-hl))'],['var(--cur2,var(--hl-rc))','var(--cur-ink,var(--on-hl))'],['var(--cur3,var(--hl-cd))','var(--cur-ink,var(--on-hl))'],['var(--cur4,var(--hl-di))','var(--cur-ink,var(--on-hl))'],['var(--cur5,var(--accent))','var(--cur-ink,var(--accent-ink))']];
+  const S5L=S5(), LOP=S5L?.92:.32, LW=S5L?1.5:1;
   const NAMES=['Ana','Leo','Mara','Iker','Sol','Nadia'];
   const lineZones=m.boxes.map(b=>[b[0]-6,b[1]-6,b[2]+12,b[3]+12]);
-  const segFree=(x1,y1,x2,y2,skip)=>{const bs=lineZones.filter((_,j)=>j!==skip),n=Math.ceil(Math.hypot(x2-x1,y2-y1)/5);for(let i=1;i<n;i++){const t=i/n;if(inBox(x1+(x2-x1)*t,y1+(y2-y1)*t,bs))return false}return true};
+  /* la línea llega a la oficina: se ignoran las zonas que contienen el punto de destino (su propio anillo) y los últimos 16 px.
+     (antes se saltaba el índice 2*i, que ya no coincide con m.boxes desde que hay líneas guía, y ninguna conexión pasaba) */
+  const segFree=(x1,y1,x2,y2)=>{const bs=lineZones.filter(b=>!(x2>=b[0]&&x2<=b[0]+b[2]&&y2>=b[1]&&y2<=b[1]+b[3])),len=Math.hypot(x2-x1,y2-y1),n=Math.ceil(len/5),tMax=1-16/Math.max(len,1);for(let i=1;i<n;i++){const t=i/n;if(t>tMax)break;if(inBox(x1+(x2-x1)*t,y1+(y2-y1)*t,bs))return false}return true};
+  /* fracción del segmento que pasa sobre tierra (rejilla dilatada). Estilo 5: las líneas de color casi no cruzan el continente */
+  const landFrac=(x1,y1,x2,y2)=>{const n=Math.max(2,Math.ceil(Math.hypot(x2-x1,y2-y1)/8));let k=0;for(let i=1;i<n;i++){const x=x1+(x2-x1)*i/n,y=y1+(y2-y1)*i/n,c=Math.floor(x/CS),r=Math.floor(y/CS);if(r>=0&&c>=0&&r<rows&&c<cols&&occ[r*cols+c])k++}return k/(n-1)};
   const reach=(x,y)=>off.some((o,i)=>Math.hypot(o.x-x,o.y-y)<300&&segFree(x,y,o.x,o.y,2*i));
   const freePt=(need,w)=>{for(let i=0;i<1500;i++){const x=XMIN+10+rnd()*(W-XMIN+20),y=10+rnd()*(H-40);if(!blockedC(x,y,w)&&x<W-20&&(!need||reach(x,y)))return[x,y]}return[W+40,H/2]};
   const cur=NAMES.map((name,i)=>{
@@ -1258,12 +1457,12 @@ function startCollab(){
   const conns=[];
   const tryConn=now=>{
     for(const c of cur.slice().sort(()=>rnd()-.5)){
-      if(c.x<XMIN||c.x>W-10||c.y<10||c.y>H-10||conns.some(k=>k.c===c))continue;
+      if(c.x<XMIN||c.x>W-(S5L?c.w+12:10)||c.y<10||c.y>H-10||conns.some(k=>k.c===c))continue;
       const cand=off.map((o,i)=>({o,i,d:Math.hypot(o.x-c.x,o.y-c.y)})).sort((a,b)=>a.d-b.d);
       for(const {o,i,d} of cand){
-        if(d>380||!segFree(c.x,c.y,o.x,o.y,2*i))continue;
-        const line=mk('line',{style:`stroke:${c.fill};stroke-width:1;opacity:0`},gL);
-        const ring=mk('circle',{cx:o.x.toFixed(1),cy:o.y.toFixed(1),r:5,style:`fill:none;stroke:${c.fill};stroke-width:1;opacity:0`},gL);
+        if(d>380||!segFree(c.x,c.y,o.x,o.y,2*i)||(S5L&&landFrac(c.x,c.y,o.x,o.y)>.3))continue;
+        const line=mk('line',{style:`stroke:${c.fill};stroke-width:${LW};opacity:0`},gL);
+        const ring=mk('circle',{cx:o.x.toFixed(1),cy:o.y.toFixed(1),r:5,style:`fill:none;stroke:${c.fill};stroke-width:${LW};opacity:0`},gL);
         conns.push({c,o,i,line,ring,born:now,life:7000,fade:1});return true;
       }
     }
@@ -1276,8 +1475,8 @@ function startCollab(){
     if(cn.bad){cn.fade-=dt*1.6;op=Math.min(op,Math.max(0,cn.fade))}
     cn.line.setAttribute('x1',cn.c.x.toFixed(1));cn.line.setAttribute('y1',cn.c.y.toFixed(1));
     cn.line.setAttribute('x2',cn.o.x.toFixed(1));cn.line.setAttribute('y2',cn.o.y.toFixed(1));
-    cn.line.style.opacity=(op*.32).toFixed(3);
-    const pk=Math.min(1,k/.3);cn.ring.setAttribute('r',(5+pk*13).toFixed(1));cn.ring.style.opacity=k<.3?((1-pk)*.6).toFixed(3):0;
+    cn.line.style.opacity=(op*LOP).toFixed(3);
+    const pk=Math.min(1,k/.3);cn.ring.setAttribute('r',(5+pk*13).toFixed(1));cn.ring.style.opacity=k<.3?(S5L?(1-pk)*.9+pk*op*.75:(1-pk)*.6).toFixed(3):(S5L?(op*.75).toFixed(3):0);
     return k>=1||(cn.bad&&cn.fade<=0);
   };
   cur.forEach(place);
@@ -1287,7 +1486,7 @@ function startCollab(){
   const tick=dt=>{clock+=dt*1000;const now=clock;
     cur.forEach(c=>{step(c,dt,now);place(c)});
     for(let i=conns.length-1;i>=0;i--)if(drawConn(conns[i],now,dt)){conns[i].line.remove();conns[i].ring.remove();conns.splice(i,1)}
-    if(now>nextAt&&conns.length<2){nextAt+=tryConn(now)?6500+rnd()*2500:700}
+    if(now>nextAt&&conns.length<2){nextAt+=tryConn(now)?(S5L?3400+rnd()*1800:6500+rnd()*2500):700}
     svg.dataset.conns=conns.map(k=>((now-k.born)/k.life).toFixed(2)).join(',')};
   if(reduce){if(tryConn(0)){const cn=conns[0];cn.born=-cn.life*.4;drawConn(cn,0,0)}return}
   for(let k=0;k<(window.HERO_FF||0)*30;k++)tick(1/30);
@@ -1302,9 +1501,11 @@ function clusterHeader(c){
   if(c.motif==='cloud') art=L?pointCloud(W,H,{x:900,y:84,w:560,h:310,seed:9,dens:.42,jit:1.6,noise:110,sweep:false,subtle:24,dotOp:.6}):pointCloud(W,H,{x:840,y:70,w:620,h:360,seed:9});
   if(c.motif==='flow') art=L?fanCurves({o:[1010,410],ex:1520,ey0:70,ey1:410,n:12,acc:4}):flowField(W,H,{x0:820,n:300,seed:2.2});
   if(c.motif==='bars') art=L?dataBars(W,H,{ox:1130,oy:150,cols:28,rows:12,dx:17,dy:16,amp:40,seed:1.1,top:3,lop:.42}):dataBars(W,H,{ox:1080,oy:150,cols:34,rows:14,dx:17,dy:16,amp:46,seed:1.1});
+  /* Estilo 5: sin dibujo abstracto; rampa azul del hero + foto real del proyecto del cluster en bandeja + filete del cluster */
+  const s5=S5(); if(s5) art='';
   const mk=`<defs><linearGradient id="chm-g" gradientUnits="userSpaceOnUse" x1="860" y1="0" x2="980" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="chm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#chm-g)"/></mask></defs>`;
-  return `<div class="art chdr grain" role="img" aria-label="${esc(c.name)}. LAC cluster ${c.n} of 04. Header image with the cluster motif in its highlight color.">
-    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>
+  return `<div class="art chdr grain" role="img" style="--c:var(--c5-${c.key}-lt)" aria-label="${esc(c.name)}. LAC cluster ${c.n} of 04. Header image ${s5?'on the blue gradient, with a project photo of the cluster':'with the cluster motif in its highlight color'}.">
+    <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>${s5?`<div class="c5-media tray5">${photo5(c.proj.ph)}</div>`:''}
     <div class="copy">
       <div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
       <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
@@ -1318,6 +1519,8 @@ function clusterHeader(c){
 let CAPN=0;
 function capThumb(c,o={}){
   const W=300,H=300,L=document.documentElement.dataset.style!=='1',id='cm'+(++CAPN),fd=o.fade||[150,178];let art='';
+  /* Estilo 5: foto del proyecto del cluster en bandeja + código en la tinta del cluster (mismos spans .n y .nm para los reemplazos de Learning y Community) */
+  if(S5()) return `<div class="capthumb grain${o.fit?' wide':''}" style="--c:var(--hl-${c.key});--ci:var(--ink-${c.key})"><div class="c5-ph">${photo5(c.proj.ph)}</div><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
   if(c.motif==='iso') art=L?isoSlabs(W,H,{cx:200,top:30,gap:19,a:60,acc:2,n:5,grid:2,fs:0}):isoSlabs(W,H,{cx:200,top:26,gap:19,a:64,acc:2,fs:0});
   if(c.motif==='cloud') art=L?pointCloud(W,H,{x:116,y:40,w:156,h:100,seed:4,dens:.34,jit:1.2,noise:36,sweep:false,subtle:13,dotOp:.6}):pointCloud(W,H,{x:105,y:44,w:175,h:108,seed:4});
   if(c.motif==='flow') art=L?fanCurves({o:[112,148],ex:272,ey0:42,ey1:148,n:8,acc:2}):flowField(W,H,{x0:60,n:70,seed:4.1});
@@ -1338,7 +1541,7 @@ function diagram(){
   // filas con barras posicionadas por fila
   const rowsHtml=rows.map(r=>{
     const bars=r.bars.map(b=>`<div class="bar" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'-'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
-    return `<div class="grid" style="grid-template-columns:13cqw 1fr"><div class="lab"><i style="background:var(--hl-${r.k})"></i>${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
+    return `<div class="grid" style="grid-template-columns:13cqw 1fr;--ci:var(--ink-${r.k})"><div class="lab"><i style="background:var(--hl-${r.k})"></i>${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
   }).join('');
   return `<div class="art dia grain" role="img" aria-label="Clusters diagram. Eight stages of an architecture project from pursuit and client contact to handover and operations. Data Intelligence enters at stages 1 to 3 (site and market analytics, Urban Vitality Index, GIS) and 8 (post-occupancy dashboards). Computational Design at stages 2 to 5 (massing optioneering, climate analysis, Pedestrian Flows, Rhino-Revit). Reality Capture at stages 1 to 2 (existing conditions scans, Terrain Analysis) and 7 to 8 (progress scans, as-built verification). VDC at stages 4 to 7 (BEP, federated coordination, clash detection, 4D sequencing, model QA).">
     <div class="ttl"><h4>Where each cluster enters <em>your project</em><span class="sdot"></span></h4><span>Design Technology LAC · 4 clusters × 8 stages</span></div>
@@ -1370,6 +1573,7 @@ function ctaBg(c){
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const mk=L?`<defs><linearGradient id="ctm-g" gradientUnits="userSpaceOnUse" x1="400" y1="0" x2="490" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="ctm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#ctm-g)"/></mask></defs>`:'';
   const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g${L?' mask="url(#ctm)"':''}>${art}</g></svg>`;
+  if(st==='5') return `<div class="cta-bg art" style="--c:var(--hl-${c.key})"><div class="c5-media tray5">${photo5('people','Photo')}</div></div>`;
   if(st==='3') return `<div class="cta-bg art" style="background:var(--bg-neutral);box-shadow:inset 0 0 0 1px var(--rule)">${svg}</div>`;
   if(st==='4') return `<div class="cta-bg art" style="background:var(--noise4),radial-gradient(46% 110% at 88% 10%,color-mix(in srgb,var(--accent) 22%,#A8D8F8) 0%,rgba(168,216,248,0) 70%),linear-gradient(90deg,#F3F6FA 0%,#F3F6FA 45%,#E6F1FD 100%);box-shadow:inset 0 0 0 1px var(--rule)">${svg}</div>`;
   return `<div class="cta-bg art grain" style="--art-bg:#0D0E10;--art-fg:rgba(255,255,255,.55);--art-dim:rgba(255,255,255,.14);--art-dot:rgba(255,255,255,.5);background:radial-gradient(70% 120% at 90% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 65%),#0D0E10">${svg}</div>`;
@@ -1380,6 +1584,16 @@ function uviChart(){
   const v=[38,44,41,52,57,55,66,74], b=[40,42,43,45,46,48,49,51], X=i=>28+i*344/7, Y=n=>246-(n-30)*2.55;
   const pts=a=>a.map((n,i)=>[X(i),Y(n)]);
   const curve=p=>p.reduce((d,[x,y],i)=>{if(!i)return `M${x.toFixed(1)} ${y.toFixed(1)}`;const[px,py]=p[i-1],mx=(px+x)/2;return d+` C${mx.toFixed(1)} ${py.toFixed(1)} ${mx.toFixed(1)} ${y.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`},'');
+  /* Estilo 5: tarjeta blanca sobre la foto. Índice en el color de DI (área en degradado), línea base en gris y 12 indicadores en barras de color */
+  if(S5()){
+    const x=i=>14+i*272/7, y=n=>92-(n-34)*1.75, Q=v.map((n,i)=>[x(i),y(n)]), Lc=curve(Q), D='#2289D2', DI='#0B6BAA';
+    let t=`<defs><linearGradient id="uvi5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${D}" stop-opacity=".42"/><stop offset="1" stop-color="${D}" stop-opacity="0"/></linearGradient></defs>`;
+    [28,52,76].forEach(g=>t+=`<line x1="10" y1="${g}" x2="290" y2="${g}" stroke="#EEF1F5"/>`);
+    t+=`<line x1="10" y1="96" x2="290" y2="96" stroke="#C9D0DA"/><path d="${Lc} L${x(7)} 96 L${x(0)} 96Z" fill="url(#uvi5)"/><path d="${curve(b.map((n,i)=>[x(i),y(n)]))}" fill="none" stroke="#8A93AB" stroke-width="1" stroke-dasharray="3 3"/><path d="${Lc}" fill="none" stroke="${DI}" stroke-width="1.6"/>`;
+    Q.forEach(([px,py],i)=>t+=i<7?`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="2.2" fill="#fff" stroke="${DI}" stroke-width="1.2"/>`:`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7" fill="${D}" fill-opacity=".16"/><circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3.4" fill="${DI}" stroke="#fff" stroke-width="1.2"/>`);
+    for(let i=0;i<12;i++){const h=6+((i*7)%11);t+=`<rect x="${14+i*23}" y="${124-h}" width="14" height="${h}" rx="1" fill="${D}" fill-opacity="${h>11?.9:.4}"/>`}
+    return `<div class="c5-chart" aria-hidden="true"><svg viewBox="0 0 300 128" aria-hidden="true">${t}</svg></div>`;
+  }
   const P=pts(v), line=curve(P), area=`${line} L${X(7)} 246 L${X(0)} 246 Z`;
   let s=`<defs><linearGradient id="uviA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2348C8" stop-opacity=".5"/><stop offset=".55" stop-color="#4F8CE6" stop-opacity=".2"/><stop offset="1" stop-color="#A8D8F8" stop-opacity="0"/></linearGradient></defs>`;
   [126,166,206].forEach(y=>s+=`<line x1="20" y1="${y}" x2="380" y2="${y}" stroke="#fff" stroke-opacity=".85" stroke-width="1" vector-effect="non-scaling-stroke"/>`);
@@ -1391,17 +1605,20 @@ function uviChart(){
   return `<svg class="uvi" viewBox="0 0 400 275" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${s}</svg>`;
 }
 /* unidades: N barritas con relleno degradado (la cifra se lee también como cantidad) */
-const units = n => `<i class="u" aria-hidden="true">${'<i></i>'.repeat(+n)}</i>`;
-/* cifras bento en claro (ref. 693585). La primera tarjeta lleva el degradado suave. */
+/* Estilo 5: cols = colores por barrita (se repiten en ciclo); cada barrita lleva su color con un degradado corto (solo áreas de datos) */
+const units = (n,cols) => `<i class="u" aria-hidden="true">${Array.from({length:+n},(_,k)=>cols?`<i style="background:linear-gradient(180deg,${cols[k%cols.length]},color-mix(in srgb,${cols[k%cols.length]} 45%,transparent))"></i>`:'<i></i>').join('')}</i>`;
+const rep = a => a.flatMap(([c,n])=>Array(n).fill(c));
+/* cifras bento en claro (ref. 693585). La primera tarjeta lleva el degradado suave. it[2] = colores de las unidades (Estilo 5) */
 function bento4(items, label){
-  return `<div class="art bento" role="img" aria-label="${esc(label)}">${items.map((it,i)=>`<div class="bx${i===0?' hi':''}"><b>${it[0]}</b><span>${esc(it[1])}</span>${units(it[0])}</div>`).join('')}</div>`;
+  return `<div class="art bento" role="img" aria-label="${esc(label)}">${items.map((it,i)=>`<div class="bx${i===0?' hi':''}"><b>${it[0]}</b><span>${esc(it[1])}</span>${units(it[0],it[2])}</div>`).join('')}</div>`;
 }
-/* banda "Build with COM": el único bloque intenso de la página. Texto y cifras horneados; todo va en el alt. */
+/* banda "Build with COM": el único bloque intenso de la página. Texto y cifras horneados; todo va en el alt.
+   Estilo 5: cada estado lleva su color de apoyo luminoso (ámbar = evaluación, rosa = desarrollo, lima = lanzado) */
 function band4(){
-  const n=[['14','in evaluation'],['06','in development'],['09','launched']];
+  const n=[['14','in evaluation','amber'],['06','in development','rose'],['09','launched','lime']], s5=S5();
   return `<div class="art band4" role="img" aria-label="Build with COM. Have an idea? Build it with us. From idea to launched LATAM solution. ${n.map(x=>x[0]+' '+x[1]).join(', ')}.">
     <div class="in"><div><p class="k">Build with COM</p><h2>Have an idea? <em>Build it with us</em><span class="sdot"></span></h2><p>From idea to launched LATAM solution.</p></div>
-    <div class="nums">${n.map(x=>`<div class="c"><b>${x[0]}</b><span>${x[1]}</span>${units(x[0])}</div>`).join('')}</div></div>
+    <div class="nums">${n.map(x=>`<div class="c" style="--k:var(--c5-${x[2]}-lt)"><b>${x[0]}</b><span>${x[1]}</span>${units(x[0],s5?[`var(--c5-${x[2]}-lt)`]:null)}</div>`).join('')}</div></div>
   </div>`;
 }
 
@@ -1425,6 +1642,14 @@ const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><sm
    ========================================================= */
 /* @personalizar: páginas (secciones con sec(layout, fondo, columnas) y web parts con wp()) */
 const comBtns = () => [['bulb','Submit an idea','#/request','Microsoft Forms · 3 min'],['chat','Request project support','#/request','We reply within 5 working days'],['funnel','See the development funnel','#/request','Live board, updated monthly']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('');
+/* chips: en el Estilo 5 los clusters y los estados llevan color (punto + tinte + tinta AA); los temas quedan neutros */
+const CHIPK={'Data Intelligence':'di','DI':'di','Computational Design':'cd','CD':'cd','Reality Capture':'rc','RC':'rc','VDC':'vdc','Live':'lime','Pilot':'amber'};
+const chip = (x,st=false) => {const k=CHIPK[x], kc=k&&(['lime','amber','rose'].includes(k)?`var(--s-${k})`:`var(--hl-${k})`);
+  return `<span class="chip${st?' st':''}${k?' k':''}"${k?` style="--kc:${kc};--ki:var(--ink-${k});--kt:var(--tint-${k})"`:''}>${esc(x)}</span>`};
+/* herramientas en el Estilo 5: tile de logo de app (monograma, "app logo") + captura en bandeja con marco de navegador */
+const APPM={SP:'Sp',CP:'Cp',PB:'PBI',DY:'Dy',RR:'Rh',gB:'gB',TA:'TA',UV:'UV'}, SHOTV={SP:'model',CP:'chat',PB:'dash',DY:'model',RR:'model',gB:'model',TA:'map',UV:'map'};
+const toolIco = t => `<span class="ico">${S5()?`<b>${APPM[t]||t}</b><small>app logo</small>`:t}</span>`;
+const toolShot = t => S5()?`<div class="shot5 tray5">${shot5(SHOTV[t]||'dash')}</div>`:'';
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   const tools = [
@@ -1432,16 +1657,16 @@ function pageHome(){
     ['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live','Prompts and guardrails for design teams, curated for LAC.'],
     ['gB','gBlox','Gensler tool',['Computational Design'],'Live','Rapid test-fits and massing blocks for early studies.'],
     ['TA','Terrain Analysis','LATAM solution',['Reality Capture','Computational Design'],'Pilot','Slope, cut-and-fill and drainage from survey or GIS data.'],
-  ].map(t=>`<div class="tool"><div class="top"><span class="ico">${t[0]}</span><div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><p>${t[5]}</p><div class="chips">${t[3].map(x=>`<span class="chip">${x}</span>`).join('')}<span class="chip st">${t[4]}</span></div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('');
+  ].map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><p>${t[5]}</p><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('');
   return [
-    sec('full','none',[wp('i','Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
+    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados':'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 1 + Normal', `${kick('Design Technology · Latin America & Caribbean',true)}<h1 class="t-h1">One regional team. <span class="tail">Every project</span><span class="sdot"></span></h1><p class="t-p">Four clusters. Six offices. We build with you.</p>`),
       wp('n','Quick links · Button (4 acciones)', `<div class="ql-buttons">${[['compass','Explore capabilities','#/clusters/vdc','VDC, Reality Capture, CD, Data'],['tool','Find a tool','#/tools','Gensler tools and LATAM solutions'],['book','Start learning','#/learning','Paths, workshops, recordings'],['bulb','Build with COM','#/request','Request support or submit an idea']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}<small>${a[3]}</small></span>${ic('arrow','arr')}</a>`).join('')}</div>`)
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
-      wp('n',S4()?'Quick links · Filmstrip · miniaturas 1:1 = imágenes con degradado y grano (PNG 2×)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
+      wp('n',S5()?'Quick links · Filmstrip · miniatura 1:1 = foto de proyecto en bandeja blanca + código del cluster (PNG 600 px)':S4()?'Quick links · Filmstrip · miniaturas 1:1 = imágenes con degradado y grano (PNG 2×)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
@@ -1450,18 +1675,18 @@ function pageHome(){
     sec('l13','neutral',[
       S4()
         ? wp('n','Text · Heading 2 + Normal', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p>`)
-          + wp('i','Image · cifras bento con degradado y grano (PNG o WebP a 760 px) · alt con las 4 cifras', bento4([['06','offices across the region'],['04','clusters, one team'],['18','tools and LATAM solutions'],['26','projects with DT impact']],'LAC at a glance: 06 offices across the region, 04 clusters, one team, 18 tools and LATAM solutions, 26 projects with DT impact.'))
+          + wp('i','Image · cifras bento con degradado y grano (PNG o WebP a 760 px) · alt con las 4 cifras', bento4(S5()?[['06','offices across the region',['var(--s-lime)']],['04','clusters, one team',['var(--hl-vdc)','var(--hl-rc)','var(--hl-cd)','var(--hl-di)']],['18','tools and LATAM solutions',['var(--s-amber)']],['26','projects with DT impact',rep([['var(--hl-vdc)',8],['var(--hl-rc)',5],['var(--hl-cd)',7],['var(--hl-di)',6]])]]:[['06','offices across the region'],['04','clusters, one team'],['18','tools and LATAM solutions'],['26','projects with DT impact']],'LAC at a glance: 06 offices across the region, 04 clusters, one team, 18 tools and LATAM solutions, 26 projects with DT impact.'))
         : wp('n','Text · Heading 2 + cifras en Heading 2', `${kick('LAC at a glance')}${h2('A region,','connected.')}<p class="t-p muted">Curated for LATAM, linked to the firmwide source.</p><div class="stat-grid"><div class="stat"><b>06</b><span>offices across the region</span></div><div class="stat"><b>04</b><span>clusters, one team</span></div><div class="stat"><b>18</b><span>tools and LATAM solutions</span></div><div class="stat"><b>26</b><span>projects with DT impact</span></div></div>`),
       wp('i','Image · mapa de puntos LAC (1584 px) · alt completo', mapArt())
     ],'EXTRA'),
     sec('l31','none',[
-      wp('i',S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"').replace('</svg>','</svg>'+uviChart())}</a>`),
+      wp('i',S5()?'Image · 1 vínculo al caso de estudio · foto de proyecto en bandeja + gráfica de datos DI + pie mono (PNG 1584 px, fondo blanco)':S4()?'Image · 1 vínculo al caso de estudio · render en degradado + gráfica de área horneados (WebP a 1584 px)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${ph('city','di','Data Intelligence · Mexico City').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"').replace('</svg>','</svg>'+uviChart())}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
-    sec('l1','none',[wp('n',S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
+    sec('l1','none',[wp('n',S5()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniatura = foto de proyecto 16:9 (fondo blanco) · filete = color del cluster':S4()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniaturas = imágenes con degradado (PNG 2×)':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
     sec('l1','neutral',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Featured tools',true)}${h2('Tools to use today.','Explore and learn.')}`),
-      wp('n','List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
+      wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools (Featured = Sí) · columnas Imagen: captura (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools (Featured = Sí)', `<div class="gallery">${tools}</div>`)
     ]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning',true)}${h2('Computational Thinking,','a 6-module path.')}<p class="t-p muted">Self-paced capsules. A live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
@@ -1535,7 +1760,7 @@ function pageProjects(){
 function pageTools(){
   const T=[['SP','Speckle','Workflow tool',['DI','Integrated workflows'],'Live'],['PB','Power BI templates','Gensler tool',['DI'],'Live'],['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live'],['DY','Dynamo for Revit','Workflow tool',['CD','VDC'],'Live'],['RR','Rhino.Inside.Revit','Workflow tool',['CD'],'Live'],['gB','gBlox','Gensler tool',['CD'],'Live'],['TA','Terrain Analysis','LATAM solution',['RC','CD'],'Pilot'],['UV','Urban Vitality Index','LATAM solution',['DI'],'Live']];
   return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions and experiments.')
-  + sec('l1','none',[wp('n','List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool"><div class="top"><span class="ico">${t[0]}</span><div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>`<span class="chip">${x}</span>`).join('')}<span class="chip st">${t[4]}</span></div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
+  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
   + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Availability is reviewed every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
 }
 function pageLearning(){
@@ -1554,7 +1779,7 @@ function pageRequest(){
   const lanes=[['Idea',14,[['Clash triage with Copilot','VDC'],['Facade panel optimizer','CD']]],['Evaluation',6,[['Drone-to-mesh pipeline','RC'],['Retail KPI template','DI']]],['In development',6,[['Terrain Analysis v2','RC'],['Speckle → Power BI connector','DI']]],['Launched',9,[['Urban Vitality Index','DI'],['gBlox LAC test-fits','CD']]]];
   return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
   + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Santo Domingo hotel fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
-  + sec('l1','neutral',[wp('n','List · Board view agrupado por Status (por verificar en web part)', `<div class="wp-title"><h3>Development funnel</h3><a href="#/request">Open board</a></div><div class="board">${lanes.map(l=>`<div class="lane"><h4>${l[0]} <span>${l[1]}</span></h4>${l[2].map(c=>`<div class="kcard"><b>${esc(c[0])}</b><span class="chip">${c[1]}</span></div>`).join('')}</div>`).join('')}</div>`)]);
+  + sec('l1','neutral',[wp('n','List · Board view agrupado por Status (por verificar en web part)', `<div class="wp-title"><h3>Development funnel</h3><a href="#/request">Open board</a></div><div class="board">${lanes.map(l=>`<div class="lane"><h4>${l[0]} <span>${l[1]}</span></h4>${l[2].map(c=>`<div class="kcard"><b>${esc(c[0])}</b>${chip(c[1])}</div>`).join('')}</div>`).join('')}</div>`)]);
 }
 
 /* =========================================================
@@ -1580,6 +1805,7 @@ function route(){
   const parts=h[0].split('/');
   const q=new URLSearchParams(h[1]||'');
   if(q.get('s'))setStyle(q.get('s'),false);
+  if(q.get('m'))setMode(q.get('m'));
   if(q.get('wp'))setWp(q.get('wp')==='1');
   if(q.get('f'))setFont(q.get('f'));
   if(q.get('a'))setAccent(q.get('a'));
@@ -1626,19 +1852,23 @@ function setAccent(a){document.documentElement.dataset.accent=a;document.querySe
 function store(k,v){try{localStorage.setItem('dtlac-'+k,v)}catch(e){}}
 function load(k){try{return localStorage.getItem('dtlac-'+k)}catch(e){return null}}
 function setStyle(s,rerender=true){document.documentElement.dataset.style=s;document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);
-  /* Estilo 4: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos) */
-  const g=$('#accentGrp'),off=s==='4';g.classList.toggle('off',off);g.title=off?'Estilo 4 usa azul fijo':'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
+  /* Estilos 4 y 5: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos) */
+  const g=$('#accentGrp'),off=s==='4'||s==='5';g.classList.toggle('off',off);g.title=off?`Estilo ${s} usa azul fijo`:'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
+  /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva) */
+  const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?'Solo en el Estilo 5':'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
   if(rerender)route()}
+function setMode(m){m=m==='dark'?'dark':'light';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));store('mode',m)}
 function setFont(f){document.documentElement.dataset.font=f;document.querySelectorAll('[data-set-font]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setFont===f));store('font',f)}
 function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#wpToggle').setAttribute('aria-pressed',on);store('wp',on?'1':'0')}
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
 document.querySelectorAll('[data-set-font]').forEach(b=>b.addEventListener('click',()=>setFont(b.dataset.setFont)));
+document.querySelectorAll('[data-set-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.setMode)));
 $('#wpToggle').addEventListener('click',()=>setWp(!document.documentElement.classList.contains('show-wp')));
 document.querySelectorAll('[data-set-accent]').forEach(b=>b.addEventListener('click',()=>setAccent(b.dataset.setAccent)));
 $('#logosBtn').addEventListener('click',()=>setDrawer(!$('#logosDrawer').classList.contains('open')));
 $('#logosClose').addEventListener('click',()=>setDrawer(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').classList.contains('open'))setDrawer(false)});
-setStyle(load('style')||'1',false);setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
+setStyle(load('style')||'1',false);setMode(load('mode')||'light');setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
 buildLogos();applyLogo(load('logo3')||'L00');
 buildNav();route();
 window.addEventListener('hashchange',route);
