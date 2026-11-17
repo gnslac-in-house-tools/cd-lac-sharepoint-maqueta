@@ -488,6 +488,12 @@ html[data-style="5"] .cta .btn{background:var(--theme);color:var(--on-theme)}
 .pipe-key .k-t{background:none;border:1px dashed var(--pp-ink)}
 .pipe-key .k-h{opacity:.42}
 .pipe-fig{margin:0 0 0 auto;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7}
+/* (ronda 13) Embed real: iframe a PIPE_URL?embed=funnel dentro del mismo panel de figura; su alto se ajusta con postMessage «dt-pipe-height».
+   Si no responde en ~6 s, se muestra el diagrama de arriba (.pipe) hecho con PIPE_SNAPSHOT / datos/proyectos.js */
+.pipe-live{--pp-ink:var(--text);--pp-line:color-mix(in srgb,var(--text) 13%,transparent);--pp-panel:var(--surface);position:relative;padding:8px 10px 0;background:var(--pp-panel);border-radius:var(--r-native);box-shadow:inset 0 0 0 1px var(--rule)}
+.bg-neutral .pipe-live{--pp-panel:var(--bg)}
+.pipe-frame{display:block;width:100%;height:460px;border:0;background:transparent;color-scheme:dark}
+.pipe-live .pipe-foot{margin:0;padding:6px 36px 22px;border-top:0}
 /* Banner / título de página */
 .banner{padding:44px 0 8px}
 .banner .t-h1{font-size:40px}
@@ -1638,7 +1644,7 @@ html[data-skin="7"] .cta{border-radius:0;box-shadow:inset 0 0 0 1px var(--s7-lin
 html[data-skin="7"] .pmh{background:var(--s7-panel-bg);box-shadow:none;border-radius:0;padding:22px 18px 12px;position:relative}
 /* (ronda 12) cruces de registro de los paneles de figura: mismo mecanismo para diagrama de clusters, matriz, onboarding, Tools, mapa de impacto y pipeline.
    (brand kit) un solo margen (--x7-in = 12px) y una sola opacidad (.5) para todos; antes 0 / 10 / 12 / 14 px y .45 / .5 */
-html[data-skin="7"] :is(.dia,.pmh,.onb-map,.eco,.impact-map,.pipe)::before{content:"";position:absolute;inset:var(--x7-in);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
+html[data-skin="7"] :is(.dia,.pmh,.onb-map,.eco,.impact-map,.pipe,.pipe-live)::before{content:"";position:absolute;inset:var(--x7-in);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
   background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
@@ -1735,7 +1741,7 @@ html[data-skin="7"] .impact-map .mapart{border-radius:0}
 html[data-skin="7"] .impact-map .imp-leg{transform:translate(14px,-16px)}   /* la leyenda se aparta de la cruz inferior izquierda */
 html[data-skin="7"] .impact-map .imp-leg .box{rx:0;stroke:var(--s7-line-2)}
 /* pipeline: panel de figura */
-html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:var(--s7-line);background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
+html[data-skin="7"] :is(.pipe,.pipe-live){--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:var(--s7-line);background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
 </style>
 </head>
 <body>
@@ -1814,7 +1820,7 @@ html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:
   <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5, 6 y 7)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div></div>
   <div class="ctl-g"><span class="lbl">Fuente</span>
   <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div></div>
-  <div class="ctl-g"><div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div><div class="grp"><button id="bkBtn" class="bk-btn" type="button" title="Brand kit del Estilo 7 (se abre en otra pestaña)" onclick="window.open(/\/maqueta\//.test(location.pathname)?'../docs/brand-kit/index.html':'brand-kit/index.html','_blank','noopener')">Brand kit ↗</button></div></div>
+  <div class="ctl-g"><div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div><div class="grp"><button id="bkBtn" class="bk-btn" type="button" title="Brand kit del Estilo 7 (se abre en otra pestaña)" onclick="window.open(/\/maqueta\//.test(location.pathname)?'../docs/brand-kit/index.html':'brand-kit/index.html','_blank','noopener')">Brand kit ↗</button><button id="pipeBtn" class="bk-btn" type="button" title="DT Projects Pipeline: el tablero completo (se abre en otra pestaña)" onclick="window.open(PIPE_URL,'_blank','noopener')">Pipeline ↗</button></div></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
   <button type="button" class="ctl-min" id="ctlMin" aria-label="Minimizar el panel de la maqueta" title="Minimizar" aria-controls="ctl" aria-expanded="true"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div>
@@ -3647,8 +3653,27 @@ const pipeBody = () => {
    + st.map((x,i)=>`<section class="pipe-stage" data-pipe-stage="${i+1}" style="grid-column:${i+2}" aria-label="${x.g[0]} ${esc(x.g[1])}"><header><span class="pipe-n">${x.g[0]}</span><span class="pipe-count" data-pipe-count>${x.it.length}</span><h4>${esc(x.g[1])}</h4></header>${ul(x.c,'c')}${ul(x.o,'o')}${x.it.length?'':'<p class="pipe-empty">No projects yet</p>'}<p class="pipe-gate"><span>${i<3?'Gate '+x.g[0]:'Outcome'}</span>${esc(x.g[2])}</p></section>`).join('')
    + `<div class="pipe-foot">${key}${S7()?`<p class="pipe-fig" aria-hidden="true">FIG. 06 — DT PROJECTS PIPELINE · ${PIPE_DATA.length} PROJECTS</p>`:''}</div></div>`;
 };
+/* Embed real (ronda 13): iframe al modo ?embed=funnel del tablero. En SharePoint es el web part Embed con esa misma URL.
+   Se da por cargado cuando el iframe avisa su alto (postMessage dt-pipe-height); si en PIPE_TIMEOUT ms (desde que entra en pantalla) no avisa, se muestra el fallback */
+const PIPE_EMBED_URL=PIPE_URL+'?embed=funnel', PIPE_TIMEOUT=6000;
+const pipeEmbed = () => `<div class="pipe-live" data-pipe-live><iframe class="pipe-frame" data-pipe-frame src="${PIPE_EMBED_URL}" title="DT Projects Pipeline" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+  + `<div class="pipe-foot">${S7()?'<p class="pipe-fig" aria-hidden="true">FIG. 06 · DT PROJECTS PIPELINE · LIVE</p>':''}</div></div><div class="pipe-wrap" data-pipe-fb hidden>${pipeBody()}</div>`;
+window.addEventListener('message',e=>{
+  const d=e.data; if(!d||d.type!=='dt-pipe-height')return;
+  const f=[...document.querySelectorAll('iframe[data-pipe-frame]')].find(x=>x.contentWindow===e.source); if(!f)return;
+  f.dataset.ok='1'; f.style.height=Math.max(260,Math.min(1400,Math.ceil(+d.h)||460))+'px';
+});
+function pipeEmbedInit(){
+  document.querySelectorAll('iframe[data-pipe-frame]:not([data-bound])').forEach(f=>{
+    f.dataset.bound='1';
+    const start=()=>setTimeout(()=>{ if(f.dataset.ok||!f.isConnected)return;
+      const live=f.closest('[data-pipe-live]'); live.hidden=true; live.parentNode.querySelector('[data-pipe-fb]').hidden=false },PIPE_TIMEOUT);
+    if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();start()}});io.observe(f)}else start();
+  });
+}
 /* intenta cargar el tablero real; si llega window.PROYECTOS_DT, re-mapea y vuelve a pintar el funnel (si no, queda el snapshot) */
 function pipeInit(){
+  pipeEmbedInit();
   const draw=()=>{document.querySelectorAll('[data-pipe]').forEach(el=>el.outerHTML=pipeBody())};
   if(window.PROYECTOS_DT){PIPE_DATA=pipeMap(window.PROYECTOS_DT);PIPE_SRC='live';draw();return}
   if(document.querySelector('script[data-pipe-src]'))return;
@@ -3660,7 +3685,7 @@ function pipeInit(){
 function pageRequest(){
   return banner('Send your request','How do I engage DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
   + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><svg class="pa-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5L14.5 8 8 14.5 1.5 8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 5l3 3-3 3z" fill="currentColor"/></svg><span>Request project support</span><span class="pa-env">DT LAC</span></div><div class="pa-body"><p class="pa-h">New request</p><p class="pa-sub">We reply within 3 working days.</p><div class="f"><label><span>Project name<i>*</i></span><span class="in">e.g. Santo Domingo hotel fit-out</span></label><label><span>Office</span><span class="in dd">Select an office</span></label><label><span>Cluster</span><span class="in dd">Select a cluster</span></label><label><span>Stage</span><span class="in dd">Schematic design</span></label><label class="wide"><span>What do you need?<i>*</i></span><span class="in ta">Describe the problem…</span></label><div class="acts"><span class="go">Submit request</span><span class="go2">Cancel</span></div></div></div></div>`)])
-  + sec('l1',S7()?'none':'neutral',[wp('n','Embed · DT Projects Pipeline (fuente: Lista SharePoint «DT Pipeline» o tablero publicado; se edita allá y aparece aquí)', `<div class="wp-title"><h3>Development funnel</h3><span class="pipe-links"><a href="${PIPE_URL}" target="_blank" rel="noopener">Open board ↗</a><a href="${PIPE_URL}#idea" target="_blank" rel="noopener">Share an idea</a></span></div><div class="pipe-wrap">${pipeBody()}</div>`)]);
+  + sec('l1',S7()?'none':'neutral',[wp('n','Embed · DT Projects Pipeline (iframe a gnslac-in-house-tools.github.io/DT-Projects-Pipeline/?embed=funnel; se edita en el tablero y se actualiza aquí)', `<div class="wp-title"><h3>Development funnel</h3><span class="pipe-links"><a href="${PIPE_URL}" target="_blank" rel="noopener">Open board ↗</a><a href="${PIPE_URL}#idea" target="_blank" rel="noopener">Share an idea</a></span></div>${pipeEmbed()}`)]);
 }
 
 /* =========================================================
