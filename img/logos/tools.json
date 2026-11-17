@@ -1,0 +1,585 @@
+[
+  {
+    "id": "revit",
+    "nombre": "Revit",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "CD"
+    ],
+    "logo": "revit.png",
+    "nota": ""
+  },
+  {
+    "id": "bim360",
+    "nombre": "BIM360",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC"
+    ],
+    "logo": "bim360.png",
+    "nota": ""
+  },
+  {
+    "id": "especs",
+    "nombre": "eSpecs",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "especs.png",
+    "nota": ""
+  },
+  {
+    "id": "formit",
+    "nombre": "Formit",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "formit.png",
+    "nota": ""
+  },
+  {
+    "id": "hatchkit",
+    "nombre": "HatchKit",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "hatchkit.png",
+    "nota": ""
+  },
+  {
+    "id": "ideate",
+    "nombre": "Ideate",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "CD"
+    ],
+    "logo": "ideate.png",
+    "nota": ""
+  },
+  {
+    "id": "specsources",
+    "nombre": "Specsources",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "specsources.png",
+    "nota": ""
+  },
+  {
+    "id": "slingshot",
+    "nombre": "Slingshot",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "slingshot.png",
+    "nota": ""
+  },
+  {
+    "id": "navisworks",
+    "nombre": "Navisworks",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC"
+    ],
+    "logo": "navisworks.png",
+    "nota": ""
+  },
+  {
+    "id": "fenestrapro",
+    "nombre": "FenestraPro",
+    "categoria": "BIM & Documentation",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "fenestrapro.png",
+    "nota": ""
+  },
+  {
+    "id": "rhino",
+    "nombre": "Rhino",
+    "categoria": "Design & Computation",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "rhino.png",
+    "nota": ""
+  },
+  {
+    "id": "grasshopper",
+    "nombre": "Grasshopper",
+    "categoria": "Design & Computation",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "grasshopper.png",
+    "nota": ""
+  },
+  {
+    "id": "dynamo",
+    "nombre": "Dynamo",
+    "categoria": "Design & Computation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "CD"
+    ],
+    "logo": "dynamo.png",
+    "nota": ""
+  },
+  {
+    "id": "speckle",
+    "nombre": "Speckle",
+    "categoria": "Interoperability",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "DI"
+    ],
+    "logo": "speckle.png",
+    "nota": "En la lámina va como Data Intelligence."
+  },
+  {
+    "id": "rhino-inside",
+    "nombre": "Rhino.Inside",
+    "categoria": "Interoperability",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "CD"
+    ],
+    "logo": "rhino-inside.png",
+    "nota": ""
+  },
+  {
+    "id": "conveyor",
+    "nombre": "Conveyor",
+    "categoria": "Interoperability",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "DI"
+    ],
+    "logo": "conveyor.png",
+    "nota": ""
+  },
+  {
+    "id": "run-diffusion",
+    "nombre": "Run Diffusion",
+    "categoria": "Creative Storytelling",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": null,
+    "nota": "Solo ícono genérico en la fuente."
+  },
+  {
+    "id": "adobe-firefly",
+    "nombre": "Adobe Firefly",
+    "categoria": "Creative Storytelling",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "adobe-firefly.png",
+    "nota": ""
+  },
+  {
+    "id": "gdiffusion",
+    "nombre": "gDiffusion",
+    "categoria": "Creative Storytelling",
+    "origen": "gensler",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "gdiffusion.png",
+    "nota": "Origen Gensler según instrucción del usuario.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "climatestudio",
+    "nombre": "ClimateStudio",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "climatestudio.png",
+    "nota": ""
+  },
+  {
+    "id": "ladybug",
+    "nombre": "Ladybug",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "ladybug.png",
+    "nota": ""
+  },
+  {
+    "id": "eddy3d",
+    "nombre": "Eddy3D",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "eddy3d.png",
+    "nota": ""
+  },
+  {
+    "id": "tally",
+    "nombre": "Tally",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "tally.png",
+    "nota": ""
+  },
+  {
+    "id": "enscape",
+    "nombre": "Enscape",
+    "categoria": "Visualization",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "enscape.png",
+    "nota": ""
+  },
+  {
+    "id": "sketchup",
+    "nombre": "Sketchup",
+    "categoria": "Visualization",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "sketchup.png",
+    "nota": ""
+  },
+  {
+    "id": "twinmotion",
+    "nombre": "Twinmotion",
+    "categoria": "Visualization",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "twinmotion.png",
+    "nota": ""
+  },
+  {
+    "id": "vray",
+    "nombre": "V-Ray",
+    "categoria": "Visualization",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "vray.png",
+    "nota": ""
+  },
+  {
+    "id": "yulio",
+    "nombre": "Yulio",
+    "categoria": "Visualization",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "yulio.png",
+    "nota": ""
+  },
+  {
+    "id": "miro",
+    "nombre": "Miro",
+    "categoria": "Collaboration",
+    "origen": "commercial",
+    "clusters": [
+      "DI",
+      "CD"
+    ],
+    "logo": "miro.png",
+    "nota": ""
+  },
+  {
+    "id": "bluebeam",
+    "nombre": "Bluebeam",
+    "categoria": "Collaboration",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "CD"
+    ],
+    "logo": "bluebeam.png",
+    "nota": ""
+  },
+  {
+    "id": "avail",
+    "nombre": "Avail",
+    "categoria": "Collaboration",
+    "origen": "commercial",
+    "clusters": [
+      "CD"
+    ],
+    "logo": "avail.png",
+    "nota": ""
+  },
+  {
+    "id": "stacko",
+    "nombre": "Stacko",
+    "categoria": "Automation",
+    "origen": "commercial",
+    "clusters": [
+      "VDC",
+      "DI"
+    ],
+    "logo": "stacko.png",
+    "nota": ""
+  },
+  {
+    "id": "clarity",
+    "nombre": "Clarity",
+    "categoria": "Automation",
+    "origen": "commercial",
+    "clusters": [
+      "DI"
+    ],
+    "logo": "clarity.png",
+    "nota": ""
+  },
+  {
+    "id": "illustrator",
+    "nombre": "Illustrator",
+    "categoria": "Graphics & Publishing",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "illustrator.png",
+    "nota": ""
+  },
+  {
+    "id": "after-effects",
+    "nombre": "After Effects",
+    "categoria": "Graphics & Publishing",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "after-effects.png",
+    "nota": ""
+  },
+  {
+    "id": "photoshop",
+    "nombre": "Photoshop",
+    "categoria": "Graphics & Publishing",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "photoshop.png",
+    "nota": ""
+  },
+  {
+    "id": "indesign",
+    "nombre": "InDesign",
+    "categoria": "Graphics & Publishing",
+    "origen": "commercial",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": "indesign.png",
+    "nota": ""
+  },
+  {
+    "id": "power-bi",
+    "nombre": "Power BI",
+    "categoria": "Data Intelligence",
+    "origen": "commercial",
+    "clusters": [
+      "DI"
+    ],
+    "logo": "power-bi.png",
+    "nota": "En la lámina va como Data Intelligence."
+  },
+  {
+    "id": "copilot",
+    "nombre": "Copilot",
+    "categoria": "AI",
+    "origen": "commercial",
+    "clusters": [
+      "DI"
+    ],
+    "logo": "copilot.png",
+    "nota": ""
+  },
+  {
+    "id": "gblox",
+    "nombre": "gBlox",
+    "categoria": "Design & Computation",
+    "origen": "gensler",
+    "clusters": [
+      "RC",
+      "VDC"
+    ],
+    "logo": "gblox.png",
+    "nota": "",
+    "origen_confirmado": false
+  },
+  {
+    "id": "gfloorz",
+    "nombre": "gFloorz",
+    "categoria": "Design & Computation",
+    "origen": "gensler",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "gfloorz.png",
+    "nota": "",
+    "origen_confirmado": false
+  },
+  {
+    "id": "gplanet",
+    "nombre": "GPlanet",
+    "categoria": "Analysis & Simulations",
+    "origen": "gensler",
+    "clusters": [
+      "RC",
+      "DI"
+    ],
+    "logo": "gplanet.png",
+    "nota": "Origen Gensler según instrucción del usuario.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "terrain-analytics",
+    "nombre": "Terrain Analytics",
+    "categoria": "Analysis & Simulations",
+    "origen": "com-latam",
+    "clusters": [
+      "RC",
+      "DI"
+    ],
+    "logo": null,
+    "nota": "En la lámina solo aparece como texto, sin logo.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "spatial-analytics",
+    "nombre": "Spatial Analytics",
+    "categoria": "Analysis & Simulations",
+    "origen": "com-latam",
+    "clusters": [
+      "RC",
+      "DI"
+    ],
+    "logo": null,
+    "nota": "En la lámina solo aparece como texto, sin logo.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "testfit",
+    "nombre": "TestFit",
+    "categoria": "Feasibility",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "testfit.png",
+    "nota": ""
+  },
+  {
+    "id": "autodesk-forma",
+    "nombre": "Autodesk Forma",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "RC"
+    ],
+    "logo": "autodesk-forma.png",
+    "nota": ""
+  },
+  {
+    "id": "flexsim",
+    "nombre": "FlexSim",
+    "categoria": "Analysis & Simulations",
+    "origen": "commercial",
+    "clusters": [
+      "VDC"
+    ],
+    "logo": "flexsim.png",
+    "nota": ""
+  },
+  {
+    "id": "terrain-analysis-tool",
+    "nombre": "Terrain Analysis Tool",
+    "categoria": "Analysis & Simulations",
+    "origen": "com-latam",
+    "clusters": [
+      "RC"
+    ],
+    "logo": null,
+    "nota": "Desarrollo propio, sin logo.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "cyclops",
+    "nombre": "Cyclops",
+    "categoria": "Analysis & Simulations",
+    "origen": "com-latam",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": null,
+    "nota": "Desarrollo propio, sin logo.",
+    "origen_confirmado": false
+  },
+  {
+    "id": "gblox-plugins",
+    "nombre": "gBlox plugins",
+    "categoria": "Design & Computation",
+    "origen": "com-latam",
+    "clusters": [
+      "RC",
+      "CD"
+    ],
+    "logo": null,
+    "nota": "Plugins de gBlox, desarrollo propio; comparten marca con gBlox.",
+    "origen_confirmado": false
+  }
+]

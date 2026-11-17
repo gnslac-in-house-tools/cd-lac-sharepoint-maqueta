@@ -375,6 +375,12 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .person{display:flex;gap:12px;align-items:flex-start}
 .person .av{width:56px;height:56px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:600;font-size:18px;background:var(--surface-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--rule);overflow:hidden;position:relative}
 .person.sm .av{width:40px;height:40px;font-size:14px}
+.person .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.people.team4{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 20px}
+.people.team4 .person{align-items:center}
+.people.team4 .av{width:48px;height:48px;font-size:16px}
+.people.team4 b{font-size:14px}
+.people.team4 .person a span{font-size:12px}
 .person b{display:block;font-size:15px;font-weight:600;line-height:1.3}
 .person span{display:block;font-size:13px;color:var(--text-2)}
 .person p{margin:6px 0 0;font-size:13px;color:var(--text)}
@@ -398,6 +404,14 @@ hr.divider{border:0;border-top:1px solid var(--rule);margin:0}
 .cta .cta-body{position:relative;padding:28px;max-width:560px;color:#fff}
 .cta .cta-body h3{font-size:26px;line-height:1.2;margin:0 0 14px;font-weight:600}
 .cta .btn{background:#fff;color:#111}
+/* (ronda 12) el CTA se estira a toda la altura de la fila (cluster: junto a "Other ways to reach us"; Request: junto al formulario) */
+.cols:has(> .col > .wp > .cta){align-items:stretch}
+.col > .wp:has(> .cta){flex:1;display:flex;flex-direction:column}
+.wp > .cta{flex:1}
+/* (ronda 12) botón "Propose a case study": borde derecho = borde de la cuadrícula; base alineada con el bloque de texto */
+.cols.l31:has(.pm-contrib){align-items:end}
+.col:has(> .wp > .pm-contrib){align-items:flex-end}
+@media (max-width:1023px){.col:has(> .wp > .pm-contrib){align-items:flex-start}}
 html[data-style="5"] .cta .cta-body{color:var(--text)}
 html[data-style="5"] .cta .cta-body .t-kicker{color:var(--accent-text)!important}
 html[data-style="5"] .cta .btn{background:var(--theme);color:var(--on-theme)}
@@ -417,25 +431,89 @@ html[data-style="5"] .cta .btn{background:var(--theme);color:var(--on-theme)}
 .tool .acts a{color:var(--link);text-decoration:none}
 .tool .acts a:hover{text-decoration:underline}
 /* Board view (List) */
-.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.lane{background:var(--bg-neutral);border-radius:var(--r-native);padding:10px;box-shadow:inset 0 0 0 1px var(--rule)}
-.bg-neutral .lane{background:var(--bg)}
-.lane h4{margin:2px 4px 10px;font-size:14px;display:flex;justify-content:space-between}
-.lane h4 span{color:var(--text-2);font-weight:400}
-.kcard{background:var(--surface);border-radius:var(--r-native);box-shadow:var(--card-shadow);padding:10px 12px;margin-bottom:8px;font-size:13px}
-.kcard b{display:block;font-size:14px;margin-bottom:6px}
+/* (ronda 12) Development funnel = vista del tablero DT Projects Pipeline (estilos mínimos) */
+.wp-title .pipe-links{display:flex;gap:18px}
+/* (ronda 12) Development funnel = DT Projects Pipeline como diagrama: embudo horizontal de 4 etapas (01–04 + filtro para avanzar), eje con flecha,
+   cliente ARRIBA del eje (punto relleno) y oficina ABAJO (punto hueco); contorno punteado = viabilidad por definir; tenue = en pausa; tamaño = horas.
+   Los puntos se apilan desde el eje hacia afuera (sin encimarse); con más de 6 en un carril pasan a 2 columnas. El alto del carril (--lane) y la
+   silueta del embudo se calculan en pipeBody() con los datos, así que crece solo con más proyectos */
+.pipe-wrap{overflow-x:auto;overscroll-behavior-x:contain}
+.pipe{--pp-ink:var(--text);--pp-dot:var(--accent-text,var(--accent));--pp-line:color-mix(in srgb,var(--text) 13%,transparent);--pp-panel:var(--surface);
+  position:relative;min-width:900px;display:grid;grid-template-columns:72px repeat(4,minmax(0,1fr)) 30px;grid-template-rows:auto var(--lane,80px) 0 var(--lane,80px) auto auto;
+  padding:28px 30px 30px 24px;background:var(--pp-panel);border-radius:var(--r-native);box-shadow:inset 0 0 0 1px var(--rule)}
+.bg-neutral .pipe{--pp-panel:var(--bg)}
+.pipe-svg{grid-column:2/6;grid-row:2/5;width:100%;height:100%;overflow:visible;color:var(--pp-ink);pointer-events:none}
+.pipe-svg path{vector-effect:non-scaling-stroke;fill:none;stroke:currentColor;stroke-width:1}
+.pipe-svg .pp-f{fill:currentColor;fill-opacity:.03;stroke:none}
+.pipe-svg .pp-e{stroke-opacity:.42}
+.pipe-svg .pp-x{stroke-opacity:.28;stroke-dasharray:2 5}
+.pipe-svg .pp-g{stroke-opacity:.5;stroke-dasharray:1 4;stroke-linecap:round}
+.pipe-svg .pp-t{stroke-opacity:.6}
+.pipe-arrow{grid-column:6;grid-row:3;position:relative}
+.pipe-arrow::before{content:"";position:absolute;left:0;right:3px;top:0;border-top:1px dashed color-mix(in srgb,var(--pp-ink) 35%,transparent)}
+.pipe-arrow::after{content:"";position:absolute;right:2px;top:-4px;width:7px;height:7px;box-sizing:border-box;border:solid color-mix(in srgb,var(--pp-ink) 65%,transparent);border-width:1px 1px 0 0;transform:rotate(45deg)}
+.pipe-side{grid-column:1;font:500 10px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
+.pipe-side.c{grid-row:2;align-self:end;padding-bottom:9px}
+.pipe-side.o{grid-row:4;align-self:start;padding-top:9px}
+.pipe-stage{grid-row:1/6;display:grid;grid-template-rows:subgrid;min-width:0;position:relative;z-index:1}
+.pipe-stage header{grid-row:1;display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:6px 10px;padding:0 12px 16px 14px;box-shadow:inset 1px 0 0 var(--pp-line)}
+.pipe-n{font:500 11px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2)}
+.pipe-count{justify-self:end;font:500 11px/1 var(--f-mono);letter-spacing:.06em;color:var(--text-2)}
+.pipe-stage h4{grid-column:1/-1;margin:0;font-size:15px;line-height:1.25;font-weight:500;letter-spacing:-.01em}
+.pipe-lane{list-style:none;margin:0;padding:0 10px 0 16px;display:flex;flex-direction:column;min-width:0}
+.pipe-lane.c{grid-row:2;flex-direction:column-reverse;padding-bottom:7px}
+.pipe-lane.o{grid-row:4;padding-top:7px}
+.pipe-lane.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:26px;column-gap:8px}
+.pipe-lane.c.two{align-content:end}
+.pipe-lane.two small{display:none}
+.pipe-item{height:26px;display:flex;align-items:center;gap:7px;min-width:0;font-size:12.5px;line-height:1.2}
+.pipe-dot{flex:none;width:24px;height:24px;display:grid;place-items:center}
+.pipe-dot::before{content:"";width:var(--d,8px);height:var(--d,8px);box-sizing:border-box;border-radius:50%;background:var(--pp-dot)}
+.pipe-item[data-tipo="oficina"] .pipe-dot::before{background:var(--pp-panel);border:1.5px solid var(--pp-dot)}
+.pipe-item[data-viab="por-definir"] .pipe-dot::before{outline:1px dashed color-mix(in srgb,var(--pp-ink) 80%,transparent);outline-offset:2px}
+.pipe-item b{min-width:0;font-weight:500;color:var(--pp-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pipe-item small{flex:none;font:500 10px/1 var(--f-mono);letter-spacing:.04em;color:var(--text-2)}
+.pipe-item[data-estado="standby"]{opacity:.42}
+.pipe-item[data-estado="terminado"] b,.pipe-item[data-viab="no-viable"] b{color:var(--text-2)}
+.pipe-item[data-viab="no-viable"] b{text-decoration:line-through}
+.pipe-meta{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pipe-empty{grid-row:2;align-self:end;margin:0;padding:0 10px 10px 16px;font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);opacity:.7}
+.pipe-gate{grid-row:5;margin:0;padding:14px 12px 0 12px;font-size:12px;line-height:1.35;color:var(--text-2);text-align:right}
+.pipe-gate span{display:block;margin-bottom:2px;font:500 10px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.pipe-foot{grid-column:1/-1;grid-row:6;display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;margin-top:22px;padding-top:12px;border-top:1px solid var(--pp-line)}
+.pipe-key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px;font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.pipe-key li{display:inline-flex;align-items:center;gap:7px}
+.pipe-key i{width:9px;height:9px;box-sizing:border-box;border-radius:50%;background:var(--pp-dot)}
+.pipe-key .k-o{background:none;border:1.5px solid var(--pp-dot)}
+.pipe-key .k-t{background:none;border:1px dashed var(--pp-ink)}
+.pipe-key .k-h{opacity:.42}
+.pipe-fig{margin:0 0 0 auto;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7}
 /* Banner / título de página */
 .banner{padding:44px 0 8px}
 .banner .t-h1{font-size:40px}
-/* Power Apps (lienzo propio, no hereda tema) */
-.pa{border-radius:var(--r-native);overflow:hidden;box-shadow:0 0 0 1px var(--rule);background:#fff;color:#201F1E;font-family:var(--f-sp-sans)}
-.pa .bar{background:#201F1E;color:#fff;font-size:13px;padding:10px 14px;display:flex;justify-content:space-between}
-.pa .f{padding:16px;display:grid;gap:12px;grid-template-columns:1fr 1fr}
-.pa label{font-size:12px;font-weight:600;display:grid;gap:4px}
-.pa .in{height:32px;border:1px solid #8A8886;border-radius:2px;padding:6px 8px;font-weight:400;font-size:13px;color:#605E5C}
+/* Power Apps (lienzo propio, no hereda tema) · (ronda 12) app moderna con Fluent 2: tema claro por defecto y OSCURO en los estilos oscuros
+   (superficie #1F1F1F/#292929, inputs con borde #666 y línea inferior #ADADAD, labels #D6D6D6, placeholders #ADADAD, botón primario = acento del sitio) */
+.pa{--pa-bg:#FFFFFF;--pa-top:#F5F5F5;--pa-top-rule:#E0E0E0;--pa-ink:#242424;--pa-label:#424242;--pa-ph:#707070;--pa-in:#FFFFFF;--pa-b:#D1D1D1;--pa-bb:#616161;--pa-req:#C50F1F;--pa-2:#FFFFFF;--pa-2b:#D1D1D1;--pa-ico:#7E57C2;
+  display:flex;flex-direction:column;border-radius:var(--r-native);overflow:hidden;box-shadow:0 0 0 1px var(--rule);background:var(--pa-bg);color:var(--pa-ink);font-family:var(--f-sp-sans)}
+html:is([data-style="1"],[data-mode="dark"]) .pa{--pa-bg:#1F1F1F;--pa-top:#292929;--pa-top-rule:#3D3D3D;--pa-ink:#FFFFFF;--pa-label:#D6D6D6;--pa-ph:#ADADAD;--pa-in:#292929;--pa-b:#666666;--pa-bb:#ADADAD;--pa-req:#F1707B;--pa-2:#292929;--pa-2b:#666666;--pa-ico:#B99AF0;box-shadow:0 0 0 1px #3D3D3D}
+.pa .bar{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px;background:var(--pa-top);border-bottom:1px solid var(--pa-top-rule);font-size:14px;font-weight:600;color:var(--pa-ink)}
+.pa .pa-ico{width:16px;height:16px;flex:none;color:var(--pa-ico);opacity:.85}
+.pa .pa-env{margin-left:auto;font-size:12px;font-weight:400;color:var(--pa-ph)}
+.pa .pa-body{flex:1;padding:20px 20px 22px}
+.pa .pa-h{margin:0;font-size:20px;line-height:28px;font-weight:600;color:var(--pa-ink)}
+.pa .pa-sub{margin:2px 0 18px;font-size:14px;line-height:20px;color:var(--pa-label)}
+.pa .f{display:grid;gap:14px 16px;grid-template-columns:1fr 1fr}
+.pa label{display:grid;gap:4px;font-size:14px;line-height:20px;font-weight:400;color:var(--pa-label)}
+.pa label i{font-style:normal;color:var(--pa-req);padding-left:4px}
+.pa .in{position:relative;display:flex;align-items:center;height:32px;box-sizing:border-box;padding:0 10px;background:var(--pa-in);border:1px solid var(--pa-b);border-bottom-color:var(--pa-bb);border-radius:4px;font-size:14px;color:var(--pa-ph);white-space:nowrap;overflow:hidden}
+.pa .in.dd{padding-right:34px}
+.pa .in.dd::after{content:"";position:absolute;right:13px;top:50%;width:6px;height:6px;border:solid var(--pa-label);border-width:0 1.5px 1.5px 0;transform:translateY(-70%) rotate(45deg)}
 .pa .wide{grid-column:1/-1}
-.pa .ta{height:64px}
-.pa .go{grid-column:1/-1;justify-self:start;background:#201F1E;color:#fff;border-radius:2px;padding:8px 16px;font-size:13px;font-weight:600}
+.pa .ta{height:76px;align-items:flex-start;padding-top:6px}
+.pa .acts{grid-column:1/-1;display:flex;gap:8px;margin-top:6px}
+.pa :is(.go,.go2){display:inline-flex;align-items:center;height:32px;box-sizing:border-box;padding:0 16px;border-radius:4px;font-size:14px;font-weight:600}
+.pa .go{background:var(--accent);color:var(--accent-ink,#fff)}
+.pa .go2{background:var(--pa-2);border:1px solid var(--pa-2b);color:var(--pa-ink)}
 
 /* =========================================================
    5 · ARTE PRE-RENDERIZADO (lo que en SharePoint es Imagen)
@@ -1173,13 +1251,12 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 /* =========================================================
    7 · RESPONSIVE (reflujo real de SharePoint)
    ========================================================= */
-@media (max-width:1023px){
+@media (max-width:1023px){.people.team4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr 1fr}
   .cols.l13>.col:last-child,.cols.l31>.col:first-child{grid-column:1/-1}
   .ql-film,.gallery,.hc.c4,.people.row4,.shots5{grid-template-columns:repeat(2,1fr)}
   .mega .inner{grid-template-columns:1fr 1fr}
   .site-footer .inner{grid-template-columns:1fr 1fr}
-  .board{grid-template-columns:1fr 1fr}
   .suite .search{display:none}
   .band4 .in{grid-template-columns:1fr;gap:32px}
   .ql-buttons.cols4{grid-template-columns:repeat(2,1fr)}
@@ -1195,10 +1272,10 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .onb-detail{margin-top:20px}
   .onb-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media (max-width:639px){
+@media (max-width:639px){.people.team4{grid-template-columns:1fr}
   .cols.l2,.cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr}
   .shots5 .w2{grid-column:auto}.shots5 .w2 .fr{aspect-ratio:16/10}
-  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.board,.news,.ql-buttons.cols2,.ql-buttons.cols3,.ql-buttons.cols4,.band4 .nums{grid-template-columns:1fr}
+  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.news,.ql-buttons.cols2,.ql-buttons.cols3,.ql-buttons.cols4,.band4 .nums{grid-template-columns:1fr}
   .sp-canvas{padding:0 16px}
   .t-h1{font-size:34px}.t-h2{font-size:26px}
   .site-actions,.suite .org{display:none}
@@ -1228,7 +1305,6 @@ html.show-wp .legend-wp{display:flex;gap:8px}
 .pm-intro > *{grid-column:1}
 .pm-intro .t-p{margin-bottom:0}
 html[data-style="5"] :is(.pm-intro,.eco-intro) .t-p.muted{display:block}
-.pm-intro .pm-view{grid-column:2;grid-row:1 / span 2;align-self:start;justify-self:end}
 .pm-legend{grid-column:2;grid-row:3;justify-self:end;display:flex;gap:20px;flex-wrap:wrap;margin:0;padding:0;list-style:none;font-size:13px;color:var(--text-2)}
 .pm-legend li{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .pm-key{display:block;width:14px;height:14px;border-radius:50%;flex:none}
@@ -1239,9 +1315,6 @@ html[data-style="5"] :is(.pm-intro,.eco-intro) .t-p.muted{display:block}
 :is(.pm-view,.eco-seg) button{font:inherit;font-size:13px;font-weight:600;color:var(--text-2);background:none;border:0;border-radius:var(--r-native);min-height:36px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background .15s,color .15s}
 :is(.pm-view,.eco-seg) button:hover{color:var(--text);background:var(--surface-2)}
 :is(.pm-view,.eco-seg) button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
-.pm-view-btn::before{content:"";width:14px;height:14px;flex:none;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
-[data-matrix-view="matrix"]{--ic:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M1 1h5v5H1zM8 1h5v5H8zM1 8h5v5H1zM8 8h5v5H8z'/></svg>")}
-[data-matrix-view="list"]{--ic:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M1 2h12v2H1zM1 6h12v2H1zM1 10h12v2H1z'/></svg>")}
 /* la matriz */
 .pm{background:var(--pm-bg);border-radius:var(--r-native);box-shadow:var(--card-shadow);padding:14px 14px 8px;container-type:inline-size}
 .pm button{font:inherit;color:inherit;text-align:left;cursor:pointer;border:0;background:none;margin:0}
@@ -1389,7 +1462,7 @@ html[data-style="5"]:not([data-mode="dark"]) .pm-proj{background:var(--bg)}
   .pm-proj-thumb .ph{height:100%;min-height:240px;aspect-ratio:auto}
 }
 @media (max-width:639px){.pm-proj{flex-direction:column}.pm-proj-thumb{flex:none;border-right:0;border-bottom:3px solid var(--k)}.pm-proj-thumb .ph{min-height:0;aspect-ratio:16/9}}
-@media (max-width:639px){.pm-intro{grid-template-columns:1fr}.pm-intro .pm-view,.pm-legend{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}}
+@media (max-width:639px){.pm-intro{grid-template-columns:1fr}.pm-legend{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}}
 /* matriz angosta (< 620 px): la practice area pasa arriba de su fila y la celda muestra solo la marca */
 @container (max-width:620px){
   .pm-head,.pm-row{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -1562,8 +1635,9 @@ html[data-skin="7"] .hv7-band{border-bottom:1px solid rgba(168,216,248,.14)}
 .cta > .hv7.cta-bg .cta-scene{z-index:1}
 html[data-skin="7"] .cta{border-radius:0;box-shadow:inset 0 0 0 1px rgba(242,242,240,.12)}
 /* ---------- matriz de Projects en lenguaje esquemático (ronda 11): líneas de 1 px, etiquetas mono, banda de puntos, cruces y FIG. ---------- */
-html[data-skin="7"] .pmh{background:transparent;box-shadow:none;border-radius:0;padding:18px 6px 8px;position:relative}
-html[data-skin="7"] :is(.pmh,.onb-map)::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
+html[data-skin="7"] .pmh{background:var(--s7-panel-bg);box-shadow:none;border-radius:0;padding:22px 18px 12px;position:relative}
+/* (ronda 12) cruces de registro de los paneles de figura: mismo mecanismo para matriz, onboarding, Tools, mapa de impacto y pipeline (--x7-in = margen) */
+html[data-skin="7"] :is(.pmh,.onb-map,.eco,.impact-map,.pipe)::before{content:"";position:absolute;inset:var(--x7-in,0);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
   background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
@@ -1601,15 +1675,15 @@ html[data-skin="7"] .pm-key{border-radius:0}
 html[data-skin="7"].cc-txt .page[data-cluster]{--accent-text:var(--accent);--link:var(--accent);--theme:var(--accent)}
 html[data-skin="7"].cc-txt .page[data-cluster] :is(.ql-list svg,.ql-btn svg){color:var(--accent)}
 /* tarjetas de proyecto: filete de 1 px en el color de SU cluster (sutil) */
-html[data-skin="7"] .hc-card[style*="--t"]{outline:1px solid color-mix(in srgb,var(--t) 42%,transparent);outline-offset:-1px}
-html[data-skin="7"] .hc-card[style*="--t"]:hover{outline-color:color-mix(in srgb,var(--t) 75%,transparent)}
+html[data-skin="7"] :is(.hc-card,.ql-card)[style*="--t"]{outline:1px solid color-mix(in srgb,var(--t) 42%,transparent);outline-offset:-1px}
+html[data-skin="7"] :is(.hc-card,.ql-card)[style*="--t"]:hover{outline-color:color-mix(in srgb,var(--t) 75%,transparent)}
 /* Methodology: el timeline un poco más grande */
 html[data-skin="7"] .proc .st .n{font-size:1.2cqw}
 html[data-skin="7"] .proc .st h5{font-size:2.3cqw;margin:1cqw 0 .7cqw}
 html[data-skin="7"] .proc .st p{font-size:1.25cqw;max-width:20cqw}
 html[data-skin="7"] .proc{padding:3.2cqw 3cqw 3.4cqw}
 /* ---------- Onboarding en lenguaje esquemático (ronda 11): sin tarjeta de fondo, nodos de 1 px, filete superior de 1 px en el color de la rama, trazos finos ---------- */
-html[data-skin="7"] .onb-map{background:linear-gradient(rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px;box-shadow:none;border-radius:0}
+html[data-skin="7"] .onb-map{background:var(--s7-panel-bg);box-shadow:none;border-radius:0}
 html[data-skin="7"] :is(.onb-node,.onb-detail,.onb-av){border-radius:0}
 html[data-skin="7"] .onb-node{background:#0E0F11;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16)}
 html[data-skin="7"] .onb-node[data-tipo="branch"]{box-shadow:inset 0 0 0 1px rgba(242,242,240,.16),inset 0 1px 0 var(--k)}
@@ -1629,6 +1703,34 @@ html[data-skin="7"] .onb-map.has-branch .onb-fib.on{stroke-width:2}
 html[data-skin="7"] .onb-map.has-branch .onb-fib.x.on{stroke-width:2;stroke-dasharray:1 5}
 html[data-skin="7"] .onb-tip{stroke-width:1}
 html[data-skin="7"] .onb-dot{stroke-width:1;fill:#0B0C0D}
+/* =========================================================
+   12 · PANELES DE FIGURA DEL ESTILO 7 (ronda 12): un solo fondo gris carbón (--s7-panel, el del diagrama «Where each cluster enters
+   your project») con retícula de 24 px (--s7-panel-bg) para clusters, matriz, onboarding, Tools, mapa de impacto y pipeline.
+   Cruces de registro: ::before compartido (ver «cruces de registro de los paneles de figura»), margen con --x7-in
+   ========================================================= */
+/* @personalizar: gris del panel de figura y de su retícula */
+html[data-skin="7"]{--s7-panel:#111315;--s7-grid:rgba(242,242,240,.035);
+  --s7-panel-bg:linear-gradient(var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,var(--s7-panel)}
+html[data-skin="7"] .dia{background:var(--s7-panel)}
+html[data-skin="7"] .onb-fig{right:30px;bottom:10px}
+html[data-skin="7"] .pm-fig{margin-right:20px}
+/* Tools: el ecosistema como figura (FIG. 05); los tiles de logo siguen claros, con esquinas casi rectas */
+html[data-skin="7"] .eco{--eco-panel:var(--s7-panel);--x7-in:12px;position:relative;padding:28px 30px 46px;background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
+html[data-skin="7"] .eco-board{margin-bottom:-14px}
+html[data-skin="7"] .eco-bar{border-bottom-color:rgba(242,242,240,.12)}
+html[data-skin="7"] :is(.eco-seg,.eco-seg button,.eco-seal){border-radius:0}
+html[data-skin="7"] .eco-seg{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16)}
+html[data-skin="7"] .eco-k{border-top-color:rgba(242,242,240,.12)}
+html[data-skin="7"] .eco-k::before{height:1px;top:-1px;width:24px;border-radius:0}
+html[data-skin="7"] .eco-logo{border-radius:2px}
+.eco-fig{position:absolute;right:36px;bottom:13px;margin:0;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7;pointer-events:none}
+/* mapa «Projects with DT impact»: mismo panel y cruces */
+html[data-skin="7"] .impact-map{--art-bg:var(--s7-panel);--x7-in:12px}
+html[data-skin="7"] .impact-map .mapart{border-radius:0}
+html[data-skin="7"] .impact-map .imp-leg{transform:translate(14px,-16px)}   /* la leyenda se aparta de la cruz inferior izquierda */
+html[data-skin="7"] .impact-map .imp-leg .box{rx:0;stroke:rgba(242,242,240,.14)}
+/* pipeline: panel de figura */
+html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:rgba(242,242,240,.1);--x7-in:10px;background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
 </style>
 </head>
 <body>
@@ -2521,6 +2623,7 @@ const P = {
   julian:{n:'Julián Maqueta',r:'Reality Capture Champion',o:'Santo Domingo'},
   paula:{n:'Paula Plantilla',r:'DT Champion',o:'Buenos Aires'},
   ivan:{n:'Iván Prototipo',r:'VDC Specialist',o:'San José'},
+  ines:{n:'Inés Contorno',r:'Reality Capture Champion',o:'Mexico City'},
 };
 const ini = n => n.split(' ').map(x=>x[0]).join('').slice(0,2);
 
@@ -2795,6 +2898,7 @@ function ctaBg(c){
   if(c.motif==='flow') art=flowField(W,H,{x0:300,n:150,seed:5.5});
   if(c.motif==='bars') art=dataBars(W,H,{ox:560,oy:60,cols:20,rows:10,dx:13,dy:12,amp:34,seed:2.2});
   if(S7()) art=cta7(c);   /* Estilo 7: la misma escena del cluster, sin etiquetas */
+  art='';   /* (ronda 12) los paneles de CTA van sin dibujo: solo fondo, texto y botón */
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g>${art}</g></svg>`;
   if(S5()) return `<div class="cta-bg art" style="--c:var(--hl-${c.key})"><div class="c5-media tray5">${photo5('people','Photo')}</div></div>`;
@@ -2849,7 +2953,7 @@ function glueDots(root){root.querySelectorAll('.sdot').forEach(d=>{if(d.parentNo
   if(p&&p.nodeType===3){const m=p.data.match(/^([\s\S]*?)(\S+)$/);if(m){p.data=m[1];const s=document.createElement('span');s.className='nw';s.textContent=m[2];p.after(s);s.appendChild(d)}}})}
 const h2 = (a,b='') => `<h2 class="t-h2">${b?esc(a)+' '+tailFin(b):fin(a)}</h2>`;
 const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}"${/^(vdc|rc|cd|di)$/.test(tint)?` style="--t:var(--hl-${tint})"`:''}>${ph(kind,tint,'',t)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
-const person = (p,desc=true,sm=false) => `<div class="person ${sm?'sm':''}"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)} · ${esc(p.o)}</span>${desc&&p.d?`<p>${esc(p.d)}</p>`:''}</a></div>`;
+const person = (p,desc=true,sm=false) => `<div class="person ${sm?'sm':''}"><span class="av" aria-hidden="true">${p.img?`<img src="img/people/${p.img}.jpg" alt="">`:ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)}${p.o?` · ${esc(p.o)}`:''}</span>${desc&&p.d?`<p>${esc(p.d)}</p>`:''}</a></div>`;
 /* tarjeta compacta para la fila de 4 (mismo rol que en Community: sale de P) */
 const personCard = p => `<div class="person sm"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)}</span><span class="meta-line" style="margin-top:2px;font-size:11px">${esc(p.o.toUpperCase())}</span></a></div>`;
 const ev = (m,d,t,s) => `<a class="ev" href="#/community"><span class="date"><small>${m}</small><b>${d}</b></span><span><h4>${esc(t)}</h4><span>${esc(s)}</span></span></a>`;
@@ -3163,7 +3267,7 @@ function bindOnboarding(){
 
 
 function pageHome(){
-  const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
+  const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}" style="--t:var(--hl-${k})"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   return [
     sec('full','none',[wp('i',S7()?`Image (GIF ≤ 3 MB) o File and media (MP4 en bucle ≤ 3 MB, sin audio, 1920 px) · full-width · header generativo «${hv7Name(hv7Cur())}» (${HV7_NOTE[hv7Cur()]}) grabado del canvas · estático: Image PNG 2880 px (1 fotograma) · texto horneado y en el alt`:S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada'+imgNote(' + foto real atenuada (negativo en screen al 15 %) detrás del titular'),homeHeader())]),
     quickRow(),
@@ -3365,24 +3469,18 @@ function bindMatrix(){
     root.dispatchEvent(new CustomEvent('matrix:select',{detail:d,bubbles:true}));
   }));
   root.addEventListener('keydown',e=>{if(e.key==='Escape'&&cells.some(x=>x.getAttribute('aria-pressed')==='true')){e.stopPropagation();close(true)}});
-  document.querySelectorAll('[data-matrix-view]').forEach(b=>b.addEventListener('click',()=>{
-    const v=b.dataset.matrixView;
-    document.querySelectorAll('[data-matrix-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));
-    document.querySelectorAll('[data-matrix-block]').forEach(x=>x.hidden=(v==='list'));
-  }));
 }
 function pageProjects(){
   const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
   return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
   /* @personalizar: matriz Practice area × Cluster, pieza principal. Encabezado (titular, instrucción, leyenda, control Matrix / List), matriz y detalle son una sola app */
   + sec('l1','none',[
-      wp('n','Text · Heading 2 + Normal · control Matrix / List', `<div class="pm-intro" data-matrix-intro data-at="matrix">${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul><div class="pm-view" role="group" aria-label="View"><button type="button" class="pm-view-btn" data-matrix-view="matrix" aria-pressed="true">Matrix</button><button type="button" class="pm-view-btn" data-matrix-view="list" aria-pressed="false">List</button></div></div>`)
+      wp('n','Text · Heading 2 + Normal', `<div class="pm-intro" data-matrix-intro data-at="matrix">${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul></div>`)
       + `<div data-matrix-block>${wp('p','Power Apps (matriz interactiva, 10 practice areas × 4 clusters; el detalle es una fila que se despliega bajo la fila activa, en la misma app) · alternativa: Microsoft List agrupada por Practice area + filtro por Cluster', matrixHTML())}</div>`
       ])
-  + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
   + sec('l1','none',[wp('n','Text · Heading 2',`${kick('Alternative view')}${h2('All projects')}`)])
   + sec('l1','none',[wp('n','Highlighted content / List · Lista Projects (todas)'+imgNote(' · miniatura = imagen de miniatura de la página (imagen real 16:9)'), `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
-  + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Case studies are reviewed once a year.</p>`),wp('n','Button', `<a class="btn" href="#/request">Propose a case study</a>`)]);
+  + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Case studies are reviewed once a year.</p>`),wp('n','Button', `<div class="pm-contrib"><a class="btn" href="#/request">Propose a case study</a></div>`)]);
 }
 /* @personalizar: ecosistema de Tools (pieza principal de Tools). Copia inline de maqueta/img/logos/tools.json (en file:// no hay fetch).
    origen = 'gensler' | 'com-latam' | 'commercial'; origen_confirmado:false = marca «to confirm»; logo = PNG 128 px en img/logos/ (null = monograma, campo mono).
@@ -3466,7 +3564,7 @@ function ecosystemHTML(){
   const bar=`<div class="eco-bar"><div class="eco-seg" role="group" aria-label="Filter by origin">${[['all','All'],...E.origins.map(o=>[o.k,o.name])].map(([k,l],i)=>`<button type="button" data-eco-origin="${k}" aria-pressed="${i===0}">${k!=='all'?`<i class="eco-sw" data-o="${k}" aria-hidden="true"></i>`:''}${esc(l)}<span class="n">${n(k)}</span></button>`).join('')}</div>`
    + `<div class="eco-seg" role="group" aria-label="Filter by cluster">${['all',...ORDER].map((k,i)=>`<button type="button" data-eco-cluster="${k==='all'?'all':k.toUpperCase()}" aria-pressed="${i===0}"${k==='all'?'':` aria-label="${esc(CL[k].name)}" style="--k:var(--hl-${k})"`}>${k==='all'?'All clusters':`<i class="eco-cl" aria-hidden="true"></i>${k.toUpperCase()}`}</button>`).join('')}</div>`
    + `<p class="eco-count" aria-live="polite" data-eco-count>${E.tools.length} tools</p></div>`;
-  return `<div class="eco" data-eco>${bar}<div class="eco-board">${groups}${note}</div></div>`;
+  return `<div class="eco" data-eco>${bar}<div class="eco-board">${groups}${note}</div>${S7()?`<p class="eco-fig" aria-hidden="true">FIG. 05 — TOOLS ECOSYSTEM · ${E.tools.length} TOOLS</p>`:''}</div>`;
 }
 /* filtros: origen y cluster se combinan; lo que no coincide se atenúa (inert) y el conteo se anuncia */
 function bindEco(){
@@ -3496,17 +3594,68 @@ function pageLearning(){
   + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title" data-at="paths"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
 }
+/* Design Technology Core Team LATAM (nombres, puestos y fotos del sitio LATAM Design Technology; Isaura sin foto en SP = iniciales) */
+const DT_TEAM = [{n:'Pablo Lezama',r:'Senior Associate',img:'pablo-lezama'},{n:'Javier Tenorio',r:'CR-Cities Flex',img:'javier-tenorio'},{n:'Gabriela Sanchez',r:'Associate',img:'gabriela-sanchez'},{n:'Silvia Gomez',r:'Associate',img:'silvia-gomez'},{n:'Jeimy Almonte',r:'DR-Cities Flex 1',img:'jeimy-almonte'},{n:'Jeiner Guillen',r:'CR-Cities Flex',img:'jeiner-guillen'},{n:'Emanuel Ramirez',r:'CR-Cities Flex',img:'emanuel-ramirez'},{n:'Araceli Castro',r:'MX-Lifestyle Flex 1',img:'araceli-castro'},{n:'Nilda Ventura',r:'MO-Monterrey',img:'nilda-ventura'},{n:'Daniel Garro',r:'Senior Associate',img:'daniel-garro'},{n:'Roberto Castillo',r:'CR-Cities Flex',img:'roberto-castillo'},{n:'Alejandra Diaz de Leon',r:'Associate',img:'alejandra-diaz-de-leon'},{n:'Gabriel Alvarez',r:'CR-Cities Flex',img:'gabriel-alvarez'},{n:'Mauricio Pieschacon',r:'BO-Cities Flex',img:'mauricio-pieschacon'},{n:'Isaura Castillo',r:'Associate'},{n:'Samuel Corona',r:'MX-Cities Flex',img:'samuel-corona'},{n:'Yanina Calvete',r:'BA-Buenos Aires',img:'yanina-calvete'},{n:'Ramon Garcia',r:'CR-Cities Flex',img:'ramon-garcia'},{n:'Pablo Orozco Campos',r:'CR-Cities Flex',img:'pablo-orozco-campos'},{n:'Jenny Guarnizo',r:'BO-Cities Flex',img:'jenny-guarnizo'}];
 function pageCommunity(){
   return banner('Community','Who can help me?','Leaders, champions, experts.','Find people by office, capability and tool.')
-  + sec('l1','none',[wp('n','People · Descriptive', `<div class="wp-title"><h3>Regional leadership</h3></div><div class="people desc">${[P.lucia,P.diego,P.sofia,P.mateo,P.camila].map(p=>person(p)).join('')}</div>`)])
+  + sec('l1','none',[wp('n','People · Compact ×4 (Design Technology Core Team LATAM · foto de perfil de M365)', `<div class="wp-title"><h3>Regional leadership</h3></div><div class="people team4">${DT_TEAM.map(p=>person(p,false)).join('')}</div>`)])
   + sec('l1','neutral',[wp('n','Quick links · Grid · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Mini-communities</h3></div><div class="ql-film">${[['Digital Innovation','cd','Monthly showcase'],['AI Builders','di','Prompt & agent lab'],['Reality Capture','rc','Scan clinic'],['Data & BI','di','Dashboard review']].map(m=>`<a class="ql-card" href="#/community"><div class="thumb" style="aspect-ratio:16/10">${capThumb(CL[m[1]],{fit:[.72,62],fade:[170,188]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:10cqw">${esc(m[0])}</span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(m[0])}<span>${esc(m[2])} · Join on Teams</span></div></a>`).join('')}</div>`)])
-  + sec('l31','none',[wp('n','People · Compact (champions por oficina)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people">${[P.andres,P.valeria,P.tomas,P.renata,P.julian,P.paula,P.ivan].map(p=>person(p,false,true)).join('')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Events</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City')}${ev('Jan','15','DT LAC kickoff 2027','Hybrid · all offices')}</div>`)]);
+  + sec('l1','none',[wp('n','People · Compact ×4 (champions por oficina · 8 en 2 filas de 4)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people team4">${[P.andres,P.valeria,P.tomas,P.renata,P.julian,P.paula,P.ivan,P.ines].map(p=>person(p,false,true)).join('')}</div>`)]);
+}
+/* @personalizar: DT Projects Pipeline */
+/* Fuente: tablero publicado (repo DT-Projects-Pipeline, datos/proyectos.js). Al cargar se intenta leer ese archivo; si falla, se usa este snapshot (solo id, nombre, etapa, tipo, estado, viabilidad y horas; sin clientes, solicitantes ni personas). */
+const PIPE_URL='https://gnslac-in-house-tools.github.io/DT-Projects-Pipeline/';
+const PIPE_SNAPSHOT=[
+  {id:"climate-risk-design-workflow",n:"Climate Risk Design Workflow",etapa:1,tipo:"oficina",estado:"activo",viab:"por-definir",h:0},
+  {id:"meli-interior-testfit-configurator",n:"Interior Testfit Configurator",etapa:3,tipo:"oficina",estado:"standby",viab:"viable",h:40},
+  {id:"iza-tower-client-dashboard",n:"Client Dashboard",etapa:4,tipo:"cliente",estado:"activo",viab:"viable",h:40},
+  {id:"hsbc-retail-experience-sustainability",n:"Retail Experience & Sustainability Potential Tool",etapa:2,tipo:"cliente",estado:"activo",viab:"viable",h:16},
+  {id:"ioc-staffing-feedback-tool",n:"Staffing Feedback Tool",etapa:2,tipo:"oficina",estado:"activo",viab:"viable",h:16},
+  {id:"gfit-industrial-layout-optimizer",n:"Industrial Layout Tool & Optimizer",etapa:4,tipo:"cliente",estado:"activo",viab:"viable",h:60},
+  {id:"gfit-mixed-use-rhino-extension",n:"Mixed-use Tool · Rhino Extension",etapa:3,tipo:"cliente",estado:"activo",viab:"viable",h:8}
+];
+const PIPE_STAGES=[['01','Idea · Conversation','Discovery meeting'],['02','Review · Feasibility','Feasibility approved'],['03','Prototype','Validated on a real case'],['04','Development','In use']];
+const PIPE_L={cliente:'Client',oficina:'Office',activo:'Active',standby:'On hold',terminado:'Done','por-definir':'Viability TBD','no-viable':'Not viable',viable:'Viable'};
+let PIPE_DATA=PIPE_SNAPSHOT, PIPE_SRC='snapshot';
+const pipeMap = a => a.map(p=>({id:p.id,n:p.corto||p.nombre,etapa:+p.etapa,tipo:p.tipo,estado:p.estado,viab:p.viabilidad,h:(+p.horasPrevias||0)+Object.values(p.horas||{}).reduce((t,x)=>t+(+x||0),0)}));
+const PIPE_ROW=26, PIPE_MAX=6;   /* alto de fila por proyecto (px); con más de 6 en un carril, 2 columnas */
+const pipeD = h => Math.round(Math.min(22, 6 + Math.sqrt(Math.max(0,+h||0))*1.1));   /* diámetro del punto (px) = horas invertidas */
+const pipeItem = p => {const m=`${PIPE_L[p.tipo]||''} · ${PIPE_L[p.estado]||''} · ${PIPE_L[p.viab]||''} · ${p.h} h`;
+  return `<li class="pipe-item" data-pipe-item data-tipo="${esc(p.tipo)}" data-estado="${esc(p.estado)}" data-viab="${esc(p.viab)}" style="--h:${p.h};--d:${pipeD(p.h)}px" title="${esc(p.n)} · ${esc(m)}"><i class="pipe-dot" aria-hidden="true"></i><b>${esc(p.n)}</b><small aria-hidden="true">${p.h} h</small><span class="pipe-meta">${esc(m)}</span></li>`};
+const pipeBody = () => {
+  const st=PIPE_STAGES.map((g,i)=>{const it=PIPE_DATA.filter(p=>p.etapa===i+1), c=it.filter(p=>p.tipo==='cliente'), o=it.filter(p=>p.tipo!=='cliente'), rows=a=>Math.ceil(a.length/(a.length>PIPE_MAX?2:1));
+    return {g,it,c,o,need:Math.max(rows(c),rows(o))}});
+  /* silueta: medio alto en los 5 bordes de etapa (fracción del carril); se estrecha hacia la salida, pero nunca menos de lo que ocupa cada etapa.
+     El carril se dimensiona para que las etapas finales quepan en la boca; con muchos proyectos se topa y el embudo se aplana */
+  const NOM=[1,.86,.74,.64,.56], px=n=>n*PIPE_ROW+22, base=Math.max(2,...st.map(x=>x.need))*PIPE_ROW+16;
+  const lane=Math.round(Math.min(base+3*PIPE_ROW,Math.max(base,...st.map((x,i)=>px(x.need)/NOM[i+1]))));
+  const hb=NOM.map((v,k)=>Math.min(1,Math.max(v,...[st[k-1],st[k]].filter(Boolean).map(x=>px(x.need)/lane))));
+  for(let k=3;k>=0;k--)hb[k]=Math.max(hb[k],hb[k+1]);
+  const Y=(k,sg)=>(100+sg*hb[k]*98).toFixed(1), seg=(k,sg)=>` C${k*250+125} ${Y(k,sg)} ${k*250+125} ${Y(k+1,sg)} ${(k+1)*250} ${Y(k+1,sg)}`;
+  const top=`M0 ${Y(0,-1)}`+[0,1,2,3].map(k=>seg(k,-1)).join(''), bot=`M0 ${Y(0,1)}`+[0,1,2,3].map(k=>seg(k,1)).join('');
+  const fill=top+` L1000 ${Y(4,1)}`+[3,2,1,0].map(k=>` C${k*250+125} ${Y(k+1,1)} ${k*250+125} ${Y(k,1)} ${k*250} ${Y(k,1)}`).join('')+'Z';
+  const gates=[1,2,3].map(k=>`<path class="pp-g" d="M${k*250} ${Y(k,-1)}V${Y(k,1)}"/><path class="pp-t" d="M${k*250-4} ${Y(k,-1)}h8M${k*250-4} ${Y(k,1)}h8"/>`).join('');
+  const svg=`<svg class="pipe-svg" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="pp-f" d="${fill}"/><path class="pp-e" d="${top}"/><path class="pp-e" d="${bot}"/><path class="pp-x" d="M0 100H1000"/>${gates}</svg>`;
+  const ul=(a,k)=>`<ul class="pipe-lane ${k}${a.length>PIPE_MAX?' two':''}" aria-label="${k==='c'?'Client':'Office'} projects">${a.map(pipeItem).join('')}</ul>`;
+  const key=`<ul class="pipe-key" aria-label="Legend"><li><i aria-hidden="true"></i>Client</li><li><i class="k-o" aria-hidden="true"></i>Office</li><li><i class="k-t" aria-hidden="true"></i>To be defined</li><li><i class="k-h" aria-hidden="true"></i>On hold</li><li>Size = hours</li></ul>`;
+  return `<div class="pipe" data-pipe data-source="${PIPE_SRC}" style="--lane:${lane}px"><span class="pipe-side c" aria-hidden="true">↑ Client</span><span class="pipe-side o" aria-hidden="true">↓ Office</span>${svg}<i class="pipe-arrow" aria-hidden="true"></i>`
+   + st.map((x,i)=>`<section class="pipe-stage" data-pipe-stage="${i+1}" style="grid-column:${i+2}" aria-label="${x.g[0]} ${esc(x.g[1])}"><header><span class="pipe-n">${x.g[0]}</span><span class="pipe-count" data-pipe-count>${x.it.length}</span><h4>${esc(x.g[1])}</h4></header>${ul(x.c,'c')}${ul(x.o,'o')}${x.it.length?'':'<p class="pipe-empty">No projects yet</p>'}<p class="pipe-gate"><span>${i<3?'Gate '+x.g[0]:'Outcome'}</span>${esc(x.g[2])}</p></section>`).join('')
+   + `<div class="pipe-foot">${key}${S7()?`<p class="pipe-fig" aria-hidden="true">FIG. 06 — DT PROJECTS PIPELINE · ${PIPE_DATA.length} PROJECTS</p>`:''}</div></div>`;
+};
+/* intenta cargar el tablero real; si llega window.PROYECTOS_DT, re-mapea y vuelve a pintar el funnel (si no, queda el snapshot) */
+function pipeInit(){
+  const draw=()=>{document.querySelectorAll('[data-pipe]').forEach(el=>el.outerHTML=pipeBody())};
+  if(window.PROYECTOS_DT){PIPE_DATA=pipeMap(window.PROYECTOS_DT);PIPE_SRC='live';draw();return}
+  if(document.querySelector('script[data-pipe-src]'))return;
+  const sc=document.createElement('script');sc.src=PIPE_URL+'datos/proyectos.js';sc.dataset.pipeSrc='1';
+  sc.onload=()=>{if(Array.isArray(window.PROYECTOS_DT)&&window.PROYECTOS_DT.length){PIPE_DATA=pipeMap(window.PROYECTOS_DT);PIPE_SRC='live';draw()}};
+  sc.onerror=()=>{sc.remove()};
+  document.head.appendChild(sc);
 }
 function pageRequest(){
-  const lanes=[['Idea',14,[['Clash triage with Copilot','VDC'],['Facade panel optimizer','CD']]],['Evaluation',6,[['Drone-to-mesh pipeline','RC'],['Retail KPI template','DI']]],['In development',6,[['Terrain Analysis v2','RC'],['Speckle → Power BI connector','DI']]],['Launched',9,[['Urban Vitality Index','DI'],['gBlox LAC test-fits','CD']]]];
   return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
-  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><span>Request project support</span><span>Power Apps</span></div><div class="f"><label>Project name<span class="in">e.g. Santo Domingo hotel fit-out</span></label><label>Office<span class="in">Select an office</span></label><label>Cluster<span class="in">VDC · RC · CD · DI</span></label><label>Stage<span class="in">Schematic design</span></label><label class="wide">What do you need?<span class="in ta">Describe the problem…</span></label><span class="go">Submit request</span></div></div>`)])
-  + sec('l1','neutral',[wp('n','List · Board view agrupado por Status (por verificar en web part)', `<div class="wp-title"><h3>Development funnel</h3><a href="#/request">Open board</a></div><div class="board">${lanes.map(l=>`<div class="lane"><h4>${l[0]} <span>${l[1]}</span></h4>${l[2].map(c=>`<div class="kcard"><b>${esc(c[0])}</b>${chip(c[1])}</div>`).join('')}</div>`).join('')}</div>`)]);
+  + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><svg class="pa-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5L14.5 8 8 14.5 1.5 8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 5l3 3-3 3z" fill="currentColor"/></svg><span>Request project support</span><span class="pa-env">DT LAC</span></div><div class="pa-body"><p class="pa-h">New request</p><p class="pa-sub">We reply within 3 working days.</p><div class="f"><label><span>Project name<i>*</i></span><span class="in">e.g. Santo Domingo hotel fit-out</span></label><label><span>Office</span><span class="in dd">Select an office</span></label><label><span>Cluster</span><span class="in dd">Select a cluster</span></label><label><span>Stage</span><span class="in dd">Schematic design</span></label><label class="wide"><span>What do you need?<i>*</i></span><span class="in ta">Describe the problem…</span></label><div class="acts"><span class="go">Submit request</span><span class="go2">Cancel</span></div></div></div></div>`)])
+  + sec('l1',S7()?'none':'neutral',[wp('n','Embed · DT Projects Pipeline (fuente: Lista SharePoint «DT Pipeline» o tablero publicado; se edita allá y aparece aquí)', `<div class="wp-title"><h3>Development funnel</h3><span class="pipe-links"><a href="${PIPE_URL}" target="_blank" rel="noopener">Open board ↗</a><a href="${PIPE_URL}#idea" target="_blank" rel="noopener">Share an idea</a></span></div><div class="pipe-wrap">${pipeBody()}</div>`)]);
 }
 
 /* =========================================================
@@ -3569,7 +3718,7 @@ function route(){
   if(pm.length===2){const r=PROJECT_MATRIX.rows[pm[0]],c=PROJECT_MATRIX.cols[pm[1]];if(r&&c)document.querySelector(`[data-matrix-cell][data-row="${CSS.escape(r)}"][data-col="${CSS.escape(c.name)}"]`)?.click()}
   if(q.get('eco'))document.querySelector(`[data-eco-origin="${CSS.escape(q.get('eco'))}"]`)?.click();
   if(q.get('ecl'))document.querySelector(`[data-eco-cluster="${CSS.escape(q.get('ecl'))}"]`)?.click();
-  startCollab();hv7Init();
+  startCollab();hv7Init();pipeInit();
   /* at=<id> lleva la vista a una pieza (capturas): matrix, onb… (elementos con data-at) */
   /* shot=1 (capturas headless, que ignoran el scroll): en vez de desplazar la ventana, sube la página con un margen negativo en la barra de M365 */
   const at=q.get('at')&&document.querySelector(`[data-at="${CSS.escape(q.get('at'))}"]`);
