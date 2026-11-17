@@ -452,7 +452,7 @@ html[data-style="5"] .cta .btn{background:var(--theme);color:var(--on-theme)}
 .pipe-arrow{grid-column:6;grid-row:3;position:relative}
 .pipe-arrow::before{content:"";position:absolute;left:0;right:3px;top:0;border-top:1px dashed color-mix(in srgb,var(--pp-ink) 35%,transparent)}
 .pipe-arrow::after{content:"";position:absolute;right:2px;top:-4px;width:7px;height:7px;box-sizing:border-box;border:solid color-mix(in srgb,var(--pp-ink) 65%,transparent);border-width:1px 1px 0 0;transform:rotate(45deg)}
-.pipe-side{grid-column:1;font:500 10px/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
+.pipe-side{grid-column:1;font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
 .pipe-side.c{grid-row:2;align-self:end;padding-bottom:9px}
 .pipe-side.o{grid-row:4;align-self:start;padding-top:9px}
 .pipe-stage{grid-row:1/6;display:grid;grid-template-rows:subgrid;min-width:0;position:relative;z-index:1}
@@ -612,7 +612,7 @@ html[data-style="5"] .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .dia .ttl{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.4cqw}
 .dia .ttl h4{margin:0;font-size:2.6cqw;line-height:1;font-weight:var(--h-weight);letter-spacing:-.035em}
 .dia .ttl h4 em{font-style:normal;color:var(--art-tail)}
-.dia .ttl span{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--art-tail)}
+.dia .ttl > span{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--art-tail)}   /* (brand kit) solo el subtítulo: antes también encogía la última palabra del titular (.nw) y su punto */
 /* miniaturas de capacidades */
 .capthumb{position:absolute;inset:0;container-type:inline-size}
 .capthumb .n{position:absolute;left:7cqw;top:6cqw;font-family:var(--f-art-mono);font-size:7cqw;letter-spacing:.04em;color:var(--art-text);z-index:2}
@@ -666,7 +666,7 @@ html[data-style="5"] .ph .tag,
 html[data-style="5"] .hdr .k i,
 html[data-style="5"] .chdr .sub,
 html[data-style="5"] .chdr .num span:last-child,
-html[data-style="5"] .dia .ttl span:last-child,
+html[data-style="5"] .dia .ttl > span:last-child,
 html[data-style="5"] .mapart .legend span:not(:first-child){display:none}
 html[data-style="5"] .ql-btn{padding:12px 14px;font-weight:500}
 html[data-style="5"] .hc-card h4,html[data-style="5"] .ql-card .cap{font-weight:500}
@@ -1178,6 +1178,8 @@ html[data-style="1"] .pv.dk.hz svg:has(> rect[fill="currentColor"]:first-child) 
 .ctl .grp{display:flex;gap:1px;background:rgba(255,255,255,.07);border-radius:6px;padding:2px}
 .ctl button{font:inherit;color:#d8d8d8;background:none;border:0;padding:0 6px;min-height:24px;border-radius:5px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:0}
 .ctl button:hover{color:#fff;background:rgba(255,255,255,.08)}
+.ctl button.bk-btn{background:#2A62F0;color:#fff;font-weight:600;padding:0 10px}
+.ctl button.bk-btn:hover{background:#3d74ff;color:#fff}
 .ctl button[aria-pressed="true"]{background:#fff;color:#111;font-weight:600}
 .ctl [data-set-style] b{font-weight:700;min-width:7px;text-align:center}
 .ctl [data-set-style] .nm{display:none}
@@ -1567,11 +1569,7 @@ html[data-skin="7"] .ph > svg.s7{-webkit-mask-image:none;mask-image:none}
 html[data-skin="7"] .dia .lab i.g7i{width:2.6cqw;height:1.7cqw;background:none;flex:none}
 html[data-skin="7"] .dia .bar{background:radial-gradient(circle,color-mix(in srgb,var(--c) 30%,transparent) .7px,transparent 1.1px) 0 0/6px 6px,color-mix(in srgb,var(--c) 6%,transparent);
   box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 52%,transparent),inset 2px 0 0 var(--c);border-radius:1px}
-html[data-skin="7"] .dia::before{content:"";position:absolute;inset:14px;pointer-events:none;opacity:.45;--x:rgba(242,242,240,.9);
-  background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
-    linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
-    linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
-    linear-gradient(var(--x),var(--x)) 100% calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 100%/1px 11px no-repeat}
+/* (brand kit) las cruces del diagrama usan el ::before compartido de los paneles de figura (bloque 11: «cruces de registro»): mismo margen y opacidad */
 /* onboarding: mini glifo arriba a la derecha de cada rama */
 .onb-g7{position:absolute;top:11px;right:12px;width:40px;height:26px;color:var(--k);pointer-events:none}
 html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t{padding-right:46px}
@@ -1583,8 +1581,10 @@ html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t{padding-right:46px}
 /* @personalizar: rampa del degradado (de navy casi negro a celeste; posiciones 0–1) y tinta de los dígitos. Rampa «carbon» = banner del Estilo 1 */
 html[data-skin="7"]{--hv-ramp:#02040B 0,#040A22 .2,#08185A .4,#1233A6 .58,#2348C8 .7,#4F8CE6 .82,#A8D8F8 .93,#E8F3FD 1; --hv-ink:#D6E6FF}
 .hv7[data-pal="carbon"]{--hv-ramp:#0B0C0D 0,#0F1012 .4,#17191C .62,#25282C .82,#3A3E43 1;--hv-ink:#A3A8AD;--hv-dot:rgba(242,242,240,.4)}
-.hv7{position:relative;overflow:hidden;background:#03050C;color:#F2F2F0;
-  --text:#F2F2F0;--text-2:rgba(226,236,255,.78);--text-tail:rgba(204,219,248,.7);--art-text:#F2F2F0;--art-tail:rgba(204,219,248,.7);--art-bg:#061033;--s7-ink:#F2F2F0}
+/* (brand kit) texto sobre el degradado azul: un solo par de tokens para header, banners, banda COM y CTA */
+:root{--hv-bg:#03050C;--hv-text-2:rgba(226,236,255,.78);--hv-tail:rgba(204,219,248,.7)}
+.hv7{position:relative;overflow:hidden;background:var(--hv-bg);color:#F2F2F0;
+  --text:#F2F2F0;--text-2:var(--hv-text-2);--text-tail:var(--hv-tail);--art-text:#F2F2F0;--art-tail:var(--hv-tail);--art-bg:#061033;--s7-ink:#F2F2F0}
 .hv7[data-pal="carbon"]{background:var(--p-ink,#0B0C0D);--text-2:var(--p-steel);--text-tail:var(--p-dim);--art-tail:#6E737A;--art-bg:var(--p-ink)}
 .hv7-cv{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
 .hv7 svg.hv7-ov{z-index:1}
@@ -1592,7 +1592,7 @@ html[data-skin="7"]{--hv-ramp:#02040B 0,#040A22 .2,#08185A .4,#1233A6 .58,#2348C
 .hv7:is([data-v="pixel"],[data-v="digits"]).grain::after{opacity:.12}
 .hv7 > .copy,.hv7 > .hv7-copy{z-index:3}
 .hv7.hdr::before{display:none}
-.hv7.hdr{background:#03050C}
+.hv7.hdr{background:var(--hv-bg)}
 /* capa SVG: el canvas pinta los puntos; el SVG pone oficinas (acento) y, solo en Map del header, etiquetas */
 .hv7 .m-dot{display:none}
 .hv7:not(.hv7-hero) :is(.m-plq,.m-txt,.m-lead),.hv7:not([data-v="map"]) :is(.m-plq,.m-txt,.m-lead){display:none}
@@ -1611,46 +1611,47 @@ html[data-skin="7"]{--hv-ramp:#02040B 0,#040A22 .2,#08185A .4,#1233A6 .58,#2348C
 .hv7-band .banner{padding:0;max-width:min(860px,64%)}
 .hv7-band .banner .t-h1{font-size:38px;line-height:1.08;margin:0 0 10px;color:var(--text)}
 .hv7-band .banner .t-p{margin:0;color:var(--text-2)}
-.hv7-band .t-kicker{color:var(--accent);margin-bottom:12px}
+.hv7-band .t-kicker{color:var(--accent-text,var(--accent));margin-bottom:12px}   /* (brand kit) acento como TEXTO: cobalt #5B8CFF 5.9:1 (antes #2A62F0, 3.6:1) */
 html[data-skin="7"] .hv7-band{border-bottom:1px solid rgba(168,216,248,.14)}
 /* banner de cluster: 300 px, el diagrama esquemático del cluster a la derecha sobre el degradado */
 .hv7-cl{height:300px;width:100%;container-type:inline-size}
 .hv7-cl .hv7-scene{position:absolute;top:0;bottom:0;right:max(0px,calc((100% - var(--canvas) - 48px)/2 - 40px));height:100%;width:62%;z-index:1}
 .hv7-cl .copy{position:absolute;inset:0;margin:0 auto;max-width:var(--canvas);padding:34px 24px 30px;box-sizing:content-box;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
-.hv7-cl .num{font-family:var(--f-art-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:16px;align-items:center}
+.hv7-cl .num{font-family:var(--f-art-mono);font-size:12px;letter-spacing:var(--k-track);text-transform:uppercase;display:flex;gap:16px;align-items:center}
 .hv7-cl .num .sw{width:12px;height:12px;background:var(--accent);display:inline-block}
 .hv7-cl .big{font-size:58px;line-height:.92;letter-spacing:-.045em;font-weight:var(--h-weight);margin:0}
 .hv7-cl .sub{font-family:var(--f-art-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);max-width:60%}
 /* banda «Build with COM» (sección con fondo de imagen) y CTA de cluster: el mismo fondo del header, versión baja */
-.sp-sec.bg-hv7{position:relative;overflow:hidden;color:#F2F2F0;--text:#F2F2F0;--text-2:rgba(226,236,255,.82);--text-tail:rgba(204,219,248,.72);padding:44px 0}
+.sp-sec.bg-hv7{position:relative;overflow:hidden;color:#F2F2F0;--text:#F2F2F0;--text-2:var(--hv-text-2);--text-tail:var(--hv-tail);padding:44px 0}
 .sp-sec.bg-hv7 > .sec-bg{position:absolute;inset:0;z-index:0}
 .sp-sec.bg-hv7 > .sp-canvas{position:relative;z-index:1}
-.sp-sec.bg-hv7 .t-kicker{color:var(--accent)}
+.sp-sec.bg-hv7 .t-kicker{color:var(--accent-text,var(--accent))}
 .sp-sec.bg-hv7 .stat b{color:#F2F2F0}.sp-sec.bg-hv7 .stat span{color:var(--text-2)}
 .sp-sec.bg-hv7 .ql-btn{background:rgba(3,6,18,.62);box-shadow:inset 0 0 0 1px rgba(232,243,253,.22);color:#F2F2F0;backdrop-filter:blur(6px)}
 .sp-sec.bg-hv7 .ql-btn:hover{background:rgba(3,6,18,.8);box-shadow:inset 0 0 0 1px rgba(232,243,253,.45)}
-.sp-sec.bg-hv7 .ql-btn small{color:rgba(226,236,255,.78)}
-.sp-sec.bg-hv7 .ql-btn svg{color:var(--accent)}.sp-sec.bg-hv7 .ql-btn .arr{color:rgba(226,236,255,.7)}
+.sp-sec.bg-hv7 .ql-btn small{color:var(--hv-text-2)}
+.sp-sec.bg-hv7 .ql-btn svg{color:var(--accent-text,var(--accent))}.sp-sec.bg-hv7 .ql-btn .arr{color:var(--hv-tail)}
 .cta > .hv7.cta-bg{position:absolute;inset:0}
 .cta > .hv7.cta-bg .cta-scene{z-index:1}
-html[data-skin="7"] .cta{border-radius:0;box-shadow:inset 0 0 0 1px rgba(242,242,240,.12)}
+html[data-skin="7"] .cta{border-radius:0;box-shadow:inset 0 0 0 1px var(--s7-line)}
 /* ---------- matriz de Projects en lenguaje esquemático (ronda 11): líneas de 1 px, etiquetas mono, banda de puntos, cruces y FIG. ---------- */
 html[data-skin="7"] .pmh{background:var(--s7-panel-bg);box-shadow:none;border-radius:0;padding:22px 18px 12px;position:relative}
-/* (ronda 12) cruces de registro de los paneles de figura: mismo mecanismo para matriz, onboarding, Tools, mapa de impacto y pipeline (--x7-in = margen) */
-html[data-skin="7"] :is(.pmh,.onb-map,.eco,.impact-map,.pipe)::before{content:"";position:absolute;inset:var(--x7-in,0);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
+/* (ronda 12) cruces de registro de los paneles de figura: mismo mecanismo para diagrama de clusters, matriz, onboarding, Tools, mapa de impacto y pipeline.
+   (brand kit) un solo margen (--x7-in = 12px) y una sola opacidad (.5) para todos; antes 0 / 10 / 12 / 14 px y .45 / .5 */
+html[data-skin="7"] :is(.dia,.pmh,.onb-map,.eco,.impact-map,.pipe)::before{content:"";position:absolute;inset:var(--x7-in);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
   background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
     linear-gradient(var(--x),var(--x)) 100% calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 100%/1px 11px no-repeat}
 html[data-skin="7"] .pmh .pm-corner{color:rgba(242,242,240,.55)}
 html[data-skin="7"] .pmh :is(.pm-colhead,.pm-rowhead,.pm-cell,.pm-detail,.pm-proj,.pm-n,.pm-dot,.pm-av){border-radius:0}
-html[data-skin="7"] .pmh .pm-colhead{box-shadow:inset 1px 0 0 rgba(242,242,240,.14)}
+html[data-skin="7"] .pmh .pm-colhead{box-shadow:inset 1px 0 0 var(--s7-line)}
 html[data-skin="7"] .pmh .pm-colhead .pm-hn{font-weight:500}
 html[data-skin="7"] .pmh .pm-rowhead{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:9px;align-content:center;justify-content:stretch}
 html[data-skin="7"] .pmh .pm-rowhead::before{width:1px;top:0;bottom:0}
 html[data-skin="7"] .pmh .pm-g7{grid-row:1/3;width:30px;height:20px;color:var(--k);align-self:center}
 html[data-skin="7"] .pmh .pm-rowhead .pm-hn{font-weight:500;font-size:13px}
-html[data-skin="7"] .pmh .pm-cell{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.11)}
+html[data-skin="7"] .pmh .pm-cell{background:transparent;box-shadow:inset 0 0 0 1px var(--s7-line)}
 html[data-skin="7"] .pmh .pm-cell:not([data-count="0"]){background:radial-gradient(circle,color-mix(in srgb,var(--k) 32%,transparent) .7px,transparent 1.1px) 0 0/6px 6px,color-mix(in srgb,var(--k) 6%,transparent);
   box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 48%,transparent),inset 2px 0 0 var(--k)}
 html[data-skin="7"] .pmh .pm-cell:not([data-count="0"]):hover{transform:none;box-shadow:inset 0 0 0 1px var(--k),inset 2px 0 0 var(--k)}
@@ -1660,12 +1661,12 @@ html[data-skin="7"] .pmh .pm-cell[data-count="0"]{outline:1px dashed rgba(242,24
 html[data-skin="7"] .pmh .pm-cell[data-count="0"] .pm-n{box-shadow:inset 0 0 0 1px rgba(242,242,240,.45)}
 html[data-skin="7"] .pmh .pm-cell[aria-pressed="true"]{background:color-mix(in srgb,var(--k) 15%,transparent);box-shadow:inset 0 0 0 1px var(--k),inset 3px 0 0 var(--k)}
 html[data-skin="7"] .pmh .pm-cell[data-count="0"][aria-pressed="true"]{outline:1px solid var(--k)}
-html[data-skin="7"] .pmh .pm-detail{background:#101113;border-top:1px solid var(--k);box-shadow:inset 0 0 0 1px rgba(242,242,240,.14)}
-html[data-skin="7"] .pm-drow::before{background:#101113;box-shadow:-1px -1px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-detail{background:var(--s7-cell);border-top:1px solid var(--k);box-shadow:inset 0 0 0 1px var(--s7-line-2)}
+html[data-skin="7"] .pm-drow::before{background:var(--s7-cell);box-shadow:-1px -1px 0 0 var(--k)}
 html[data-skin="7"] .pmh .pm-detail-title{font-weight:400}
 html[data-skin="7"] .pmh .pm-detail-title em{color:var(--k)}
 html[data-skin="7"] .pmh .pm-dot{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
-html[data-skin="7"] .pmh .pm-proj{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.12)}
+html[data-skin="7"] .pmh .pm-proj{background:transparent;box-shadow:inset 0 0 0 1px var(--s7-line)}
 html[data-skin="7"] .pmh .pm-proj-title{font-weight:500}
 html[data-skin="7"] .pmh .pm-proj-result{box-shadow:inset 1px 0 0 var(--k)}
 html[data-skin="7"] .pmh .pm-av{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
@@ -1685,15 +1686,15 @@ html[data-skin="7"] .proc{padding:3.2cqw 3cqw 3.4cqw}
 /* ---------- Onboarding en lenguaje esquemático (ronda 11): sin tarjeta de fondo, nodos de 1 px, filete superior de 1 px en el color de la rama, trazos finos ---------- */
 html[data-skin="7"] .onb-map{background:var(--s7-panel-bg);box-shadow:none;border-radius:0}
 html[data-skin="7"] :is(.onb-node,.onb-detail,.onb-av){border-radius:0}
-html[data-skin="7"] .onb-node{background:#0E0F11;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16)}
-html[data-skin="7"] .onb-node[data-tipo="branch"]{box-shadow:inset 0 0 0 1px rgba(242,242,240,.16),inset 0 1px 0 var(--k)}
+html[data-skin="7"] .onb-node{background:var(--s7-cell);box-shadow:inset 0 0 0 1px var(--s7-line-2)}
+html[data-skin="7"] .onb-node[data-tipo="branch"]{box-shadow:inset 0 0 0 1px var(--s7-line-2),inset 0 1px 0 var(--k)}
 html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t::before{width:7px;height:7px;border-radius:0}
-html[data-skin="7"] .onb-node[data-tipo="branch"][aria-pressed="true"]{background:color-mix(in srgb,var(--k) 9%,#0E0F11);box-shadow:inset 0 0 0 1px var(--k);transform:none}
+html[data-skin="7"] .onb-node[data-tipo="branch"][aria-pressed="true"]{background:color-mix(in srgb,var(--k) 9%,var(--s7-cell));box-shadow:inset 0 0 0 1px var(--k);transform:none}
 html[data-skin="7"] .onb-node[data-tipo="trunk"][aria-pressed="true"]{box-shadow:inset 0 0 0 1px var(--text)}
-html[data-skin="7"] .onb-node[data-tipo="leaf"]{background:#0B0C0D;border:1px dashed color-mix(in srgb,var(--k) 45%,transparent)}
+html[data-skin="7"] .onb-node[data-tipo="leaf"]{background:var(--p-ink);border:1px dashed color-mix(in srgb,var(--k) 45%,transparent)}
 html[data-skin="7"] .onb-av{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
 html[data-skin="7"] .onb-res > span::before{width:5px;height:5px;margin-top:4px;border-radius:0;background:var(--k)}
-html[data-skin="7"] .onb-detail{background:#0E0F11;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16),inset 0 1px 0 var(--k,var(--text-2))}
+html[data-skin="7"] .onb-detail{background:var(--s7-cell);box-shadow:inset 0 0 0 1px var(--s7-line-2),inset 0 1px 0 var(--k,var(--text-2))}
 html[data-skin="7"] .onb-detail li::before{width:5px;height:5px;margin-top:5px;border-radius:0}
 html[data-skin="7"] .onb-trk{stroke-width:1;opacity:.55}
 html[data-skin="7"] .onb-trk.on{stroke-width:1.5}
@@ -1702,7 +1703,7 @@ html[data-skin="7"] .onb-fib.x{stroke-width:1.5;stroke-dasharray:1 4}
 html[data-skin="7"] .onb-map.has-branch .onb-fib.on{stroke-width:2}
 html[data-skin="7"] .onb-map.has-branch .onb-fib.x.on{stroke-width:2;stroke-dasharray:1 5}
 html[data-skin="7"] .onb-tip{stroke-width:1}
-html[data-skin="7"] .onb-dot{stroke-width:1;fill:#0B0C0D}
+html[data-skin="7"] .onb-dot{stroke-width:1;fill:var(--p-ink)}
 /* =========================================================
    12 · PANELES DE FIGURA DEL ESTILO 7 (ronda 12): un solo fondo gris carbón (--s7-panel, el del diagrama «Where each cluster enters
    your project») con retícula de 24 px (--s7-panel-bg) para clusters, matriz, onboarding, Tools, mapa de impacto y pipeline.
@@ -1710,27 +1711,31 @@ html[data-skin="7"] .onb-dot{stroke-width:1;fill:#0B0C0D}
    ========================================================= */
 /* @personalizar: gris del panel de figura y de su retícula */
 html[data-skin="7"]{--s7-panel:#111315;--s7-grid:rgba(242,242,240,.035);
-  --s7-panel-bg:linear-gradient(var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,var(--s7-panel)}
+  --s7-panel-bg:linear-gradient(var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--s7-grid) 1px,transparent 1px) 0 0/24px 24px,var(--s7-panel);
+  /* (brand kit) tokens de los paneles de figura: celda interior, dos grosores de filete, margen de las cruces */
+  --s7-cell:#0E0F11; --s7-line:rgba(242,242,240,.12); --s7-line-2:rgba(242,242,240,.16); --x7-in:12px}
 html[data-skin="7"] .dia{background:var(--s7-panel)}
-html[data-skin="7"] .onb-fig{right:30px;bottom:10px}
-html[data-skin="7"] .pm-fig{margin-right:20px}
+/* (brand kit) etiqueta FIG.: una sola tipografía (mono 10 px, +0.12 em, text-2 al 70 %) y siempre a 36 px del borde derecho, a la altura de la cruz inferior */
+html[data-skin="7"] :is(.pm-fig,.onb-fig,.eco-fig,.pipe-fig){font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7}
+html[data-skin="7"] .onb-fig{right:36px;bottom:11px}
+html[data-skin="7"] .pm-fig{margin-right:18px}
 /* Tools: el ecosistema como figura (FIG. 05); los tiles de logo siguen claros, con esquinas casi rectas */
-html[data-skin="7"] .eco{--eco-panel:var(--s7-panel);--x7-in:12px;position:relative;padding:28px 30px 46px;background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
+html[data-skin="7"] .eco{--eco-panel:var(--s7-panel);position:relative;padding:28px 30px 46px;background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
 html[data-skin="7"] .eco-board{margin-bottom:-14px}
-html[data-skin="7"] .eco-bar{border-bottom-color:rgba(242,242,240,.12)}
+html[data-skin="7"] .eco-bar{border-bottom-color:var(--s7-line)}
 html[data-skin="7"] :is(.eco-seg,.eco-seg button,.eco-seal){border-radius:0}
-html[data-skin="7"] .eco-seg{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16)}
-html[data-skin="7"] .eco-k{border-top-color:rgba(242,242,240,.12)}
+html[data-skin="7"] .eco-seg{background:transparent;box-shadow:inset 0 0 0 1px var(--s7-line-2)}
+html[data-skin="7"] .eco-k{border-top-color:var(--s7-line)}
 html[data-skin="7"] .eco-k::before{height:1px;top:-1px;width:24px;border-radius:0}
 html[data-skin="7"] .eco-logo{border-radius:2px}
 .eco-fig{position:absolute;right:36px;bottom:13px;margin:0;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7;pointer-events:none}
 /* mapa «Projects with DT impact»: mismo panel y cruces */
-html[data-skin="7"] .impact-map{--art-bg:var(--s7-panel);--x7-in:12px}
+html[data-skin="7"] .impact-map{--art-bg:var(--s7-panel)}
 html[data-skin="7"] .impact-map .mapart{border-radius:0}
 html[data-skin="7"] .impact-map .imp-leg{transform:translate(14px,-16px)}   /* la leyenda se aparta de la cruz inferior izquierda */
-html[data-skin="7"] .impact-map .imp-leg .box{rx:0;stroke:rgba(242,242,240,.14)}
+html[data-skin="7"] .impact-map .imp-leg .box{rx:0;stroke:var(--s7-line-2)}
 /* pipeline: panel de figura */
-html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:rgba(242,242,240,.1);--x7-in:10px;background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
+html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:var(--s7-line);background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
 </style>
 </head>
 <body>
@@ -1809,7 +1814,7 @@ html[data-skin="7"] .pipe{--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:
   <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5, 6 y 7)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div></div>
   <div class="ctl-g"><span class="lbl">Fuente</span>
   <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div></div>
-  <div class="ctl-g"><div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div></div>
+  <div class="ctl-g"><div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div><div class="grp"><button id="bkBtn" class="bk-btn" type="button" title="Brand kit del Estilo 7 (se abre en otra pestaña)" onclick="window.open(/\/maqueta\//.test(location.pathname)?'../docs/brand-kit/index.html':'brand-kit/index.html','_blank','noopener')">Brand kit ↗</button></div></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
   <button type="button" class="ctl-min" id="ctlMin" aria-label="Minimizar el panel de la maqueta" title="Minimizar" aria-controls="ctl" aria-expanded="true"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div>
@@ -3337,7 +3342,7 @@ function pageCluster(k){
       wp('n','People · Descriptive (perfiles de Community)', `<div class="people desc">${c.leaders.map(p=>person({...p,d:p.d||`${c.code} contact for ${p.o} projects.`})).join('')}</div>`)
     ]),
     sec('l31','none',[
-      wp('n','Call to action · imagen de fondo pre-renderizada', `<div class="cta">${ctaBg(c)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Contact · ${esc(c.name)}</p><h3>${esc(c.page)} on your project? Let’s talk early.</h3><a class="btn" href="#/request">Start a conversation ${ic('arrow').replace('<svg','<svg width="16" height="16"')}</a></div></div>`),
+      wp('n','Call to action · imagen de fondo pre-renderizada', `<div class="cta">${ctaBg(c)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Contact · ${esc(c.name)}</p><h3>Need ${esc(c.page)}? Let’s talk early.</h3><a class="btn" href="#/request">Start a conversation ${ic('arrow').replace('<svg','<svg width="16" height="16"')}</a></div></div>`),
       wp('n','Text · Heading 3 + Normal + vínculos', `<h3 class="t-h3">Other ways to reach us</h3><p class="t-p muted" style="font-size:14px">Teams channel<br><a class="t-link" href="#/community">${esc(c.contact.ch)}</a></p><p class="t-p muted" style="font-size:14px">Email<br><a class="t-link" href="#/request">${esc(c.contact.mail)}</a></p><p class="t-p muted" style="font-size:14px">${esc(c.contact.hours)}</p>`)
       + wp('n','Quick links · Compact (otros clusters)', `<div class="wp-title"><h3>Other clusters</h3></div><div class="ql-list">${others.map(o=>`<a href="#/clusters/${o}">${ic('arrow')}<span><b>${esc(CL[o].name)}</b></span></a>`).join('')}</div>`)
     ]),
@@ -3472,7 +3477,7 @@ function bindMatrix(){
 }
 function pageProjects(){
   const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
-  return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
+  return banner('Projects','Where did DT add value?','Cases by cluster.','One page per case study, tagged by cluster, office and tool.')
   /* @personalizar: matriz Practice area × Cluster, pieza principal. Encabezado (titular, instrucción, leyenda, control Matrix / List), matriz y detalle son una sola app */
   + sec('l1','none',[
       wp('n','Text · Heading 2 + Normal', `<div class="pm-intro" data-matrix-intro data-at="matrix">${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul></div>`)
@@ -3589,7 +3594,7 @@ function pageTools(){
 }
 function pageLearning(){
   const paths=[['Computational Thinking','6 modules · Mindset to People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
-  return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
+  return banner('Learning','How do I learn?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
   + onboardingSections()
   + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title" data-at="paths"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
@@ -3653,7 +3658,7 @@ function pipeInit(){
   document.head.appendChild(sc);
 }
 function pageRequest(){
-  return banner('Send your request','How do I engage with DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
+  return banner('Send your request','How do I engage DT?','Ask, propose, follow.','Request support, submit an idea, follow the funnel.')
   + sec('l2','none',[wp('n','Call to action → Microsoft Forms', `<div class="cta" style="min-height:220px">${ctaBg(CL.cd)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Submit an idea</p><h3>A workflow you repeat every week?</h3><a class="btn" href="#/request">Open the form</a></div></div>`),wp('p','Power Apps · app "Request support" (Lista Requests)', `<div class="pa" role="img" aria-label="Power Apps form preview: request project support"><div class="bar"><svg class="pa-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5L14.5 8 8 14.5 1.5 8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 5l3 3-3 3z" fill="currentColor"/></svg><span>Request project support</span><span class="pa-env">DT LAC</span></div><div class="pa-body"><p class="pa-h">New request</p><p class="pa-sub">We reply within 3 working days.</p><div class="f"><label><span>Project name<i>*</i></span><span class="in">e.g. Santo Domingo hotel fit-out</span></label><label><span>Office</span><span class="in dd">Select an office</span></label><label><span>Cluster</span><span class="in dd">Select a cluster</span></label><label><span>Stage</span><span class="in dd">Schematic design</span></label><label class="wide"><span>What do you need?<i>*</i></span><span class="in ta">Describe the problem…</span></label><div class="acts"><span class="go">Submit request</span><span class="go2">Cancel</span></div></div></div></div>`)])
   + sec('l1',S7()?'none':'neutral',[wp('n','Embed · DT Projects Pipeline (fuente: Lista SharePoint «DT Pipeline» o tablero publicado; se edita allá y aparece aquí)', `<div class="wp-title"><h3>Development funnel</h3><span class="pipe-links"><a href="${PIPE_URL}" target="_blank" rel="noopener">Open board ↗</a><a href="${PIPE_URL}#idea" target="_blank" rel="noopener">Share an idea</a></span></div><div class="pipe-wrap">${pipeBody()}</div>`)]);
 }
