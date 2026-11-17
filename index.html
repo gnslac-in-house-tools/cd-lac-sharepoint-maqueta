@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-style="1" data-font="brand" data-accent="lime">
+<html lang="en" data-style="1" data-skin="7" data-font="brand" data-accent="cobalt">
 <head><meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1692,8 +1692,8 @@ html[data-skin="7"] .onb-dot{stroke-width:1;fill:#0B0C0D}
   <div class="ctl-g"><span class="lbl">Acento</span>
   <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
-    <button class="swatch" data-set-accent="cobalt" aria-pressed="false" title="Cobalt" aria-label="Acento Cobalt"><i style="background:#2A62F0"></i></button>
-    <button class="swatch" data-set-accent="lime" aria-pressed="true" title="Lime" aria-label="Acento Lime"><i style="background:#D4F04A"></i></button>
+    <button class="swatch" data-set-accent="cobalt" aria-pressed="true" title="Cobalt" aria-label="Acento Cobalt"><i style="background:#2A62F0"></i></button>
+    <button class="swatch" data-set-accent="lime" aria-pressed="false" title="Lime" aria-label="Acento Lime"><i style="background:#D4F04A"></i></button>
     <button class="swatch" data-set-accent="amber" aria-pressed="false" title="Amber" aria-label="Acento Amber"><i style="background:#F5A524"></i></button>
     <button class="swatch" data-set-accent="mono" aria-pressed="false" title="Bone / Ink (monocromo)" aria-label="Acento monocromo Bone / Ink"><i style="background:linear-gradient(135deg,#F2F2F0 50%,#111 50%)"></i></button>
   </div></div>
@@ -3646,7 +3646,7 @@ $('#logosBtn').addEventListener('click',()=>setDrawer(!$('#logosDrawer').classLi
 $('#logosClose').addEventListener('click',()=>setDrawer(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').classList.contains('open'))setDrawer(false)});
 setHv(load('hv')||'halftone');setCtlMin(load('ctlmin')==='1');setCC('ban',load('ccban')!=='0');setCC('txt',load('cctxt')!=='0');
-setStyle(load('style')||'7',false);   /* (ronda 11) sin hash ni elección guardada: Estilo 7 + header Halftone */setMode(load('mode')||'light');setImg('0');   /* (ronda 11) sin hash: Imágenes No en todos los estilos (no se lee el localStorage; img=1 en el hash lo enciende) */setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
+setStyle('7',false);   /* (ronda 12) sin hash: SIEMPRE Estilo 7 + header Halftone + acento cobalt (no se lee el localStorage; s= y a= en el hash lo cambian) */setMode(load('mode')||'light');setImg('0');   /* (ronda 11) sin hash: Imágenes No en todos los estilos (no se lee el localStorage; img=1 en el hash lo enciende) */setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent('cobalt');
 buildLogos();applyLogo(load('logo3')||'L00');
 buildNav();route();
 window.addEventListener('hashchange',route);
