@@ -291,6 +291,10 @@ nav.topnav button[aria-expanded="true"] .chev{transform:rotate(180deg)}
 .t-h2{font-size:32px;line-height:1.12;font-weight:var(--h-weight);letter-spacing:var(--h-track);margin:0 0 12px}
 .t-h3{font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0 0 8px}
 .tail{color:var(--text-tail)}
+/* (ronda 11, todos los estilos) titulares de dos tonos: la parte blanca en una línea y la cola gris SIEMPRE en una línea nueva; sin huérfanos */
+.nw{white-space:nowrap}
+:is(.t-h1,.t-h2) > .tail,.band4 h2 em,.dia .ttl h4 em{display:block}
+:is(.t-h1,.t-h2,.spot-title,.band4 h2,.big){text-wrap:pretty}
 .t-p{margin:0 0 12px;color:var(--text);max-width:68ch}
 .t-p.muted{color:var(--text-2)}
 .t-link{color:var(--link);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
@@ -536,6 +540,9 @@ html[data-style="5"] .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .capthumb .n{position:absolute;left:7cqw;top:6cqw;font-family:var(--f-art-mono);font-size:7cqw;letter-spacing:.04em;color:var(--art-text);z-index:2}
 .capthumb .nm{position:absolute;left:7cqw;bottom:7cqw;font-size:12cqw;line-height:.9;letter-spacing:-.04em;font-weight:var(--h-weight);z-index:2;color:var(--art-text)}
 .capthumb .nm small{display:block;font-family:var(--f-art-mono);font-size:4.6cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--art-tail);margin-top:3cqw;font-weight:400}
+/* (ronda 11) miniaturas apaisadas (Learning paths, Estilos 1 y 7): subtítulo mono en UNA línea (tracking menor; si no cabe, puntos suspensivos) */
+html[data-style="1"] .capthumb.wide .nm{right:7cqw}
+html[data-style="1"] .capthumb.wide .nm small{font-size:2.9cqw;letter-spacing:.09em;margin-top:2.2cqw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 html[data-style="1"] .capthumb{background:radial-gradient(90% 70% at 85% 15%,color-mix(in srgb,var(--c) 40%,transparent),transparent 70%),#0E0F11}
 html[data-style="5"] .capthumb{background:var(--p-white)}
 html[data-style="5"] .capthumb::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/16px 16px;-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 62%);mask-image:linear-gradient(200deg,#000 10%,transparent 62%)}
@@ -848,13 +855,16 @@ html:is([data-style="1"],[data-mode="dark"]) .imp-b{fill:color-mix(in srgb,var(-
   font:600 12px/1 var(--f-mono);letter-spacing:.14em;color:var(--text-2);
   --sil:color-mix(in srgb,var(--text) 13%,var(--surface-2)); --ph-bg1:var(--surface-2); --ph-bg2:var(--surface);
   background:
-    radial-gradient(15.5% 12.4% at 50% 45%,var(--sil) 0 93%,transparent 100%),
-    linear-gradient(90deg,transparent 44.6%,var(--sil) 45.2% 54.8%,transparent 55.4%) 0 63%/100% 9% no-repeat,
-    radial-gradient(50% 35% at 50% 99%,var(--sil) 0 95%,transparent 100%),
     radial-gradient(40% 32% at 50% 40%,color-mix(in srgb,var(--text) 6%,transparent),transparent 72%),
     radial-gradient(70% 55% at 80% 6%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 70%),
     linear-gradient(175deg,var(--ph-bg1),var(--ph-bg2));
-  box-shadow:inset 0 0 0 1px var(--rule)}
+  box-shadow:inset 0 0 0 1px var(--rule);isolation:isolate}
+/* (ronda 11, todos los estilos) silueta de busto: UN path con curvas Bézier (cabeza ovalada, cuello que se abre, hombros redondeados con caída), sin rasgos.
+   Se pinta con --sil (en una caída suave) a través de una máscara SVG; las iniciales y la etiqueta quedan encima */
+.portrait-ph::before{content:"";position:absolute;left:0;right:0;bottom:0;top:9%;z-index:-1;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--sil) 82%,var(--text)) 0%,var(--sil) 45%,color-mix(in srgb,var(--sil) 88%,var(--ph-bg2)) 100%);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 116'><path d='M50 21C58.6 21 64.2 28.6 64.2 38.6C64.2 46.2 61.2 52.6 57.2 55.6C56.8 58.6 57.6 61.2 60.2 62.6C66.2 65.8 76 68 82.2 71.6C89.4 75.6 93.4 83 94.8 92C96.2 101 96.6 109 97 116L3 116C3.4 109 3.8 101 5.2 92C6.6 83 10.6 75.6 17.8 71.6C24 68 33.8 65.8 39.8 62.6C42.4 61.2 43.2 58.6 42.8 55.6C38.8 52.6 35.8 46.2 35.8 38.6C35.8 28.6 41.4 21 50 21Z'/></svg>") center bottom/100% auto no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 116'><path d='M50 21C58.6 21 64.2 28.6 64.2 38.6C64.2 46.2 61.2 52.6 57.2 55.6C56.8 58.6 57.6 61.2 60.2 62.6C66.2 65.8 76 68 82.2 71.6C89.4 75.6 93.4 83 94.8 92C96.2 101 96.6 109 97 116L3 116C3.4 109 3.8 101 5.2 92C6.6 83 10.6 75.6 17.8 71.6C24 68 33.8 65.8 39.8 62.6C42.4 61.2 43.2 58.6 42.8 55.6C38.8 52.6 35.8 46.2 35.8 38.6C35.8 28.6 41.4 21 50 21Z'/></svg>") center bottom/100% auto no-repeat}
 .portrait-ph::after{content:"Portrait";position:absolute;right:12px;bottom:12px;font:500 10px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);background:color-mix(in srgb,var(--surface) 88%,transparent);box-shadow:0 0 0 1px var(--rule);padding:6px 8px;border-radius:3px}
 html[data-style="5"] .portrait-ph{--sil:var(--ph-mass);--ph-bg1:var(--ph-sky2);--ph-bg2:var(--ph-sky);box-shadow:0 0 0 1px var(--tray-rule);color:var(--tray-ink)}
 html[data-style="5"] .portrait-ph::after{background:rgba(255,255,255,.92);color:var(--tray-ink);box-shadow:0 0 0 1px var(--ph-mass)}
@@ -943,6 +953,26 @@ button.onb-node:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k,var(-
 .onb-detail .onb-next{margin:4px 0 0;font-size:12.5px;line-height:1.35}
 .onb-detail .onb-next small{display:block;font:600 10px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ki,var(--text-2))}
 .onb-detail .t-link{font-size:13px}
+/* (ronda 11) Onboarding COMPLETO en una pantalla de laptop de 14" (1440 × 800): mismo mapa, ~25 % más bajo (canal, rellenos, hojas y detalle) */
+.onb-map{--ch:66px;padding:18px 22px 16px 20px}
+.onb-trunk li:nth-child(2){margin-bottom:10px}
+.onb-branch{gap:9px}
+.onb-node{padding:9px 12px}
+.onb-node[data-tipo="branch"]{padding:10px 12px 9px;gap:2px}
+.onb-node[data-tipo="branch"] .onb-t{font-size:14.5px}
+.onb-t{font-size:14px}.onb-sub{font-size:12px;line-height:1.3}
+.onb-who{margin:5px 0 2px;font-size:12px}.onb-who small{font-size:11px}
+.onb-av{width:24px;height:24px;font-size:9.5px}
+.onb-res{gap:2px;margin-top:2px}.onb-res > span{font-size:11.5px;line-height:1.28}
+.onb-node[data-tipo="leaf"]{padding:6px 10px;gap:3px}
+.onb-node[data-tipo="leaf"] .onb-t{font-size:12px;line-height:1.25}
+.onb-branch:nth-child(n+5) .onb-leaves{padding:12px 0 0}
+.onb-detail{margin:12px 0 0 30px;padding:10px 12px;gap:3px}
+.onb-detail .onb-t{font-size:14.5px}
+.onb-detail ul{gap:2px}.onb-detail li{font-size:12px;line-height:1.28}
+.onb-detail .onb-next{margin:2px 0 0;font-size:12px;line-height:1.3}
+.onb-detail .onb-who{margin:3px 0 1px}
+.onb-fig{position:absolute;right:16px;bottom:8px;margin:0;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7;pointer-events:none}
 /* Your first DT session: agenda numerada compacta + barra de tiempo proporcional */
 .onb-time{display:flex;gap:3px;height:6px;margin:18px 0 0;max-width:620px}
 .onb-time i{display:block;border-radius:1px;background:color-mix(in srgb,var(--accent-text,var(--text)) var(--o,60%),var(--surface-2))}
@@ -1061,14 +1091,34 @@ html[data-style="1"] .pv.dk.hz svg:has(> rect[fill="currentColor"]:first-child) 
 /* =========================================================
    6 · BARRA DE CONTROL Y OVERLAY "VER WEB PARTS"
    ========================================================= */
-.ctl{position:fixed;right:16px;bottom:16px;z-index:100;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:rgba(32,32,32,.92);color:#fff;padding:8px 10px;border-radius:10px;font:12px/1.2 "Segoe UI",system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.3);backdrop-filter:blur(6px);max-width:calc(100vw - 32px)}
-.ctl .grp{display:flex;gap:2px;background:rgba(255,255,255,.08);border-radius:6px;padding:2px}
-.ctl button{font:inherit;color:#ddd;background:none;border:0;padding:6px 9px;border-radius:5px;cursor:pointer}
+/* (ronda 11) panel compacto: centrado abajo, una fila de ~36 px a ≥ 1366 px (envuelve a dos si no cabe); grupos separados por un filete */
+.ctl{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:100;display:flex;gap:0;align-items:center;flex-wrap:wrap;justify-content:center;row-gap:4px;width:max-content;max-width:calc(100vw - 20px);box-sizing:border-box;
+  background:rgba(24,24,26,.94);color:#fff;padding:3px 3px 3px 4px;border-radius:9px;font:11px/1.2 "Segoe UI",system-ui,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+.ctl[hidden],.ctl-g[hidden]{display:none}
+.ctl-g{display:flex;align-items:center;gap:4px;padding:0 5px;position:relative}
+.ctl-g + .ctl-g::before{content:"";position:absolute;left:0;top:5px;bottom:5px;width:1px;background:rgba(255,255,255,.12)}
+.ctl .grp{display:flex;gap:1px;background:rgba(255,255,255,.07);border-radius:6px;padding:2px}
+.ctl button{font:inherit;color:#d8d8d8;background:none;border:0;padding:0 6px;min-height:24px;border-radius:5px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:0}
+.ctl button:hover{color:#fff;background:rgba(255,255,255,.08)}
 .ctl button[aria-pressed="true"]{background:#fff;color:#111;font-weight:600}
-.ctl .lbl{opacity:.6;margin-left:4px}
-.ctl :focus-visible{outline:2px solid #6FB6FF;outline-offset:1px}
-.ctl .swatch{padding:5px 6px}
-.ctl .swatch i{display:block;width:16px;height:16px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.ctl [data-set-style] b{font-weight:700;min-width:7px;text-align:center}
+.ctl [data-set-style] .nm{display:none}
+.ctl [data-set-style][aria-pressed="true"] .nm{display:inline;font-weight:600;padding-left:1px}
+.ctl .lbl{opacity:.62;font-size:10px;letter-spacing:.01em;white-space:nowrap}
+.ctl :focus-visible,.ctl-pill:focus-visible{outline:2px solid #6FB6FF;outline-offset:1px}
+.ctl .swatch{padding:0 4px}
+.ctl .swatch i{display:block;width:13px;height:13px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+.ctl .legend-wp{padding:0 6px}
+.ctl .ctl-chk{gap:5px}
+.ctl .ctl-chk::before{content:"";width:10px;height:10px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);flex:none}
+.ctl .ctl-chk[aria-checked="true"]{color:#fff}
+.ctl .ctl-chk[aria-checked="true"]::before{background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path d='M2 5.2 4.1 7.2 8 2.9' fill='none' stroke='%23111' stroke-width='1.6'/></svg>") center/10px no-repeat;box-shadow:none}
+.ctl-min{margin-left:1px;width:24px;justify-content:center;padding:0!important;color:#bbb!important}
+.ctl-pill{position:fixed;right:12px;bottom:10px;z-index:100;display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:0 12px;border:0;border-radius:999px;background:rgba(24,24,26,.94);color:#eee;
+  font:600 12px/1 "Segoe UI",system-ui,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.1);cursor:pointer}
+.ctl-pill[hidden]{display:none}
+.ctl-pill b{display:grid;place-items:center;min-width:18px;height:18px;border-radius:9px;background:#fff;color:#111;font-size:11px}
+html.no-ctl .ctl-pill{display:none}
 .ctl .swatch[aria-pressed="true"]{background:rgba(255,255,255,.9)}
 .ctl .swatch[aria-pressed="true"] i{box-shadow:0 0 0 1px #111}
 /* Estilo 5: acento fijo (azul). El grupo se atenúa y el tooltip del grupo lo explica. */
@@ -1154,7 +1204,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .site-actions,.suite .org{display:none}
   .site-footer .inner{grid-template-columns:1fr}
   .dia{overflow-x:auto}
-  .ctl{left:16px;right:16px;bottom:10px}
+  .ctl{left:10px;right:10px;bottom:10px;transform:none;width:auto}
   .news .item{grid-template-columns:110px 1fr}
   .spotlight,.expert{grid-template-columns:1fr}.spot-title{font-size:34px}
   .onb-trunk,.onb-branches,.onb-cards{grid-template-columns:1fr}
@@ -1268,6 +1318,68 @@ html[data-style="5"]:not([data-mode="dark"]) .pm-proj{background:var(--bg)}
 .pm-proj-contact b{font:600 10.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
 .pm-av{width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--k);color:var(--on-hl);font:600 10.5px/1 var(--f-sans)}
 .pm-proj-open{align-self:flex-start}
+/* ---------- (ronda 11) matriz HORIZONTAL: practice areas = columnas, clusters = filas; detalle = fila que se despliega bajo la fila activa ---------- */
+[data-matrix-block]{display:block;margin-top:-10px}
+.pmh{--pm-cols:156px repeat(var(--pm-n,10),minmax(0,1fr));--pm-gap:4px;padding:10px 12px 8px}
+.pmh .pm-head{margin-bottom:4px;align-items:end}
+.pmh .pm-corner{padding:0 8px 8px 14px;font-size:10.5px;display:flex;align-items:center;gap:6px}
+.pmh .pm-corner::after{content:"→";letter-spacing:0;opacity:.7}
+.pmh .pm-colhead{min-height:46px;padding:6px 6px 6px 8px;gap:2px;box-shadow:inset 1px 0 0 var(--rule)}
+.pmh .pm-colhead::before{display:none}
+.pmh .pm-colhead .pm-hn{font-size:12px;line-height:1.18}
+.pmh .pm-colhead .pm-sum{color:var(--text-2);font-size:10.5px}
+.pmh .pm-colhead:is(:hover,:focus-visible,[data-hl="on"]){background:var(--surface-2)}
+.pmh .pm-rowhead{flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:6px 8px 6px 14px}
+.pmh .pm-rowhead::before{background:var(--k);opacity:1;top:8px;bottom:8px}
+.pmh .pm-rowhead .pm-hn{font-weight:600;font-size:13.5px}
+.pmh .pm-rowhead .pm-sum{color:var(--ki)}
+.pmh .pm-rowhead:is(:hover,:focus-visible,[data-hl="on"]),.pmh .pm-row:has(.pm-cell[aria-pressed="true"]) .pm-rowhead{background:color-mix(in srgb,var(--k) 12%,transparent)}
+.pmh .pm-cell{min-height:68px;padding:6px 7px 7px;gap:4px 6px}
+.pmh .pm-n{width:20px;height:20px;font-size:11px}
+.pmh .pm-c{font-size:10px;letter-spacing:.02em}
+.pmh .pm-mini{width:34px}
+.pmh .pm-t{font-size:11px;line-height:1.24;-webkit-line-clamp:3}
+.pmh .pm-cell[data-count="0"] .pm-t{font-size:11px}
+.pmh .pm-cell[data-count="0"] .pm-n{width:8px;height:8px;margin:6px}
+.pmh .pm-cell:focus-visible,.pm-close:focus-visible{outline:2px solid var(--k,var(--text));outline-offset:1px}
+/* fila de detalle (una a la vez), con piquito que apunta a la celda activa */
+.pm-drow{position:relative;margin:4px 0 calc(var(--pm-gap) + 6px);--nx:50%}
+.pm-drow[hidden]{display:none}
+.pm-drow::before{content:"";position:absolute;top:-6px;left:var(--nx);width:11px;height:11px;transform:translateX(-50%) rotate(45deg);background:var(--surface-2);box-shadow:-2px -2px 0 0 var(--k);z-index:1}
+.pmh .pm-detail{position:relative;top:auto;display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:start;padding:12px 46px 12px 14px;background:var(--surface-2);border-top:2px solid var(--k);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 26%,transparent)}
+.pmh .pm-detail-title{font-size:15px;line-height:1.25;margin:0 0 6px}
+.pmh .pm-detail-count{margin:0}
+.pm-close{position:absolute;top:8px;right:8px;width:32px;height:32px;display:grid!important;place-items:center;text-align:center!important;border-radius:var(--r-native);color:var(--text-2)!important;font-size:13px!important}
+.pm-close:hover{background:var(--surface);color:var(--text)!important}
+.pmh .pm-detail-list{display:grid;gap:8px}
+.pmh .pm-detail-none{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:2px}
+.pmh .pm-detail-none .t-p{margin:0}
+/* tarjeta en una línea: miniatura · título/meta/herramientas · Challenge · Result · contacto + botón */
+.pmh .pm-proj{display:grid;grid-template-columns:104px minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr) auto;column-gap:16px;align-items:start;padding:8px 12px 8px 8px;background:var(--pm-bg)}
+.pmh :is(.pm-proj-body,.pm-proj-cr,.pm-proj-foot){display:contents}
+.pmh .pm-proj-thumb{grid-column:1;grid-row:1/4;border:0;box-shadow:inset 0 -2px 0 var(--k);border-radius:2px;overflow:hidden;align-self:stretch}
+.pmh .pm-proj-thumb .ph{height:100%;min-height:62px;aspect-ratio:auto}
+.pmh .pm-proj-title{grid-column:2;grid-row:1;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pmh .pm-detail-list[data-n="2"] .pm-proj-title{-webkit-line-clamp:1}   /* con 2 casos, 1 línea por tarjeta (el título completo está en la celda y en el lector de pantalla) */
+.pmh .pm-proj-body .pm-proj-meta{grid-column:2;grid-row:2;margin:3px 0 0;font-size:11px}
+.pmh .pm-proj-tools{grid-column:2;grid-row:3;margin-top:5px}
+.pmh .pm-proj-tools .chip{font-size:10.5px;padding:1px 7px}
+.pmh .pm-proj-challenge{grid-column:3;grid-row:1/4}
+.pmh .pm-proj-result{grid-column:4;grid-row:1/4}
+.pmh .pm-proj-body p{font-size:12px;line-height:1.38}
+.pmh :is(.pm-proj-challenge,.pm-proj-result) b{font-size:9.5px;margin-bottom:2px}
+.pmh .pm-proj-body .pm-proj-contact{grid-column:5;grid-row:1;font-size:12px;white-space:nowrap}
+.pmh .pm-proj-contact b{font-size:9.5px}
+.pmh .pm-av{width:22px;height:22px;font-size:9.5px}
+.pmh .pm-proj-open{grid-column:5;grid-row:2/4;align-self:end;justify-self:end;font-size:12.5px;padding:6px 12px;min-height:0}
+.pm-fig{margin:6px 2px 0;text-align:right;font:500 10px/1.3 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.75}
+@media (max-width:1100px){
+  .pmh{--pm-cols:120px repeat(var(--pm-n,10),minmax(64px,1fr));overflow-x:auto}
+  .pmh .pm-detail{grid-template-columns:1fr}
+  .pmh .pm-proj{grid-template-columns:96px minmax(0,1fr);row-gap:6px}
+  .pmh :is(.pm-proj-challenge,.pm-proj-result,.pm-proj-contact,.pm-proj-open){grid-column:2!important;grid-row:auto!important}
+  .pmh .pm-proj-thumb{grid-row:1/9}
+}
 @media (max-width:1100px){
   [data-matrix-block]{grid-template-columns:1fr}
   .pm-detail{position:static}
@@ -1392,6 +1504,131 @@ html[data-skin="7"] .dia::before{content:"";position:absolute;inset:14px;pointer
 html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t{padding-right:46px}
 /* hero: cruces y FIG. 00 muy tenues */
 .hero7{opacity:.7}
+/* =========================================================
+   11 · HEADER GENERATIVO DEL ESTILO 7 Y BANNERS DERIVADOS (ronda 11) · motor en JS: hv7Mount()
+   ========================================================= */
+/* @personalizar: rampa del degradado (de navy casi negro a celeste; posiciones 0–1) y tinta de los dígitos. Rampa «carbon» = banner del Estilo 1 */
+html[data-skin="7"]{--hv-ramp:#02040B 0,#040A22 .2,#08185A .4,#1233A6 .58,#2348C8 .7,#4F8CE6 .82,#A8D8F8 .93,#E8F3FD 1; --hv-ink:#D6E6FF}
+.hv7[data-pal="carbon"]{--hv-ramp:#0B0C0D 0,#0F1012 .4,#17191C .62,#25282C .82,#3A3E43 1;--hv-ink:#A3A8AD;--hv-dot:rgba(242,242,240,.4)}
+.hv7{position:relative;overflow:hidden;background:#03050C;color:#F2F2F0;
+  --text:#F2F2F0;--text-2:rgba(226,236,255,.78);--text-tail:rgba(204,219,248,.7);--art-text:#F2F2F0;--art-tail:rgba(204,219,248,.7);--art-bg:#061033;--s7-ink:#F2F2F0}
+.hv7[data-pal="carbon"]{background:var(--p-ink,#0B0C0D);--text-2:var(--p-steel);--text-tail:var(--p-dim);--art-tail:#6E737A;--art-bg:var(--p-ink)}
+.hv7-cv{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+.hv7 svg.hv7-ov{z-index:1}
+.hv7.grain::after{z-index:2;opacity:.26}
+.hv7:is([data-v="pixel"],[data-v="digits"]).grain::after{opacity:.12}
+.hv7 > .copy,.hv7 > .hv7-copy{z-index:3}
+.hv7.hdr::before{display:none}
+.hv7.hdr{background:#03050C}
+/* capa SVG: el canvas pinta los puntos; el SVG pone oficinas (acento) y, solo en Map del header, etiquetas */
+.hv7 .m-dot{display:none}
+.hv7:not(.hv7-hero) :is(.m-plq,.m-txt,.m-lead),.hv7:not([data-v="map"]) :is(.m-plq,.m-txt,.m-lead){display:none}
+.hv7 .m-plq{opacity:.8}
+.hv7 .m-off .m-acc{opacity:.75!important}
+/* texto del header sobre el azul: kicker y clusters en mono claro; los 4 clusters con su marca de color (los «puntitos») */
+.hv7-hero .k{color:#F2F2F0}
+.hv7-hero .foot b{display:inline-flex;align-items:center;gap:.6cqw;color:#F2F2F0}
+.hv7-hero .foot b::before{content:"";width:.5cqw;height:.5cqw;background:currentColor;flex:none}
+.hv7-hero .foot span:nth-child(1) b::before{background:var(--hl-vdc)}.hv7-hero .foot span:nth-child(2) b::before{background:var(--hl-rc)}
+.hv7-hero .foot span:nth-child(3) b::before{background:var(--hl-cd)}.hv7-hero .foot span:nth-child(4) b::before{background:var(--hl-di)}
+.hv7-hero .big{text-shadow:0 2px 24px rgba(2,4,11,.35)}
+/* banner de página: misma familia, ~230 px, texto alineado al lienzo de SharePoint */
+.hv7-band{height:232px;width:100%}
+.hv7-copy{position:relative;height:100%;max-width:var(--canvas);margin:0 auto;padding:0 24px;box-sizing:content-box;display:flex;align-items:center}
+.hv7-band .banner{padding:0;max-width:min(860px,64%)}
+.hv7-band .banner .t-h1{font-size:38px;line-height:1.08;margin:0 0 10px;color:var(--text)}
+.hv7-band .banner .t-p{margin:0;color:var(--text-2)}
+.hv7-band .t-kicker{color:var(--accent);margin-bottom:12px}
+html[data-skin="7"] .hv7-band{border-bottom:1px solid rgba(168,216,248,.14)}
+/* banner de cluster: 300 px, el diagrama esquemático del cluster a la derecha sobre el degradado */
+.hv7-cl{height:300px;width:100%;container-type:inline-size}
+.hv7-cl .hv7-scene{position:absolute;top:0;bottom:0;right:max(0px,calc((100% - var(--canvas) - 48px)/2 - 40px));height:100%;width:62%;z-index:1}
+.hv7-cl .copy{position:absolute;inset:0;margin:0 auto;max-width:var(--canvas);padding:34px 24px 30px;box-sizing:content-box;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.hv7-cl .num{font-family:var(--f-art-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;display:flex;gap:16px;align-items:center}
+.hv7-cl .num .sw{width:12px;height:12px;background:var(--accent);display:inline-block}
+.hv7-cl .big{font-size:58px;line-height:.92;letter-spacing:-.045em;font-weight:var(--h-weight);margin:0}
+.hv7-cl .sub{font-family:var(--f-art-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);max-width:60%}
+/* banda «Build with COM» (sección con fondo de imagen) y CTA de cluster: el mismo fondo del header, versión baja */
+.sp-sec.bg-hv7{position:relative;overflow:hidden;color:#F2F2F0;--text:#F2F2F0;--text-2:rgba(226,236,255,.82);--text-tail:rgba(204,219,248,.72);padding:44px 0}
+.sp-sec.bg-hv7 > .sec-bg{position:absolute;inset:0;z-index:0}
+.sp-sec.bg-hv7 > .sp-canvas{position:relative;z-index:1}
+.sp-sec.bg-hv7 .t-kicker{color:var(--accent)}
+.sp-sec.bg-hv7 .stat b{color:#F2F2F0}.sp-sec.bg-hv7 .stat span{color:var(--text-2)}
+.sp-sec.bg-hv7 .ql-btn{background:rgba(3,6,18,.62);box-shadow:inset 0 0 0 1px rgba(232,243,253,.22);color:#F2F2F0;backdrop-filter:blur(6px)}
+.sp-sec.bg-hv7 .ql-btn:hover{background:rgba(3,6,18,.8);box-shadow:inset 0 0 0 1px rgba(232,243,253,.45)}
+.sp-sec.bg-hv7 .ql-btn small{color:rgba(226,236,255,.78)}
+.sp-sec.bg-hv7 .ql-btn svg{color:var(--accent)}.sp-sec.bg-hv7 .ql-btn .arr{color:rgba(226,236,255,.7)}
+.cta > .hv7.cta-bg{position:absolute;inset:0}
+.cta > .hv7.cta-bg .cta-scene{z-index:1}
+html[data-skin="7"] .cta{border-radius:0;box-shadow:inset 0 0 0 1px rgba(242,242,240,.12)}
+/* ---------- matriz de Projects en lenguaje esquemático (ronda 11): líneas de 1 px, etiquetas mono, banda de puntos, cruces y FIG. ---------- */
+html[data-skin="7"] .pmh{background:transparent;box-shadow:none;border-radius:0;padding:18px 6px 8px;position:relative}
+html[data-skin="7"] :is(.pmh,.onb-map)::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
+  background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 100%/1px 11px no-repeat}
+html[data-skin="7"] .pmh .pm-corner{color:rgba(242,242,240,.55)}
+html[data-skin="7"] .pmh :is(.pm-colhead,.pm-rowhead,.pm-cell,.pm-detail,.pm-proj,.pm-n,.pm-dot,.pm-av){border-radius:0}
+html[data-skin="7"] .pmh .pm-colhead{box-shadow:inset 1px 0 0 rgba(242,242,240,.14)}
+html[data-skin="7"] .pmh .pm-colhead .pm-hn{font-weight:500}
+html[data-skin="7"] .pmh .pm-rowhead{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:9px;align-content:center;justify-content:stretch}
+html[data-skin="7"] .pmh .pm-rowhead::before{width:1px;top:0;bottom:0}
+html[data-skin="7"] .pmh .pm-g7{grid-row:1/3;width:30px;height:20px;color:var(--k);align-self:center}
+html[data-skin="7"] .pmh .pm-rowhead .pm-hn{font-weight:500;font-size:13px}
+html[data-skin="7"] .pmh .pm-cell{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.11)}
+html[data-skin="7"] .pmh .pm-cell:not([data-count="0"]){background:radial-gradient(circle,color-mix(in srgb,var(--k) 32%,transparent) .7px,transparent 1.1px) 0 0/6px 6px,color-mix(in srgb,var(--k) 6%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 48%,transparent),inset 2px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-cell:not([data-count="0"]):hover{transform:none;box-shadow:inset 0 0 0 1px var(--k),inset 2px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-n{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k);font-weight:600}
+html[data-skin="7"] .pmh .pm-c{color:rgba(242,242,240,.55);text-transform:uppercase;letter-spacing:.1em;font-size:9.5px}
+html[data-skin="7"] .pmh .pm-cell[data-count="0"]{outline:1px dashed rgba(242,242,240,.16);background:repeating-linear-gradient(135deg,rgba(242,242,240,.045) 0 1px,transparent 1px 7px)}
+html[data-skin="7"] .pmh .pm-cell[data-count="0"] .pm-n{box-shadow:inset 0 0 0 1px rgba(242,242,240,.45)}
+html[data-skin="7"] .pmh .pm-cell[aria-pressed="true"]{background:color-mix(in srgb,var(--k) 15%,transparent);box-shadow:inset 0 0 0 1px var(--k),inset 3px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-cell[data-count="0"][aria-pressed="true"]{outline:1px solid var(--k)}
+html[data-skin="7"] .pmh .pm-detail{background:#101113;border-top:1px solid var(--k);box-shadow:inset 0 0 0 1px rgba(242,242,240,.14)}
+html[data-skin="7"] .pm-drow::before{background:#101113;box-shadow:-1px -1px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-detail-title{font-weight:400}
+html[data-skin="7"] .pmh .pm-detail-title em{color:var(--k)}
+html[data-skin="7"] .pmh .pm-dot{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
+html[data-skin="7"] .pmh .pm-proj{background:transparent;box-shadow:inset 0 0 0 1px rgba(242,242,240,.12)}
+html[data-skin="7"] .pmh .pm-proj-title{font-weight:500}
+html[data-skin="7"] .pmh .pm-proj-result{box-shadow:inset 1px 0 0 var(--k)}
+html[data-skin="7"] .pmh .pm-av{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
+html[data-skin="7"] .pm-key{border-radius:0}
+/* ---------- (ronda 11) páginas de cluster: «Cluster colors · text» (html.cc-txt) pasa al color del cluster lo que salía en el acento:
+   kickers, vínculos, punto de remate e íconos. En el 7 el acento de la página ya es el color del cluster (--accent en .page[data-cluster]) ---------- */
+html[data-skin="7"].cc-txt .page[data-cluster]{--accent-text:var(--accent);--link:var(--accent);--theme:var(--accent)}
+html[data-skin="7"].cc-txt .page[data-cluster] :is(.ql-list svg,.ql-btn svg){color:var(--accent)}
+/* tarjetas de proyecto: filete de 1 px en el color de SU cluster (sutil) */
+html[data-skin="7"] .hc-card[style*="--t"]{outline:1px solid color-mix(in srgb,var(--t) 42%,transparent);outline-offset:-1px}
+html[data-skin="7"] .hc-card[style*="--t"]:hover{outline-color:color-mix(in srgb,var(--t) 75%,transparent)}
+/* Methodology: el timeline un poco más grande */
+html[data-skin="7"] .proc .st .n{font-size:1.2cqw}
+html[data-skin="7"] .proc .st h5{font-size:2.3cqw;margin:1cqw 0 .7cqw}
+html[data-skin="7"] .proc .st p{font-size:1.25cqw;max-width:20cqw}
+html[data-skin="7"] .proc{padding:3.2cqw 3cqw 3.4cqw}
+/* ---------- Onboarding en lenguaje esquemático (ronda 11): sin tarjeta de fondo, nodos de 1 px, filete superior de 1 px en el color de la rama, trazos finos ---------- */
+html[data-skin="7"] .onb-map{background:linear-gradient(rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,rgba(242,242,240,.035) 1px,transparent 1px) 0 0/24px 24px;box-shadow:none;border-radius:0}
+html[data-skin="7"] :is(.onb-node,.onb-detail,.onb-av){border-radius:0}
+html[data-skin="7"] .onb-node{background:#0E0F11;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16)}
+html[data-skin="7"] .onb-node[data-tipo="branch"]{box-shadow:inset 0 0 0 1px rgba(242,242,240,.16),inset 0 1px 0 var(--k)}
+html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t::before{width:7px;height:7px;border-radius:0}
+html[data-skin="7"] .onb-node[data-tipo="branch"][aria-pressed="true"]{background:color-mix(in srgb,var(--k) 9%,#0E0F11);box-shadow:inset 0 0 0 1px var(--k);transform:none}
+html[data-skin="7"] .onb-node[data-tipo="trunk"][aria-pressed="true"]{box-shadow:inset 0 0 0 1px var(--text)}
+html[data-skin="7"] .onb-node[data-tipo="leaf"]{background:#0B0C0D;border:1px dashed color-mix(in srgb,var(--k) 45%,transparent)}
+html[data-skin="7"] .onb-av{background:none;color:var(--k);box-shadow:inset 0 0 0 1px var(--k)}
+html[data-skin="7"] .onb-res > span::before{width:5px;height:5px;margin-top:4px;border-radius:0;background:var(--k)}
+html[data-skin="7"] .onb-detail{background:#0E0F11;box-shadow:inset 0 0 0 1px rgba(242,242,240,.16),inset 0 1px 0 var(--k,var(--text-2))}
+html[data-skin="7"] .onb-detail li::before{width:5px;height:5px;margin-top:5px;border-radius:0}
+html[data-skin="7"] .onb-trk{stroke-width:1;opacity:.55}
+html[data-skin="7"] .onb-trk.on{stroke-width:1.5}
+html[data-skin="7"] .onb-fib{stroke-width:1.25;opacity:.8}
+html[data-skin="7"] .onb-fib.x{stroke-width:1.5;stroke-dasharray:1 4}
+html[data-skin="7"] .onb-map.has-branch .onb-fib.on{stroke-width:2}
+html[data-skin="7"] .onb-map.has-branch .onb-fib.x.on{stroke-width:2;stroke-dasharray:1 5}
+html[data-skin="7"] .onb-tip{stroke-width:1}
+html[data-skin="7"] .onb-dot{stroke-width:1;fill:#0B0C0D}
 </style>
 </head>
 <body>
@@ -1447,27 +1684,34 @@ html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t{padding-right:46px}
 
 <!-- @personalizar: barra de control (estilos, acentos, fuente, overlay, logos) -->
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
-<div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
-  <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button><button data-set-style="6" aria-pressed="false">6 · Terreno vivo</button><button data-set-style="7" aria-pressed="false">7 · Terreno esquemático</button></div>
-  <span class="lbl">Acento</span>
+<!-- (ronda 11) panel compacto: una fila a ≥ 1366 px (dos si no cabe), un grupo por control con etiqueta corta; el estilo activo muestra su nombre
+     y los demás solo el número (nombre en title y aria-label). «Header» solo en el 7 y «Modo» solo en el 5. ‒ minimiza a una pastilla (ctl=min). -->
+<div class="ctl" id="ctl" role="toolbar" aria-label="Controles de la maqueta">
+  <div class="ctl-g"><span class="lbl" id="ctlL-s">Estilo</span>
+  <div class="grp" role="group" aria-labelledby="ctlL-s"><button data-set-style="1" aria-pressed="true" title="1 · Terreno de datos" aria-label="Estilo 1 · Terreno de datos"><b>1</b><span class="nm"> · Terreno de datos</span></button><button data-set-style="5" aria-pressed="false" title="5 · Azul vivo" aria-label="Estilo 5 · Azul vivo"><b>5</b><span class="nm"> · Azul vivo</span></button><button data-set-style="6" aria-pressed="false" title="6 · Terreno vivo" aria-label="Estilo 6 · Terreno vivo"><b>6</b><span class="nm"> · Terreno vivo</span></button><button data-set-style="7" aria-pressed="false" title="7 · Terreno esquemático" aria-label="Estilo 7 · Terreno esquemático"><b>7</b><span class="nm"> · Terreno esquemático</span></button></div></div>
+  <div class="ctl-g"><span class="lbl">Acento</span>
   <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
     <button class="swatch" data-set-accent="cobalt" aria-pressed="false" title="Cobalt" aria-label="Acento Cobalt"><i style="background:#2A62F0"></i></button>
     <button class="swatch" data-set-accent="lime" aria-pressed="true" title="Lime" aria-label="Acento Lime"><i style="background:#D4F04A"></i></button>
     <button class="swatch" data-set-accent="amber" aria-pressed="false" title="Amber" aria-label="Acento Amber"><i style="background:#F5A524"></i></button>
     <button class="swatch" data-set-accent="mono" aria-pressed="false" title="Bone / Ink (monocromo)" aria-label="Acento monocromo Bone / Ink"><i style="background:linear-gradient(135deg,#F2F2F0 50%,#111 50%)"></i></button>
-  </div>
-  <span class="lbl">Fuente</span>
-  <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div>
-  <span class="lbl">Modo</span>
-  <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div>
-  <span class="lbl">Imágenes</span>
-  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5, 6 y 7)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
-  <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
-  <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
+  </div></div>
+  <div class="ctl-g" id="hvG"><span class="lbl" id="ctlL-h">Header</span>
+  <div class="grp" role="group" aria-labelledby="ctlL-h" title="Variante del header generativo (solo Estilo 7)"><button data-set-hv="grain" aria-pressed="false">Grain</button><button data-set-hv="halftone" aria-pressed="true">Halftone</button><button data-set-hv="pixel" aria-pressed="false">Pixel</button><button data-set-hv="digits" aria-pressed="false">Digits</button><button data-set-hv="map" aria-pressed="false">Map</button></div></div>
+  <div class="ctl-g" id="ccG"><span class="lbl" id="ctlL-c">Cluster colors</span>
+  <div class="grp" role="group" aria-labelledby="ctlL-c" title="Páginas de cluster (solo Estilo 7)"><button type="button" class="ctl-chk" role="checkbox" data-set-cc="ban" aria-checked="true" aria-label="Cluster colors · banners">banners</button><button type="button" class="ctl-chk" role="checkbox" data-set-cc="txt" aria-checked="true" aria-label="Cluster colors · text">text</button></div></div>
+  <div class="ctl-g" id="modeG"><span class="lbl">Modo</span>
+  <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div></div>
+  <div class="ctl-g"><span class="lbl">Imágenes</span>
+  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5, 6 y 7)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div></div>
+  <div class="ctl-g"><span class="lbl">Fuente</span>
+  <div class="grp"><button data-set-font="brand" aria-pressed="true">Marca</button><button data-set-font="sp" aria-pressed="false">Segoe (fallback)</button></div></div>
+  <div class="ctl-g"><div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
+  <button type="button" class="ctl-min" id="ctlMin" aria-label="Minimizar el panel de la maqueta" title="Minimizar" aria-controls="ctl" aria-expanded="true"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 </div>
+<button type="button" class="ctl-pill" id="ctlPill" hidden aria-label="Mostrar el panel de la maqueta" aria-controls="ctl" aria-expanded="false"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 4h7M12 4h2M2 12h2M7 12h7M9 2v4M4 10v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Maqueta<b id="ctlPillS">7</b></button>
 
 <div class="drawer" id="logosDrawer" role="dialog" aria-modal="false" aria-labelledby="logosTitle">
   <div class="dr-head"><div><h2 id="logosTitle">Opciones de logo</h2><p>Símbolo sobre el fondo del estilo actual, lockup en oscuro y claro, favicon a 24 px y vista sobre el acento. «Usar en la maqueta» cambia el logo del header y del footer.</p></div><button class="dr-close" id="logosClose" aria-label="Cerrar panel de logos">✕</button></div>
@@ -1483,7 +1727,7 @@ const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 function R(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 /* @personalizar: nombres del overlay "Ver web parts" (layouts y fondos); cada web part se etiqueta en wp(kind, nombre, html) */
 const LAYOUT = {full:'Ancho completo', l1:'Una columna', l2:'Dos columnas', l3:'Tres columnas', l13:'Un tercio izquierda (1/3 y 2/3)', l31:'Un tercio derecha (2/3 y 1/3)'};
-const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
+const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte', hv7:'Imagen (Section background · fotograma PNG 2560 px del header generativo; GIF/MP4 no se admite como fondo)'};
 /* sección real de SharePoint */
 /* Estilo 5 (y 6): los fondos de sección son planos; todo degradado es una imagen pre-renderizada (el overlay lo dice) */
 const S5 = () => document.documentElement.dataset.style==='5';   /* también en el 6: monta la estructura del 5 */
@@ -1492,7 +1736,8 @@ const S6 = () => document.documentElement.dataset.skin==='6';     /* Estilo 6 «
 function sec(layout, bg, cols, note=''){
   const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${S5()&&bg!=='none'?' (plano, sin degradado)':''}${note?' · '+note:''}`;
   if(layout==='full') return `<section class="sp-sec full bg-${bg}" data-sec="${esc(label)}">${cols[0]}</section>`;
-  return `<section class="sp-sec bg-${bg}" data-sec="${esc(label)}"><div class="sp-canvas"><div class="cols ${layout}">${cols.map(c=>`<div class="col">${c}</div>`).join('')}</div></div></section>`;
+  /* (ronda 11) bg 'hv7' = fondo de sección con el degradado generativo del header (Estilo 7) */
+  return `<section class="sp-sec bg-${bg}" data-sec="${esc(label)}">${bg==='hv7'?hv7Art('cta','',{cls:'sec-bg',at:'band'}):''}<div class="sp-canvas"><div class="cols ${layout}">${cols.map(c=>`<div class="col">${c}</div>`).join('')}</div></div></section>`;
 }
 /* web part: kind n = nativo, i = imagen pre-renderizada, p = Power Apps */
 /* Estilo 7: todo web part que lleve un diagrama esquemático (clases q1…qa o svg.s7) se anota en el overlay como imagen pre-renderizada (SVG → PNG de 1172–2408 px). El hero queda como GIF/MP4 */
@@ -1942,22 +2187,33 @@ const SC7={vdc:vdc7,rc:rc7,cd:cd7,di:di7};
 /* etiquetas de una escena grande: 3 cifras del caso del cluster (valor + nombre), una activa */
 const lab7 = st => st.slice(0,3).map(s=>({val:s[0]+(s[2]?' '+s[2]:''),name:s[1].replace(/^% |^mm /,'').toUpperCase()}));
 /* miniatura de capacidad (300 × 300, sin etiquetas) */
-/* CD va achatada (6 losas bajas) y en una caja del ancho del stack de VDC: mismo peso visual, menos altura, lejos del título */
-function cap7(k,box=[86,24,204,134]){const o={vdc:{n:4,sp:8.5},rc:{cell:1.25,wn:170,amp:2.6},cd:{n:5,fh:4.6,r:10,tw:.7,acc:2,ground:false,bulge:.1,mid:'q2',edges:'qg'},di:{cell:3}}[k];
-  if(k==='cd')box=[box[0]+box[2]*.17,box[1],box[2]*.66,box[3]*.8];
-  return scene7(SC7[k](o),box,k==='cd'?{ay:.4}:{}).s}
+/* (ronda 11) caja ÚNICA para las 4 miniaturas de «Our capabilities»: CAP7_BOX en el viewBox 300 × 300, entre el {n} y el cuadro de color.
+   Todas arrancan a la altura del {n} (ay:0, sin tocar el borde) y se centran en X; CD ya no lleva caja propia (mismo tamaño que VDC).
+   Las miniaturas apaisadas (Learning paths) pasan su propia caja y usan el MISMO encuadre (caja dibujada, arriba y al centro).
+   DI lleva barras más altas (amp 24) para que su losa tenga el mismo tamaño y acomodo que la de RC. */
+const CAP7_BOX=[88,34,164,118];
+function cap7(k,box=CAP7_BOX){const o={vdc:{n:4,sp:8.5},rc:{cell:1.25,wn:170,amp:2.6},cd:{n:5,fh:4.6,r:10,tw:.7,acc:2,ground:false,bulge:.1,mid:'q2',edges:'qg'},di:{cell:3,amp:24}}[k];
+  {   /* encuadre por la caja DIBUJADA (no por los puntos de la escena: CD gira y DI levanta barras fuera de sus pts) */
+    const s=scene7(SC7[k](o),[0,0,300,300]).s;let a=1e9,b=-1e9,c=1e9,d=-1e9;
+    const add=(x,y)=>{if(isFinite(x)&&isFinite(y)){a=Math.min(a,x);b=Math.max(b,x);c=Math.min(c,y);d=Math.max(d,y)}};
+    for(const m of s.matchAll(/ d="([^"]+)"/g)){const t=m[1].match(/[A-Za-z]|-?\d*\.?\d+/g)||[];let cmd='',lx=0,ly=0;for(let i=0;i<t.length;i++){if(/[A-Za-z]/.test(t[i])){cmd=t[i];continue}
+      if(cmd==='Q'){const[qx,qy,ex,ey]=t.slice(i,i+4).map(Number);add(.25*lx+.5*qx+.25*ex,.25*ly+.5*qy+.25*ey);add(ex,ey);lx=ex;ly=ey;i+=3}   /* Q: cumbre real de la curva, no el punto de control */
+      else if('MLC'.includes(cmd)){lx=+t[i];ly=+t[i+1];add(lx,ly);i++}else if(/[hvz]/i.test(cmd))break}}
+    for(const m of s.matchAll(/cx="(-?[\d.]+)" cy="(-?[\d.]+)"/g))add(+m[1],+m[2]);
+    const[bx,by,bw,bh]=box,k2=Math.min(bw/(b-a),bh/(d-c));
+    return `<g transform="translate(${n7(bx+(bw-(b-a)*k2)/2-a*k2)} ${n7(by-c*k2)}) scale(${k2.toFixed(4)})">${s}</g>`}}
 /* encabezado de cluster (1600 × 500): diagrama grande y anotado, a la derecha (la máscara existente lo apaga antes del título) */
-function hdr7(c){const k=c.key,L=lab7(c.proj.st);let sc,map;
+function hdr7(c,o={}){const k=c.key,L=lab7(c.proj.st);let sc,map;
   if(k==='vdc'){sc=vdc7({n:5,sp:9,acc:3,cloudAt:1});map=[null,1,null,0,2]}
   if(k==='rc'){sc=rc7({wn:380,cell:.9,amp:2.6,mull:3});map=[0,2,1]}
   if(k==='cd'){sc=cdVar7();map=[0,2,1]}
   if(k==='di'){sc=di7({cell:1.8,amp:13});map=[0,1,2]}
   const r=scene7(sc,k==='rc'||k==='di'?[946,84,372,330]:[996,72,318,346]),items=map.map((m,i)=>m===null?null:{...L[m],n:'0'+(m+1),on:m===(k==='cd'?1:0)});
-  return r.s+anno7(r.a,items,{lx:1352,fs:12.5,gap:54,top:96,bot:404})+frame7(992,44,1572,462,{fig:`FIG. ${c.n} — ${c.code} · ${c.proj.office.toUpperCase()}`,fs:11.5,axis:[1532,446],al:16})}
+  return r.s+anno7(r.a,items,{lx:1352,fs:o.fs||12.5,gap:o.gap||54,top:96,bot:404})+frame7(992,44,1572,462,{fig:`FIG. ${c.n} — ${c.code} · ${c.proj.office.toUpperCase()}`,fs:o.ffs||11.5,axis:[1532,446],al:16})}   /* o = tamaños del banner de cluster del Estilo 7 (ronda 11) */
 /* fondo del CTA de cluster (800 × 300, sin etiquetas) */
 const cta7 = c => scene7(SC7[c.key]({n:4,sp:8,cell:2,wn:160}),[440,34,320,232]).s;
 /* placeholder de proyecto (400 × 225, slice) y Featured project (400 × 275, meet: 3 capas anotadas con FIG.) */
-function ph7(kind){const sc=(PH7[kind]||PH7.city)();return `<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" class="s7">${scene7(sc,[70,26,260,166]).s}</svg>`}
+function ph7(kind){const sc=(PH7[kind]||PH7.city)();return `<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" class="s7">${scene7(sc,[46,22,308,176]).s}</svg>`}   /* (ronda 11) el diagrama llena ~75 % de la media (antes ~60 %) */
 function feat7(kind,key){const c=Object.values(CL).find(x=>x.proj.t===key)||CL.di,L=lab7(c.proj.st);
   const sc={pts:[[0,0,0],[36,0,0],[36,24,0],[0,24,0],[0,0,30],[36,24,30]],draw(P,g){
     const base=iso7Slabs(P,{n:3,sp:12,acc:-1,grid:false,cloudAt:1,cell:1.9});let s=base.s;
@@ -1974,6 +2230,195 @@ function glyph7(k){const sc=k==='vdc'?vdc7({n:3,sp:10,core:0,plan:false,acc:1}):
   return `<svg viewBox="0 0 40 26" aria-hidden="true" class="s7 g7" focusable="false">${scene7(sc,[2,2,36,22]).s}</svg>`}
 /* hero (opcional y sutil): cruces de registro alrededor del mapa y «FIG. 00» */
 const hero7 = () => `<g class="hero7">${frame7(978,12,1588,608,{c:5,fig:'FIG. 00 — LAC · 06 OFFICES',fs:10.5,fx:1580,fy:598,end:1})}</g>`;
+
+/* =========================================================
+   @personalizar: 11 · HEADER GENERATIVO DEL ESTILO 7 (ronda 11) y BANNERS DERIVADOS
+   Un solo motor en canvas (hv7Mount) pinta el header de Home ('hero'), el título de las páginas internas ('band', ~230 px) y el de
+   los clusters ('cl', ~300 px, con el diagrama esquemático del cluster encima) con la MISMA variante: hash hv=<id>, panel «Header».
+   · Campo: degradado azul en movimiento hvField(u,v,t) = manchas gaussianas que derivan + una cinta diagonal + deformación suave.
+     La zona del texto (izquierda) se apaga para que kicker, titular y clusters se lean (blanco ≥ 4.5:1; la cola gris ≥ 3:1 en texto grande).
+   · Rampa: --hv-ramp (tokens del Estilo 7, de navy casi negro a celeste de la rampa azul de marca). Clusters: --hl-*; oficinas: --accent.
+   · Territorio: la malla Mercator de lacMap() (misma caja que el mapa de antes). Cada variante la dice con su primitiva.
+   · Rendimiento: canvas a 1 px CSS (sin ×devicePixelRatio: ≤ 0.5× en pantallas 2×), el degradado se calcula a 1/6 y se reescala,
+     ≤ 30 fps, pausa fuera de vista (IntersectionObserver) y con la pestaña oculta. prefers-reduced-motion = un fotograma fijo.
+   · En SharePoint: GIF o MP4 en bucle (≤ 3 MB) en Image / File and media; alternativa estática = PNG de un fotograma. Ver PERSONALIZAR.md.
+   ========================================================= */
+const HV7=[['grain','Grain'],['halftone','Halftone'],['pixel','Pixel'],['digits','Digits'],['map','Map']];
+const HV7_NOTE={grain:'degradado fluido con grano y barrido de captura sobre el mapa',halftone:'semitono: el degradado en puntos de tamaño variable que respiran; la tierra sale más clara',
+  pixel:'mosaico de celdas que se reorganiza, celdas de color de cluster sobre la tierra, scanlines',digits:'campo de dígitos mono que fluye en diagonal, densidad según el degradado',map:'mapa de puntos LAC fundido en el degradado, oficinas en color y etiquetas'};
+const hv7Cur = () => {const v=document.documentElement.dataset.hv;return HV7.some(x=>x[0]===v)?v:'halftone'};
+const hv7Name = v => (HV7.find(x=>x[0]===v)||HV7[1])[1];
+/* contenedor: kind 'hero' | 'band' | 'cl'; o.v variante, o.pal 'blue' | 'carbon' (banner del Estilo 1), o.alt (solo si el texto va horneado), o.svg capa extra */
+function hv7Art(kind,inner,o={}){
+  const v=o.v||hv7Cur(), cls=(kind==='hero'?'art hdr hv7 hv7-hero grain':`art hv7 hv7-${kind} grain`)+(o.cls?' '+o.cls:'');
+  return `<div class="${cls}" data-hv7="${kind}" data-v="${v}" data-pal="${o.pal||'blue'}"${o.at?` data-at="${o.at}"`:''}${o.style?` style="${o.style}"`:''}${o.alt?` role="img" aria-label="${esc(o.alt)}"`:''}>`
+    +`<canvas class="hv7-cv" aria-hidden="true"></canvas><svg class="fill hv7-ov" data-hv7-ov aria-hidden="true" focusable="false"></svg>${o.svg||''}${inner}</div>`;
+}
+/* rampa de color: "--hv-ramp: #hex pos, #hex pos, …" → tabla de 256 colores */
+function hv7Ramp(str){
+  const hx=c=>{c=c.replace('#','');if(c.length===3)c=c.split('').map(x=>x+x).join('');const n=parseInt(c,16);return[n>>16&255,n>>8&255,n&255]};
+  let st=String(str||'').split(',').map(s=>s.trim().split(/\s+/)).filter(a=>a.length===2&&/^#/.test(a[0])).map(([c,p])=>[hx(c),+p]).sort((a,b)=>a[1]-b[1]);
+  if(st.length<2)st=[[[2,4,11],0],[[10,31,110],.45],[[42,106,216],.75],[[232,243,253],1]];
+  const L=new Uint8ClampedArray(768);
+  for(let i=0;i<256;i++){const x=i/255;let k=0;while(k<st.length-2&&x>st[k+1][1])k++;const[a,pa]=st[k],[b,pb]=st[k+1],f=Math.max(0,Math.min(1,(x-pa)/((pb-pa)||1)));
+    for(let c=0;c<3;c++)L[i*3+c]=a[c]+(b[c]-a[c])*f}
+  return L}
+const hvH=(a,b=0,c=0)=>{let h=Math.imul(a|0,374761393)^Math.imul(b|0,668265263)^Math.imul(c|0,1274126177);h=Math.imul(h^h>>>13,1103515245);return((h^h>>>16)>>>0)/4294967296};
+/* el degradado (0 = navy casi negro, 1 = celeste casi blanco). u, v en 0..1 de la pieza; t en segundos */
+function hvField(u,v,t){
+  const A=2.58,T=t*1.5,x=u*A;
+  const wu=u+.035*Math.sin(v*3.1+T*.23)+.02*Math.sin(x*2.3-T*.17), wv=v+.06*Math.sin(x*1.4-T*.19)+.03*Math.sin(v*4.2+x*.9+T*.29);
+  const g=(cx,cy,rx,ry,a)=>{const dx=(wu-cx)*A/rx,dy=(wv-cy)/ry;return a*Math.exp(-.5*(dx*dx+dy*dy))};
+  let s=g(.9+.05*Math.sin(T*.071),.02+.1*Math.sin(T*.053+1),.55,.5,1.05)        /* resplandor arriba a la derecha */
+       +g(.7+.08*Math.sin(T*.043+2),1.04+.05*Math.sin(T*.061),.75,.28,.85)       /* banda baja */
+       +g(.36+.06*Math.sin(T*.037+4),.62+.1*Math.sin(T*.049+3),.55,.22,.3)       /* velo medio, tenue bajo el texto */
+       +g(1.02,.55+.18*Math.sin(T*.031+5),.35,.45,.55);                           /* borde derecho */
+  const yc=1.02-.95*wu+.07*Math.sin(wu*5.2+T*.27), d=(wv-yc)/(.075+.03*Math.sin(T*.21+wu*3));
+  s+=.62*Math.exp(-.5*d*d)*(.35+.65*Math.min(1,wu*1.6));                          /* cinta diagonal */
+  let I=1-Math.exp(-1.12*s);   /* modo oscuro: el celeste casi blanco queda solo en las crestas */
+  const m=Math.min(1,Math.max(0,(.62-u)/.32));I*=1-.5*m*m*(3-2*m);                 /* zona del texto */
+  return I}
+let HV7S=[];
+function hv7Init(){HV7S.forEach(s=>s.stop());HV7S=[...document.querySelectorAll('[data-hv7]')].map(hv7Mount)}
+function hv7Mount(el){
+  const cv=el.querySelector('.hv7-cv'),ov=el.querySelector('[data-hv7-ov]'),ctx=cv.getContext('2d'),kind=el.dataset.hv7;
+  const reduce=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches), FF=+(window.HERO_FF||0), t0=performance.now();
+  const cs=getComputedStyle(el), cssv=k=>cs.getPropertyValue(k).trim();
+  /* (ronda 11) «Cluster colors · banners»: en los banners de cluster la rampa va del negro al color del cluster (el negro domina; el color solo en las crestas) */
+  let RAMP=cssv('--hv-ramp'),INK=cssv('--hv-ink')||'#D6E6FF';const KCOL=cssv('--accent');
+  if((kind==='cl'||kind==='cta')&&el.closest('.page[data-cluster]')&&document.documentElement.classList.contains('cc-ban')&&/^#[0-9a-f]{6}$/i.test(KCOL)){
+    const k=[1,3,5].map(i=>parseInt(KCOL.slice(i,i+2),16)),Wt=[255,255,255],mx=(a,b,f)=>'#'+a.map((v,i)=>Math.round(v+(b[i]-v)*f).toString(16).padStart(2,'0')).join('');
+    RAMP=`#030406 0,${mx([5,6,9],k,.09)} .24,${mx([6,7,10],k,.22)} .44,${mx([8,9,12],k,.48)} .62,${mx([8,9,12],k,.8)} .76,${KCOL} .87,${mx(k,Wt,.55)} 1`;INK=mx(k,Wt,.62)}
+  const LUT=hv7Ramp(RAMP), rgb=x=>{const i=Math.max(0,Math.min(255,Math.round(x*255)))*3;return `rgb(${LUT[i]},${LUT[i+1]},${LUT[i+2]})`};
+  const KC=['--hl-vdc','--hl-rc','--hl-cd','--hl-di'].map(k=>cssv(k)||'#6FB6FF'), COLS=kind==='cl'?[KCOL||KC[0]]:KC;
+  const GAIN=kind==='cl'?.8:kind==='cta'?.85:1, F=(u,v,t)=>hvField(u,v,t)*GAIN, NB=24;
+  const fc=document.createElement('canvas'),fx=fc.getContext('2d');
+  const sc=document.createElement('canvas');sc.width=3;sc.height=1;{const s=sc.getContext('2d');s.fillStyle='rgba(0,0,0,.26)';s.fillRect(0,0,1,1)}
+  let W=0,H=0,S=1,G=null,raf=0,vis=true,last=0,stopped=false,atlas=null,SCAN=null;const links=[];let nextL=0,kc=0;
+  function setup(){
+    const r=el.getBoundingClientRect();W=Math.max(2,Math.round(r.width));H=Math.max(2,Math.round(r.height));
+    cv.width=W;cv.height=H;const VH=1600*H/W;S=W/1600;
+    ov.setAttribute('viewBox',`0 0 1600 ${n7(VH)}`);ov.setAttribute('preserveAspectRatio','none');
+    const box=kind==='hero'?[985,16,560,VH-32]:kind==='band'?[1600*.7,VH*.08,1600*.27,VH*.84]:null, st=kind==='hero'?7.6:box?Math.max(4.6,box[3]/58):0;
+    let m=null,svg='';
+    if(box){m=lacMap({box,step:st,fs:11,links:0,light:false,bounds:[box[0]-30,4,1594,VH-4]});svg=m.svg}
+    svg+=kind==='hero'?hero7():`<g class="hero7">${frame7(16,14,1584,n7(VH-14),{c:5})}</g>`;
+    ov.innerHTML=svg;
+    const land=m?m.land.map(([x,y])=>[x*S,y*S]):[], off=m?m.off.map(o=>[o.x*S,o.y*S]):[];
+    const MS=4,mw=Math.ceil(W/MS)+1,mh=Math.ceil(H/MS)+1,mask=new Uint8Array(mw*mh),rr=st*S*.75;
+    land.forEach(([x,y])=>{for(let j=Math.floor((y-rr)/MS);j<=Math.ceil((y+rr)/MS);j++)for(let i=Math.floor((x-rr)/MS);i<=Math.ceil((x+rr)/MS);i++)
+      if(i>=0&&j>=0&&i<mw&&j<mh&&Math.hypot(i*MS-x,j*MS-y)<=rr)mask[j*mw+i]=1});
+    G={land,off,box:box&&box.map(v=>v*S),dotR:Math.max(.9,st*S*.3),
+      isLand:(x,y)=>{const i=Math.round(x/MS),j=Math.round(y/MS);return i>=0&&j>=0&&i<mw&&j<mh&&mask[j*mw+i]===1},
+      near:(x,y)=>{let d=1e9;for(const o of off)d=Math.min(d,Math.hypot(o[0]-x,o[1]-y));return d}};
+    fc.width=Math.max(8,Math.ceil(W/6));fc.height=Math.max(4,Math.ceil(H/6));
+    SCAN=ctx.createPattern(sc,'repeat');atlas=null;links.length=0;nextL=0;
+  }
+  /* degradado a 1/6 de resolución, reescalado con suavizado (gain/lift = más oscuro o más claro de fondo) */
+  const field=(t,gain=1,lift=0)=>{const w=fc.width,h=fc.height,id=fx.createImageData(w,h),d=id.data;
+    for(let j=0;j<h;j++)for(let i=0;i<w;i++){const I=Math.min(1,F((i+.5)/w,(j+.5)/h,t)*gain+lift),k=Math.round(I*255)*3,p=(j*w+i)*4;d[p]=LUT[k];d[p+1]=LUT[k+1];d[p+2]=LUT[k+2];d[p+3]=255}
+    fx.putImageData(id,0,0);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(fc,0,0,W,H)};
+  const bk=()=>Array.from({length:NB},()=>new Path2D()), fillB=(B,f)=>B.forEach((p,i)=>{ctx.fillStyle=rgb(f?f(i/(NB-1)):i/(NB-1));ctx.fill(p)});
+  /* red: arco de una oficina a otra en color de cluster, con un paquete que viaja y un pulso al llegar (≤ 3 a la vez).
+     Sin estado: cada ranura de 1.5 s define su par de oficinas con un hash, así cualquier t (ff=, fotograma fijo) se ve igual */
+  const net=t=>{const n=G.off.length;if(n<2)return;links.length=0;
+    for(let s=Math.floor(t/1.5)-2;s<=Math.floor(t/1.5);s++){if(s<0)continue;const a=Math.floor(hvH(s,7)*n);let b=Math.floor(hvH(s,11)*n);if(b===a)b=(a+1+Math.floor(hvH(s,13)*(n-1)))%n;
+      links.push({a,b,born:s*1.5,life:4.4,c:COLS[s%COLS.length]})}
+    ctx.lineWidth=1.25;
+    for(let i=links.length-1;i>=0;i--){const L=links[i],k=(t-L.born)/L.life;if(k>=1||k<0)continue;
+      const[ax,ay]=G.off[L.a],[bx,by]=G.off[L.b],mx=(ax+bx)/2+(by-ay)*.28,my=(ay+by)/2-(bx-ax)*.28,op=k<.15?k/.15:k>.8?(1-k)/.2:1;
+      ctx.globalAlpha=.62*op;ctx.strokeStyle=L.c;ctx.beginPath();ctx.moveTo(ax,ay);ctx.quadraticCurveTo(mx,my,bx,by);ctx.stroke();
+      const p=Math.min(1,k/.75),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;ctx.fillStyle=L.c;
+      for(let g=0;g<4;g++){const s=Math.max(0,e-g*.035),u=1-s,x=u*u*ax+2*u*s*mx+s*s*bx,y=u*u*ay+2*u*s*my+s*s*by,z=g?2.2:3.6;ctx.globalAlpha=op*(1-g*.24);ctx.fillRect(x-z/2,y-z/2,z,z)}
+      if(k>.72){const pk=(k-.72)/.28;ctx.globalAlpha=(1-pk)*.85;ctx.beginPath();ctx.arc(bx,by,4+pk*16,0,6.2832);ctx.stroke()}}
+    ctx.globalAlpha=1};
+  /* 1 · Grain: degradado fluido (el grano es CSS, .grain::after) + tierra en puntos finos + barrido de captura que la revela */
+  const grain=t=>{field(t);
+    if(G.box&&G.land.length){const[,by,,bh]=G.box,sy=by-12+((t/9)%1)*(bh+24),B=Array.from({length:10},()=>new Path2D()),A=[.3,.4,.55,.72,.95];
+      /* la tierra en puntos finos: claros sobre el azul oscuro y navy sobre el resplandor (siempre se lee); el barrido los enciende */
+      for(const[x,y]of G.land){const d=sy-y,k=d<0||d>120?0:d<6?4:d<26?3:d<60?2:1,z=k===4?1.3:.85,dk=k<3&&F(x/W,y/H,t)>.66?5:0;B[k+dk].rect(x-z,y-z,2*z,2*z)}
+      B.forEach((p,k)=>{ctx.fillStyle=k<5?`rgba(232,243,253,${A[k]})`:`rgba(4,12,44,${A[k-5]*.7})`;ctx.fill(p)});
+      let x0=1e9,x1=-1e9;for(const[x,y]of G.land)if(Math.abs(y-sy)<6){x0=Math.min(x0,x);x1=Math.max(x1,x)}
+      if(x1>x0){const gr=ctx.createLinearGradient(0,sy-46,0,sy);gr.addColorStop(0,'rgba(168,216,248,0)');gr.addColorStop(1,'rgba(168,216,248,.16)');ctx.fillStyle=gr;ctx.fillRect(x0-14,sy-46,x1-x0+28,46);
+        ctx.fillStyle='rgba(232,243,253,.7)';ctx.fillRect(x0-14,sy,x1-x0+28,1)}}
+    net(t)};
+  /* 2 · Halftone: el degradado en puntos de radio ∝ √valor que respiran; sobre tierra el punto sube de valor */
+  const halftone=t=>{ctx.fillStyle=rgb(.03);ctx.fillRect(0,0,W,H);
+    const c=kind==='hero'?9:8,B=bk(),nx=Math.ceil(W/c),ny=Math.ceil(H/c);
+    for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const x=(i+.5)*c,y=(j+.5)*c;let I=F(x/W,y/H,t);if(G.isLand(x,y))I=Math.min(1,I*.8+.3);
+      const r=c*.5*Math.sqrt(I)*(.88+.12*Math.sin(t*2.1+i*.31+j*.23));if(r<.5)continue;
+      const b=Math.min(NB-1,Math.round(Math.min(1,.2+.8*I)*(NB-1)));B[b].moveTo(x+r,y);B[b].arc(x,y,r,0,6.2832)}
+    fillB(B);net(t)};
+  /* 3 · Pixel: mosaico posterizado (7 niveles) que se reorganiza por pasos; sobre tierra, celdas de color de cluster (más cerca de las oficinas) + scanlines */
+  const pixel=t=>{const c=kind==='hero'?16:12,nx=Math.ceil(W/c),ny=Math.ceil(H/c),B=bk(),KB=COLS.map(()=>new Path2D()),IN=new Path2D(),tk=Math.floor(t*1.2);
+    for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const x=i*c,y=j*c,cx=x+c/2,cy=y+c/2,h0=hvH(i,j,1);
+      let I=Math.max(0,Math.min(1,F(cx/W,cy/H,t)+(hvH(i,j,tk+Math.floor(h0*7))-.5)*.16)),q=Math.round(I*7)/7;
+      if(G.isLand(cx,cy)){const p=.1+.34*Math.exp(-G.near(cx,cy)/(c*5));
+        if(hvH(i,j,Math.floor(t*.6+h0*5)+99)<p){KB[Math.floor(hvH(i,j,5)*COLS.length)].rect(x,y,c-1,c-1);if(hvH(i,j,6)<.55)IN.rect(x+c*.3,y+c*.3,c*.4,c*.4);continue}
+        q=Math.min(6/7,q+1/7)}
+      else if(kind==='cl'&&cx>W*.5&&hvH(i,j,Math.floor(t*.6+h0*5)+7)<.007){KB[0].rect(x,y,c-1,c-1);continue}
+      else q=Math.min(5/7,q);   /* el océano no llega al blanco: la tierra se lee más clara */
+      B[Math.round(q*(NB-1))].rect(x,y,c-1,c-1)}
+    ctx.fillStyle=rgb(0);ctx.fillRect(0,0,W,H);fillB(B);KB.forEach((p,k)=>{ctx.fillStyle=COLS[k];ctx.fill(p)});ctx.fillStyle='rgba(3,6,18,.6)';ctx.fill(IN);
+    ctx.fillStyle=SCAN;ctx.fillRect(0,0,W,H);net(t)};
+  /* 4 · Digits: corridas de «1» que terminan en 2–5 y fluyen en diagonal; aparecen según el degradado; cerca de las oficinas, en color de cluster */
+  const mkAtlas=(cw,ch)=>{const a=document.createElement('canvas'),rows=[INK,...COLS];a.width=cw*10;a.height=ch*rows.length;const g=a.getContext('2d');
+    g.font=`500 ${Math.round(ch*.78)}px "JetBrains Mono",Consolas,monospace`;g.textAlign='center';g.textBaseline='middle';
+    rows.forEach((col,r)=>{g.fillStyle=col;for(let d=0;d<10;d++)g.fillText(String(d),d*cw+cw/2,r*ch+ch/2+.5)});return{a,cw,ch}};
+  const digits=t=>{field(t,.62);const cw=kind==='hero'?9:8,ch=kind==='hero'?14:12;if(!atlas||atlas.cw!==cw)atlas=mkAtlas(cw,ch);
+    const ny=Math.ceil(H/ch),nx=Math.ceil(W/cw)+2,o=t*1.7;
+    for(let j=0;j<ny;j++){const sh=j*.55+o,q0=Math.floor(sh)-1,y=j*ch;
+      for(let n=0;n<nx;n++){const q=q0+n,x=(q-sh)*cw;if(x<-cw||x>W)continue;
+        const seg=Math.floor(q/9),p=q-seg*9,len=3+Math.floor(hvH(seg,j,1)*6);if(p>=len)continue;
+        const cx=x+cw/2,cy=y+ch/2,L=G.isLand(cx,cy);let I=F(cx/W,cy/H,t);if(L)I=Math.min(1,I+.28);
+        const tm=Math.min(1,Math.max(0,(.6-cx/W)/.28));   /* zona del texto: menos densidad y menos brillo */
+        if(hvH(seg,j,2)>(.04+.9*I)*(1-.55*tm))continue;
+        const dg=p===len-1?2+Math.floor(hvH(seg,j,4)*4):hvH(q,j,5)<.04?Math.floor(hvH(q,j,6)*10):1;
+        const row=L&&G.off.length&&G.near(cx,cy)<70&&hvH(seg,j,3)<.55?1+Math.floor(hvH(seg,j,8)*COLS.length):kind==='cl'&&cx>W*.5&&hvH(seg,j,3)<.012?1:0;
+        ctx.globalAlpha=Math.min(1,.16+.84*I)*(1-.6*tm);ctx.drawImage(atlas.a,dg*cw,row*ch,cw,ch,x,y,cw,ch)}}
+    ctx.globalAlpha=1;net(t)};
+  /* 5 · Map: el mapa de puntos LAC fundido en el degradado (radio y color según el valor), oficinas y etiquetas en la capa SVG */
+  const map=t=>{field(t);const B=bk();
+    if(G.land.length){const r0=G.dotR;for(const[x,y]of G.land){const I=F(x/W,y/H,t),r=r0*(.8+.6*I),b=Math.round(Math.min(1,.48+.52*I)*(NB-1));B[b].moveTo(x+r,y);B[b].arc(x,y,r,0,6.2832)}}
+    else{const c=14;for(let y=c/2;y<H;y+=c)for(let x=c/2;x<W;x+=c){const I=F(x/W,y/H,t),b=Math.round(Math.min(1,.3+.6*I)*(NB-1));B[b].moveTo(x+1.2,y);B[b].arc(x,y,1.2,0,6.2832)}}
+    const DOT=cssv('--hv-dot');if(DOT){ctx.fillStyle=DOT;B.forEach(p=>ctx.fill(p))}else fillB(B);   /* carbón (Estilo 1): puntos en la tinta del mapa del 1 */
+    net(t)};
+  const DRAW={grain,halftone,pixel,digits,map};
+  /* cluster: velo oscuro detrás del diagrama para que sus líneas de 1 px se lean sobre cualquier variante */
+  const draw=t=>{(DRAW[el.dataset.v]||halftone)(t);if(kind==="cl"){const g=ctx.createRadialGradient(W*.74,H*.5,0,W*.74,H*.5,W*.26);g.addColorStop(0,"rgba(3,6,18,.62)");g.addColorStop(1,"rgba(3,6,18,0)");ctx.fillStyle=g;ctx.fillRect(0,0,W,H)}};
+  const now=()=>FF+(performance.now()-t0)/1000, still=FF||14;
+  setup();
+  let io=null,ro=null;
+  if(reduce)draw(still);
+  else{draw(now());
+    const loop=ts=>{if(stopped||!el.isConnected)return;raf=requestAnimationFrame(loop);if(!vis||document.hidden||ts-last<33)return;last=ts;draw(now())};
+    raf=requestAnimationFrame(loop);
+    if('IntersectionObserver' in window){io=new IntersectionObserver(es=>{vis=es[es.length-1].isIntersecting});io.observe(el)}}
+  if(window.ResizeObserver){let first=true;ro=new ResizeObserver(()=>{if(first){first=false;return}setup();draw(reduce?still:now())});ro.observe(el)}
+  if(document.fonts)document.fonts.ready.then(()=>{atlas=null;if(reduce&&!stopped)draw(still)});
+  return {el,stop(){stopped=true;cancelAnimationFrame(raf);io&&io.disconnect();ro&&ro.disconnect()}};
+}
+/* header de Home del Estilo 7 (los textos son los del header de siempre) */
+function homeHeader7(){
+  const v=hv7Cur();
+  return hv7Art('hero',`<div class="copy">
+      <div class="k"><span>Design Technology</span><i>LAC · 06 offices · 04 clusters</i></div>
+      <h1 class="big">Design technology,<br><em>built across Latin America<br>&amp; the Caribbean</em><span class="sdot"></span></h1>
+      <div class="foot"><span><b>VDC</b></span><span><b>Reality Capture</b></span><span><b>Computational Design</b></span><span><b>Data Intelligence</b></span></div>
+    </div>`,{v,alt:`Design Technology LAC. Header animation (loop), variant ${hv7Name(v)}: a dark blue gradient in slow motion with a computational layer (${v==='grain'?'film grain and a capture scan line over a dot map of Latin America and the Caribbean':v==='halftone'?'halftone dots that breathe; the land of Latin America and the Caribbean reads lighter':v==='pixel'?'a pixel mosaic that reorganizes, with cells in the four cluster colors over the land, and scanlines':v==='digits'?'a field of digits flowing in diagonals, denser where the gradient is brighter':'a dot map of Latin America and the Caribbean blended into the gradient'}). Six offices in the accent color: Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires; colored data packets travel between them. Text: Design technology, built across Latin America and the Caribbean.`});
+}
+/* banner de página interna (Estilo 7 = variante actual; Estilo 1 = variante Map en carbón, derivada del mapa del header del 1) */
+function pageBanner7(inner,s7){
+  const v=s7?hv7Cur():'map';
+  return hv7Art('band',`<div class="hv7-copy">${inner}</div>`,{v,pal:s7?'blue':'carbon'});
+}
+/* banner de cluster del Estilo 7: el degradado de la variante + el diagrama esquemático del cluster (hdr7) a la derecha */
+function clusterBanner7(c){
+  const copy=`<div class="copy"><div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
+      <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
+      <div class="sub">${esc(c.services.join('  ·  '))}</div></div>`;
+  return hv7Art('cl',copy,{alt:`${c.name}. LAC cluster ${c.n} of 04. Header image on the animated blue gradient (variant ${hv7Name(hv7Cur())}), with the schematic diagram of the cluster and three figures of its featured project.`,svg:`<svg class="hv7-scene" viewBox="904 30 696 452" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">${hdr7(c,{fs:14.5,gap:58,ffs:13})}</svg>`});
+}
 
 /* 9 · Estilo 5: placeholders REALISTAS de contenido (no son arte; dicen qué imagen real va en cada lugar).
    Foto de proyecto = cielo, edificio y suelo simplificados en grises fríos + etiqueta "Project photo".
@@ -2154,6 +2599,7 @@ const ORDER = ['vdc','rc','cd','di'];
 /* @personalizar: hero de Home (texto horneado, mapa, cursores). En SharePoint se exporta como GIF/MP4. */
 let HERO=null;
 function homeHeader(){
+  if(S7()) return homeHeader7();   /* (ronda 11) Estilo 7: header generativo azul (bloque 11), sin cursores ni foto */
   const W=1600,H=620;
   const m=lacMap({box:[985,16,560,588],step:7.6,fs:11,links:0,light:document.documentElement.dataset.style!=='1',bounds:[972,6,1594,614]});
   HERO={W,H,m};
@@ -2268,6 +2714,7 @@ function startCollab(){
   collabRAF=requestAnimationFrame(frame);
 }
 function clusterHeader(c){
+  if(S7()) return clusterBanner7(c);   /* (ronda 11) Estilo 7: banner derivado del header de Home + diagrama del cluster */
   const W=1600,H=500;let art='';
   if(c.motif==='iso') art=isoSlabs(W,H,{cx:1130,top:40,gap:62,a:250,acc:2,fs:13});
   if(c.motif==='cloud') art=pointCloud(W,H,{x:840,y:70,w:620,h:360,seed:9});
@@ -2297,10 +2744,10 @@ function capThumb(c,o={}){
   if(c.motif==='cloud') art=pointCloud(W,H,{x:105,y:44,w:175,h:108,seed:4});
   if(c.motif==='flow') art=flowField(W,H,{x0:60,n:70,seed:4.1});
   if(c.motif==='bars') art=dataBars(W,H,{ox:185,oy:62,cols:16,rows:10,dx:10,dy:10,amp:30,seed:1.6});
-  if(S7()) art=cap7(c.key,o.fit?[16,24,190,134]:undefined);   /* Estilo 7 (en miniaturas apaisadas se corre a la izquierda para no quedar bajo el cuadro del cluster): diagrama esquemático mínimo (sin etiquetas) */
+  if(S7()) art=cap7(c.key,o.fit?[20,36,186,116]:undefined);   /* Estilo 7 (en miniaturas apaisadas se corre a la izquierda para no quedar bajo el cuadro del cluster): diagrama esquemático mínimo (sin etiquetas) */
   if(!S7())art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const mask=`<defs><linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${fd[0]}" x2="0" y2="${fd[1]}"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#${id}g)"/><rect x="0" y="0" width="${W*.3}" height="${H*.2}" fill="#000"/></mask></defs>`;
-  return `<div class="capthumb grain" style="--c:var(--hl-${c.key})"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">${mask}<g mask="url(#${id})"><g${o.fit?` transform="translate(${(W*(1-o.fit[0])).toFixed(1)} ${(o.fit[1]-20*o.fit[0]).toFixed(1)}) scale(${o.fit[0]})"`:''}>${art}</g></g></svg><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
+  return `<div class="capthumb grain${o.fit?' wide':''}" style="--c:var(--hl-${c.key})"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">${mask}<g mask="url(#${id})"><g${o.fit?` transform="translate(${(W*(1-o.fit[0])).toFixed(1)} ${(o.fit[1]-20*o.fit[0]).toFixed(1)}) scale(${o.fit[0]})"`:''}>${art}</g></g></svg><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
 }
 function diagram(){
   const stages=[['01','Pursuit & client contact'],['02','Strategy & programming'],['03','Concept design'],['04','Schematic design'],['05','Design development'],['06','Construction documents'],['07','Construction'],['08','Handover & operations']];
@@ -2351,6 +2798,8 @@ function ctaBg(c){
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g>${art}</g></svg>`;
   if(S5()) return `<div class="cta-bg art" style="--c:var(--hl-${c.key})"><div class="c5-media tray5">${photo5('people','Photo')}</div></div>`;
+  /* (ronda 11) Estilo 7: el fondo del CTA es el degradado del header (variante activa; con «Cluster colors · banners», tinte del cluster) + la escena del cluster */
+  if(S7()) return hv7Art('cta','',{cls:'cta-bg',svg:svg.replace('class="fill"','class="fill cta-scene"')});
   return `<div class="cta-bg art grain" style="--art-bg:#0D0E10;--art-fg:rgba(255,255,255,.55);--art-dim:rgba(255,255,255,.14);--art-dot:rgba(255,255,255,.5);background:radial-gradient(70% 120% at 90% 0%,color-mix(in srgb,var(--accent) 55%,transparent),transparent 65%),#0D0E10">${svg}</div>`;
 }
 /* ---------- arte del Estilo 5 (en SharePoint: imágenes pre-renderizadas con el degradado y el grano horneados) ---------- */
@@ -2393,8 +2842,13 @@ const kick = (t,red=false) => `<p class="t-kicker${red?' s5-hide':''}">${esc(t)}
 /* fin(): quita el punto final y lo cambia por el punto de acento */
 const fin = t => t.endsWith('.') ? esc(t.slice(0,-1))+'<span class="sdot"></span>' : esc(t);
 const tailFin = t => t.endsWith('.') ? `<span class="tail">${esc(t.slice(0,-1))}</span><span class="sdot"></span>` : `<span class="tail">${esc(t)}</span>`;
+/* (ronda 11, todos los estilos) el punto de remate nunca cae solo: se mete con la ÚLTIMA palabra en <span class="nw"> (white-space:nowrap).
+   Si el punto viene después de un elemento (la cola gris .tail, un <em>), entra a ese elemento antes de pegarse a su última palabra. */
+function glueDots(root){root.querySelectorAll('.sdot').forEach(d=>{if(d.parentNode.classList.contains('nw'))return;
+  let p=d.previousSibling;while(p&&p.nodeType===1&&p.tagName!=='BR'&&!p.classList.contains('nw')&&p.lastChild){p.appendChild(d);p=d.previousSibling}
+  if(p&&p.nodeType===3){const m=p.data.match(/^([\s\S]*?)(\S+)$/);if(m){p.data=m[1];const s=document.createElement('span');s.className='nw';s.textContent=m[2];p.after(s);s.appendChild(d)}}})}
 const h2 = (a,b='') => `<h2 class="t-h2">${b?esc(a)+' '+tailFin(b):fin(a)}</h2>`;
-const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}">${ph(kind,tint,'',t)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
+const hcCard = (t,kind,tint,meta,by,href,typeIc='doc',desc='') => `<a class="hc-card" href="${href}"${/^(vdc|rc|cd|di)$/.test(tint)?` style="--t:var(--hl-${tint})"`:''}>${ph(kind,tint,'',t)}<div class="body"><span class="type">${ic(typeIc)}${esc(meta)}</span><h4>${esc(t)}</h4>${desc?`<p>${esc(desc)}</p>`:''}<span class="by">${esc(by)}</span></div></a>`;
 const person = (p,desc=true,sm=false) => `<div class="person ${sm?'sm':''}"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)} · ${esc(p.o)}</span>${desc&&p.d?`<p>${esc(p.d)}</p>`:''}</a></div>`;
 /* tarjeta compacta para la fila de 4 (mismo rol que en Community: sale de P) */
 const personCard = p => `<div class="person sm"><span class="av" aria-hidden="true">${ini(p.n)}</span><a href="#/community"><b>${esc(p.n)}</b><span>${esc(p.r)}</span><span class="meta-line" style="margin-top:2px;font-size:11px">${esc(p.o.toUpperCase())}</span></a></div>`;
@@ -2601,7 +3055,7 @@ function drawImpactMap(m,max){
   if(art)art.setAttribute('aria-label',`Bubble map of Latin America and the Caribbean: ${m.label} (${m.unidad}) by office and client country. Bubble area is proportional to the value. `+ranked.map(p=>`${p.o.n} ${impactFmt(p.v)}`).join(', ')+'.');
 }
 
-const spotlightSection = () => { const s=SPOTLIGHT; return sec('l1','none',[wp('n','News · Top story (1 noticia destacada, layout Top story) o Hero de 1 pieza · foto de retrato + kicker + titular + cita + vínculo', `<article class="spotlight" data-spotlight>
+const spotlightSection = () => { const s=SPOTLIGHT; return sec('l1','none',[wp('n','News · Top story (1 noticia destacada, layout Top story) o Hero de 1 pieza · foto de retrato + kicker + titular + cita + vínculo', `<article class="spotlight" data-spotlight data-at="spot">
     <div class="portrait-ph spot-photo" data-photo="portrait" role="img" aria-label="Portrait placeholder: ${esc(s.n)}">${ini(s.n)}</div>
     <div class="spot-body"><p class="t-kicker">${esc(s.kicker)}</p><h3 class="spot-title">${esc(s.logro)}</h3><blockquote class="spot-quote">“${esc(s.cita)}”</blockquote>
       <p class="spot-who"><b>${esc(s.n)}</b> <span>${esc(s.r)} · ${esc(s.o)}</span></p><a class="t-link" href="${s.href}">${esc(s.cta)}</a></div></article>`)]); };
@@ -2629,7 +3083,7 @@ function onboardingMap(){
   return `<div class="onb-map" data-onb-map data-active="" role="group" aria-label="${esc(alt)}"><svg class="onb-links" data-onb-links aria-hidden="true"></svg>
     <ol class="onb-trunk" data-onb-trunk>${by('trunk').map(n=>`<li>${onbNode(n)}</li>`).join('')}</ol>
     <ul class="onb-branches" data-onb-branches>${by('branch').map(b=>`<li class="onb-branch" data-cluster="${b.cluster}">${onbNode(b)}<ul class="onb-leaves">${N.filter(l=>l.parent===b.id).map(l=>`<li>${onbNode(l)}</li>`).join('')}</ul></li>`).join('')}</ul>
-    <div class="onb-detail" data-onb-detail aria-live="polite"></div></div>`;
+    <div class="onb-detail" data-onb-detail aria-live="polite"></div>${S7()?`<p class="onb-fig" aria-hidden="true">FIG. 04 — ONBOARDING · 1 TRUNK · ${by('branch').length} BRANCHES</p>`:''}</div>`;
 }
 /* detalle del nodo activo: título, contacto, recursos, siguiente paso (ramas) y vínculo. Solo usa los datos de ONBOARDING */
 function onbDetail(id){
@@ -2640,7 +3094,7 @@ function onbDetail(id){
 }
 const onboardingSections = () => [
   sec('l1','none',[
-    wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Onboarding')}${h2('Start here,','then pick a branch.')}<p class="t-p muted">One trunk for everyone. Four pillars and two cross-cutting branches.</p>`),
+    wp('n','Text · Fixed width + Heading 2 + Normal', `<div data-at="onb">${kick('Onboarding')}</div>${h2('Start here,','then pick a branch.')}<p class="t-p muted">One trunk for everyone. Four pillars and two cross-cutting branches.</p>`),
     wp('i','Image (pre-rendered) · alternativa Power Apps (power-up interactivo) · mapa de ramas, alt completo', onboardingMap())
   ]),
   sec('l31','none',[
@@ -2711,11 +3165,11 @@ function bindOnboarding(){
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   return [
-    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada'+imgNote(' + foto real atenuada (negativo en screen al 15 %) detrás del titular'),homeHeader())]),
+    sec('full','none',[wp('i',S7()?`Image (GIF ≤ 3 MB) o File and media (MP4 en bucle ≤ 3 MB, sin audio, 1920 px) · full-width · header generativo «${hv7Name(hv7Cur())}» (${HV7_NOTE[hv7Cur()]}) grabado del canvas · estático: Image PNG 2880 px (1 fotograma) · texto horneado y en el alt`:S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada'+imgNote(' + foto real atenuada (negativo en screen al 15 %) detrás del titular'),homeHeader())]),
     quickRow(),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
-      wp('n',S5()?'Quick links · Filmstrip · miniatura 1:1 = foto de proyecto en bandeja blanca + código del cluster (PNG 600 px)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film">${caps}</div>`)
+      wp('n',S5()?'Quick links · Filmstrip · miniatura 1:1 = foto de proyecto en bandeja blanca + código del cluster (PNG 600 px)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film" data-at="caps">${caps}</div>`)
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
@@ -2737,7 +3191,10 @@ function pageHome(){
     ...(S5() ? [
       sec('full','none',[wp('i','Image · full-width (2880 px) · banda en degradado con grano horneado (WebP ≤ 400 KB) · texto y cifras en el alt · vínculo a Send your request', `<a href="#/request" aria-label="Build with COM. Send your request" style="display:block;color:inherit;text-decoration:none">${band4()}</a>`)]),
       sec('l1','none',[wp('n','Quick links · Button ×3 en fila (Forms / página)', `<div class="ql-buttons cols3">${comBtns()}</div>`)])
-    ] : [sec('l31','strong',[
+    ] : S7() ? [sec('l31','hv7',[   /* (ronda 11) Estilo 7: la banda usa el fondo del header (variante activa), versión baja; texto y botones nativos encima */
+      wp('n','Text · Fixed width + Heading 2 + Normal (sobre el fondo de imagen de la sección)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
+      wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${comBtns()}</div>`)
+    ])] : [sec('l31','strong',[
       wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
       wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${comBtns()}</div>`)
     ])]),
@@ -2752,7 +3209,7 @@ function pageCluster(k){
   const c=CL[k];
   const others=ORDER.filter(x=>x!==k);
   return [
-    sec('full','none',[wp('i','Image · full-width 16:5 (Banner borrado) · alt completo'+(media5('cluster:'+k)?' · degradado + imagen real del cluster horneados':''),clusterHeader(c))]),
+    sec('full','none',[wp('i',S7()?`Image · full-width (2560 × 480) o GIF/MP4 ≤ 3 MB · banner derivado del header de Home (variante «${hv7Name(hv7Cur())}») + diagrama esquemático del cluster · texto horneado y alt completo`:'Image · full-width 16:5 (Banner borrado) · alt completo'+(media5('cluster:'+k)?' · degradado + imagen real del cluster horneados':''),clusterHeader(c))]),
     sec('l31','none',[
       wp('n','Text · Fixed width + Heading 1 + Normal', `${kick(`LAC cluster ${c.n} · ${c.name}`,true)}<h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
       wp('n','Quick links · Compact (herramientas núcleo → registros de Tools)', `<div class="wp-title"><h3>Core tools</h3><a href="#/tools">All tools</a></div><div class="ql-list">${c.tools.map(t=>`<a href="#/tools">${ic(t[0])}<span><b>${esc(t[1])}</b><span>Tool record · filtered by ${esc(c.code)}</span></span></a>`).join('')}</div>`)
@@ -2783,7 +3240,15 @@ function pageCluster(k){
   ].join('');
 }
 
-const banner = (k,t,tail,p) => sec('l1','none',[wp('n','Banner · layout Plain (título de página)', `<div class="banner">${kick(k)}<h1 class="t-h1">${esc(t)} ${tailFin(tail)}</h1><p class="t-p muted">${esc(p)}</p></div>`)]);
+/* @personalizar: banner de página interna. (ronda 11) En los Estilos 7 y 1 es un BANNER DERIVADO del header de Home: misma variante y familia
+   (7 = degradado azul generativo; 1 = mapa de puntos sobre carbón), ~230 px de alto, de borde a borde, con el texto dentro. Las secciones
+   de abajo quedan sobre el fondo normal, así «página» y «sección» no se confunden. En el 5 y el 6 sigue el título Plain. */
+const banner = (k,t,tail,p) => {
+  const inner=`<div class="banner">${kick(k)}<h1 class="t-h1">${esc(t)} ${tailFin(tail)}</h1><p class="t-p muted">${esc(p)}</p></div>`;
+  if(S5()) return sec('l1','none',[wp('n','Banner · layout Plain (título de página)', inner)]);
+  const s7=S7(), v=s7?hv7Cur():'map';
+  return sec('full','none',[wp('n',`Título de página · layout «Imagen de ancho completo» (Full-width image) · fondo = fotograma PNG 2560 × 400 de la variante «${hv7Name(v)}»${s7?' (o GIF/MP4 ≤ 3 MB en un web part Image de ancho completo, con el texto horneado y en el alt)':' sobre carbón'} · kicker, título y bajada como texto del título de página`, pageBanner7(inner,s7))]);
+};
 
 /* @personalizar: matriz de proyectos (Practice area × Cluster).
    rows = practice areas (taxonomía de Gensler); cols = clusters; projects = pool de casos; cells = un cruce por entrada con 0, 1 o 2 ids (los vacíos son huecos a propósito).
@@ -2839,32 +3304,38 @@ const pmCount = n => n?n+(n>1?' projects':' project'):'No reference yet';
 const pmIni = s => s.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 function matrixProjectCard(p,k){
   return `<article class="pm-proj" data-matrix-project="${esc(p.id)}" data-k="${k}"><div class="pm-proj-thumb">${ph(p.ph,k,'',p.imagen||p.titulo)}</div><div class="pm-proj-body"><h4 class="pm-proj-title">${esc(p.titulo)}</h4><p class="pm-proj-meta">${esc(p.oficina)} · ${p.anio}</p>`
-   + `<p class="pm-proj-challenge"><b>Challenge</b> ${esc(p.problema)}</p><p class="pm-proj-result"><b>Result</b> ${esc(p.resultado)}</p>`
-   + `<ul class="chips pm-proj-tools">${p.herramientas.map(t=>`<li class="chip">${esc(t)}</li>`).join('')}</ul><p class="pm-proj-contact"><span class="pm-av" aria-hidden="true">${pmIni(p.contacto)}</span><b>Contact</b> ${esc(p.contacto)}</p>`
-   + `<a class="btn pm-proj-open" href="${esc(p.vinculo)}">Open case study</a></div></article>`;
+   + `<div class="pm-proj-cr"><p class="pm-proj-challenge"><b>Challenge</b> ${esc(p.problema)}</p><p class="pm-proj-result"><b>Result</b> ${esc(p.resultado)}</p></div>`
+   + `<div class="pm-proj-foot"><ul class="chips pm-proj-tools">${p.herramientas.map(t=>`<li class="chip">${esc(t)}</li>`).join('')}</ul><p class="pm-proj-contact"><span class="pm-av" aria-hidden="true">${pmIni(p.contacto)}</span><b>Contact</b> ${esc(p.contacto)}</p>`
+   + `<a class="btn pm-proj-open" href="${esc(p.vinculo)}">Open case study</a></div></div></article>`;
 }
+/* (ronda 11) detalle del cruce para la fila desplegable: encabezado a la izquierda (cruce, conteo, cerrar) y 1–2 tarjetas horizontales */
 function matrixDetailHTML(row,col){
-  if(!row) return `<div class="pm-detail-empty"><span class="pm-detail-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span><p class="t-p muted">Select a cell to see its reference projects.</p></div>`;
   const c=pmCell(row,col), cd=PROJECT_MATRIX.cols.find(x=>x.name===col), n=c.ids.length;
-  const head=`<h3 class="pm-detail-title">${esc(row)} <span aria-hidden="true">×</span><span class="sr">and</span> <em>${esc(col)}</em></h3><p class="pm-detail-count muted"><i class="pm-dot" aria-hidden="true">${n||''}</i>${pmCount(n)}</p>`;
-  if(!n) return head+`<p class="t-p muted">Nobody has documented this combination yet.</p><a class="btn pm-proj-open" href="#/request">Propose a case study</a>`;
-  return head+`<div class="pm-detail-list">${c.ids.map(id=>matrixProjectCard(pmProj(id),cd.k)).join('')}</div>`;
+  const head=`<div class="pm-detail-head"><h3 class="pm-detail-title">${esc(row)} <span aria-hidden="true">×</span><span class="sr">and</span> <em>${esc(col)}</em></h3><p class="pm-detail-count muted"><i class="pm-dot" aria-hidden="true">${n||''}</i>${pmCount(n)}</p></div>`;
+  if(!n) return head+`<div class="pm-detail-none"><p class="t-p muted">Nobody has documented this combination yet.</p><a class="btn pm-proj-open" href="#/request">Propose a case study</a></div>`;
+  return head+`<div class="pm-detail-list" data-n="${n}">${c.ids.map(id=>matrixProjectCard(pmProj(id),cd.k)).join('')}</div>`;
 }
 /* @personalizar: la matriz; cada celda es un botón con data-row, data-col y data-count */
 function matrixHTML(){
   const M=PROJECT_MATRIX, tot=f=>M.cells.filter(f).reduce((a,x)=>a+x.ids.length,0);
   /* (ronda 9) totales por fila y columna (mono, sin texto nuevo) y, con img=1, una miniatura del primer caso con imagen */
   const mini=ids=>{const p=ids.map(pmProj).find(p=>p.imagen&&IMG_BY[p.imagen]);return IMG5()&&p?`<span class="pm-mini" aria-hidden="true">${img5(IMG_BY[p.imagen],'m5img')}</span>`:''};
-  return `<div class="pm" data-matrix role="grid" aria-label="Practice area by Cluster project matrix">`
-   + `<div class="pm-head" role="row"><span class="pm-corner" role="columnheader">Practice area</span>${M.cols.map(c=>`<button type="button" class="pm-colhead" role="columnheader" data-matrix-col="${esc(c.name)}" data-k="${c.k}"><span class="pm-hn">${esc(c.name)}</span><span class="pm-sum">${pmCount(tot(x=>x.col===c.name))}</span></button>`).join('')}</div>`
-   + M.rows.map(r=>`<div class="pm-row" role="row"><button type="button" class="pm-rowhead" role="rowheader" data-matrix-row="${esc(r)}"><span class="pm-hn">${esc(r)}</span><span class="pm-sum" aria-hidden="true">${tot(x=>x.row===r)||''}</span></button>${M.cols.map(c=>{const x=pmCell(r,c.name),n=x.ids.length;
-       return `<button type="button" class="pm-cell" role="gridcell" data-matrix-cell data-row="${esc(r)}" data-col="${esc(c.name)}" data-count="${n}" data-k="${c.k}" aria-pressed="false" aria-label="${esc(r)} and ${esc(c.name)}: ${pmCount(n).toLowerCase()}"><span class="pm-n" aria-hidden="true">${n||''}</span>${n?(mini(x.ids)||`<span class="pm-c" aria-hidden="true">${n>1?'projects':'project'}</span>`):''}<span class="pm-t">${n?esc(pmProj(x.ids[0]).titulo):'No reference yet'}</span></button>`}).join('')}</div>`).join('')
+  /* (ronda 11) matriz HORIZONTAL: las 10 practice areas son columnas y los 4 clusters son filas (carriles), igual que el diagrama de
+     clusters de Home. Así cabe entera en una laptop de 14" (~420 px de alto) y cada celda conserva su título. Sin panel lateral:
+     el detalle se despliega en una fila bajo la fila activa (data-matrix-drow), con un piquito que apunta a la celda. */
+  const cell=(r,c)=>{const x=pmCell(r,c.name),n=x.ids.length;
+    return `<button type="button" class="pm-cell" role="gridcell" data-matrix-cell data-row="${esc(r)}" data-col="${esc(c.name)}" data-count="${n}" data-k="${c.k}" aria-pressed="false" aria-expanded="false" aria-controls="pmd-${c.k}" aria-label="${esc(r)} and ${esc(c.name)}: ${pmCount(n).toLowerCase()}"><span class="pm-n" aria-hidden="true">${n||''}</span>${n?(mini(x.ids)||`<span class="pm-c" aria-hidden="true">${n>1?'projects':'project'}</span>`):''}<span class="pm-t">${n?esc(pmProj(x.ids[0]).titulo):'No reference yet'}</span></button>`};
+  return `<div class="pm pmh" data-matrix role="grid" aria-label="Practice area by Cluster project matrix" style="--pm-n:${M.rows.length}">`
+   + `<div class="pm-head" role="row"><span class="pm-corner" role="columnheader">Practice area</span>${M.rows.map(r=>`<button type="button" class="pm-colhead" role="columnheader" data-matrix-row="${esc(r)}"><span class="pm-hn">${esc(r)}</span><span class="pm-sum" aria-hidden="true">${tot(x=>x.row===r)||''}</span></button>`).join('')}</div>`
+   + M.cols.map(c=>`<div class="pm-row" role="row" data-k="${c.k}"><button type="button" class="pm-rowhead" role="rowheader" data-matrix-col="${esc(c.name)}" data-k="${c.k}">${S7()?`<i class="pm-g7" aria-hidden="true">${glyph7(c.k)}</i>`:''}<span class="pm-hn">${esc(c.name)}</span><span class="pm-sum">${pmCount(tot(x=>x.col===c.name))}</span></button>${M.rows.map(r=>cell(r,c)).join('')}</div>`
+       + `<div class="pm-drow" role="row" id="pmd-${c.k}" data-matrix-drow="${esc(c.name)}" data-k="${c.k}" hidden><div class="pm-detail" role="gridcell" aria-live="polite"></div></div>`).join('')
+   + (S7()?`<p class="pm-fig" aria-hidden="true">FIG. 03 — PRACTICE AREA × CLUSTER · ${M.rows.length} × ${M.cols.length} · ${M.projects.length} PROJECTS</p>`:'')
    + `</div>`;
 }
 /* resaltar fila o columna al pasar por su encabezado; clic o Enter en una celda = activa, evento matrix:select {row,col} y detalle */
 function bindMatrix(){
   const root=document.querySelector('[data-matrix]'); if(!root) return;
-  const det=document.querySelector('[data-matrix-detail]'), cells=[...root.querySelectorAll('[data-matrix-cell]')];
+  const cells=[...root.querySelectorAll('[data-matrix-cell]')];
   const hl=(attr,val)=>{
     cells.forEach(c=>{if(!val)c.removeAttribute('data-hl');else c.dataset.hl=c.dataset[attr]===val?'on':'dim'});
     root.querySelectorAll('[data-matrix-row]').forEach(h=>{if(!val||attr!=='row')h.removeAttribute('data-hl');else h.dataset.hl=h.dataset.matrixRow===val?'on':'dim'});
@@ -2875,14 +3346,25 @@ function bindMatrix(){
     ['mouseenter','focus'].forEach(e=>h.addEventListener(e,()=>hl(attr,val)));
     ['mouseleave','blur'].forEach(e=>h.addEventListener(e,()=>hl(attr,null)));
   });
-  cells.forEach(c=>c.addEventListener('click',()=>{   /* los botones ya activan clic con Enter y Espacio */
-    cells.forEach(x=>x.setAttribute('aria-pressed',x===c));
-    const d={row:c.dataset.row,col:c.dataset.col};
-    if(det){det.innerHTML=matrixDetailHTML(d.row,d.col);det.dataset.k=c.dataset.k;det.dataset.count=c.dataset.count;
-      /* detalle debajo (pantallas angostas): lo trae a la vista si quedó fuera */
-      const r=det.getBoundingClientRect();if(r.top>innerHeight&&det.offsetTop>c.offsetTop+200)det.scrollIntoView({behavior:'smooth',block:'start'})}
+  /* (ronda 11) sin panel lateral: la celda abre la fila de detalle de SU cluster (una sola abierta); otro clic, ✕ o Esc la cierran */
+  const drows=[...root.querySelectorAll('[data-matrix-drow]')];
+  const close=focus=>{const on=cells.find(x=>x.getAttribute('aria-pressed')==='true');
+    cells.forEach(x=>{x.setAttribute('aria-pressed','false');x.setAttribute('aria-expanded','false')});
+    drows.forEach(r=>{r.hidden=true;const d=r.querySelector('.pm-detail');d.removeAttribute('data-matrix-detail');d.innerHTML=''});
+    if(focus&&on)on.focus()};
+  cells.forEach(c=>c.addEventListener('click',e=>{   /* los botones ya activan clic con Enter y Espacio */
+    if(c.getAttribute('aria-pressed')==='true'){close(false);return}
+    close(false);c.setAttribute('aria-pressed','true');c.setAttribute('aria-expanded','true');
+    const d={row:c.dataset.row,col:c.dataset.col}, dr=drows.find(r=>r.dataset.matrixDrow===d.col), det=dr.querySelector('.pm-detail');
+    det.innerHTML=`<button type="button" class="pm-close" data-matrix-close aria-label="Close details">✕</button>`+matrixDetailHTML(d.row,d.col);
+    det.dataset.k=c.dataset.k;det.dataset.count=c.dataset.count;det.setAttribute('data-matrix-detail','');dr.hidden=false;
+    dr.style.setProperty('--nx',(c.getBoundingClientRect().left+c.offsetWidth/2-dr.getBoundingClientRect().left).toFixed(0)+'px');   /* piquito bajo la celda */
+    det.querySelector('[data-matrix-close]').addEventListener('click',()=>close(true));
+    /* si la fila quedó bajo el borde (o bajo el panel de la maqueta), la acerca; solo con clic real (no con pm= del hash) */
+    if(e.isTrusted){const b=dr.getBoundingClientRect();if(b.bottom>innerHeight-60)window.scrollBy({top:b.bottom-innerHeight+72,behavior:'smooth'})}
     root.dispatchEvent(new CustomEvent('matrix:select',{detail:d,bubbles:true}));
   }));
+  root.addEventListener('keydown',e=>{if(e.key==='Escape'&&cells.some(x=>x.getAttribute('aria-pressed')==='true')){e.stopPropagation();close(true)}});
   document.querySelectorAll('[data-matrix-view]').forEach(b=>b.addEventListener('click',()=>{
     const v=b.dataset.matrixView;
     document.querySelectorAll('[data-matrix-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));
@@ -2894,9 +3376,9 @@ function pageProjects(){
   return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
   /* @personalizar: matriz Practice area × Cluster, pieza principal. Encabezado (titular, instrucción, leyenda, control Matrix / List), matriz y detalle son una sola app */
   + sec('l1','none',[
-      wp('n','Text · Heading 2 + Normal · control Matrix / List', `<div class="pm-intro" data-matrix-intro>${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul><div class="pm-view" role="group" aria-label="View"><button type="button" class="pm-view-btn" data-matrix-view="matrix" aria-pressed="true">Matrix</button><button type="button" class="pm-view-btn" data-matrix-view="list" aria-pressed="false">List</button></div></div>`),
+      wp('n','Text · Heading 2 + Normal · control Matrix / List', `<div class="pm-intro" data-matrix-intro data-at="matrix">${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul><div class="pm-view" role="group" aria-label="View"><button type="button" class="pm-view-btn" data-matrix-view="matrix" aria-pressed="true">Matrix</button><button type="button" class="pm-view-btn" data-matrix-view="list" aria-pressed="false">List</button></div></div>`)
+      + `<div data-matrix-block>${wp('p','Power Apps (matriz interactiva, 10 practice areas × 4 clusters; el detalle es una fila que se despliega bajo la fila activa, en la misma app) · alternativa: Microsoft List agrupada por Practice area + filtro por Cluster', matrixHTML())}</div>`
       ])
-  + sec('l1','none',[`<div data-matrix-block>${wp('p','Power Apps (matriz interactiva) · alternativa: Microsoft List agrupada por Practice area + filtro por Cluster', matrixHTML())}${wp('p','Power Apps · detalle del cruce (parte de la misma app)', `<div class="pm-detail" data-matrix-detail aria-live="polite">${matrixDetailHTML()}</div>`)}</div>`])
   + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
   + sec('l1','none',[wp('n','Text · Heading 2',`${kick('Alternative view')}${h2('All projects')}`)])
   + sec('l1','none',[wp('n','Highlighted content / List · Lista Projects (todas)'+imgNote(' · miniatura = imagen de miniatura de la página (imagen real 16:9)'), `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
@@ -3011,7 +3493,7 @@ function pageLearning(){
   const paths=[['Computational Thinking','6 modules · Mindset to People','cd'],['Productive AI','5 modules · Copilot first','di'],['BIM coordination basics','4 modules · VDC','vdc']];
   return banner('Learning','How do I build this capability?','Paths, workshops, recordings.','Each tool page shows its own tutorials automatically.')
   + onboardingSections()
-  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
+  + sec('l1','none',[wp('n','Quick links · Filmstrip · miniaturas pre-renderizadas'+imgNote(' (la 1.ª con imagen real en la bandeja)'), `<div class="wp-title" data-at="paths"><h3>Learning paths</h3></div><div class="ql-film c3">${paths.map(p=>`<a class="ql-card" href="#/learning"><div class="thumb" style="aspect-ratio:16/9">${capThumb(CL[p[2]],{fit:[.55,70],fade:[138,152],img:p[0]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:9cqw">${esc(p[0])}<small>${esc(p[1])}</small></span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(p[0])}<span>${esc(p[1])}</span></div></a>`).join('')}</div>`)])
   + sec('l31','none',[wp('n','Highlighted content · Cards · Videos (Stream)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Workshops &amp; recordings</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Nov 6, 2026','#/learning','play')}${hcCard('Point clouds in Revit','facade','rc','Recording · 41 min','Oct 30, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Oct 23, 2026','#/learning','play')}</div>`),wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming</h3></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup','17:00 CST · Mexico City')}</div>`)]);
 }
 function pageCommunity(){
@@ -3055,8 +3537,11 @@ function route(){
   if(q.get('wp'))setWp(q.get('wp')==='1');
   if(q.get('f'))setFont(q.get('f'));
   if(q.get('a'))setAccent(q.get('a'));
+  if(q.get('hv'))setHv(q.get('hv'));   /* (ronda 11) variante del header generativo del Estilo 7 */
+  if(q.get('ccb'))setCC('ban',q.get('ccb')!=='0');if(q.get('cct'))setCC('txt',q.get('cct')!=='0');   /* Cluster colors · banners / text */
   window.HERO_FF=+(q.get('ff')||0);
   document.documentElement.classList.toggle('no-ctl',q.get('ctl')==='0');
+  if(q.get('ctl')==='min')setCtlMin(true);
   if(q.get('logo'))applyLogo(q.get('logo'));
   if(q.get('logos')==='1')setTimeout(()=>setDrawer(true),50);
   const main=$('#main');let html='',cl='';
@@ -3070,6 +3555,7 @@ function route(){
     default: html=pageHome();
   }
   main.innerHTML=`<div class="page" ${cl?`data-cluster="${cl}"`:''}>${html}</div>`;
+  glueDots(main);
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
@@ -3083,7 +3569,12 @@ function route(){
   if(pm.length===2){const r=PROJECT_MATRIX.rows[pm[0]],c=PROJECT_MATRIX.cols[pm[1]];if(r&&c)document.querySelector(`[data-matrix-cell][data-row="${CSS.escape(r)}"][data-col="${CSS.escape(c.name)}"]`)?.click()}
   if(q.get('eco'))document.querySelector(`[data-eco-origin="${CSS.escape(q.get('eco'))}"]`)?.click();
   if(q.get('ecl'))document.querySelector(`[data-eco-cluster="${CSS.escape(q.get('ecl'))}"]`)?.click();
-  startCollab();
+  startCollab();hv7Init();
+  /* at=<id> lleva la vista a una pieza (capturas): matrix, onb… (elementos con data-at) */
+  /* shot=1 (capturas headless, que ignoran el scroll): en vez de desplazar la ventana, sube la página con un margen negativo en la barra de M365 */
+  const at=q.get('at')&&document.querySelector(`[data-at="${CSS.escape(q.get('at'))}"]`);
+  document.querySelector('.suite').style.marginTop='';
+  if(at){if(q.get('shot')==='1')document.querySelector('.suite').style.marginTop=-Math.max(0,at.getBoundingClientRect().top+scrollY-(+q.get('atpad')||16))+'px';else at.scrollIntoView({block:'start'})}
 }
 /* @personalizar: logos (inline desde maqueta/logos/*.svg; tinta = currentColor, acento = var(--accent)) */
 const LOGO_DATA = [{"id": "L01", "group": "geo", "name": "Retícula dt", "why": "monograma \"dt\" armado con puntos sobre una retícula de 7×7; los puntos vacíos dejan ver la retícula. Cita el mapa de puntos y la nube de puntos (Reality Capture) del estilo \"Terreno de datos\".", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M2.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 6.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M36.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M53.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M5.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M48 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0\"/><circle cx=\"57.5\" cy=\"57.5\" r=\"3.7\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M2.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M2.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M11.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 6.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M19.8 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M36.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 15a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 32a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 40.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 49a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M45.3 57.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M53.8 23.5a3.7 3.7 0 1 0 7.4 0a3.7 3.7 0 1 0-7.4 0M5.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M5.5 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M14 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 23.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M31 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0M39.5 57.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M48 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 6.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 15a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 32a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 40.5a1 1 0 1 0 2 0a1 1 0 1 0-2 0M56.5 49a1 1 0 1 0 2 0a1 1 0 1 0-2 0\"/><circle cx=\"57.5\" cy=\"57.5\" r=\"3.7\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L02", "group": "geo", "name": "Nodo 4", "why": "grafo de 4 nodos en los puntos cardinales (VDC, Reality Capture, Computational Design, Data Intelligence) conectados entre sí y a un nodo central en acento: el equipo regional como hub.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"3.5\" d=\"M32 8L56 32M32 8L32 32M56 32L32 56M56 32L32 32M32 56L8 32M32 56L32 32M8 32L32 8M8 32L32 32\"/><path fill=\"currentColor\" d=\"M25.5 8a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M49.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M25.5 56a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M1.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"3.5\" d=\"M32 8L56 32M32 8L32 32M56 32L32 56M56 32L32 32M32 56L8 32M32 56L32 32M8 32L32 8M8 32L32 32\"/><path fill=\"currentColor\" d=\"M25.5 8a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M49.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M25.5 56a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M1.5 32a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0\"/><circle cx=\"32\" cy=\"32\" r=\"8.5\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L03", "group": "geo", "name": "Dos cursores", "why": "dos punteros en la misma orientación, uno en tinta y otro en acento, como en un lienzo multiusuario: colaboración en tiempo real entre oficinas y equipos de proyecto.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M4 2L4 36L13 28L19 41L25 38L19 26L30 26Z\"/><path style=\"fill:var(--accent,#E11F26)\" d=\"M35 23L35 57L44 49L50 62L56 59L50 47L61 47Z\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path fill=\"currentColor\" d=\"M4 2L4 36L13 28L19 41L25 38L19 26L30 26Z\"/><path style=\"fill:var(--accent,#E11F26)\" d=\"M35 23L35 57L44 49L50 62L56 59L50 47L61 47Z\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L04", "group": "geo", "name": "dt_ terminal", "why": "\"dt\" en trazo monolineal geométrico seguido de un guion bajo de terminal en acento, como un prompt listo para escribir: tecnología, scripts y automatización.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"6\" d=\"M28.5 6.5V50M28.5 37a10 10 0 1 1 -20 0a10 10 0 1 1 20 0M40 12.5V41a6 6 0 0 0 6 6H50M34 27H49\"/><rect x=\"50\" y=\"54\" width=\"12\" height=\"6\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 304 64\" fill=\"none\"><path stroke=\"currentColor\" stroke-width=\"6\" d=\"M28.5 6.5V50M28.5 37a10 10 0 1 1 -20 0a10 10 0 1 1 20 0M40 12.5V41a6 6 0 0 0 6 6H50M34 27H49\"/><rect x=\"50\" y=\"54\" width=\"12\" height=\"6\" style=\"fill:var(--accent,#E11F26)\"/><g fill=\"currentColor\"><text x=\"80\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"24\" font-weight=\"600\" letter-spacing=\"-.4\">Design Technology</text><text x=\"81\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" letter-spacing=\"1.3\">LATIN AMERICA &amp; CARIBBEAN</text></g></svg>"}, {"id": "L05", "group": "red", "name": "Constelación", "why": "Las 6 oficinas (MTY, CDMX, SJO, BOG, SDQ, BUE) como nodos en posición geográfica estilizada, unidos por una red: la región como un solo sistema conectado. La diagonal norte-sur dibuja la silueta de LAC sin caer en el mapa literal ni en el folclor.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M11 8L17 20L28 31L39 38L49 57M28 31L47 18L39 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g style=\"fill:var(--accent,#E11F26)\"><circle cx=\"11\" cy=\"8\" r=\"3.6\"/><circle cx=\"17\" cy=\"20\" r=\"3.6\"/><circle cx=\"47\" cy=\"18\" r=\"3.6\"/><circle cx=\"28\" cy=\"31\" r=\"3.6\"/><circle cx=\"39\" cy=\"38\" r=\"3.6\"/><circle cx=\"49\" cy=\"57\" r=\"4.5\"/></g></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M11 8L17 20L28 31L39 38L49 57M28 31L47 18L39 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><g style=\"fill:var(--accent,#E11F26)\"><circle cx=\"11\" cy=\"8\" r=\"3.6\"/><circle cx=\"17\" cy=\"20\" r=\"3.6\"/><circle cx=\"47\" cy=\"18\" r=\"3.6\"/><circle cx=\"28\" cy=\"31\" r=\"3.6\"/><circle cx=\"39\" cy=\"38\" r=\"3.6\"/><circle cx=\"49\" cy=\"57\" r=\"4.5\"/></g><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L06", "group": "red", "name": "Eje", "why": "Un meridiano vertical con una rama por oficina, a izquierda o derecha según su longitud; el ecuador, en acento, cruza el eje. Cinco oficinas quedan al norte y una al sur: un diagrama técnico (tipo espina o escala) que se lee como herramienta de medición.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M32 4V60M32 8H14M32 15H16M32 21H48M32 27H24M32 33H40M32 55H51\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/><g fill=\"currentColor\"><circle cx=\"14\" cy=\"8\" r=\"3.25\"/><circle cx=\"16\" cy=\"15\" r=\"3.25\"/><circle cx=\"48\" cy=\"21\" r=\"3.25\"/><circle cx=\"24\" cy=\"27\" r=\"3.25\"/><circle cx=\"40\" cy=\"33\" r=\"3.25\"/><circle cx=\"51\" cy=\"55\" r=\"3.25\"/></g><path d=\"M21 43H43\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"4\" stroke-linecap=\"round\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M32 4V60M32 8H14M32 15H16M32 21H48M32 27H24M32 33H40M32 55H51\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/><g fill=\"currentColor\"><circle cx=\"14\" cy=\"8\" r=\"3.25\"/><circle cx=\"16\" cy=\"15\" r=\"3.25\"/><circle cx=\"48\" cy=\"21\" r=\"3.25\"/><circle cx=\"24\" cy=\"27\" r=\"3.25\"/><circle cx=\"40\" cy=\"33\" r=\"3.25\"/><circle cx=\"51\" cy=\"55\" r=\"3.25\"/></g><path d=\"M21 43H43\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"4\" stroke-linecap=\"round\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L07", "group": "red", "name": "D/T", "why": "Monograma \"D/T\" de geometría constructiva cuyo slash en acento corta la retícula: la barra de ruta (\"dt/lac\") y el \"/\" de Design/Technology. Es el más legible y el más neutro; funciona como wordmark sin depender de una fuente instalada.", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M5 15H11A17 17 0 0 1 11 49H5ZM11.5 21.5V42.5A10.5 10.5 0 0 0 11.5 21.5ZM42 15H61V21.5H54.75V49H48.25V21.5H42Z\" fill=\"currentColor\" fill-rule=\"evenodd\"/><path d=\"M30 56L41 8\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"5.5\" stroke-linecap=\"butt\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M5 15H11A17 17 0 0 1 11 49H5ZM11.5 21.5V42.5A10.5 10.5 0 0 0 11.5 21.5ZM42 15H61V21.5H54.75V49H48.25V21.5H42Z\" fill=\"currentColor\" fill-rule=\"evenodd\"/><path d=\"M30 56L41 8\" fill=\"none\" style=\"stroke:var(--accent,#E11F26)\" stroke-width=\"5.5\" stroke-linecap=\"butt\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}, {"id": "L08", "group": "red", "name": "Cota", "why": "Un pin de ubicación hecho de tres curvas de nivel: el contorno, una cota intermedia irregular y la cumbre en acento. Une lugar (las oficinas) con terreno y dato (reality capture, topografía, nubes de puntos).", "sym": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><path d=\"M32 60L15.20 37.60A21 21 0 1 1 48.80 37.60ZM24 12C30 9.5 37 12 41 17C45 22 44 29 39 32C35 34.5 32 31 27 33.5C22 36 17 33 16.5 27C16 21 18.5 14.5 24 12Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/><ellipse cx=\"29.5\" cy=\"21.5\" rx=\"7\" ry=\"4.25\" transform=\"rotate(-18 29.5 21.5)\" style=\"fill:var(--accent,#E11F26)\"/></svg>", "hor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 272 64\"><path d=\"M32 60L15.20 37.60A21 21 0 1 1 48.80 37.60ZM24 12C30 9.5 37 12 41 17C45 22 44 29 39 32C35 34.5 32 31 27 33.5C22 36 17 33 16.5 27C16 21 18.5 14.5 24 12Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\"/><ellipse cx=\"29.5\" cy=\"21.5\" rx=\"7\" ry=\"4.25\" transform=\"rotate(-18 29.5 21.5)\" style=\"fill:var(--accent,#E11F26)\"/><text x=\"78\" y=\"33\" font-family=\"'Inter Tight','Instrument Sans','Segoe UI',sans-serif\" font-size=\"22\" font-weight=\"600\" letter-spacing=\"-0.4\" fill=\"currentColor\">Design Technology</text><text x=\"79\" y=\"50\" font-family=\"'JetBrains Mono','IBM Plex Mono',Consolas,monospace\" font-size=\"8.6\" font-weight=\"500\" letter-spacing=\"1.25\" fill=\"currentColor\">LATIN AMERICA &amp; CARIBBEAN</text></svg>"}];
@@ -3119,11 +3610,24 @@ function setStyle(s,rerender=true){s=/^[1567]$/.test(s)?s:(/^[234]$/.test(s)?'5'
   /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva). El 6 es solo oscuro */
   const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?(s==='6'?'El Estilo 6 es solo oscuro':'Solo en el Estilo 5'):'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
   /* Imágenes Sí / No: en los 3 estilos vigentes desde la ronda 9 (los placeholders son la opción No, por defecto) */
+  /* (ronda 11) panel compacto: «Modo» solo se muestra en el 5 y «Header» solo en el 7 */
+  $('#modeG').hidden=s!=='5';$('#hvG').hidden=s!=='7';$('#ccG').hidden=s!=='7';$('#ctlPillS').textContent=s;
   const ioff=!/^[1567]$/.test(s),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 1, 5, 6 y 7':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
   if(rerender)route()}
 function setImg(v){v=v==='1'?'1':'0';document.documentElement.dataset.img=v;document.querySelectorAll('[data-set-img]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setImg===v));store('img',v)}
 function setMode(m){m=m==='dark'?'dark':'light';const s6=document.documentElement.dataset.skin==='6';if(s6)m='dark';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));if(!s6)store('mode',m)}
 function setFont(f){document.documentElement.dataset.font=f;document.querySelectorAll('[data-set-font]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setFont===f));store('font',f)}
+/* (ronda 11) variante del header del Estilo 7: se cambia en vivo (sin volver a pintar la página ni perder el scroll) */
+function setHv(v){v=HV7.some(x=>x[0]===v)?v:'halftone';document.documentElement.dataset.hv=v;document.querySelectorAll('[data-set-hv]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setHv===v));store('hv',v);
+  const nm=hv7Name(v);
+  document.querySelectorAll('[data-hv7]').forEach(el=>{if(el.dataset.pal!=='blue')return;el.dataset.v=v;
+    const w=el.closest('.wp');if(w)w.dataset.wp=w.dataset.wp.replace(/«[^»]*»/,`«${nm}»`).replace(/\(([^()]*)\) grabado/,`(${HV7_NOTE[v]}) grabado`);
+    if(el.dataset.hv7==='hero'&&el.getAttribute('aria-label'))el.setAttribute('aria-label',el.getAttribute('aria-label').replace(/variant \w+/,'variant '+nm))});
+  if(HV7S.length)hv7Init()}
+/* (ronda 11) «Cluster colors» (Estilo 7, páginas de cluster): ban = el degradado del banner toma el color del cluster; txt = kickers, vínculos, punto e íconos */
+function setCC(k,on){document.documentElement.classList.toggle('cc-'+k,on);const b=document.querySelector(`[data-set-cc="${k}"]`);if(b)b.setAttribute('aria-checked',on);store('cc'+k,on?'1':'0');
+  if(k==='ban'&&HV7S.length)hv7Init()}
+function setCtlMin(on){$('#ctl').hidden=on;$('#ctlPill').hidden=!on;$('#ctlPill').setAttribute('aria-expanded',!on);$('#ctlMin').setAttribute('aria-expanded',!on);store('ctlmin',on?'1':'0')}
 function setWp(on){document.documentElement.classList.toggle('show-wp',on);$('#wpToggle').setAttribute('aria-pressed',on);store('wp',on?'1':'0')}
 document.querySelectorAll('[data-set-style]').forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.setStyle)));
 document.querySelectorAll('[data-set-font]').forEach(b=>b.addEventListener('click',()=>setFont(b.dataset.setFont)));
@@ -3132,11 +3636,17 @@ document.querySelectorAll('[data-set-mode]').forEach(b=>b.addEventListener('clic
 document.querySelectorAll('[data-set-img]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.setImg;setImg(v);
   if(/[?&]img=/.test(location.hash))history.replaceState(null,'',location.hash.replace(/([?&]img=)[^&]*/,'$1'+v));route()}));
 $('#wpToggle').addEventListener('click',()=>setWp(!document.documentElement.classList.contains('show-wp')));
+document.querySelectorAll('[data-set-hv]').forEach(b=>b.addEventListener('click',()=>{setHv(b.dataset.setHv);
+  if(/[?&]hv=/.test(location.hash))history.replaceState(null,'',location.hash.replace(/([?&]hv=)[^&]*/,'$1'+b.dataset.setHv))}));
+document.querySelectorAll('[data-set-cc]').forEach(b=>b.addEventListener('click',()=>setCC(b.dataset.setCc,b.getAttribute('aria-checked')!=='true')));
+$('#ctlMin').addEventListener('click',()=>{setCtlMin(true);$('#ctlPill').focus()});
+$('#ctlPill').addEventListener('click',()=>{setCtlMin(false);$('#ctlMin').focus()});
 document.querySelectorAll('[data-set-accent]').forEach(b=>b.addEventListener('click',()=>setAccent(b.dataset.setAccent)));
 $('#logosBtn').addEventListener('click',()=>setDrawer(!$('#logosDrawer').classList.contains('open')));
 $('#logosClose').addEventListener('click',()=>setDrawer(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').classList.contains('open'))setDrawer(false)});
-setStyle(load('style')||'1',false);setMode(load('mode')||'light');setImg(load('img')||'0');setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
+setHv(load('hv')||'halftone');setCtlMin(load('ctlmin')==='1');setCC('ban',load('ccban')!=='0');setCC('txt',load('cctxt')!=='0');
+setStyle(load('style')||'7',false);   /* (ronda 11) sin hash ni elección guardada: Estilo 7 + header Halftone */setMode(load('mode')||'light');setImg('0');   /* (ronda 11) sin hash: Imágenes No en todos los estilos (no se lee el localStorage; img=1 en el hash lo enciende) */setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent(load('accent')||'lime');
 buildLogos();applyLogo(load('logo3')||'L00');
 buildNav();route();
 window.addEventListener('hashchange',route);
