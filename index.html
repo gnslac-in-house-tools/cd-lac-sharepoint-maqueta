@@ -869,7 +869,6 @@ html[data-style="5"] .portrait-ph::after{background:rgba(255,255,255,.92);color:
 .expert-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .expert-tags li{font-size:12.5px;padding:4px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule);color:var(--text-2)}
 .expert .btn{margin-top:4px}
-.wp-title:has(+ .lead-line) h3{font-size:15px}
 .people.row4.lead-line{display:flex;gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .people.row4.lead-line .person{flex:1 1 0;min-width:0;flex-direction:row;align-items:center;gap:10px;padding:11px 10px 11px 0}
 .people.row4.lead-line .person + .person{padding-left:14px;border-left:1px solid var(--rule)}
@@ -1356,6 +1355,43 @@ html .eco-tile[data-origen="com-latam"] .eco-logo{box-shadow:0 0 0 2px var(--eco
   .eco-tile{width:80px}
 }
 @container (max-width:560px){.eco-note ul{grid-template-columns:1fr}.eco-count{margin-left:0;flex-basis:100%}}
+
+/* =========================================================
+   10 · ESTILO 7 «TERRENO ESQUEMÁTICO» (ronda 10) · data-style="1" + data-skin="7"
+   Hereda TODO el Estilo 1 (tokens, acentos, hero, componentes, img=1). Solo cambian los diagramas e ilustraciones (funciones *7 en JS).
+   Trazo de 1 px y jerarquía por opacidad; el acento (--q-acc / --accent del contexto) solo en lo activo o en los máximos.
+   ========================================================= */
+/* @personalizar: tokens del Estilo 7 (tinta de línea y alfas de la jerarquía .q1/.q2/.q3) */
+html[data-skin="7"]{--s7-ink:#F2F2F0; --q1:.8; --q2:.42; --q3:.2}
+:is(.q1,.q2,.q3,.qh,.qg,.qa){fill:none;stroke:var(--s7-ink,#F2F2F0);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.q1{stroke-opacity:var(--q1,.8)} .q2{stroke-opacity:var(--q2,.42)} .q3{stroke-opacity:var(--q3,.2)}
+.qh{stroke-opacity:.3;stroke-dasharray:2 4;stroke-linecap:butt}
+.qg{stroke-opacity:.18;stroke-dasharray:2 6;stroke-linecap:butt}
+.qa{stroke:var(--q-acc,var(--accent));stroke-opacity:.95}
+.qaf{fill:var(--q-acc,var(--accent))}
+.qd{fill:var(--s7-ink,#F2F2F0)}
+:is(.qt,.qt2,.qat){font-family:var(--f-art-mono);letter-spacing:.07em}
+.qt{fill:var(--s7-ink,#F2F2F0);fill-opacity:.74} .qt2{fill:var(--s7-ink,#F2F2F0);fill-opacity:.46} .qat{fill:var(--q-acc,var(--accent))}
+/* placeholders y Featured: acento = tinte del cluster de la tarjeta */
+html[data-skin="7"] .ph{--q-acc:color-mix(in srgb,var(--t,var(--accent)) 92%,#fff)}
+html[data-skin="7"] .ph > svg.s7{-webkit-mask-image:none;mask-image:none}
+/* mini glifos (leyenda del diagrama y ramas del onboarding): todo en currentColor */
+.g7{--s7-ink:currentColor;--q-acc:currentColor;display:block;width:100%;height:100%;overflow:visible}
+.g7 .q1{stroke-opacity:.95}.g7 .q2{stroke-opacity:.6}.g7 .q3{stroke-opacity:.38}.g7 .qd{fill-opacity:.7}
+/* diagrama de clusters: glifo de cluster, barras como banda de puntos con contorno fino, cruces de registro en las esquinas */
+html[data-skin="7"] .dia .lab i.g7i{width:2.6cqw;height:1.7cqw;background:none;flex:none}
+html[data-skin="7"] .dia .bar{background:radial-gradient(circle,color-mix(in srgb,var(--c) 30%,transparent) .7px,transparent 1.1px) 0 0/6px 6px,color-mix(in srgb,var(--c) 6%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 52%,transparent),inset 2px 0 0 var(--c);border-radius:1px}
+html[data-skin="7"] .dia::before{content:"";position:absolute;inset:14px;pointer-events:none;opacity:.45;--x:rgba(242,242,240,.9);
+  background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 100%/1px 11px no-repeat}
+/* onboarding: mini glifo arriba a la derecha de cada rama */
+.onb-g7{position:absolute;top:11px;right:12px;width:40px;height:26px;color:var(--k);pointer-events:none}
+html[data-skin="7"] .onb-node[data-tipo="branch"] .onb-t{padding-right:46px}
+/* hero: cruces y FIG. 00 muy tenues */
+.hero7{opacity:.7}
 </style>
 </head>
 <body>
@@ -1413,7 +1449,7 @@ html .eco-tile[data-origen="com-latam"] .eco-logo{box-shadow:0 0 0 2px var(--eco
 <!-- Barra de control de la maqueta (no forma parte del sitio) -->
 <div class="ctl" role="toolbar" aria-label="Controles de la maqueta">
   <span class="lbl">Estilo</span>
-  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button><button data-set-style="6" aria-pressed="false">6 · Terreno vivo</button></div>
+  <div class="grp"><button data-set-style="1" aria-pressed="true">1 · Terreno de datos</button><button data-set-style="5" aria-pressed="false">5 · Azul vivo</button><button data-set-style="6" aria-pressed="false">6 · Terreno vivo</button><button data-set-style="7" aria-pressed="false">7 · Terreno esquemático</button></div>
   <span class="lbl">Acento</span>
   <div class="grp" id="accentGrp" role="group" aria-label="Color de acento (themePrimary)">
     <button class="swatch" data-set-accent="red" aria-pressed="false" title="Gensler Red" aria-label="Acento Gensler Red"><i style="background:#E11F26"></i></button>
@@ -1427,7 +1463,7 @@ html .eco-tile[data-origen="com-latam"] .eco-logo{box-shadow:0 0 0 2px var(--eco
   <span class="lbl">Modo</span>
   <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div>
   <span class="lbl">Imágenes</span>
-  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5 y 6)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
+  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5, 6 y 7)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
   <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
   <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
@@ -1451,6 +1487,7 @@ const BG = {none:'Ninguno', neutral:'Neutral', soft:'Suave', strong:'Fuerte'};
 /* sección real de SharePoint */
 /* Estilo 5 (y 6): los fondos de sección son planos; todo degradado es una imagen pre-renderizada (el overlay lo dice) */
 const S5 = () => document.documentElement.dataset.style==='5';   /* también en el 6: monta la estructura del 5 */
+const S7 = () => document.documentElement.dataset.skin==='7';     /* Estilo 7 «Terreno esquemático»: data-style="1" + data-skin="7" (todo el 1; solo cambian diagramas e ilustraciones) */
 const S6 = () => document.documentElement.dataset.skin==='6';     /* Estilo 6 «Terreno vivo»: data-style="5" + data-mode="dark" + data-skin="6" */
 function sec(layout, bg, cols, note=''){
   const label = `${LAYOUT[layout]} · Fondo: ${BG[bg]}${S5()&&bg!=='none'?' (plano, sin degradado)':''}${note?' · '+note:''}`;
@@ -1458,7 +1495,9 @@ function sec(layout, bg, cols, note=''){
   return `<section class="sp-sec bg-${bg}" data-sec="${esc(label)}"><div class="sp-canvas"><div class="cols ${layout}">${cols.map(c=>`<div class="col">${c}</div>`).join('')}</div></div></section>`;
 }
 /* web part: kind n = nativo, i = imagen pre-renderizada, p = Power Apps */
-const wp = (kind, name, html) => `<div class="wp" data-kind="${kind}" data-wp="${esc(name)}">${html}</div>`;
+/* Estilo 7: todo web part que lleve un diagrama esquemático (clases q1…qa o svg.s7) se anota en el overlay como imagen pre-renderizada (SVG → PNG de 1172–2408 px). El hero queda como GIF/MP4 */
+const SVG7 = html => S7()&&!/id="heroSvg"/.test(html)&&/class="(?:s7|q[123ahg])/.test(html);
+const wp = (kind, name, html) => `<div class="wp" data-kind="${kind}" data-wp="${esc(name+(SVG7(html)?' · Image (pre-rendered SVG→PNG)':''))}">${html}</div>`;
 
 /* ---------- íconos de línea (equivalentes a íconos Fluent de Quick links) ---------- */
 const IC = {
@@ -1723,6 +1762,219 @@ function bld(kind){
   if(kind==='people'){for(let i=0;i<5;i++){const x=70+i*65;s+=`<circle cx="${x}" cy="105" r="16" class="bl"/><path d="M${x-28} 175 q28 -50 56 0" class="bl"/>`}s+=`<line x1="40" y1="180" x2="360" y2="180" class="ba"/>`}
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`;
 }
+/* @personalizar: 10 · ESTILO 7 «Terreno esquemático» (ronda 10). Diagramas esquemáticos en SVG con el lenguaje del portfolio
+   (docs/research/04-portfolio-diagramas.md, recetas R1–R10), en versión más minimalista. Todo es SVG puro (exportable a PNG de 1172–2408 px).
+   · Proyección dimétrica aplanada P7(): θ = .25 rad, f = .27, escala vertical 1:1. fit7() encuadra una escena en una caja de px.
+   · Jerarquía por OPACIDAD con trazo de 1 px (vector-effect non-scaling): .q1 .8 · .q2 .42 · .q3 .2 · .qh oculta [2,4] · .qg guía [2,6].
+   · Acento (.qa/.qaf/.qat) = --q-acc o --accent del contexto (color del cluster en tarjetas y páginas de cluster; acento del sitio en Home).
+     Solo en lo activo o en los máximos (≈3–8 % de los píxeles).
+   · Escena = {pts (caja 3D para encuadrar), draw(P, idDeDegradado) → {s: svg, a: anclas [x,y] para anotaciones}}. */
+let G7N=0;
+const n7=v=>(+v).toFixed(1), pt7=p=>n7(p[0])+' '+n7(p[1]);
+function P7(o={}){const{th=.25,f=.27,k=1,ox=0,oy=0}=o,c=Math.cos(th),s=Math.sin(th);return (x,y,z=0)=>{const u=x*c-y*s,v=x*s+y*c;return [ox+(u-v)*.866*k, oy+(u+v)*f*k-z*k]}}
+function fit7(pts,[bx,by,bw,bh],o={}){const P0=P7({th:o.th,f:o.f});let a=1e9,b=-1e9,c=1e9,d=-1e9;
+  pts.forEach(p=>{const[X,Y]=P0(...p);a=Math.min(a,X);b=Math.max(b,X);c=Math.min(c,Y);d=Math.max(d,Y)});
+  const k=Math.min(bw/(b-a),bh/(d-c)),ax=o.ax??.5,ay=o.ay??.5;
+  return P7({th:o.th,f:o.f,k,ox:bx+(bw-(b-a)*k)*ax-a*k,oy:by+(bh-(d-c)*k)*ay-c*k})}
+const poly7=(P,pts,z,close=true)=>pts.map((q,i)=>(i?'L':'M')+pt7(P(q[0],q[1],q[2]??z))).join('')+(close?'Z':'');
+const seg7=(P,a,b)=>'M'+pt7(P(...a))+'L'+pt7(P(...b));
+const ln7=(d,c,st='')=>d?`<path d="${d}" class="${c}"${st?` style="${st}"`:''}/>`:'';
+const sq7=(x,y,s)=>`M${n7(x-s/2)} ${n7(y-s/2)}h${n7(s)}v${n7(s)}h${n7(-s)}z`;
+const circ7=(cx,cy,r,n=32)=>Array.from({length:n},(_,i)=>[cx+Math.cos(i/n*2*Math.PI)*r,cy+Math.sin(i/n*2*Math.PI)*r]);
+const nz7=(x,y,s=0)=>(Math.sin(x*.23+s)+Math.sin(y*.31-x*.07+s*1.7)+Math.sin((x+y)*.11+s*2.9))/6+.5;
+const bump7=(x,y,cx,cy,r)=>Math.exp(-((x-cx)**2+(y-cy)**2)/(2*r*r));
+const cl01=v=>Math.max(0,Math.min(1,v));
+/* degradado de los muros ghosted: tinta abajo → 0 arriba (objectBoundingBox) */
+const defs7=g=>`<defs><linearGradient id="${g}" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:var(--s7-ink,#F2F2F0)"/><stop offset="1" style="stop-color:var(--s7-ink,#F2F2F0);stop-opacity:0"/></linearGradient></defs>`;
+/* R1 · caja con aristas ocultas: las 3 aristas del vértice trasero (menor Y proyectada) van punteadas */
+function iso7Box(P,o){const{x,y,w,d,h,z=0}=o,q=[[x,y],[x+w,y],[x+w,y+d],[x,y+d]];
+  let bi=0;q.forEach((p,i)=>{if(P(p[0],p[1],z)[1]<P(q[bi][0],q[bi][1],z)[1])bi=i});
+  const B=q[bi],n1=q[(bi+1)%4],n2=q[(bi+3)%4],fr=q[(bi+2)%4];
+  const vis=poly7(P,q,z+h)+[n1,n2,fr].map(p=>seg7(P,[...p,z],[...p,z+h])).join('')+seg7(P,[...fr,z],[...n1,z])+seg7(P,[...fr,z],[...n2,z]);
+  const hid=seg7(P,[...B,z],[...B,z+h])+seg7(P,[...B,z],[...n1,z])+seg7(P,[...B,z],[...n2,z]);
+  return ln7(vis,o.c||'q1')+(o.hid===false?'':ln7(hid,o.hc||'qh'))}
+/* R2 · stack de losas: n losas (cajas delgadas con aristas ocultas), guías punteadas en las 4 esquinas, 1 losa activa en acento */
+const PLAN7=[[[0,10],[12,10]],[[12,0],[12,4]],[[12,7],[12,24]],[[24,10],[36,10]],[[24,10],[24,17]],[[24,20],[24,24]],[[12,16],[18,16]]];
+const plan7=(P,z)=>PLAN7.map(l=>poly7(P,l,z,false)).join('');
+function iso7Slabs(P,o){const{n=4,sp=9,W=36,D=24,t=.9,acc=n-2}=o,top=(n-1)*sp;let s='';const a=[];
+  s+=ln7([[0,0],[W,0],[W,D],[0,D]].map(([x,y])=>seg7(P,[x,y,0],[x,y,top])).join(''),'qg');
+  if(o.core) s+=iso7Box(P,{x:15,y:9,w:6,d:6,h:top+t+o.core,c:'q3',hc:'qh'});
+  for(let i=0;i<n;i++){const z=i*sp,on=i===acc;
+    s+=iso7Box(P,{x:0,y:0,w:W,d:D,h:t,z,c:on?'qa':(i===n-1?'q1':'q2'),hc:on?'qh qa':'qh'});
+    if(on&&o.grid!==false){let d='';for(let gx=6;gx<W;gx+=6)d+=seg7(P,[gx,0,z+t],[gx,D,z+t]);for(let gy=6;gy<D;gy+=6)d+=seg7(P,[0,gy,z+t],[W,gy,z+t]);s+=ln7(d,'qa','stroke-opacity:.28')}
+    if(i===0&&o.plan!==false) s+=ln7(plan7(P,z+t),'q2');
+    if(o.cloudAt===i) s+=cloud7(P,{x:0,y:0,w:W,d:D,z:z+t,cell:o.cell||2.2,amp:1.6,v:(x,y)=>.8*nz7(x,y,2)+.45*bump7(x,y,26,7,3.2)-.2,thr:.86});
+    a.push(P(W,0,z+t*.5))}
+  return {s,a}}
+/* R4 · nube de puntos: cuadritos de 1–2.2 px, alfa ∝ valor², relieve en z, 8 cubetas (un path por cubeta); los máximos (≥ thr) en acento */
+function cloud7(P,o){const{x,y,w,d,z=0,cell=2,amp=0,thr=.86,v,jit=0}=o,rnd=o.rnd||R(5),B=Array(8).fill('');let A='';
+  for(let i=cell/2;i<w;i+=cell)for(let j=cell/2;j<d;j+=cell){const X=x+i+(jit?(rnd()-.5)*cell*jit*2:0),Y=y+j+(jit?(rnd()-.5)*cell*jit*2:0);
+    if(o.keep&&!o.keep(X,Y))continue;const t=cl01(v(X,Y));if(t<(o.min||.04))continue;
+    const[sx,sy]=P(X,Y,z+t*amp),s=(o.s||1)*(1+1.2*t);
+    if(t>=thr)A+=sq7(sx,sy,s+.4);else B[Math.min(7,t*8|0)]+=sq7(sx,sy,s)}
+  return B.map((p,b)=>p?`<path d="${p}" class="qd" fill-opacity="${(.2+.62*((b+.5)/8)**2).toFixed(2)}"/>`:'').join('')+(A?`<path d="${A}" class="qaf" fill-opacity=".92"/>`:'')}
+/* puntos de escaneo sobre un muro (más densos abajo; alfa baja con la altura) */
+function scan7(P,[a,b],z,h,n,rnd){let lo='',hi='';for(let i=0;i<n;i++){const t=rnd(),zz=h*Math.pow(rnd(),1.8),X=a[0]+(b[0]-a[0])*t,Y=a[1]+(b[1]-a[1])*t,[sx,sy]=P(X,Y,z+zz);
+    if(zz<h*.45)lo+=sq7(sx,sy,1.1);else hi+=sq7(sx,sy,1)}
+  return `<path d="${lo}" class="qd" fill-opacity=".42"/><path d="${hi}" class="qd" fill-opacity=".2"/>`}
+/* R3 · muro ghosted: cuadrilátero vertical con degradado de alfa a 0 hacia arriba + línea de base (+ mullions opcionales) */
+function ghost7(P,o){const{a,b,z=0,h,al=.1,g}=o,A=P(a[0],a[1],z),B=P(b[0],b[1],z),C=P(b[0],b[1],z+h),D=P(a[0],a[1],z+h);
+  let s=`<path d="M${pt7(A)}L${pt7(B)}L${pt7(C)}L${pt7(D)}Z" fill="url(#${g})" fill-opacity="${al}" stroke="none"/>`+ln7(`M${pt7(A)}L${pt7(B)}`,o.base||'q2');
+  if(o.mull){const L=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.round(L/o.mull));let d='';
+    for(let i=1;i<n;i++){const t=i/n,X=a[0]+(b[0]-a[0])*t,Y=a[1]+(b[1]-a[1])*t;d+=seg7(P,[X,Y,z],[X,Y,z+h*.9])}s+=ln7(d,'q3',o.mop?`stroke-opacity:${o.mop}`:'')}
+  return s}
+/* R7 · terreno en curvas de nivel (marching squares); cada isolínea se eleva a z = nivel · amp. Índice cada `idx` curvas */
+function terrain7(P,o){const{x,y,w,d,z=0,amp=10,nx=36,ny=26,levels=8,idx=4,f}=o,gx=i=>x+w*i/nx,gy=j=>y+d*j/ny,V=[];
+  for(let j=0;j<=ny;j++){V[j]=[];for(let i=0;i<=nx;i++)V[j][i]=f(gx(i),gy(j))}
+  let mi='',ma='';
+  for(let l=1;l<=levels;l++){const t=l/(levels+1);let s='';
+    for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const v=[V[j][i],V[j][i+1],V[j+1][i+1],V[j+1][i]],c=[[gx(i),gy(j)],[gx(i+1),gy(j)],[gx(i+1),gy(j+1)],[gx(i),gy(j+1)]],p=[];
+      for(let e=0;e<4;e++){const v1=v[e],v2=v[(e+1)%4];if((v1<t)!==(v2<t)){const k=(t-v1)/(v2-v1),p1=c[e],p2=c[(e+1)%4];p.push([p1[0]+(p2[0]-p1[0])*k,p1[1]+(p2[1]-p1[1])*k])}}
+      for(let k=0;k+1<p.length;k+=2)s+=seg7(P,[...p[k],z+t*amp],[...p[k+1],z+t*amp])}
+    if(l%idx===0)ma+=s;else mi+=s}
+  return ln7(mi,'q3')+ln7(ma,'q2')}
+/* R8 · red de nodos (Eco simplificado) sobre una losa: anillo, volumen al centro, aristas Bézier; 1 arista y 1 nodo activos */
+function net7(o={}){const Rr=o.r||14,N=o.n||6,acc=o.acc??1;
+  return {pts:[[-Rr,-Rr,0],[Rr,-Rr,0],[Rr,Rr,0],[-Rr,Rr,0],[0,0,8]],
+  draw(P,g){let s=ln7(poly7(P,circ7(0,0,Rr,64),0),'qg')+ln7(poly7(P,circ7(0,0,Rr*.55,48),0),'q3');const a=[];
+    s+=ghost7(P,{a:[-2.5,2.5],b:[2.5,2.5],h:6,al:.12,g})+ghost7(P,{a:[2.5,-2.5],b:[2.5,2.5],h:6,al:.12,g})+iso7Box(P,{x:-2.5,y:-2.5,w:5,d:5,h:6,c:'q2'});
+    const nd=i=>{const t=-Math.PI/2+i/N*2*Math.PI;return [Math.cos(t)*Rr,Math.sin(t)*Rr]};
+    let e='',ea='',d='',da='';
+    for(let i=0;i<N;i++){const p=nd(i),A=P(0,0,6),B=P(p[0],p[1],0),C=P(p[0]*.45,p[1]*.45,7),str=`M${pt7(A)}Q${pt7(C)} ${pt7(B)}`;
+      const q=nd((i+2)%N),Q=P(q[0],q[1],0),M=P((p[0]+q[0])*.11,(p[1]+q[1])*.11,0);e+=`M${pt7(B)}Q${pt7(M)} ${pt7(Q)}`;
+      if(i===acc){ea+=str;da+=sq7(B[0],B[1],3.6)}else{e+=str;d+=sq7(B[0],B[1],2.6)}a.push(B)}
+    s+=ln7(e,'q3')+ln7(ea,'qa')+`<path d="${d}" class="qd" fill-opacity=".7"/><path d="${da}" class="qaf"/>`;
+    return {s,a}}}}
+/* R6 · anotaciones: guía en codo desde un ancla (punto) hasta una columna de etiquetas; mono, número + valor, nombre en 2.ª línea */
+function anno7(A,L,o){const fs=o.fs||11,gap=o.gap||fs*3.9,it=A.map((a,i)=>({a,l:L[i]})).filter(x=>x.l).sort((p,q)=>p.a[1]-q.a[1]);
+  let prev=-1e9;it.forEach(x=>{x.y=Math.max(x.a[1],(o.top??-1e9),prev+gap);prev=x.y});
+  if(o.bot&&prev>o.bot){let nx=o.bot;for(let k=it.length-1;k>=0;k--){it[k].y=Math.min(it[k].y,nx);nx=it[k].y-gap}}
+  return it.map(x=>{const[ax,ay]=x.a,y=x.y,on=x.l.on,lx=o.lx;
+    return `<path d="M${n7(ax+3)} ${n7(ay)}L${n7(ax+10)} ${n7(ay)}L${n7(lx-16)} ${n7(y)}L${n7(lx-6)} ${n7(y)}" class="${on?'qa':'q2'}" style="stroke-opacity:${on?.6:.3}"/>`
+      +`<circle cx="${n7(ax)}" cy="${n7(ay)}" r="${on?2:1.6}" class="${on?'qaf':'qd'}"${on?'':' fill-opacity=".6"'}/>`
+      +`<text x="${lx}" y="${n7(y+fs*.36)}" font-size="${fs}" class="qt2">${esc(x.l.n)}</text><text x="${n7(lx+fs*2.3)}" y="${n7(y+fs*.36)}" font-size="${fs}" class="${on?'qat':'qt'}">${esc(x.l.val)}</text>`
+      +`<text x="${n7(lx+fs*2.3)}" y="${n7(y+fs*1.75)}" font-size="${n7(fs*.84)}" class="qt2">${esc(x.l.name)}</text>`}).join('')}
+/* R10 · marco de figura: 4 cruces de registro, pie «FIG. n — título · dato» y mini-eje x/y/z */
+function frame7(x0,y0,x1,y1,o={}){const c=o.c||5,X=(x,y)=>`M${x-c} ${y}H${x+c}M${x} ${y-c}V${y+c}`;
+  let s=`<path d="${X(x0,y0)+X(x1,y0)+X(x0,y1)+X(x1,y1)}" class="q2" style="stroke-opacity:.5"/>`;
+  if(o.fig)s+=`<text x="${n7(o.fx??x0+12)}" y="${n7(o.fy??y1-10)}" font-size="${o.fs||10.5}" class="qt" style="fill-opacity:.5"${o.end?' text-anchor="end"':''}>${esc(o.fig)}</text>`;
+  if(o.axis){const[ax,ay]=o.axis,L=o.al||20,P=P7({k:1}),ex=P(L*1.25,0,0),ey=P(0,L*1.25,0),fs=(o.fs||10.5)*.8;
+    s+=`<path d="M${ax} ${ay}l${n7(ex[0])} ${n7(ex[1])}M${ax} ${ay}l${n7(ey[0])} ${n7(ey[1])}M${ax} ${ay}v${-L}" class="q2" style="stroke-opacity:.45"/>`
+      +[['x',ex,[3,3]],['y',ey,[-8,3]],['z',[0,-L],[-2,-4]]].map(([t,e,dd])=>`<text x="${n7(ax+e[0]+dd[0])}" y="${n7(ay+e[1]+dd[1])}" font-size="${n7(fs)}" class="qt2">${t}</text>`).join('')}
+  return s}
+/* ---------- escenas por cluster (más el set de placeholders) ---------- */
+/* VDC · stack de losas con aristas ocultas, núcleo que atraviesa y planta en la losa de abajo */
+function vdc7(o={}){const n=o.n||4,sp=o.sp||9,top=(n-1)*sp+.9+(o.core??3.5);
+  return {pts:[[0,0,0],[36,0,0],[36,24,0],[0,24,0],[0,0,top],[36,0,top],[36,24,top],[0,24,top]],draw:(P,g)=>iso7Slabs(P,{n,sp,acc:o.acc??n-2,core:o.core??3.5,plan:o.plan,cloudAt:o.cloudAt,cell:o.cell})}}
+/* RC · nube de puntos sobre un volumen: piso con relieve, muros ghosted (lejanos .06, cercanos .1), puntos de escaneo en los muros lejanos y estación de escaneo */
+function rc7(o={}){const W=30,D=20,H=o.h||11,seed=o.seed||3;
+  return {pts:[[0,0,0],[W,0,0],[W,D,0],[0,D,0],[0,0,H],[W,0,H],[W,D,H],[0,D,H]],
+  draw(P,g){const rnd=R(seed*97),q=[[0,0],[W,0],[W,D],[0,D]],st=[19.5,12.5];let s='';
+    s+=ghost7(P,{a:[0,D],b:[0,0],h:H,al:.05,g,base:'q3'})+ghost7(P,{a:[0,0],b:[W,0],h:H,al:.06,g,base:'q3',mull:o.mull,mop:.12});
+    s+=scan7(P,[[0,0],[W,0]],0,H,o.wn||200,rnd)+scan7(P,[[0,D],[0,0]],0,H,(o.wn||200)*.55,rnd);
+    s+=cloud7(P,{x:0,y:0,w:W,d:D,cell:o.cell||1.3,amp:o.amp||2,jit:.4,rnd,v:(x,y)=>.7*nz7(x,y,seed)+.55*bump7(x,y,7,6,2.6)-.18,thr:.88});
+    s+=ln7(poly7(P,q,0),'q2')+ln7(poly7(P,q,H),'qg')+ln7([q[1],q[2],q[3]].map(p=>seg7(P,[...p,0],[...p,H])).join(''),'q3')+ln7(seg7(P,[0,0,0],[0,0,H]),'qh');
+    s+=ghost7(P,{a:[W,0],b:[W,D],h:H,al:.09,g})+ghost7(P,{a:[W,D],b:[0,D],h:H,al:.09,g});
+    const S=P(...st,0);s+=ln7(poly7(P,circ7(...st,2.4,28),0),'qa')+ln7(seg7(P,[...st,0],[...st,3.2]),'qh qa')+`<circle cx="${n7(S[0])}" cy="${n7(S[1])}" r="1.8" class="qaf"/>`;
+    return {s,a:[S,P(W*.62,0,H*.58),P(W-3,D-3,1.4)]}}}}
+/* CD · torre generativa con twist y bulge (pisos que rotan), aristas de esquina y suelo de puntos; 1 piso activo */
+function cd7(o={}){const n=o.n||10,fh=o.fh||3,tw=o.tw??.9,R0=o.r||7,cx=o.cx||0,cy=o.cy||0,H=(n-1)*fh,bul=o.bulge??.12,acc=o.acc??n-4;
+  const fl=i=>{const a=tw*i/(n-1),sc=1+bul*Math.sin(Math.PI*i/(n-1));return [[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>{const x=u*R0*sc,y=v*R0*sc;return [cx+x*Math.cos(a)-y*Math.sin(a),cy+x*Math.sin(a)+y*Math.cos(a)]})};
+  const F=Array.from({length:n},(_,i)=>fl(i)),gr=o.ground===false?0:R0*1.9;
+  return {pts:[[cx-gr-R0,cy-gr-R0,0],[cx+gr+R0,cy-gr-R0,0],[cx+gr+R0,cy+gr+R0,0],[cx-gr-R0,cy+gr+R0,0],[cx,cy,H]].concat(F.flat().map(p=>[p[0],p[1],0])),
+  draw(P,g){let s='';const dim=o.dim;
+    if(gr){let d='';for(let x=-gr;x<=gr+.01;x+=R0*.38)for(let y=-gr;y<=gr+.01;y+=R0*.38){if(Math.hypot(x,y)>gr)continue;const p=P(cx+x,cy+y,0);d+=sq7(p[0],p[1],1)}s+=`<path d="${d}" class="qd" fill-opacity=".22"/>`}
+    const mid=F[n>>1];let bk=0;mid.forEach((p,k)=>{if(P(p[0],p[1],H/2)[1]<P(mid[bk][0],mid[bk][1],H/2)[1])bk=k});
+    for(let k=0;k<4;k++)s+=ln7(poly7(P,F.map((f,i)=>[...f[k],i*fh]),0,false),k===bk?'qh':(dim?'qg':(o.edges||'q2')));
+    F.forEach((f,i)=>{const c=!dim&&i===acc?'qa':(i===n-1||i===0?(dim?'q2':'q1'):(dim?'q3':(o.mid||'q3')));s+=ln7(poly7(P,f,i*fh),c)});
+    const rx=f=>f.reduce((m,p)=>P(p[0],p[1],0)[0]>P(m[0],m[1],0)[0]?p:m);
+    return {s,a:[P(...rx(F[n-1]),H),P(...rx(F[acc]),acc*fh),P(...rx(F[0]),0)]}}}}
+/* CD (grande) · 3 variantes de la misma torre: dos atenuadas y la elegida con su piso activo */
+function cdVar7(){const A=cd7({n:7,tw:0,r:6,cx:2,cy:44,dim:1,ground:false,bulge:0}),B=cd7({n:9,tw:.45,r:6.5,cx:1,cy:22,dim:1,ground:false,bulge:.06}),C=cd7({n:13,tw:.95,cx:0,cy:0});
+  return {pts:A.pts.concat(B.pts,C.pts),draw(P,g){const a=A.draw(P,g),b=B.draw(P,g),c=C.draw(P,g);return {s:a.s+b.s+c.s,a:[a.a[0],b.a[0],c.a[1]]}}}}
+/* DI · barras de datos sobre una losa (pin-art); los 3 máximos en acento, unidos por una red punteada */
+function di7(o={}){const W=36,D=24,c=o.cell||2.4,amp=o.amp||12,t=.8,seed=o.seed||1.3;
+  const v=(x,y)=>cl01(.5*nz7(x*.9,y*.9,seed)+.7*bump7(x,y,26,7,3.6)+.5*bump7(x,y,9,16,3)+.38*bump7(x,y,22,19,2.4)-.18);
+  return {pts:[[0,0,0],[W,0,0],[W,D,0],[0,D,0],[0,0,amp+t],[W,0,amp*.6],[W,D,amp*.6]],
+  draw(P,g){let s=iso7Box(P,{x:0,y:0,w:W,d:D,h:t,c:'q1'});const B=[];
+    for(let x=c/2;x<W;x+=c)for(let y=c/2;y<D;y+=c)B.push({x,y,v:v(x,y)});
+    const top=[...B].sort((p,q)=>q.v-p.v).slice(0,3);B.sort((p,q)=>P(p.x,p.y,0)[1]-P(q.x,q.y,0)[1]);
+    let l2='',l3='',dt='';B.forEach(b=>{if(top.includes(b))return;const p=P(b.x,b.y,t),q=P(b.x,b.y,t+b.v*amp);const d=`M${pt7(p)}L${pt7(q)}`;if(b.v>.5)l2+=d;else l3+=d;dt+=sq7(q[0],q[1],1.4)});
+    s+=ln7(l3,'q3')+ln7(l2,'q2')+`<path d="${dt}" class="qd" fill-opacity=".55"/>`;
+    let ta='',td='',nw='';const T=top.map(b=>P(b.x,b.y,t+b.v*amp));
+    top.forEach((b,i)=>{ta+=seg7(P,[b.x,b.y,t],[b.x,b.y,t+b.v*amp]);td+=sq7(T[i][0],T[i][1],2.8);const j=(i+1)%3,m=P((b.x+top[j].x)/2,(b.y+top[j].y)/2,t+Math.max(b.v,top[j].v)*amp+5);nw+=`M${pt7(T[i])}Q${pt7(m)} ${pt7(T[j])}`});
+    s+=ln7(nw,'qh qa','stroke-opacity:.5')+ln7(ta,'qa')+`<path d="${td}" class="qaf"/>`;
+    return {s,a:T}}}}
+/* placeholders de proyecto (sin img=1): torre, bóveda, ladera, fachada, ciudad, pantalla (datos), personas (red) */
+function tower7(){return {pts:[[0,0,0],[40,0,0],[40,28,0],[0,28,0],[14,8,40]],
+  draw(P,g){let s=ln7(poly7(P,[[0,0],[40,0],[40,28],[0,28]],0),'q3')+iso7Box(P,{x:27,y:15,w:9,d:8,h:7,c:'q2'});
+    s+=ghost7(P,{a:[26,8],b:[26,20],h:40,al:.1,g,base:'q3'})+ghost7(P,{a:[26,20],b:[14,20],h:40,al:.1,g,base:'q3'});
+    let d='';for(let z=4;z<40;z+=4)if(z!==28)d+=poly7(P,[[14,8],[26,8],[26,20],[14,20]],z);
+    s+=ln7(d,'q3')+ln7(poly7(P,[[14,8],[26,8],[26,20],[14,20]],28),'qa')+iso7Box(P,{x:14,y:8,w:12,d:12,h:40,c:'q1'});
+    return {s,a:[P(26,8,28)]}}}}
+function hub7(){const L=34,S=16,H=9;return {pts:[[-4,-5,0],[L+4,-5,0],[L+4,S+5,0],[-4,S+5,0],[0,S/2,H]],
+  draw(P,g){let s=ln7(poly7(P,[[-4,-5],[L+4,-5],[L+4,S+5],[-4,S+5]],0),'q3'),r2='',r3='';
+    for(let i=0;i<=10;i++){const x=L*i/10,arc=Array.from({length:17},(_,k)=>{const a=Math.PI*k/16;return [x,S/2-Math.cos(a)*S/2,Math.sin(a)*H]});const d=poly7(P,arc,0,false);if(i%5===0)r2+=d;else r3+=d}
+    s+=ln7(r3,'q3')+ln7(r2,'q2')+ln7(seg7(P,[0,S/2,H],[L,S/2,H])+seg7(P,[0,0,0],[L,0,0])+seg7(P,[0,S,0],[L,S,0]),'q1');
+    const fl=Array.from({length:24},(_,k)=>{const t=k/23;return [-3+t*(L+6),S+3.5-t*(S+7)+Math.sin(t*7)*1.4,0]});
+    s+=ln7(poly7(P,fl,0,false),'qh qa');let d='';[.2,.45,.7].forEach(t=>{const p=fl[Math.round(t*23)],q=P(...p);d+=sq7(q[0],q[1],2.6)});s+=`<path d="${d}" class="qaf"/>`;
+    return {s,a:[P(...fl[16])]}}}}
+function hill7(){const f=(x,y)=>cl01(.85*bump7(x,y,14,10,7)+.55*bump7(x,y,30,18,6)+.12*nz7(x,y,1));
+  return {pts:[[0,0,0],[40,0,0],[40,28,0],[0,28,0],[14,10,12]],
+  draw(P,g){let s=ln7(poly7(P,[[0,0],[40,0],[40,28],[0,28]],0),'q3')+terrain7(P,{x:0,y:0,w:40,d:28,amp:12,levels:9,idx:3,f});
+    [[11,8,5,3,0],[19,13,4,3,1],[27,17,5,3,0]].forEach(([x,y,w,d,on])=>{const z=f(x+w/2,y+d/2)*12*.9;s+=iso7Box(P,{x,y,w,d,h:2.4,z,c:on?'qa':'q2',hid:false})});
+    return {s,a:[P(23,13,f(21,14.5)*12)]}}}}
+function facade7(){const L=36,H=16;return {pts:[[0,0,0],[L,0,0],[L,14,0],[0,14,0],[0,0,H]],
+  draw(P,g){const rnd=R(41);let s=ln7(poly7(P,[[0,0],[L,0],[L,14],[0,14]],0),'q3')+ghost7(P,{a:[0,0],b:[L,0],h:H,al:.13,g,mull:3,mop:.16});
+    s+=scan7(P,[[0,0],[L,0]],0,H,520,rnd)+ln7(seg7(P,[0,0,H*.62],[L,0,H*.62])+seg7(P,[0,0,H],[L,0,H]),'q3');
+    let d='';for(let i=0;i<6;i++){const x0=3+i*5.6,arc=Array.from({length:13},(_,k)=>{const a=Math.PI*k/12;return [x0+1.6-Math.cos(a)*1.6,0,5+Math.sin(a)*1.6]});d+=poly7(P,[[x0,0,0]].concat(arc,[[x0+3.2,0,0]]),0,false)}s+=ln7(d,'q2');
+    const st=[25,9],S=P(...st,0);s+=ln7(poly7(P,circ7(...st,1.8,24),0),'qa')+ln7(seg7(P,[...st,.6],[18,0,7])+seg7(P,[...st,.6],[32,0,7]),'qh qa','stroke-opacity:.6')+`<circle cx="${n7(S[0])}" cy="${n7(S[1])}" r="1.8" class="qaf"/>`;
+    return {s,a:[S]}}}}
+function city7(){const B=[];const r=R(23);for(let i=0;i<4;i++)for(let j=0;j<3;j++)B.push({x:i*9,y:j*9.5,h:3+Math.round((nz7(i*3,j*3,2)*14+r()*6))});
+  const mx=B.reduce((m,b)=>b.h>m.h?b:m);
+  return {pts:[[-2,-2,0],[34,-2,0],[34,26,0],[-2,26,0],[0,0,24]],
+  draw(P,g){let s=ln7(poly7(P,[[-2,-2],[34,-2],[34,26],[-2,26]],0),'q3');[...B].sort((p,q)=>(p.x+p.y)-(q.x+q.y)).forEach(b=>{s+=iso7Box(P,{x:b.x,y:b.y,w:5,d:5,h:b.h,c:b===mx?'qa':(b.h>12?'q2':'q3'),hid:false})});
+    return {s,a:[P(mx.x+5,mx.y,mx.h)]}}}}
+const PH7={tower:tower7,hub:hub7,hill:hill7,facade:facade7,city:city7,screen:()=>di7({cell:3,amp:10}),people:()=>net7({})};
+/* encuadre de una escena en una caja [x,y,w,h] → {s: defs + dibujo, a: anclas} */
+function scene7(sc,box,o={}){const g='g7w'+(++G7N),P=fit7(sc.pts,box,o),r=sc.draw(P,g);return {s:defs7(g)+r.s,a:r.a}}
+const SC7={vdc:vdc7,rc:rc7,cd:cd7,di:di7};
+/* etiquetas de una escena grande: 3 cifras del caso del cluster (valor + nombre), una activa */
+const lab7 = st => st.slice(0,3).map(s=>({val:s[0]+(s[2]?' '+s[2]:''),name:s[1].replace(/^% |^mm /,'').toUpperCase()}));
+/* miniatura de capacidad (300 × 300, sin etiquetas) */
+/* CD va achatada (6 losas bajas) y en una caja del ancho del stack de VDC: mismo peso visual, menos altura, lejos del título */
+function cap7(k,box=[86,24,204,134]){const o={vdc:{n:4,sp:8.5},rc:{cell:1.25,wn:170,amp:2.6},cd:{n:5,fh:4.6,r:10,tw:.7,acc:2,ground:false,bulge:.1,mid:'q2',edges:'qg'},di:{cell:3}}[k];
+  if(k==='cd')box=[box[0]+box[2]*.17,box[1],box[2]*.66,box[3]*.8];
+  return scene7(SC7[k](o),box,k==='cd'?{ay:.4}:{}).s}
+/* encabezado de cluster (1600 × 500): diagrama grande y anotado, a la derecha (la máscara existente lo apaga antes del título) */
+function hdr7(c){const k=c.key,L=lab7(c.proj.st);let sc,map;
+  if(k==='vdc'){sc=vdc7({n:5,sp:9,acc:3,cloudAt:1});map=[null,1,null,0,2]}
+  if(k==='rc'){sc=rc7({wn:380,cell:.9,amp:2.6,mull:3});map=[0,2,1]}
+  if(k==='cd'){sc=cdVar7();map=[0,2,1]}
+  if(k==='di'){sc=di7({cell:1.8,amp:13});map=[0,1,2]}
+  const r=scene7(sc,k==='rc'||k==='di'?[946,84,372,330]:[996,72,318,346]),items=map.map((m,i)=>m===null?null:{...L[m],n:'0'+(m+1),on:m===(k==='cd'?1:0)});
+  return r.s+anno7(r.a,items,{lx:1352,fs:12.5,gap:54,top:96,bot:404})+frame7(992,44,1572,462,{fig:`FIG. ${c.n} — ${c.code} · ${c.proj.office.toUpperCase()}`,fs:11.5,axis:[1532,446],al:16})}
+/* fondo del CTA de cluster (800 × 300, sin etiquetas) */
+const cta7 = c => scene7(SC7[c.key]({n:4,sp:8,cell:2,wn:160}),[440,34,320,232]).s;
+/* placeholder de proyecto (400 × 225, slice) y Featured project (400 × 275, meet: 3 capas anotadas con FIG.) */
+function ph7(kind){const sc=(PH7[kind]||PH7.city)();return `<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" class="s7">${scene7(sc,[70,26,260,166]).s}</svg>`}
+function feat7(kind,key){const c=Object.values(CL).find(x=>x.proj.t===key)||CL.di,L=lab7(c.proj.st);
+  const sc={pts:[[0,0,0],[36,0,0],[36,24,0],[0,24,0],[0,0,30],[36,24,30]],draw(P,g){
+    const base=iso7Slabs(P,{n:3,sp:12,acc:-1,grid:false,cloudAt:1,cell:1.9});let s=base.s;
+    if(kind==='tower')s+=iso7Box(P,{x:15,y:9,w:6,d:6,h:9,z:24.9,c:'qa'})+ghost7(P,{a:[21,9],b:[21,15],z:24.9,h:9,al:.14,g});
+    else if(kind==='facade')s+=ghost7(P,{a:[0,0],b:[36,0],z:24.9,h:7,al:.16,g,mull:3,mop:.18})+ln7(seg7(P,[0,0,24.9],[36,0,24.9]),'qa');
+    else if(kind==='hub'){let d='';for(let i=0;i<=6;i++){const x=6+i*4,arc=Array.from({length:13},(_,k2)=>{const a=Math.PI*k2/12;return [x,12-Math.cos(a)*7,24.9+Math.sin(a)*6]});d+=poly7(P,arc,0,false)}s+=ln7(d,'q3')+ln7(seg7(P,[6,12,30.9],[30,12,30.9]),'qa')}
+    else if(kind==='hill')s+=terrain7(P,{x:0,y:0,w:36,d:24,z:24.9,amp:7,levels:7,idx:7,f:(x,y)=>cl01(.9*bump7(x,y,14,10,7)+.5*bump7(x,y,28,16,5))})+ln7(poly7(P,[[0,0],[36,0],[36,24],[0,24]],24.9),'qa');
+    else {const d=di7({cell:3,amp:7}),P2=(x,y,z=0)=>P(x,y,z+24.9);s+=d.draw(P2,g).s.replace(/class="q1"/,'class="qa"')}
+    return {s,a:[base.a[0],base.a[1],P(36,0,26)]}}};
+  const r=scene7(sc,[22,40,236,206]),items=[{...L[2],n:'01'},{...L[1],n:'02'},{...L[0],n:'03',on:true}];
+  return `<svg viewBox="0 0 400 275" preserveAspectRatio="xMidYMid meet" aria-hidden="true" class="s7">${r.s}${anno7(r.a,items,{lx:284,fs:6.6,gap:30,top:58,bot:236})}${frame7(10,10,390,265,{fig:`FIG. ${c.n} — ${c.code} · ${c.proj.office.toUpperCase()}`,fs:6,fx:20,fy:24,c:4})}</svg>`}
+/* mini glifo (40 × 26) para nodos de rama del onboarding y la leyenda del diagrama de clusters; usa currentColor */
+function glyph7(k){const sc=k==='vdc'?vdc7({n:3,sp:10,core:0,plan:false,acc:1}):k==='rc'?rc7({cell:2.6,wn:40,h:8}):k==='cd'?cd7({n:6,ground:false,acc:3}):k==='di'?di7({cell:4.5,amp:12}):net7({n:5});
+  return `<svg viewBox="0 0 40 26" aria-hidden="true" class="s7 g7" focusable="false">${scene7(sc,[2,2,36,22]).s}</svg>`}
+/* hero (opcional y sutil): cruces de registro alrededor del mapa y «FIG. 00» */
+const hero7 = () => `<g class="hero7">${frame7(978,12,1588,608,{c:5,fig:'FIG. 00 — LAC · 06 OFFICES',fs:10.5,fx:1580,fy:598,end:1})}</g>`;
+
 /* 9 · Estilo 5: placeholders REALISTAS de contenido (no son arte; dicen qué imagen real va en cada lugar).
    Foto de proyecto = cielo, edificio y suelo simplificados en grises fríos + etiqueta "Project photo".
    Captura de app = marco de navegador con esqueleto de UI + etiqueta "App screenshot". Siempre dentro de una bandeja clara. */
@@ -1804,7 +2056,7 @@ const media5 = (key,ctx='') => IMG5()&&IMG_BY[key] ? img5(IMG_BY[key],'m5img',ct
 const frame5 = id => `<div class="m5 shot real"><span class="m5-bar" aria-hidden="true"><i></i><i></i><i></i><b></b></span>${img5(id)}</div>`;
 const imgNote = s => IMG5()?s:'';
 const ph = (kind, tint, tag='', key='', ctx='') => {const im=media5(key,ctx);
-  return `<div class="ph grain" style="--t:var(--hl-${tint})"${im?' data-real':''}>${im||(S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):bld(kind))}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`};
+  return `<div class="ph grain" style="--t:var(--hl-${tint})"${im?' data-real':''}>${im||(S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):(S7()?(ctx==='feat'?feat7(kind,key):ph7(kind)):bld(kind)))}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`};
 
 /* =========================================================
    CONTENIDO SEMILLA (inglés; personas ficticias)
@@ -1907,7 +2159,7 @@ function homeHeader(){
   HERO={W,H,m};
   return `<div class="art hdr" role="img" aria-label="Design Technology LAC. Header animation (loop): a dot map of Latin America and the Caribbean in true proportion, from Mexico to Patagonia, with six offices: Mexico City, Monterrey, San José, Santo Domingo, Bogotá and Buenos Aires. A few name-tagged cursors drift in the ocean around the map and occasionally connect to a nearby office with a thin line and a soft pulse. Text: Design technology, built across Latin America and the Caribbean.">
     ${IMG5()?img5('massing','hero5-photo'):''}<svg class="fill" id="heroSvg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      ${S6()?`<defs><linearGradient id="g6-map" gradientUnits="userSpaceOnUse" x1="1010" y1="40" x2="1500" y2="600"><stop offset="0" style="stop-color:var(--c5-vdc-lt)" stop-opacity=".62"/><stop offset=".36" style="stop-color:var(--c5-di-lt)" stop-opacity=".55"/><stop offset=".68" style="stop-color:var(--c5-cd-lt)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--c5-rc-lt)" stop-opacity=".6"/></linearGradient></defs>`:''}<g id="collabLines"></g>${m.svg}<g id="collab"></g>
+      ${S6()?`<defs><linearGradient id="g6-map" gradientUnits="userSpaceOnUse" x1="1010" y1="40" x2="1500" y2="600"><stop offset="0" style="stop-color:var(--c5-vdc-lt)" stop-opacity=".62"/><stop offset=".36" style="stop-color:var(--c5-di-lt)" stop-opacity=".55"/><stop offset=".68" style="stop-color:var(--c5-cd-lt)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--c5-rc-lt)" stop-opacity=".6"/></linearGradient></defs>`:''}<g id="collabLines"></g>${m.svg}<g id="collab"></g>${S7()?hero7():''}
     </svg>
     <div class="copy">
       <div class="k"><span>Design Technology</span><i>LAC · 06 offices · 04 clusters</i></div>
@@ -2022,7 +2274,7 @@ function clusterHeader(c){
   if(c.motif==='flow') art=flowField(W,H,{x0:820,n:300,seed:2.2});
   if(c.motif==='bars') art=dataBars(W,H,{ox:1080,oy:150,cols:34,rows:14,dx:17,dy:16,amp:46,seed:1.1});
   /* Estilo 5: sin dibujo abstracto; rampa azul del hero + foto real del proyecto del cluster en bandeja + filete del cluster */
-  const s5=S5(); if(s5) art='';
+  const s5=S5(); if(s5) art=''; if(S7()) art=hdr7(c);
   const mk=`<defs><linearGradient id="chm-g" gradientUnits="userSpaceOnUse" x1="860" y1="0" x2="980" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="chm" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#chm-g)"/></mask></defs>`;
   return `<div class="art chdr grain" role="img" style="--c:var(--c5-${c.key}-lt)" aria-label="${esc(c.name)}. LAC cluster ${c.n} of 04. Header image ${s5?'on the blue gradient, with a project photo of the cluster':'with the cluster motif in its highlight color'}.">
     <svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${mk}<g mask="url(#chm)">${art}</g></svg>${s5?(media5('cluster:'+c.key)?`<div class="c5-media tray5 real">${media5('cluster:'+c.key)}</div>`:`<div class="c5-media tray5">${photo5(c.proj.ph)}</div>`):''}
@@ -2045,7 +2297,8 @@ function capThumb(c,o={}){
   if(c.motif==='cloud') art=pointCloud(W,H,{x:105,y:44,w:175,h:108,seed:4});
   if(c.motif==='flow') art=flowField(W,H,{x0:60,n:70,seed:4.1});
   if(c.motif==='bars') art=dataBars(W,H,{ox:185,oy:62,cols:16,rows:10,dx:10,dy:10,amp:30,seed:1.6});
-  art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
+  if(S7()) art=cap7(c.key,o.fit?[16,24,190,134]:undefined);   /* Estilo 7 (en miniaturas apaisadas se corre a la izquierda para no quedar bajo el cuadro del cluster): diagrama esquemático mínimo (sin etiquetas) */
+  if(!S7())art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const mask=`<defs><linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${fd[0]}" x2="0" y2="${fd[1]}"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="url(#${id}g)"/><rect x="0" y="0" width="${W*.3}" height="${H*.2}" fill="#000"/></mask></defs>`;
   return `<div class="capthumb grain" style="--c:var(--hl-${c.key})"><svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">${mask}<g mask="url(#${id})"><g${o.fit?` transform="translate(${(W*(1-o.fit[0])).toFixed(1)} ${(o.fit[1]-20*o.fit[0]).toFixed(1)}) scale(${o.fit[0]})"`:''}>${art}</g></g></svg><span class="sw"></span><span class="n">{${+c.n}}</span><span class="nm">${c.code}<small>${esc(c.name)}</small></span></div>`;
 }
@@ -2061,7 +2314,7 @@ function diagram(){
   // filas con barras posicionadas por fila
   const rowsHtml=rows.map(r=>{
     const bars=r.bars.map(b=>`<div class="bar" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'-'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
-    return `<div class="grid" style="grid-template-columns:13cqw 1fr;--ci:var(--ink-${r.k})"><div class="lab"><i style="background:var(--hl-${r.k})"></i>${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
+    return `<div class="grid" style="grid-template-columns:13cqw 1fr;--ci:var(--ink-${r.k})"><div class="lab">${S7()?`<i class="g7i" style="color:var(--hl-${r.k})">${glyph7(r.k)}</i>`:`<i style="background:var(--hl-${r.k})"></i>`}${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
   }).join('');
   return `<div class="art dia grain" role="img" aria-label="Clusters diagram. Eight stages of an architecture project from pursuit and client contact to handover and operations. Data Intelligence enters at stages 1 to 3 (site and market analytics, Urban Vitality Index, GIS) and 8 (post-occupancy dashboards). Computational Design at stages 2 to 5 (massing optioneering, climate analysis, Pedestrian Flows, Rhino-Revit). Reality Capture at stages 1 to 2 (existing conditions scans, Terrain Analysis) and 7 to 8 (progress scans, as-built verification). VDC at stages 4 to 7 (BEP, federated coordination, clash detection, 4D sequencing, model QA).">
     <div class="ttl"><h4>Where each cluster enters <em>your project</em><span class="sdot"></span></h4><span>Design Technology LAC · 4 clusters × 8 stages</span></div>
@@ -2094,6 +2347,7 @@ function ctaBg(c){
   if(c.motif==='cloud') art=pointCloud(W,H,{x:470,y:40,w:280,h:200,seed:5});
   if(c.motif==='flow') art=flowField(W,H,{x0:300,n:150,seed:5.5});
   if(c.motif==='bars') art=dataBars(W,H,{ox:560,oy:60,cols:20,rows:10,dx:13,dy:12,amp:34,seed:2.2});
+  if(S7()) art=cta7(c);   /* Estilo 7: la misma escena del cluster, sin etiquetas */
   art=art.replace(/<text[^>]*>[^<]*<\/text>/g,'');
   const svg=`<svg class="fill" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g>${art}</g></svg>`;
   if(S5()) return `<div class="cta-bg art" style="--c:var(--hl-${c.key})"><div class="c5-media tray5">${photo5('people','Photo')}</div></div>`;
@@ -2352,17 +2606,12 @@ const spotlightSection = () => { const s=SPOTLIGHT; return sec('l1','none',[wp('
     <div class="spot-body"><p class="t-kicker">${esc(s.kicker)}</p><h3 class="spot-title">${esc(s.logro)}</h3><blockquote class="spot-quote">“${esc(s.cita)}”</blockquote>
       <p class="spot-who"><b>${esc(s.n)}</b> <span>${esc(s.r)} · ${esc(s.o)}</span></p><a class="t-link" href="${s.href}">${esc(s.cta)}</a></div></article>`)]); };
 
+/* Community en Home (ronda 10): solo liderazgo regional (2/3) + próximo evento (1/3) en una fila, con la misma línea de título.
+   En SharePoint: sección de 2 columnas 2/3–1/3 con People (Compact) a la izquierda y Events (Compact) a la derecha. Sin Featured expert. */
 const communityHome = () => sec('l31','none',[
-  wp('n','Text · Fixed width', kick('Featured community',true))
-  + wp('n','Image + Text (experto destacado, protagonista) + Quick links (CTA Ask Mateo)', `<div class="wp-title"><h3>Featured expert</h3></div><article class="expert" data-expert>
-      <div class="portrait-ph expert-photo" data-photo="portrait" role="img" aria-label="Portrait placeholder: ${esc(P.mateo.n)}">${ini(P.mateo.n)}</div>
-      <div class="expert-body"><p class="meta-line">${esc(P.mateo.r.toUpperCase())} · ${esc(P.mateo.o.toUpperCase())}</p><h3 class="expert-name">${esc(P.mateo.n)}</h3>
-        <blockquote class="expert-quote">“Most teams are two scripts away from live project data.”</blockquote>
-        <ul class="expert-tags">${['Speckle','Power BI','Spatial analytics'].map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
-        <a class="btn" href="#/community">Ask Mateo</a></div></article>`)
-  + wp('n','People · Compact ×4 en una línea (liderazgo regional: avatar pequeño, nombre y área)', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4 lead-line" data-lead-line>${[[P.lucia,'Direction'],[P.diego,'VDC'],[P.camila,'Reality Capture'],[P.sofia,'Computational Design']].map(x=>`<div class="person sm lead-chip"><span class="av" aria-hidden="true">${ini(x[0].n)}</span><a href="#/community"><b>${esc(x[0].n)}</b><span>${x[1]}</span></a></div>`).join('')}</div>`),
-  wp('n','Events · Compact', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
-]);
+  wp('n','People · Compact ×4 en una línea (liderazgo regional: avatar pequeño, nombre y área) · columna 2/3', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4 lead-line" data-lead-line>${[[P.lucia,'Direction'],[P.diego,'VDC'],[P.camila,'Reality Capture'],[P.sofia,'Computational Design']].map(x=>`<div class="person sm lead-chip"><span class="av" aria-hidden="true">${ini(x[0].n)}</span><a href="#/community"><b>${esc(x[0].n)}</b><span>${x[1]}</span></a></div>`).join('')}</div>`),
+  wp('n','Events · Compact · columna 1/3', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
+],'Sección 2/3–1/3: People + Events (misma línea de título)');
 
 /* ---------- Learning: Onboarding ---------- */
 /* nodo del mapa: tronco y rama son botones (se seleccionan); la hoja es la punta de la rama.
@@ -2370,6 +2619,7 @@ const communityHome = () => sec('l31','none',[
 const onbNode = n => {const c=n.contacto, ttl=n.titulo.split(' · ');
   let inner=`<b class="onb-t">${esc(n.titulo)}</b><span class="onb-sub">${esc(n.sub)}</span>`;
   if(n.tipo==='trunk'&&ttl.length>1) inner=`<span class="onb-step">${esc(ttl[0])}</span><b class="onb-t">${esc(ttl.slice(1).join(' · '))}</b><span class="onb-sub">${esc(n.sub)}</span>`;
+  if(n.tipo==='branch'&&S7()) inner=`<span class="onb-g7" aria-hidden="true">${glyph7(n.cluster)}</span>`+inner;   /* Estilo 7: mini glifo esquemático de la rama */
   if(n.tipo==='branch') inner+=`${c?`<span class="onb-who"><span class="onb-av" aria-hidden="true">${ini(c.n)}</span><span>${esc(c.n)}<small>${esc(c.o)}</small></span></span>`:''}<span class="onb-res">${n.recursos.slice(0,3).map(r=>`<span>${esc(r)}</span>`).join('')}</span>`;
   const at=`data-onb-node="${n.id}" data-tipo="${n.tipo}" data-cluster="${n.cluster}" data-parent="${n.parent||''}"`;
   return n.tipo!=='leaf'?`<button type="button" class="onb-node" ${at} aria-pressed="false">${inner}</button>`:`<div class="onb-node" ${at}>${inner}</div>`;};
@@ -2748,13 +2998,12 @@ function bindEco(){
     bs.forEach(b=>b.addEventListener('click',()=>{st[k]=b.dataset[d];bs.forEach(x=>x.setAttribute('aria-pressed',x===b));paint()}))});
 }
 function pageTools(){
-  const T=[['SP','Speckle','Workflow tool',['DI','Integrated workflows'],'Live'],['PB','Power BI templates','Gensler tool',['DI'],'Live'],['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live'],['DY','Dynamo for Revit','Workflow tool',['CD','VDC'],'Live'],['RR','Rhino.Inside.Revit','Workflow tool',['CD'],'Live'],['gB','gBlox','Gensler tool',['CD'],'Live'],['TA','Terrain Analysis','LATAM solution',['RC','CD'],'Pilot'],['UV','Urban Vitality Index','LATAM solution',['DI'],'Live']];
   return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions and experiments.')
   /* @personalizar: ecosistema de Tools, pieza principal (datos en TOOLS_ECOSYSTEM; filtros en bindEco) */
   + sec('l1','none',[
       wp('n','Text · Heading 2 + Normal', `<div class="eco-intro">${kick('Tools ecosystem')}${h2('One toolbox,','three origins.')}<p class="t-p muted">Filter by origin or cluster. Gensler and COM / LATAM tools carry a seal.</p></div>`),
       wp('n','Quick links · Grid o Tiles, 1 web part por grupo (ícono = logo PNG 128 px en tile claro, con el sello de origen horneado) · alternativa: Microsoft List «Tools» · vista Galería agrupada por Category + vistas filtradas por Origin y Cluster', ecosystemHTML())])
-  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools'+imgNote(' · columnas Imagen: captura real en marco de navegador (bandeja neutra media) y logo de app (PNG 128 px)'),`<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
+  /* (ronda 10) se quitó la galería «Gensler tools & LATAM solutions» (8 tarjetas con captura y Explore / Learn / Get support) en todos los estilos */
   + toolCatalog()
   + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Availability is reviewed every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
 }
@@ -2858,10 +3107,11 @@ function setDrawer(open){const d=$('#logosDrawer');d.classList.toggle('open',ope
 function setAccent(a){document.documentElement.dataset.accent=a;document.querySelectorAll('[data-set-accent]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setAccent===a));store('accent',a)}
 function store(k,v){try{localStorage.setItem('dtlac-'+k,v)}catch(e){}}
 function load(k){try{return localStorage.getItem('dtlac-'+k)}catch(e){return null}}
-function setStyle(s,rerender=true){s=/^[156]$/.test(s)?s:(/^[234]$/.test(s)?'5':'1');   /* 2, 3 y 4 fueron descartados: su hash cae al Estilo 5 */
+function setStyle(s,rerender=true){s=/^[1567]$/.test(s)?s:(/^[234]$/.test(s)?'5':'1');   /* 2, 3 y 4 fueron descartados: su hash cae al Estilo 5 */
   const H=document.documentElement,was6=H.dataset.skin==='6';
   /* Estilo 6 «Terreno vivo»: monta la estructura del 5 (data-style="5"), siempre oscuro, con la paleta del 1 (data-skin="6") */
-  H.dataset.style=s==='6'?'5':s; if(s==='6')H.dataset.skin='6'; else delete H.dataset.skin;
+  /* Estilo 7 «Terreno esquemático»: el Estilo 1 completo (data-style="1") + data-skin="7", que solo cambia diagramas e ilustraciones */
+  H.dataset.style=s==='6'?'5':(s==='7'?'1':s); if(s==='6'||s==='7')H.dataset.skin=s; else delete H.dataset.skin;
   document.querySelectorAll('[data-set-style]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setStyle===s));store('style',s);
   if(s==='6')setMode('dark'); else if(was6)setMode(load('mode')||'light');
   /* Estilo 5: acento fijo en azul; el selector se atenúa y se desactiva (la elección guardada vuelve en los otros estilos). El 6 usa los 5 acentos del 1 */
@@ -2869,7 +3119,7 @@ function setStyle(s,rerender=true){s=/^[156]$/.test(s)?s:(/^[234]$/.test(s)?'5':
   /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva). El 6 es solo oscuro */
   const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?(s==='6'?'El Estilo 6 es solo oscuro':'Solo en el Estilo 5'):'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
   /* Imágenes Sí / No: en los 3 estilos vigentes desde la ronda 9 (los placeholders son la opción No, por defecto) */
-  const ioff=!/^[156]$/.test(s),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 1, 5 y 6':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
+  const ioff=!/^[1567]$/.test(s),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 1, 5, 6 y 7':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
   if(rerender)route()}
 function setImg(v){v=v==='1'?'1':'0';document.documentElement.dataset.img=v;document.querySelectorAll('[data-set-img]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setImg===v));store('img',v)}
 function setMode(m){m=m==='dark'?'dark':'light';const s6=document.documentElement.dataset.skin==='6';if(s6)m='dark';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));if(!s6)store('mode',m)}
