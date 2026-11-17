@@ -46,6 +46,8 @@ html[data-style="1"]{
   --art-bg:var(--p-ink); --art-fg:rgba(242,242,240,.62); --art-dim:rgba(242,242,240,.13); --art-text:var(--p-fog); --art-tail:#6E737A;
   --art-dot:rgba(242,242,240,.42);
   --ph-a:#1D2024; --ph-b:#0E0F11; --ph-line:rgba(242,242,240,.5);
+  /* media con img=1 (igual que el 6): bandeja NEUTRA MEDIA con 6 px de padding, imagen al 84 % y tile claro pequeño para logos de app */
+  --tray:#2A2D31; --tray-rule:rgba(242,242,240,.10); --tray-ink:#A3A8AD; --tray-dim:.84; --tray-r:6px; --logo-tile:#ECEDEA;
   /* tipografía de marca */
   --f-brand-sans:"Inter Tight","Segoe UI",sans-serif; --f-brand-mono:"JetBrains Mono",Consolas,monospace;
   --h-weight:300; --h-track:-.035em; --k-track:.14em; --ht-op:.10;
@@ -117,7 +119,7 @@ html[data-style="5"]{
   --oc:var(--c5-lime); --oc-fill:var(--c5-lime-lt);
   --cur0:var(--c5-vdc-lt); --cur1:var(--c5-rc-lt); --cur2:var(--c5-cd-lt); --cur3:var(--c5-di-lt); --cur4:var(--c5-amber-lt); --cur5:var(--c5-rose-lt); --cur-ink:#0B1020;
   /* sistema de media: bandeja SIEMPRE clara (también en oscuro), borde de 1 px y radio fijo */
-  --tray:#FFFFFF; --tray-rule:#E3E8EF; --tray-r:6px; --tray-ink:#5F6B85;
+  --tray:#FFFFFF; --tray-rule:#E3E8EF; --tray-r:6px; --tray-ink:#5F6B85; --logo-tile:#FFFFFF;
   --ph-sky:#E4E9F0; --ph-sky2:#F1F4F8; --ph-mass:#C5CDD8; --ph-mass2:#B3BCC9; --ph-ground:#D3D9E1; --ph-win:#DCE2EA;
   /* grano blanco más fino que el del 4 (sobre superficies grandes el de la banda se veía moteado) */
   --noise5:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .16 0 0 0 -.05'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
@@ -138,7 +140,7 @@ html[data-style="5"][data-mode="dark"]{
   --tint-vdc:#1A3446; --tint-rc:#33293A; --tint-cd:#2A2D52; --tint-di:#1F3150; --tint-lime:#253539; --tint-amber:#30303A; --tint-rose:#322B47;
   --s-lime:var(--c5-lime-lt); --s-amber:var(--c5-amber-lt); --s-rose:var(--c5-rose-lt);
   --oc:var(--c5-lime-lt);
-  --tray:#F4F5F7; --tray-rule:rgba(255,255,255,.16);
+  --tray:#F4F5F7; --tray-rule:rgba(255,255,255,.16); --logo-tile:#F4F5F7;
   color-scheme:dark;
 }
 /* @personalizar: tokens del Estilo 6 «Terreno vivo» (SOLO oscuro). Colores del Estilo 1 sobre la estructura del Estilo 5.
@@ -160,7 +162,7 @@ html[data-skin="6"][data-mode="dark"]{
   /* oficinas = acento de statement; cursores = clusters + ámbar + rosa con tinta carbón */
   --oc:var(--accent); --oc-fill:var(--accent); --cur-ink:#0B0C0D;
   /* media: bandeja NEUTRA MEDIA con padding interno (las capturas blancas no deslumbran); tile de logo claro pequeño */
-  --tray:#2A2D31; --tray-rule:rgba(242,242,240,.10); --tray-ink:#A3A8AD; --tray-dim:.84;
+  --tray:#2A2D31; --tray-rule:rgba(242,242,240,.10); --tray-ink:#A3A8AD; --tray-dim:.84; --logo-tile:#ECEDEA;
   --ph-sky:#24272B; --ph-sky2:#2A2D32; --ph-mass:#3B3F45; --ph-mass2:#33363B; --ph-ground:#2E3136; --ph-win:#474C53;
   /* hero, banda y encabezados: carbón con degradado granulado sutil y un brillo del acento activo arriba a la derecha */
   --hero-deep:radial-gradient(40% 70% at 100% 0%,color-mix(in srgb,var(--accent) 15%,transparent) 0%,transparent 72%),radial-gradient(46% 80% at 74% 112%,rgba(111,182,255,.09) 0%,transparent 70%),radial-gradient(40% 70% at 0% 100%,rgba(0,0,0,.55) 0%,transparent 70%),linear-gradient(100deg,#0B0C0D 0%,#111315 52%,#1A1C20 100%);
@@ -997,18 +999,19 @@ html[data-skin="6"] .dia .bar{background:color-mix(in srgb,var(--c) 13%,transpar
 html[data-skin="6"] :is(.proc,.capthumb){background:var(--surface)}
 /* MEDIA con blanco en oscuro: bandeja neutra media (#2A2D31) con 6 px de padding interno, filete de 1 px y la imagen atenuada al 84 %.
    Así las capturas de gBlox y Power BI no deslumbran y conservan sus colores. Los logos de app siguen en un tile claro pequeño. */
-html[data-skin="6"] .tray5{background:var(--tray);box-shadow:0 0 0 1px var(--tray-rule)}
-html[data-skin="6"] .tray5 > .m5{inset:6px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
-html[data-skin="6"] :is(.m5img,.m5.shot > svg){filter:brightness(var(--tray-dim)) contrast(1.02)}
+/* (ronda 9) el Estilo 1 con img=1 usa las mismas bandejas: :is(skin 6, estilo 1) */
+:is(html[data-skin="6"],html[data-style="1"]) .tray5{background:var(--tray);box-shadow:0 0 0 1px var(--tray-rule)}
+:is(html[data-skin="6"],html[data-style="1"]) .tray5 > .m5{inset:6px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
+:is(html[data-skin="6"],html[data-style="1"]) :is(.m5img,.m5.shot > svg){filter:brightness(var(--tray-dim)) contrast(1.02)}
 html[data-skin="6"] .ph[data-real]::after{box-shadow:inset 0 0 0 6px var(--tray),inset 0 0 0 7px rgba(0,0,0,.45)}
-html[data-skin="6"] .ph[data-real]{background:var(--tray)}
+:is(html[data-skin="6"],html[data-style="1"]) .ph[data-real]{background:var(--tray)}
 html[data-skin="6"] .ph > .m5.shot{inset:6px;border-radius:3px}
 html[data-skin="6"] .ph:has(> .m5.shot){background:var(--tray)}
 html[data-skin="6"] .ph .tag{background:#202225;color:var(--text-2);border-top-color:var(--rule)}
 html[data-skin="6"] .m5-lab{background:rgba(16,17,19,.86);color:var(--text-2);box-shadow:0 0 0 1px rgba(242,242,240,.14)}
-html[data-skin="6"] .m5.real .m5-bar{background:#33363B;border-bottom-color:#2A2D31}
-html[data-skin="6"] .m5.real .m5-bar i{background:#5A5F66}
-html[data-skin="6"] .m5.real .m5-bar b{background:#232528;box-shadow:0 0 0 1px #3A3E44}
+:is(html[data-skin="6"],html[data-style="1"]) .m5.real .m5-bar{background:#33363B;border-bottom-color:#2A2D31}
+:is(html[data-skin="6"],html[data-style="1"]) .m5.real .m5-bar i{background:#5A5F66}
+:is(html[data-skin="6"],html[data-style="1"]) .m5.real .m5-bar b{background:#232528;box-shadow:0 0 0 1px #3A3E44}
 html[data-skin="6"] .tool .ico{width:44px;height:44px;background:#ECEDEA;box-shadow:none}
 html[data-skin="6"] .tool .ico::before{border-color:#CFD2CC}
 html[data-skin="6"] .tool .ico b{font-size:13.5px;color:#1B1D20}
@@ -1024,6 +1027,37 @@ html[data-skin="6"] .onb-node[data-tipo="branch"][aria-pressed="true"]{backgroun
 html[data-skin="6"] .onb-node[data-tipo="trunk"][aria-pressed="true"]{background:var(--surface-2)}
 /* grano del Estilo 1 sobre las piezas de arte grandes (hero, diagrama, mapa) */
 html[data-skin="6"] :is(.dia,.mapart)::after{content:"";display:block;position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:var(--noise5)}
+
+/* =========================================================
+   5g · ESTILO 1 · IMÁGENES (img=1) Y LOGO EN DEGRADADO (ronda 9)
+   Mismo tratamiento de media que el 6: bandeja neutra media, 6 px de padding, imagen al 84 %. Sin imagen = placeholder del 1.
+   ========================================================= */
+/* foto o captura real dentro de .ph: el marco interior reemplaza al grano del 1 */
+html[data-style="1"] .ph[data-real]::after{content:"";display:block;position:absolute;inset:0;background:none;opacity:1;mix-blend-mode:normal;pointer-events:none;z-index:1;
+  box-shadow:inset 0 0 0 6px var(--tray),inset 0 0 0 7px rgba(0,0,0,.45)}
+html[data-style="1"] .ph[data-real] .tag{z-index:2}
+/* tarjetas de Tools: captura en marco de navegador (o el placeholder del 1 si la app no tiene captura) */
+html[data-style="1"][data-img="1"] .tool .shot5{display:block;position:relative;aspect-ratio:16/10;margin-bottom:4px;border-radius:var(--tray-r);overflow:hidden}
+html[data-style="1"][data-img="1"] .tool .shot5 > .ph{position:absolute;inset:0}
+/* hero: la foto va invertida, en escala de grises y en screen al 15 % detrás del titular (en carbón, multiply la borraría); se desvanece antes del mapa */
+html[data-style="1"] .hero5-photo{mix-blend-mode:screen;filter:grayscale(1) invert(1) contrast(1.25) brightness(.9);opacity:.10;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 34%,rgba(0,0,0,.45) 48%,transparent 60%);mask-image:linear-gradient(90deg,#000 0%,#000 34%,rgba(0,0,0,.45) 48%,transparent 60%)}
+/* logo de app real (img=1, los 3 estilos): tile claro pequeño, logo PNG contenido; sin logo queda el monograma */
+html .tool .ico.logo{width:44px;height:44px;flex:none;padding:5px;background:var(--logo-tile,#FFFFFF);box-shadow:inset 0 0 0 1px rgba(17,21,34,.08);border-radius:var(--tray-r,4px)}
+html .tool .ico.logo::before{display:none}
+html .tool .ico.logo img{width:100%;height:100%;object-fit:contain}
+html[data-style="5"]:not([data-mode="dark"]) .tool .ico.logo{box-shadow:inset 0 0 0 1px #E3E8EF}
+/* logo del sitio: degradado del acento activo (mismo #g6-ink del 6; sus paradas leen var(--accent)). «dt» y cuadro en carbón:
+   así el monograma se lee a 24 px con los 5 acentos. En los logos L01 a L08, el acento pasa a hueso. Aplica a header, footer y panel de logos */
+html[data-style="1"] :is(.logo-slot,.lg-sym,.pv.dk.sq,.pv.fav .dk) svg{--accent:#F2F2F0}
+html[data-style="1"] :is(.logo-slot,.lg-sym,.pv.dk.sq,.pv.fav .dk) svg [fill="currentColor"]{fill:url(#g6-ink)}
+html[data-style="1"] :is(.logo-slot,.lg-sym,.pv.dk.sq,.pv.fav .dk) svg [stroke="currentColor"]{stroke:url(#g6-ink)}
+html[data-style="1"] :is(.logo-slot,.lg-sym,.pv.dk.sq,.pv.fav .dk) svg :is([fill="var(--bg)"],[fill="var(--accent)"]){fill:#0B0C0D}
+/* vistas claras del panel: el «dt» en negativo va en el papel claro (antes heredaba el carbón y desaparecía) */
+html[data-style="1"] :is(.pv.lt,.pv.fav span:not(.dk)) svg [fill="var(--bg)"]{fill:#F4F2EE}
+/* lockup horizontal en oscuro del monograma: solo el bloque lleva degradado (el texto queda en hueso) */
+html[data-style="1"] .pv.dk.hz svg > rect[fill="currentColor"]:first-child{fill:url(#g6-ink)}
+html[data-style="1"] .pv.dk.hz svg:has(> rect[fill="currentColor"]:first-child) > :is([fill="#888"],[fill="var(--accent)"]){fill:#0B0C0D}
 
 /* =========================================================
    6 · BARRA DE CONTROL Y OVERLAY "VER WEB PARTS"
@@ -1128,6 +1162,200 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .impact-stat b{font-size:26px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* =========================================================
+   8 · MATRIZ DE PROYECTOS (Projects) · ronda 9 · los 3 estilos
+   Filas = practice areas; columnas = clusters en su color. Celda llena = marca del cluster (punto con el número) + título
+   (o miniatura con img=1); vacía = filete punteado + «No reference yet». Activa = anillo del cluster; detalle a la derecha (abajo en < 1100 px).
+   ========================================================= */
+/* @personalizar: matriz de proyectos. Color por cluster: --k (marca) = --hl-<k>; --ki (texto AA) = --ink-<k> (el 1 no tiene --ink y cae a --hl, ya AA sobre carbón) */
+[data-matrix-block] [data-k="vdc"],[data-matrix-detail][data-k="vdc"]{--k:var(--hl-vdc);--ki:var(--ink-vdc,var(--hl-vdc))}
+[data-matrix-block] [data-k="rc"], [data-matrix-detail][data-k="rc"] {--k:var(--hl-rc); --ki:var(--ink-rc,var(--hl-rc))}
+[data-matrix-block] [data-k="cd"], [data-matrix-detail][data-k="cd"] {--k:var(--hl-cd); --ki:var(--ink-cd,var(--hl-cd))}
+[data-matrix-block] [data-k="di"], [data-matrix-detail][data-k="di"] {--k:var(--hl-di); --ki:var(--ink-di,var(--hl-di))}
+[data-matrix-block]{--pm-bg:var(--surface);--pm-gap:6px;--pm-cols:minmax(176px,1.25fr) repeat(4,minmax(0,1fr));display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:24px;align-items:start}
+[data-matrix-block][hidden]{display:none}
+/* encabezado: texto a la izquierda; control Matrix / List y leyenda a la derecha */
+.pm-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:40px;align-items:end}
+.pm-intro > *{grid-column:1}
+.pm-intro .t-p{margin-bottom:0}
+html[data-style="5"] :is(.pm-intro,.eco-intro) .t-p.muted{display:block}
+.pm-intro .pm-view{grid-column:2;grid-row:1 / span 2;align-self:start;justify-self:end}
+.pm-legend{grid-column:2;grid-row:3;justify-self:end;display:flex;gap:20px;flex-wrap:wrap;margin:0;padding:0;list-style:none;font-size:13px;color:var(--text-2)}
+.pm-legend li{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.pm-key{display:block;width:14px;height:14px;border-radius:50%;flex:none}
+.pm-key[data-count="1"]{background:conic-gradient(var(--hl-vdc) 0 25%,var(--hl-rc) 0 50%,var(--hl-cd) 0 75%,var(--hl-di) 0)}
+.pm-key[data-count="0"]{border:1px dashed var(--text-2)}
+/* control segmentado (Matrix / List y filtros del ecosistema) */
+:is(.pm-view,.eco-seg){display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border-radius:calc(var(--r-native) + 2px);background:var(--surface);box-shadow:inset 0 0 0 1px var(--rule)}
+:is(.pm-view,.eco-seg) button{font:inherit;font-size:13px;font-weight:600;color:var(--text-2);background:none;border:0;border-radius:var(--r-native);min-height:36px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background .15s,color .15s}
+:is(.pm-view,.eco-seg) button:hover{color:var(--text);background:var(--surface-2)}
+:is(.pm-view,.eco-seg) button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+.pm-view-btn::before{content:"";width:14px;height:14px;flex:none;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+[data-matrix-view="matrix"]{--ic:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M1 1h5v5H1zM8 1h5v5H8zM1 8h5v5H1zM8 8h5v5H8z'/></svg>")}
+[data-matrix-view="list"]{--ic:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M1 2h12v2H1zM1 6h12v2H1zM1 10h12v2H1z'/></svg>")}
+/* la matriz */
+.pm{background:var(--pm-bg);border-radius:var(--r-native);box-shadow:var(--card-shadow);padding:14px 14px 8px;container-type:inline-size}
+.pm button{font:inherit;color:inherit;text-align:left;cursor:pointer;border:0;background:none;margin:0}
+.pm-head,.pm-row{display:grid;grid-template-columns:var(--pm-cols);gap:var(--pm-gap);margin-bottom:var(--pm-gap)}
+.pm-head{margin-bottom:10px}
+.pm-corner{align-self:end;padding:0 12px 10px;font:500 11px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.pm-hn{font-size:14px;font-weight:600;line-height:1.2;color:var(--text)}
+.pm-sum{font:500 11px/1.3 var(--f-mono);letter-spacing:.04em;color:var(--text-2)}
+.pm-colhead{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;min-height:64px;padding:14px 10px 10px;border-radius:var(--r-native);transition:background .15s,opacity .2s}
+.pm-colhead::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;border-radius:2px;background:var(--k)}
+.pm-colhead .pm-sum{color:var(--ki)}
+.pm-colhead:is(:hover,:focus-visible,[data-hl="on"]){background:color-mix(in srgb,var(--k) 13%,transparent)}
+.pm-rowhead{position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px 0 14px;border-radius:var(--r-native);transition:background .15s,opacity .2s}
+.pm-rowhead .pm-hn{font-weight:500}
+.pm-rowhead::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:2px;background:var(--text);opacity:0;transition:opacity .15s}
+.pm-rowhead:is(:hover,:focus-visible,[data-hl="on"]),.pm-row:has(.pm-cell[aria-pressed="true"]) .pm-rowhead{background:var(--surface-2)}
+.pm-rowhead:is(:hover,:focus-visible,[data-hl="on"])::before,.pm-row:has(.pm-cell[aria-pressed="true"]) .pm-rowhead::before{opacity:1}
+.pm:has(.pm-cell[aria-pressed="true"][data-k="vdc"]) .pm-colhead[data-k="vdc"],
+.pm:has(.pm-cell[aria-pressed="true"][data-k="rc"]) .pm-colhead[data-k="rc"],
+.pm:has(.pm-cell[aria-pressed="true"][data-k="cd"]) .pm-colhead[data-k="cd"],
+.pm:has(.pm-cell[aria-pressed="true"][data-k="di"]) .pm-colhead[data-k="di"]{background:color-mix(in srgb,var(--k) 13%,transparent)}
+/* celda llena: tinte y filete del cluster, punto con el número, «project(s)» o miniatura, título en 2 líneas */
+.pm-cell{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;align-content:start;align-items:center;gap:8px;min-height:84px;padding:10px;border-radius:var(--r-native);
+  background:color-mix(in srgb,var(--k) 10%,var(--pm-bg));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 36%,transparent);transition:transform .15s,box-shadow .15s,background .15s,opacity .2s}
+.pm-n{grid-row:1;grid-column:1;width:24px;height:24px;border-radius:50%;background:var(--k);color:var(--on-hl);display:grid;place-items:center;font:700 12px/1 var(--f-mono)}
+.pm-c{grid-row:1;grid-column:2;font:500 11px/1 var(--f-mono);letter-spacing:.04em;color:var(--ki)}
+.pm-mini{grid-row:1;grid-column:2;justify-self:end;position:relative;width:48px;aspect-ratio:16/9;border-radius:2px;overflow:hidden;background:var(--tray,#fff);box-shadow:0 0 0 1px rgba(0,0,0,.28)}
+.pm-mini .m5img{transform:none!important}
+.pm-t{grid-row:2;grid-column:1/-1;font-size:12.5px;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pm-cell:not([data-count="0"]):hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px var(--k),0 6px 16px rgba(0,0,0,.16)}
+/* celda vacía: discreta pero visible */
+.pm-cell[data-count="0"]{background:transparent;box-shadow:none;outline:1px dashed color-mix(in srgb,var(--text-2) 50%,transparent);outline-offset:-1px}
+.pm-cell[data-count="0"] .pm-n{width:10px;height:10px;margin:7px;background:none;box-shadow:inset 0 0 0 1px var(--text-2)}
+.pm-cell[data-count="0"] .pm-t{color:var(--text-2);font-size:12px}
+.pm-cell[data-count="0"]:hover{outline-color:var(--k);background:color-mix(in srgb,var(--k) 5%,transparent)}
+/* resaltado de fila o columna (hover/foco en su encabezado) */
+.pm-cell[data-hl="on"]:not([data-count="0"]){box-shadow:inset 0 0 0 1.5px var(--k)}
+.pm-cell[data-hl="on"][data-count="0"]{outline-color:var(--k)}
+:is(.pm-cell,.pm-rowhead,.pm-colhead)[data-hl="dim"]{opacity:.3}
+/* celda activa */
+.pm-cell[aria-pressed="true"]{z-index:1;background:color-mix(in srgb,var(--k) 22%,var(--pm-bg));box-shadow:inset 0 0 0 2px var(--k),0 10px 24px rgba(0,0,0,.22)}
+.pm-cell[aria-pressed="true"] .pm-n{box-shadow:0 0 0 3px color-mix(in srgb,var(--k) 35%,transparent)}
+.pm-cell[aria-pressed="true"] .pm-c{color:var(--text)}   /* sobre el tinte del 22 % la tinta del cluster baja de 4.5:1 en el 5 claro */
+.pm-cell[data-count="0"][aria-pressed="true"]{outline:2px solid var(--k);background:color-mix(in srgb,var(--k) 8%,transparent)}
+/* panel de detalle */
+.pm-detail{position:sticky;top:16px;background:var(--pm-bg);border-radius:var(--r-native);box-shadow:var(--card-shadow);padding:20px;border-top:3px solid var(--k,var(--rule))}
+.pm-detail-title{margin:0 0 8px;font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.pm-detail-title > span{color:var(--text-2);font-weight:400}
+.pm-detail-title em{font-style:normal;color:var(--ki)}
+.pm-detail-count{display:flex;align-items:center;gap:8px;margin:0 0 16px;font:500 12px/1.3 var(--f-mono);letter-spacing:.04em;color:var(--text-2)}
+.pm-dot{width:20px;height:20px;border-radius:50%;background:var(--k);color:var(--on-hl);display:grid;place-items:center;font:700 11px/1 var(--f-mono);font-style:normal}
+.pm-detail[data-count="0"] .pm-dot{width:12px;height:12px;background:none;box-shadow:inset 0 0 0 1px var(--text-2)}
+.pm-detail-list{display:grid;gap:16px}
+.pm-detail-empty{display:grid;justify-items:center;text-align:center;gap:14px;padding:40px 16px;border:1px dashed var(--rule);border-radius:var(--r-native)}
+.pm-detail-empty .t-p{margin:0;max-width:26ch}
+.pm-detail-ico{display:grid;grid-template-columns:repeat(2,14px);gap:5px}
+.pm-detail-ico i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--text-2)}
+.pm-detail-ico i:nth-child(1){background:var(--hl-vdc);box-shadow:none}
+.pm-detail-ico i:nth-child(4){background:var(--hl-cd);box-shadow:none}
+/* tarjeta de proyecto del detalle */
+.pm-proj{display:flex;flex-direction:column;border-radius:var(--r-native);overflow:hidden;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)}
+html[data-style="5"]:not([data-mode="dark"]) .pm-proj{background:var(--bg)}
+.pm-proj-thumb{border-bottom:3px solid var(--k)}
+.pm-proj-thumb .ph{aspect-ratio:16/9}
+.pm-proj-body{display:flex;flex-direction:column;gap:12px;padding:14px 16px 16px}
+.pm-proj-title{margin:0;font-size:16px;line-height:1.3;font-weight:600;letter-spacing:-.005em}
+.pm-proj-body p{margin:0;font-size:13.5px;line-height:1.45}
+.pm-proj-body .pm-proj-meta{margin-top:-8px;font:500 11.5px/1.3 var(--f-mono);letter-spacing:.04em;color:var(--text-2)}
+:is(.pm-proj-challenge,.pm-proj-result) b{display:block;margin-bottom:3px;font:600 10.5px/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.pm-proj-result{padding-left:10px;box-shadow:inset 2px 0 0 var(--k)}
+.pm-proj-result b{color:var(--ki)}
+.pm-proj-tools{list-style:none;margin:0;padding:0}
+.pm-proj-body .pm-proj-contact{display:flex;align-items:center;gap:8px;color:var(--text)}
+.pm-proj-contact b{font:600 10.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.pm-av{width:26px;height:26px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--k);color:var(--on-hl);font:600 10.5px/1 var(--f-sans)}
+.pm-proj-open{align-self:flex-start}
+@media (max-width:1100px){
+  [data-matrix-block]{grid-template-columns:1fr}
+  .pm-detail{position:static}
+  /* detalle debajo: cada tarjeta en horizontal (imagen 42 % a la izquierda) */
+  .pm-proj{flex-direction:row}
+  .pm-proj-thumb{flex:0 0 42%;border-bottom:0;border-right:3px solid var(--k)}
+  .pm-proj-thumb .ph{height:100%;min-height:240px;aspect-ratio:auto}
+}
+@media (max-width:639px){.pm-proj{flex-direction:column}.pm-proj-thumb{flex:none;border-right:0;border-bottom:3px solid var(--k)}.pm-proj-thumb .ph{min-height:0;aspect-ratio:16/9}}
+@media (max-width:639px){.pm-intro{grid-template-columns:1fr}.pm-intro .pm-view,.pm-legend{grid-column:1;grid-row:auto;justify-self:start;margin-top:14px}}
+/* matriz angosta (< 620 px): la practice area pasa arriba de su fila y la celda muestra solo la marca */
+@container (max-width:620px){
+  .pm-head,.pm-row{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pm-corner{display:none}
+  .pm-rowhead{grid-column:1/-1;min-height:36px}
+  .pm-hn{font-size:12.5px}
+  :is(.pm-t,.pm-c,.pm-mini){display:none}
+  .pm-cell{min-height:44px;place-content:center}
+}
+
+/* =========================================================
+   9 · ECOSISTEMA DE TOOLS (Tools) · ronda 9 · los 3 estilos
+   Tiles claros iguales por categoría; el ORIGEN se lee en el sello y el anillo: Gensler = tinta (sello «Gensler»),
+   COM / LATAM = color de statement (acento; azul en el 5), Commercial = neutro sin sello. Filtros por origen y cluster.
+   ========================================================= */
+/* @personalizar: colores de origen del ecosistema (--eco-g = Gensler, --eco-c = COM / LATAM) */
+.eco{--eco-panel:var(--surface);--eco-g:var(--text);--eco-g-ink:var(--bg);--eco-c:var(--accent);--eco-c-ink:var(--accent-ink);
+  container-type:inline-size;background:var(--eco-panel);border-radius:var(--r-native);box-shadow:var(--card-shadow);padding:20px 24px 28px}
+html[data-style="5"]:not([data-mode="dark"]) .eco{--eco-panel:var(--bg-neutral)}
+.eco-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.eco-seg .n{font:500 11px/1 var(--f-mono)}
+.eco-count{margin:0 0 0 auto;font:500 12px/1.3 var(--f-mono);letter-spacing:.06em;color:var(--text-2)}
+.eco-sw{width:12px;height:12px;border-radius:2px;flex:none;box-shadow:0 0 0 1.5px currentColor}
+.eco-sw[data-o="gensler"]{background:var(--eco-g)}
+.eco-sw[data-o="com-latam"]{background:var(--eco-c)}
+.eco-sw[data-o="commercial"]{background:var(--logo-tile,#fff)}
+.eco-cl{width:8px;height:8px;border-radius:50%;flex:none;background:var(--k)}
+/* tablero: 12 pistas; cada grupo ocupa tantas pistas como herramientas tiene (subgrid: todos los tiles alineados) */
+/* cada grupo ocupa 2 filas del tablero (encabezado + tiles) con subgrid: los encabezados de una misma fila comparten alto y los tiles quedan alineados */
+.eco-board{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:14px;row-gap:0;align-items:start;margin-bottom:-30px}
+.eco-grp,.eco-note{grid-column:span var(--n);grid-row:span 2;display:grid;grid-template-columns:subgrid;grid-template-rows:subgrid;row-gap:0;transition:opacity .2s}
+.eco-k{grid-column:1/-1;position:relative;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;align-self:stretch;margin:0 0 16px;padding-top:12px;border-top:1px solid var(--rule);
+  font:600 10.5px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
+.eco-k::before{content:"";position:absolute;left:0;top:-2px;width:18px;height:3px;border-radius:2px;background:var(--text)}
+.eco-k small{font:500 10.5px/1.4 var(--f-mono);letter-spacing:.04em;color:var(--text-2)}
+.eco-tiles{grid-column:1/-1;display:grid;grid-template-columns:subgrid;row-gap:16px;list-style:none;margin:0 0 30px;padding:0}
+[data-n="1"] .eco-k small{display:none}
+.eco-tile{min-width:0;transition:opacity .2s,filter .2s}
+.eco-tile a{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--text);border-radius:var(--r-native);outline-offset:5px}
+.eco-logo{position:relative;width:100%;aspect-ratio:1;display:grid;place-items:center;background:var(--logo-tile,#fff);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(17,21,34,.08);transition:transform .15s}
+html[data-style="5"]:not([data-mode="dark"]) .eco-logo{box-shadow:inset 0 0 0 1px #E3E8EF}
+.eco-logo img{width:74%;height:74%;object-fit:contain}
+.eco-tile a:hover .eco-logo{transform:translateY(-2px)}
+.eco-name{margin-top:15px;max-width:100%;font-size:12px;line-height:1.3;font-weight:500;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.eco-tbc{display:inline-flex;align-items:center;gap:4px;margin-top:3px;font:500 9.5px/1.2 var(--f-mono);letter-spacing:.04em;color:var(--text-2);white-space:nowrap}
+.eco-tbc::before{content:"";width:6px;height:6px;border-radius:50%;border:1px dashed currentColor}
+/* monograma (6 herramientas sin logo): mismo lenguaje que el placeholder «app logo» */
+.eco-logo.mono::before{content:"";position:absolute;inset:17%;border:1px dashed #C4CAD3;border-radius:4px}
+.eco-mono{font:600 17px/1 var(--f-art);letter-spacing:-.02em;color:#2A3142}
+/* sellos de origen: Gensler (tinta) y COM / LATAM (statement); anillo separado del tile por el color del panel */
+.eco-seal{position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);white-space:nowrap;font:700 9px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px 3px;border-radius:3px;box-shadow:0 0 0 2px var(--eco-panel)}
+[data-origen="gensler"] .eco-seal{background:var(--eco-g);color:var(--eco-g-ink)}
+[data-origen="com-latam"] .eco-seal{background:var(--eco-c);color:var(--eco-c-ink)}
+html .eco-tile[data-origen="gensler"] .eco-logo{box-shadow:0 0 0 2px var(--eco-panel),0 0 0 3.5px var(--eco-g)}
+html .eco-tile[data-origen="com-latam"] .eco-logo{box-shadow:0 0 0 2px var(--eco-panel),0 0 0 3.5px var(--eco-c)}
+/* filtro activo: lo que no coincide baja al 16 % en escala de grises (el tablero no se reacomoda) */
+.eco-tile[data-off]{opacity:.13;filter:grayscale(1)}
+.eco-grp[data-off] .eco-k{opacity:.4}
+/* «cómo leer» (llena la última fila) */
+.eco-note ul{grid-column:1/-1;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;font-size:13px;line-height:1.4;color:var(--text-2)}
+.eco-note ul{align-self:start}
+.eco-note li{display:grid;grid-template-columns:84px minmax(0,1fr);align-items:center;gap:10px}
+.eco-note li > :first-child{justify-self:start}
+.eco-note li b{color:var(--text);font-weight:600}
+.eco-note .eco-seal{position:static;transform:none;flex:none;box-shadow:none}
+.eco-note .eco-plain{flex:none;width:22px;height:22px;border-radius:4px;background:var(--logo-tile,#fff);box-shadow:inset 0 0 0 1px rgba(17,21,34,.12)}
+.eco-note .eco-tbc{margin:0;font-size:11px}
+@container (max-width:1040px){
+  .eco-board{display:flex;flex-wrap:wrap;gap:28px 32px;margin-bottom:0}
+  .eco-grp,.eco-note{display:block}
+  .eco-note{flex-basis:100%}
+  .eco-k{margin-bottom:14px}
+  .eco-tiles{margin-bottom:0}
+  .eco-tiles{display:flex;flex-wrap:wrap;gap:16px 12px}
+  .eco-tile{width:80px}
+}
+@container (max-width:560px){.eco-note ul{grid-template-columns:1fr}.eco-count{margin-left:0;flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -1199,7 +1427,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   <span class="lbl">Modo</span>
   <div class="grp" id="modeGrp" role="group" aria-label="Modo claro u oscuro (solo Estilo 5)"><button data-set-mode="light" aria-pressed="true">Claro</button><button data-set-mode="dark" aria-pressed="false">Oscuro</button></div>
   <span class="lbl">Imágenes</span>
-  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (solo Estilo 5)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
+  <div class="grp" id="imgGrp" role="group" aria-label="Imágenes reales de maqueta/img (Estilos 1, 5 y 6)"><button data-set-img="1" aria-pressed="false">Sí</button><button data-set-img="0" aria-pressed="true">No</button></div>
   <div class="grp"><button id="wpToggle" aria-pressed="false">Ver web parts</button></div>
   <div class="grp"><button id="logosBtn" aria-expanded="false" aria-controls="logosDrawer">Logos</button></div>
   <div class="legend-wp" aria-hidden="true"><span style="background:var(--lab-n)">Nativo</span><span style="background:var(--lab-i)">Imagen</span><span style="background:var(--lab-p)">Power Apps</span></div>
@@ -1532,7 +1760,8 @@ function shot5(v='dash'){
    (archivo, ancho, alto, alt). pos = object-position (encuadre por imagen); z = escala extra
    que recorta el margen gris de las piezas sacadas de láminas (≤ 1.13, sin pixelar). Las fotos de personas (persona-*) NO se usan: el sitio es público.
    Si un espacio no tiene imagen asignada, conserva su placeholder realista (photo5 / shot5). */
-const IMG5 = () => S5() && document.documentElement.dataset.img==='1';
+/* (ronda 9) también en el Estilo 1: mismas imágenes y bandejas que el 6; los espacios sin imagen conservan el placeholder del 1 (bld) */
+const IMG5 = () => document.documentElement.dataset.img==='1' && /^[15]$/.test(document.documentElement.dataset.style);
 const IMGS = {
   massing:{f:'proj-massing-model-render.jpg',w:1600,h:900,pos:'50% 58%',alt:'Clean white 3D massing model of a mixed-use development with colored towers'},
   speckleRhino:{f:'tool-speckle-rhino-model.jpg',w:1600,h:998,pos:'0% 50%',alt:'Speckle web viewer displaying a detailed architectural model in the browser'},
@@ -1574,7 +1803,7 @@ const media5 = (key,ctx='') => IMG5()&&IMG_BY[key] ? img5(IMG_BY[key],'m5img',ct
 /* captura real dentro del marco de navegador (barra de 16 px) */
 const frame5 = id => `<div class="m5 shot real"><span class="m5-bar" aria-hidden="true"><i></i><i></i><i></i><b></b></span>${img5(id)}</div>`;
 const imgNote = s => IMG5()?s:'';
-const ph = (kind, tint, tag='', key='', ctx='') => {const im=S5()&&media5(key,ctx);
+const ph = (kind, tint, tag='', key='', ctx='') => {const im=media5(key,ctx);
   return `<div class="ph grain" style="--t:var(--hl-${tint})"${im?' data-real':''}>${im||(S5()?(kind==='screen'?shot5('dash'):photo5(kind,kind==='people'?'Photo':'Project photo')):bld(kind))}${tag?`<span class="tag">${esc(tag)}</span>`:''}</div>`};
 
 /* =========================================================
@@ -1928,8 +2157,13 @@ const chip = (x,st=false) => {const k=CHIPK[x], kc=k&&(['lime','amber','rose'].i
   return `<span class="chip${st?' st':''}${k?' k':''}"${k?` style="--kc:${kc};--ki:var(--ink-${k});--kt:var(--tint-${k})"`:''}>${esc(x)}</span>`};
 /* herramientas en el Estilo 5: tile de logo de app (monograma, "app logo") + captura en bandeja con marco de navegador */
 const APPM={SP:'Sp',CP:'Cp',PB:'PBI',DY:'Dy',RR:'Rh',gB:'gB',TA:'TA',UV:'UV'}, SHOTV={SP:'model',CP:'chat',PB:'dash',DY:'model',RR:'model',gB:'model',TA:'map',UV:'map'};
-const toolIco = t => `<span class="ico">${S5()?`<b>${APPM[t]||t}</b><small>app logo</small>`:t}</span>`;
-const toolShot = t => S5()?(IMG5()&&IMG_BY['tool:'+t]?`<div class="shot5 tray5">${frame5(IMG_BY['tool:'+t])}</div>`:`<div class="shot5 tray5">${shot5(SHOTV[t]||'dash')}</div>`):'';
+/* (ronda 9) con img=1 el tile usa el logo real de maqueta/img/logos (id de TOOLS_ECOSYSTEM); TA y UV no tienen logo y quedan con monograma.
+   TOOLK = cluster de cada app (tinte del placeholder del Estilo 1 cuando la app no tiene captura) */
+const APPL={SP:'speckle',PB:'power-bi',CP:'copilot',DY:'dynamo',RR:'rhino-inside',gB:'gblox'}, TOOLK={SP:'di',PB:'di',CP:'di',DY:'cd',RR:'cd',gB:'cd',TA:'rc',UV:'di'};
+const toolIco = t => IMG5()&&APPL[t] ? `<span class="ico logo"><img src="img/logos/${APPL[t]}.png" alt="" width="128" height="128" loading="lazy"></span>`
+  : `<span class="ico">${S5()?`<b>${APPM[t]||t}</b><small>app logo</small>`:t}</span>`;
+const toolShot = t => IMG5()&&IMG_BY['tool:'+t] ? `<div class="shot5 tray5">${frame5(IMG_BY['tool:'+t])}</div>`
+  : S5() ? `<div class="shot5 tray5">${shot5(SHOTV[t]||'dash')}</div>` : IMG5() ? `<div class="shot5">${ph('screen',TOOLK[t]||'di')}</div>` : '';
 /* catálogo de capturas (solo con imágenes reales): apps sin registro propio en la galería de Tools. [id, app, tema del manifiesto, ancho doble] */
 const CAT5=[['gbloxMulti','gBlox','gBlox metrics per building across several towers'],['pbiSpeckle','Power BI + Speckle','Power BI report with embedded Speckle 3D model'],['gbloxCosts','gBlox','gBlox model properties and costs panel'],['gbloxCO2','gBlox.CO2','gBlox.CO2 carbon emissions per building'],['ladybug','Ladybug','Ladybug environmental analysis in Grasshopper'],['flows','Flows','Pedestrian flow agent simulation in a retail project',1],['gbloxProgram','gBlox','gBlox live program and metrics dashboard in Rhino']];
 const toolCatalog = () => IMG5()?sec('l1','none',[wp('i','Image gallery · Tiles · capturas de apps sin registro propio (gBlox, Power BI + Speckle, Ladybug, Flows) · alt del manifiesto',`<div class="wp-title"><h3>Tool gallery</h3></div><div class="shots5">${CAT5.map(c=>`<figure class="${c[3]?'w2':''}"><div class="fr tray5">${frame5(c[0])}</div><figcaption><b>${esc(c[1])}</b>${esc(c[2])}</figcaption></figure>`).join('')}</div>`)]):'';
@@ -2227,7 +2461,7 @@ function bindOnboarding(){
 function pageHome(){
   const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
   return [
-    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada',homeHeader())]),
+    sec('full','none',[wp('i',S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada'+imgNote(' + foto real atenuada (negativo en screen al 15 %) detrás del titular'),homeHeader())]),
     quickRow(),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
@@ -2301,17 +2535,226 @@ function pageCluster(k){
 
 const banner = (k,t,tail,p) => sec('l1','none',[wp('n','Banner · layout Plain (título de página)', `<div class="banner">${kick(k)}<h1 class="t-h1">${esc(t)} ${tailFin(tail)}</h1><p class="t-p muted">${esc(p)}</p></div>`)]);
 
+/* @personalizar: matriz de proyectos (Practice area × Cluster).
+   rows = practice areas (taxonomía de Gensler); cols = clusters; projects = pool de casos; cells = un cruce por entrada con 0, 1 o 2 ids (los vacíos son huecos a propósito).
+   imagen = clave de IMG_BY del caso existente (misma imagen en Home, Projects y cluster) o null; ph = placeholder si no hay imagen; vinculo = página del caso. */
+const PROJECT_MATRIX = {
+  rows:['Workplace','Mixed Use','Residential','Hospitality','Retail','Health & Wellness','Education','Sports & Entertainment','Industrial & Logistics','Aviation & Transportation'],
+  cols:[{name:'VDC',k:'vdc'},{name:'Reality Capture',k:'rc'},{name:'Computational Design',k:'cd'},{name:'Data Intelligence',k:'di'}],
+  projects:[
+    {id:'p01',titulo:'4D sequencing for a Buenos Aires HQ',oficina:'Buenos Aires',anio:2026,problema:'Fit-out phases clashed with live floors in an occupied building.',resultado:'Sequencing rework cut by 35 % across 4 phases.',herramientas:['Navisworks','ACC'],contacto:'Diego Ejemplo',imagen:null,ph:'city',vinculo:'#/clusters/vdc'},
+    {id:'p02',titulo:'As-built scan for a Santiago HQ floor',oficina:'Santiago',anio:2025,problema:'Outdated drawings blocked a fast test fit.',resultado:'Model ready in 5 days instead of 3 weeks.',herramientas:['Leica scanner','Recap','Revit'],contacto:'Mateo Prueba',imagen:null,ph:'screen',vinculo:'#/clusters/rc'},
+    {id:'p03',titulo:'gBlox for test-fit studies',oficina:'Regional',anio:2026,problema:'Test fits took days for every option.',resultado:'40 layouts compared in a single workshop.',herramientas:['gBlox','Rhino','Grasshopper'],contacto:'Camila Ficticia',imagen:null,ph:'screen',vinculo:'#/clusters/cd'},
+    {id:'p04',titulo:'Speckle → Power BI project dashboards',oficina:'Bogotá',anio:2026,problema:'Project data lived in scattered spreadsheets.',resultado:'One live dashboard now covers 12 projects.',herramientas:['Speckle','Power BI'],contacto:'Sofía Muestra',imagen:'Speckle → Power BI project dashboards',ph:'screen',vinculo:'#/clusters/di'},
+    {id:'p05',titulo:'Occupancy insights for a Lima workplace',oficina:'Lima',anio:2025,problema:'Leaders could not see how floors were really used.',resultado:'Planned desks reduced by 18 % using sensor data.',herramientas:['Power BI','Power Automate'],contacto:'Lucía Demo',imagen:null,ph:'screen',vinculo:'#/clusters/di'},
+    {id:'p06',titulo:'Monterrey tower: one federated model',oficina:'Monterrey',anio:2026,problema:'Five disciplines worked on separate models.',resultado:'Clash review time down 40 %.',herramientas:['Speckle','Navisworks','ACC'],contacto:'Lucía Demo',imagen:'Monterrey tower: one federated model',ph:'tower',vinculo:'#/clusters/vdc'},
+    {id:'p07',titulo:'Construction progress scans, monthly',oficina:'Mexico City',anio:2026,problema:'Progress reports relied on site photos.',resultado:'12 monthly scans compared against the model.',herramientas:['Drone','Recap','Revit'],contacto:'Mateo Prueba',imagen:null,ph:'city',vinculo:'#/clusters/rc'},
+    {id:'p08',titulo:'Urban Vitality Index for Mexico City',oficina:'Mexico City',anio:2026,problema:'Teams lacked a shared way to judge street life.',resultado:'38 corridors scored in 3 weeks.',herramientas:['Python','Power BI','Speckle'],contacto:'Diego Ejemplo',imagen:'Urban Vitality Index for Mexico City corridors',ph:'city',vinculo:'#/clusters/di'},
+    {id:'p09',titulo:'Climate analysis toolkit for early massing',oficina:'Santo Domingo',anio:2025,problema:'Massing choices ignored sun and wind until late.',resultado:'Solar hours compared for 6 options in one day.',herramientas:['Ladybug','Grasshopper'],contacto:'Camila Ficticia',imagen:null,ph:'city',vinculo:'#/clusters/cd'},
+    {id:'p10',titulo:'Unit mix optimizer for a Panama tower',oficina:'Panama City',anio:2026,problema:'Unit mix changes forced manual area takeoffs.',resultado:'Area schedules update in minutes, not hours.',herramientas:['Rhino','Grasshopper','gBlox'],contacto:'Sofía Muestra',imagen:null,ph:'tower',vinculo:'#/clusters/cd'},
+    {id:'p11',titulo:'Unit-type dashboards for a Lima complex',oficina:'Lima',anio:2025,problema:'Sales and design teams used different unit counts.',resultado:'One source of truth for 640 units.',herramientas:['Speckle','Power BI'],contacto:'Mateo Prueba',imagen:null,ph:'screen',vinculo:'#/clusters/di'},
+    {id:'p12',titulo:'Model QA dashboards for hotel fit-outs',oficina:'Santo Domingo',anio:2026,problema:'Fit-out models arrived with inconsistent data.',resultado:'Model errors caught 3 weeks earlier.',herramientas:['Speckle','Power BI','ACC'],contacto:'Diego Ejemplo',imagen:null,ph:'hub',vinculo:'#/clusters/vdc'},
+    {id:'p13',titulo:'Santo Domingo colonial façade: scan-to-BIM',oficina:'Santo Domingo',anio:2026,problema:'The colonial façade had no reliable drawings.',resultado:'Scan-to-BIM model with 5 mm accuracy.',herramientas:['Leica scanner','Recap','Revit'],contacto:'Mateo Prueba',imagen:'Santo Domingo colonial façade: scan-to-BIM',ph:'facade',vinculo:'#/clusters/rc'},
+    {id:'p14',titulo:'Retail layout generator for malls',oficina:'San José',anio:2026,problema:'Tenant layouts were drawn one by one.',resultado:'Layout options generated in under 10 minutes.',herramientas:['Grasshopper','Rhino','Python'],contacto:'Camila Ficticia',imagen:null,ph:'hub',vinculo:'#/clusters/cd'},
+    {id:'p15',titulo:'Spatial analytics for retail network',oficina:'Buenos Aires',anio:2026,problema:'Store results were compared without spatial context.',resultado:'Zone-level data for 22 stores in one app.',herramientas:['Power BI','Speckle'],contacto:'Lucía Demo',imagen:null,ph:'city',vinculo:'#/clusters/di'},
+    {id:'p16',titulo:'MEP coordination for a Mexico City hospital',oficina:'Mexico City',anio:2025,problema:'Dense MEP systems risked costly clashes on site.',resultado:'Clashes reduced by 52 % before construction.',herramientas:['Navisworks','ACC','Revit'],contacto:'Sofía Muestra',imagen:null,ph:'tower',vinculo:'#/clusters/vdc'},
+    {id:'p17',titulo:'Scan of a clinic wing renovation',oficina:'Bogotá',anio:2025,problema:'The renovation needed exact existing conditions.',resultado:'Existing wing captured in 2 nights.',herramientas:['Recap','Revit','Faro scanner'],contacto:'Diego Ejemplo',imagen:null,ph:'facade',vinculo:'#/clusters/rc'},
+    {id:'p18',titulo:'Terrain Analysis for a hillside campus',oficina:'San José',anio:2026,problema:'A steep site made early planning guesswork.',resultado:'Slope maps for 14 ha in two days.',herramientas:['Terrain Analysis','Rhino','Drone'],contacto:'Camila Ficticia',imagen:'Terrain Analysis for a hillside campus',ph:'hill',vinculo:'#/clusters/rc'},
+    {id:'p19',titulo:'Daylight study for a university campus',oficina:'Santiago',anio:2025,problema:'Classroom daylight was checked too late.',resultado:'Glare hours reduced by 20 % after glazing changes.',herramientas:['Ladybug','Grasshopper'],contacto:'Lucía Demo',imagen:null,ph:'hill',vinculo:'#/clusters/cd'},
+    {id:'p20',titulo:'Stadium bowl coordination in one model',oficina:'Monterrey',anio:2026,problema:'Steel, seating and MEP changed every day.',resultado:'Weekly coordination replaced daily rework.',herramientas:['Speckle','Navisworks'],contacto:'Mateo Prueba',imagen:null,ph:'tower',vinculo:'#/clusters/vdc'},
+    {id:'p21',titulo:'Seating bowl sightlines, parametric',oficina:'Mexico City',anio:2025,problema:'Sightline checks slowed down bowl design.',resultado:'Views checked for 40,000 seats in one run.',herramientas:['Rhino','Grasshopper'],contacto:'Sofía Muestra',imagen:null,ph:'city',vinculo:'#/clusters/cd'},
+    {id:'p22',titulo:'Crowd egress simulation for an arena',oficina:'Panama City',anio:2026,problema:'Egress times were estimated by hand.',resultado:'Evacuation modeled for 3 event scenarios.',herramientas:['Grasshopper','Python'],contacto:'Diego Ejemplo',imagen:null,ph:'hub',vinculo:'#/clusters/cd'},
+    {id:'p23',titulo:'Slab flatness scan for a warehouse',oficina:'Monterrey',anio:2025,problema:'Slab tolerances were checked only by sampling.',resultado:'Full-floor flatness map in one day.',herramientas:['Laser scanner','Recap','CloudCompare'],contacto:'Camila Ficticia',imagen:null,ph:'screen',vinculo:'#/clusters/rc'},
+    {id:'p24',titulo:'Throughput dashboards for a logistics hub',oficina:'Mexico City',anio:2026,problema:'Operations data was disconnected from design.',resultado:'Dock capacity tested against 3 growth cases.',herramientas:['Power BI','Python'],contacto:'Lucía Demo',imagen:null,ph:'screen',vinculo:'#/clusters/di'},
+    {id:'p25',titulo:'Terminal expansion federated model',oficina:'Panama City',anio:2026,problema:'Phased expansion had to keep a live terminal running.',resultado:'Phasing conflicts cut by 30 %.',herramientas:['Navisworks','ACC','Speckle'],contacto:'Mateo Prueba',imagen:null,ph:'hub',vinculo:'#/clusters/vdc'},
+    {id:'p26',titulo:'Pedestrian Flows for the Bogotá transit hub',oficina:'Bogotá',anio:2026,problema:'Passenger flows were guessed for the hub design.',resultado:'Peak-hour crowding cut by 25 %.',herramientas:['Grasshopper','Python','Flows'],contacto:'Sofía Muestra',imagen:'Pedestrian Flows for the Bogotá transit hub',ph:'hub',vinculo:'#/clusters/cd'}
+  ],
+  cells:[
+    {row:'Workplace',col:'VDC',ids:['p01']},{row:'Workplace',col:'Reality Capture',ids:['p02']},{row:'Workplace',col:'Computational Design',ids:['p03']},{row:'Workplace',col:'Data Intelligence',ids:['p04','p05']},
+    {row:'Mixed Use',col:'VDC',ids:['p06']},{row:'Mixed Use',col:'Reality Capture',ids:['p07']},{row:'Mixed Use',col:'Computational Design',ids:[]},{row:'Mixed Use',col:'Data Intelligence',ids:['p08']},
+    {row:'Residential',col:'VDC',ids:[]},{row:'Residential',col:'Reality Capture',ids:[]},{row:'Residential',col:'Computational Design',ids:['p09','p10']},{row:'Residential',col:'Data Intelligence',ids:['p11']},
+    {row:'Hospitality',col:'VDC',ids:['p12']},{row:'Hospitality',col:'Reality Capture',ids:['p13']},{row:'Hospitality',col:'Computational Design',ids:[]},{row:'Hospitality',col:'Data Intelligence',ids:[]},
+    {row:'Retail',col:'VDC',ids:[]},{row:'Retail',col:'Reality Capture',ids:[]},{row:'Retail',col:'Computational Design',ids:['p14']},{row:'Retail',col:'Data Intelligence',ids:['p15']},
+    {row:'Health & Wellness',col:'VDC',ids:['p16']},{row:'Health & Wellness',col:'Reality Capture',ids:['p17']},{row:'Health & Wellness',col:'Computational Design',ids:[]},{row:'Health & Wellness',col:'Data Intelligence',ids:[]},
+    {row:'Education',col:'VDC',ids:[]},{row:'Education',col:'Reality Capture',ids:['p18']},{row:'Education',col:'Computational Design',ids:['p19']},{row:'Education',col:'Data Intelligence',ids:[]},
+    {row:'Sports & Entertainment',col:'VDC',ids:['p20']},{row:'Sports & Entertainment',col:'Reality Capture',ids:[]},{row:'Sports & Entertainment',col:'Computational Design',ids:['p21','p22']},{row:'Sports & Entertainment',col:'Data Intelligence',ids:[]},
+    {row:'Industrial & Logistics',col:'VDC',ids:[]},{row:'Industrial & Logistics',col:'Reality Capture',ids:['p23']},{row:'Industrial & Logistics',col:'Computational Design',ids:[]},{row:'Industrial & Logistics',col:'Data Intelligence',ids:['p24']},
+    {row:'Aviation & Transportation',col:'VDC',ids:['p25']},{row:'Aviation & Transportation',col:'Reality Capture',ids:[]},{row:'Aviation & Transportation',col:'Computational Design',ids:['p26']},{row:'Aviation & Transportation',col:'Data Intelligence',ids:[]}
+  ]
+};
+const pmCell = (r,c) => PROJECT_MATRIX.cells.find(x=>x.row===r&&x.col===c)||{row:r,col:c,ids:[]};
+const pmProj = id => PROJECT_MATRIX.projects.find(p=>p.id===id);
+const pmCount = n => n?n+(n>1?' projects':' project'):'No reference yet';
+/* @personalizar: tarjeta de detalle de un proyecto de la matriz (Open case study = p.vinculo) */
+const pmIni = s => s.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+function matrixProjectCard(p,k){
+  return `<article class="pm-proj" data-matrix-project="${esc(p.id)}" data-k="${k}"><div class="pm-proj-thumb">${ph(p.ph,k,'',p.imagen||p.titulo)}</div><div class="pm-proj-body"><h4 class="pm-proj-title">${esc(p.titulo)}</h4><p class="pm-proj-meta">${esc(p.oficina)} · ${p.anio}</p>`
+   + `<p class="pm-proj-challenge"><b>Challenge</b> ${esc(p.problema)}</p><p class="pm-proj-result"><b>Result</b> ${esc(p.resultado)}</p>`
+   + `<ul class="chips pm-proj-tools">${p.herramientas.map(t=>`<li class="chip">${esc(t)}</li>`).join('')}</ul><p class="pm-proj-contact"><span class="pm-av" aria-hidden="true">${pmIni(p.contacto)}</span><b>Contact</b> ${esc(p.contacto)}</p>`
+   + `<a class="btn pm-proj-open" href="${esc(p.vinculo)}">Open case study</a></div></article>`;
+}
+function matrixDetailHTML(row,col){
+  if(!row) return `<div class="pm-detail-empty"><span class="pm-detail-ico" aria-hidden="true"><i></i><i></i><i></i><i></i></span><p class="t-p muted">Select a cell to see its reference projects.</p></div>`;
+  const c=pmCell(row,col), cd=PROJECT_MATRIX.cols.find(x=>x.name===col), n=c.ids.length;
+  const head=`<h3 class="pm-detail-title">${esc(row)} <span aria-hidden="true">×</span><span class="sr">and</span> <em>${esc(col)}</em></h3><p class="pm-detail-count muted"><i class="pm-dot" aria-hidden="true">${n||''}</i>${pmCount(n)}</p>`;
+  if(!n) return head+`<p class="t-p muted">Nobody has documented this combination yet.</p><a class="btn pm-proj-open" href="#/request">Propose a case study</a>`;
+  return head+`<div class="pm-detail-list">${c.ids.map(id=>matrixProjectCard(pmProj(id),cd.k)).join('')}</div>`;
+}
+/* @personalizar: la matriz; cada celda es un botón con data-row, data-col y data-count */
+function matrixHTML(){
+  const M=PROJECT_MATRIX, tot=f=>M.cells.filter(f).reduce((a,x)=>a+x.ids.length,0);
+  /* (ronda 9) totales por fila y columna (mono, sin texto nuevo) y, con img=1, una miniatura del primer caso con imagen */
+  const mini=ids=>{const p=ids.map(pmProj).find(p=>p.imagen&&IMG_BY[p.imagen]);return IMG5()&&p?`<span class="pm-mini" aria-hidden="true">${img5(IMG_BY[p.imagen],'m5img')}</span>`:''};
+  return `<div class="pm" data-matrix role="grid" aria-label="Practice area by Cluster project matrix">`
+   + `<div class="pm-head" role="row"><span class="pm-corner" role="columnheader">Practice area</span>${M.cols.map(c=>`<button type="button" class="pm-colhead" role="columnheader" data-matrix-col="${esc(c.name)}" data-k="${c.k}"><span class="pm-hn">${esc(c.name)}</span><span class="pm-sum">${pmCount(tot(x=>x.col===c.name))}</span></button>`).join('')}</div>`
+   + M.rows.map(r=>`<div class="pm-row" role="row"><button type="button" class="pm-rowhead" role="rowheader" data-matrix-row="${esc(r)}"><span class="pm-hn">${esc(r)}</span><span class="pm-sum" aria-hidden="true">${tot(x=>x.row===r)||''}</span></button>${M.cols.map(c=>{const x=pmCell(r,c.name),n=x.ids.length;
+       return `<button type="button" class="pm-cell" role="gridcell" data-matrix-cell data-row="${esc(r)}" data-col="${esc(c.name)}" data-count="${n}" data-k="${c.k}" aria-pressed="false" aria-label="${esc(r)} and ${esc(c.name)}: ${pmCount(n).toLowerCase()}"><span class="pm-n" aria-hidden="true">${n||''}</span>${n?(mini(x.ids)||`<span class="pm-c" aria-hidden="true">${n>1?'projects':'project'}</span>`):''}<span class="pm-t">${n?esc(pmProj(x.ids[0]).titulo):'No reference yet'}</span></button>`}).join('')}</div>`).join('')
+   + `</div>`;
+}
+/* resaltar fila o columna al pasar por su encabezado; clic o Enter en una celda = activa, evento matrix:select {row,col} y detalle */
+function bindMatrix(){
+  const root=document.querySelector('[data-matrix]'); if(!root) return;
+  const det=document.querySelector('[data-matrix-detail]'), cells=[...root.querySelectorAll('[data-matrix-cell]')];
+  const hl=(attr,val)=>{
+    cells.forEach(c=>{if(!val)c.removeAttribute('data-hl');else c.dataset.hl=c.dataset[attr]===val?'on':'dim'});
+    root.querySelectorAll('[data-matrix-row]').forEach(h=>{if(!val||attr!=='row')h.removeAttribute('data-hl');else h.dataset.hl=h.dataset.matrixRow===val?'on':'dim'});
+    root.querySelectorAll('[data-matrix-col]').forEach(h=>{if(!val||attr!=='col')h.removeAttribute('data-hl');else h.dataset.hl=h.dataset.matrixCol===val?'on':'dim'});
+  };
+  root.querySelectorAll('[data-matrix-row],[data-matrix-col]').forEach(h=>{
+    const attr=h.hasAttribute('data-matrix-row')?'row':'col', val=attr==='row'?h.dataset.matrixRow:h.dataset.matrixCol;
+    ['mouseenter','focus'].forEach(e=>h.addEventListener(e,()=>hl(attr,val)));
+    ['mouseleave','blur'].forEach(e=>h.addEventListener(e,()=>hl(attr,null)));
+  });
+  cells.forEach(c=>c.addEventListener('click',()=>{   /* los botones ya activan clic con Enter y Espacio */
+    cells.forEach(x=>x.setAttribute('aria-pressed',x===c));
+    const d={row:c.dataset.row,col:c.dataset.col};
+    if(det){det.innerHTML=matrixDetailHTML(d.row,d.col);det.dataset.k=c.dataset.k;det.dataset.count=c.dataset.count;
+      /* detalle debajo (pantallas angostas): lo trae a la vista si quedó fuera */
+      const r=det.getBoundingClientRect();if(r.top>innerHeight&&det.offsetTop>c.offsetTop+200)det.scrollIntoView({behavior:'smooth',block:'start'})}
+    root.dispatchEvent(new CustomEvent('matrix:select',{detail:d,bubbles:true}));
+  }));
+  document.querySelectorAll('[data-matrix-view]').forEach(b=>b.addEventListener('click',()=>{
+    const v=b.dataset.matrixView;
+    document.querySelectorAll('[data-matrix-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    document.querySelectorAll('[data-matrix-block]').forEach(x=>x.hidden=(v==='list'));
+  }));
+}
 function pageProjects(){
   const all=[['Urban Vitality Index for Mexico City corridors','city','di','DI · Mexico City'],['Pedestrian Flows for the Bogotá transit hub','hub','cd','CD · Bogotá'],['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey'],['Santo Domingo colonial façade: scan-to-BIM','facade','rc','RC · Santo Domingo'],['Terrain Analysis for a hillside campus','hill','rc','RC · San José'],['Speckle → Power BI project dashboards','screen','di','DI · Bogotá']];
   return banner('Projects','Where has DT created value?','Case studies by cluster.','One page per case study, tagged by cluster, office and tool.')
+  /* @personalizar: matriz Practice area × Cluster, pieza principal. Encabezado (titular, instrucción, leyenda, control Matrix / List), matriz y detalle son una sola app */
+  + sec('l1','none',[
+      wp('n','Text · Heading 2 + Normal · control Matrix / List', `<div class="pm-intro" data-matrix-intro>${kick('Reference finder')}${h2('Find a reference by practice area')}<p class="t-p muted">Choose a practice area and a cluster to see the projects you can show.</p><ul class="pm-legend" aria-label="Legend"><li data-matrix-legend="filled"><i class="pm-key" data-count="1" aria-hidden="true"></i> Filled = projects</li><li data-matrix-legend="empty"><i class="pm-key" data-count="0" aria-hidden="true"></i> Empty = no reference yet</li></ul><div class="pm-view" role="group" aria-label="View"><button type="button" class="pm-view-btn" data-matrix-view="matrix" aria-pressed="true">Matrix</button><button type="button" class="pm-view-btn" data-matrix-view="list" aria-pressed="false">List</button></div></div>`),
+      ])
+  + sec('l1','none',[`<div data-matrix-block>${wp('p','Power Apps (matriz interactiva) · alternativa: Microsoft List agrupada por Practice area + filtro por Cluster', matrixHTML())}${wp('p','Power Apps · detalle del cruce (parte de la misma app)', `<div class="pm-detail" data-matrix-detail aria-live="polite">${matrixDetailHTML()}</div>`)}</div>`])
   + sec('l1','none',[wp('n','Quick links · Button (vínculos a vistas filtradas)', `<div class="ql-buttons" style="grid-template-columns:repeat(5,1fr)">${['All projects · 26','VDC · 8','Reality Capture · 5','Computational Design · 7','Data Intelligence · 6'].map(x=>`<a class="ql-btn" href="#/projects" style="font-size:14px;padding:10px 12px">${esc(x)}</a>`).join('')}</div>`)])
-  + sec('l1','none',[wp('n','Highlighted content · Cards · Lista Projects (todas)'+imgNote(' · miniatura = imagen de miniatura de la página (imagen real 16:9)'), `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
+  + sec('l1','none',[wp('n','Text · Heading 2',`${kick('Alternative view')}${h2('All projects')}`)])
+  + sec('l1','none',[wp('n','Highlighted content / List · Lista Projects (todas)'+imgNote(' · miniatura = imagen de miniatura de la página (imagen real 16:9)'), `<div class="hc">${all.map(a=>hcCard(a[0],a[1],a[2],a[3],'Case study · Published','#/clusters/'+a[2])).join('')}</div>`)])
   + sec('l31','neutral',[wp('n','Text · Heading 2 + Normal', `${kick('Contribute')}${h2('Did DT help your project?','Tell the story.')}<p class="t-p muted">Case studies are reviewed once a year.</p>`),wp('n','Button', `<a class="btn" href="#/request">Propose a case study</a>`)]);
+}
+/* @personalizar: ecosistema de Tools (pieza principal de Tools). Copia inline de maqueta/img/logos/tools.json (en file:// no hay fetch).
+   origen = 'gensler' | 'com-latam' | 'commercial'; origen_confirmado:false = marca «to confirm»; logo = PNG 128 px en img/logos/ (null = monograma, campo mono).
+   groups = orden y nombre visible (cats = categorías del JSON que reúne). El orden llena filas de 12 tiles: BIM 10 + Automation 2 · Design 6 + Interop 3 + Collab 3 ·
+   Analysis 11 + Data 1 · Visualization 5 + Graphics 4 + Feasibility 1 · Creative & AI 4 + «How to read» (8). Si cambian los conteos, reordena para llenar filas. */
+const TOOLS_ECOSYSTEM = {
+  origins:[{k:'gensler',name:'Gensler',seal:'Gensler',desc:'Built by Gensler'},{k:'com-latam',name:'COM / LATAM',seal:'COM/LATAM',desc:'Built in Latin America'},{k:'commercial',name:'Commercial',seal:'',desc:'Licensed software, no seal'}],
+  groups:[
+    {name:'BIM & Documentation',cats:['BIM & Documentation']},{name:'Automation',cats:['Automation']},
+    {name:'Design & Computation',cats:['Design & Computation']},{name:'Interoperability',cats:['Interoperability']},{name:'Collaboration',cats:['Collaboration']},
+    {name:'Analysis & Simulation',cats:['Analysis & Simulations']},{name:'Data Intelligence',cats:['Data Intelligence']},
+    {name:'Visualization',cats:['Visualization']},{name:'Graphics & Publishing',cats:['Graphics & Publishing']},{name:'Feasibility',cats:['Feasibility']},
+    {name:'Creative & AI',cats:['Creative Storytelling','AI']}
+  ],
+  tools:[
+    {id:'revit',nombre:'Revit',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'revit.png'},
+    {id:'bim360',nombre:'BIM360',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'bim360.png'},
+    {id:'especs',nombre:'eSpecs',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'especs.png'},
+    {id:'formit',nombre:'Formit',categoria:'BIM & Documentation',origen:'commercial',clusters:['RC','CD'],logo:'formit.png'},
+    {id:'hatchkit',nombre:'HatchKit',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'hatchkit.png'},
+    {id:'ideate',nombre:'Ideate',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'ideate.png'},
+    {id:'specsources',nombre:'Specsources',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'specsources.png'},
+    {id:'slingshot',nombre:'Slingshot',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'slingshot.png'},
+    {id:'navisworks',nombre:'Navisworks',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'navisworks.png'},
+    {id:'fenestrapro',nombre:'FenestraPro',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'fenestrapro.png'},
+    {id:'rhino',nombre:'Rhino',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'rhino.png'},
+    {id:'grasshopper',nombre:'Grasshopper',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'grasshopper.png'},
+    {id:'dynamo',nombre:'Dynamo',categoria:'Design & Computation',origen:'commercial',clusters:['VDC','CD'],logo:'dynamo.png'},
+    {id:'speckle',nombre:'Speckle',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'speckle.png'},
+    {id:'rhino-inside',nombre:'Rhino.Inside',categoria:'Interoperability',origen:'commercial',clusters:['VDC','CD'],logo:'rhino-inside.png'},
+    {id:'conveyor',nombre:'Conveyor',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'conveyor.png'},
+    {id:'run-diffusion',nombre:'Run Diffusion',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:null,mono:'RD'},
+    {id:'adobe-firefly',nombre:'Adobe Firefly',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:'adobe-firefly.png'},
+    {id:'gdiffusion',nombre:'gDiffusion',categoria:'Creative Storytelling',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gdiffusion.png'},
+    {id:'climatestudio',nombre:'ClimateStudio',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'climatestudio.png'},
+    {id:'ladybug',nombre:'Ladybug',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'ladybug.png'},
+    {id:'eddy3d',nombre:'Eddy3D',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'eddy3d.png'},
+    {id:'tally',nombre:'Tally',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'tally.png'},
+    {id:'enscape',nombre:'Enscape',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'enscape.png'},
+    {id:'sketchup',nombre:'Sketchup',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'sketchup.png'},
+    {id:'twinmotion',nombre:'Twinmotion',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'twinmotion.png'},
+    {id:'vray',nombre:'V-Ray',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'vray.png'},
+    {id:'yulio',nombre:'Yulio',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'yulio.png'},
+    {id:'miro',nombre:'Miro',categoria:'Collaboration',origen:'commercial',clusters:['DI','CD'],logo:'miro.png'},
+    {id:'bluebeam',nombre:'Bluebeam',categoria:'Collaboration',origen:'commercial',clusters:['VDC','CD'],logo:'bluebeam.png'},
+    {id:'avail',nombre:'Avail',categoria:'Collaboration',origen:'commercial',clusters:['CD'],logo:'avail.png'},
+    {id:'stacko',nombre:'Stacko',categoria:'Automation',origen:'commercial',clusters:['VDC','DI'],logo:'stacko.png'},
+    {id:'clarity',nombre:'Clarity',categoria:'Automation',origen:'commercial',clusters:['DI'],logo:'clarity.png'},
+    {id:'illustrator',nombre:'Illustrator',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'illustrator.png'},
+    {id:'after-effects',nombre:'After Effects',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC'],logo:'after-effects.png'},
+    {id:'photoshop',nombre:'Photoshop',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'photoshop.png'},
+    {id:'indesign',nombre:'InDesign',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'indesign.png'},
+    {id:'power-bi',nombre:'Power BI',categoria:'Data Intelligence',origen:'commercial',clusters:['DI'],logo:'power-bi.png'},
+    {id:'copilot',nombre:'Copilot',categoria:'AI',origen:'commercial',clusters:['DI'],logo:'copilot.png'},
+    {id:'gblox',nombre:'gBlox',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC','VDC'],logo:'gblox.png'},
+    {id:'gfloorz',nombre:'gFloorz',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gfloorz.png'},
+    {id:'gplanet',nombre:'GPlanet',categoria:'Analysis & Simulations',origen:'gensler',origen_confirmado:false,clusters:['RC','DI'],logo:'gplanet.png'},
+    {id:'terrain-analytics',nombre:'Terrain Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'TA'},
+    {id:'spatial-analytics',nombre:'Spatial Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'SA'},
+    {id:'testfit',nombre:'TestFit',categoria:'Feasibility',origen:'commercial',clusters:['RC'],logo:'testfit.png'},
+    {id:'autodesk-forma',nombre:'Autodesk Forma',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'autodesk-forma.png'},
+    {id:'flexsim',nombre:'FlexSim',categoria:'Analysis & Simulations',origen:'commercial',clusters:['VDC'],logo:'flexsim.png'},
+    {id:'terrain-analysis-tool',nombre:'Terrain Analysis Tool',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC'],logo:null,mono:'TAT'},
+    {id:'cyclops',nombre:'Cyclops',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'Cy'},
+    {id:'gblox-plugins',nombre:'gBlox plugins',categoria:'Design & Computation',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'gB+'}
+  ]
+};
+const ECO_ORD={gensler:0,'com-latam':1,commercial:2};
+function ecoTile(t){
+  const O=TOOLS_ECOSYSTEM.origins.find(o=>o.k===t.origen)||{}, tbc=t.origen_confirmado===false;
+  const lab=t.nombre+(O.seal?', '+O.name+' tool':'')+(tbc?', origin to confirm':'');
+  return `<li class="eco-tile" data-origen="${t.origen}" data-clusters="${t.clusters.join(' ')}"${tbc?' data-tbc':''}><a href="#/tools" aria-label="${esc(lab)}">`
+   + `<span class="eco-logo${t.logo?'':' mono'}">${t.logo?`<img src="img/logos/${t.logo}" alt="" width="128" height="128" loading="lazy">`:`<b class="eco-mono" aria-hidden="true">${esc(t.mono||pmIni(t.nombre))}</b>`}${O.seal?`<span class="eco-seal" aria-hidden="true">${esc(O.seal)}</span>`:''}</span>`
+   + `<span class="eco-name" aria-hidden="true">${esc(t.nombre)}</span>${tbc?'<small class="eco-tbc" aria-hidden="true">to confirm</small>':''}</a></li>`;
+}
+function ecosystemHTML(){
+  const E=TOOLS_ECOSYSTEM, n=k=>E.tools.filter(t=>k==='all'||t.origen===k).length;
+  const groups=E.groups.map(g=>{const ts=E.tools.filter(t=>g.cats.includes(t.categoria)).sort((a,b)=>ECO_ORD[a.origen]-ECO_ORD[b.origen]);
+    return `<section class="eco-grp" style="--n:${ts.length}" data-n="${ts.length}" data-eco-group aria-label="${esc(g.name)}"><h4 class="eco-k"><span>${esc(g.name)}</span><small>${ts.length}</small></h4><ul class="eco-tiles">${ts.map(ecoTile).join('')}</ul></section>`}).join('');
+  const note=`<aside class="eco-note" style="--n:8" aria-label="How to read"><h4 class="eco-k"><span>How to read</span></h4><ul>${E.origins.map(o=>`<li data-origen="${o.k}">${o.seal?`<span class="eco-seal">${esc(o.seal)}</span>`:'<span class="eco-plain" aria-hidden="true"></span>'}<span><b>${esc(o.name)}</b> · ${esc(o.desc)}</span></li>`).join('')}<li><small class="eco-tbc">to confirm</small><span>Origin pending review</span></li></ul></aside>`;
+  const bar=`<div class="eco-bar"><div class="eco-seg" role="group" aria-label="Filter by origin">${[['all','All'],...E.origins.map(o=>[o.k,o.name])].map(([k,l],i)=>`<button type="button" data-eco-origin="${k}" aria-pressed="${i===0}">${k!=='all'?`<i class="eco-sw" data-o="${k}" aria-hidden="true"></i>`:''}${esc(l)}<span class="n">${n(k)}</span></button>`).join('')}</div>`
+   + `<div class="eco-seg" role="group" aria-label="Filter by cluster">${['all',...ORDER].map((k,i)=>`<button type="button" data-eco-cluster="${k==='all'?'all':k.toUpperCase()}" aria-pressed="${i===0}"${k==='all'?'':` aria-label="${esc(CL[k].name)}" style="--k:var(--hl-${k})"`}>${k==='all'?'All clusters':`<i class="eco-cl" aria-hidden="true"></i>${k.toUpperCase()}`}</button>`).join('')}</div>`
+   + `<p class="eco-count" aria-live="polite" data-eco-count>${E.tools.length} tools</p></div>`;
+  return `<div class="eco" data-eco>${bar}<div class="eco-board">${groups}${note}</div></div>`;
+}
+/* filtros: origen y cluster se combinan; lo que no coincide se atenúa (inert) y el conteo se anuncia */
+function bindEco(){
+  const root=document.querySelector('[data-eco]'); if(!root) return;
+  const st={o:'all',c:'all'}, tiles=[...root.querySelectorAll('.eco-tile')], cnt=root.querySelector('[data-eco-count]');
+  const paint=()=>{let on=0;
+    tiles.forEach(t=>{const ok=(st.o==='all'||t.dataset.origen===st.o)&&(st.c==='all'||t.dataset.clusters.split(' ').includes(st.c));t.toggleAttribute('data-off',!ok);t.toggleAttribute('inert',!ok);if(ok)on++});
+    root.querySelectorAll('[data-eco-group]').forEach(g=>g.toggleAttribute('data-off',!g.querySelector('.eco-tile:not([data-off])')));
+    cnt.textContent=on===tiles.length?`${on} tools`:`${on} of ${tiles.length} tools`};
+  [['ecoOrigin','o'],['ecoCluster','c']].forEach(([d,k])=>{const bs=[...root.querySelectorAll(`[data-${d.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}]`)];
+    bs.forEach(b=>b.addEventListener('click',()=>{st[k]=b.dataset[d];bs.forEach(x=>x.setAttribute('aria-pressed',x===b));paint()}))});
 }
 function pageTools(){
   const T=[['SP','Speckle','Workflow tool',['DI','Integrated workflows'],'Live'],['PB','Power BI templates','Gensler tool',['DI'],'Live'],['CP','Microsoft Copilot','Gensler tool',['Productive AI'],'Live'],['DY','Dynamo for Revit','Workflow tool',['CD','VDC'],'Live'],['RR','Rhino.Inside.Revit','Workflow tool',['CD'],'Live'],['gB','gBlox','Gensler tool',['CD'],'Live'],['TA','Terrain Analysis','LATAM solution',['RC','CD'],'Pilot'],['UV','Urban Vitality Index','LATAM solution',['DI'],'Live']];
   return banner('Tools','What can I use?','One record per tool.','Gensler tools, LATAM solutions and experiments.')
-  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools', `<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
+  /* @personalizar: ecosistema de Tools, pieza principal (datos en TOOLS_ECOSYSTEM; filtros en bindEco) */
+  + sec('l1','none',[
+      wp('n','Text · Heading 2 + Normal', `<div class="eco-intro">${kick('Tools ecosystem')}${h2('One toolbox,','three origins.')}<p class="t-p muted">Filter by origin or cluster. Gensler and COM / LATAM tools carry a seal.</p></div>`),
+      wp('n','Quick links · Grid o Tiles, 1 web part por grupo (ícono = logo PNG 128 px en tile claro, con el sello de origen horneado) · alternativa: Microsoft List «Tools» · vista Galería agrupada por Category + vistas filtradas por Origin y Cluster', ecosystemHTML())])
+  + sec('l1','none',[wp('n',S5()?'List · vista Galería + formato JSON · Lista Tools · columnas Imagen: captura'+imgNote(' real en marco de navegador')+' (bandeja blanca) y logo de app (PNG 512 px)':'List · vista Galería + formato JSON · Lista Tools'+imgNote(' · columnas Imagen: captura real en marco de navegador (bandeja neutra media) y logo de app (PNG 128 px)'),`<div class="wp-title"><h3>Gensler tools &amp; LATAM solutions</h3><a href="#/tools">Open list</a></div><div class="gallery">${T.map(t=>`<div class="tool">${toolShot(t[0])}<div class="top">${toolIco(t[0])}<div><h4>${t[1]}</h4><span class="kind">${t[2]}</span></div></div><div class="chips">${t[3].map(x=>chip(x)).join('')}${chip(t[4],true)}</div><div class="acts"><a href="#/tools">Explore</a><a href="#/learning">Learn</a><a href="#/request">Get support</a></div></div>`).join('')}</div>`)])
   + toolCatalog()
   + sec('l31','neutral',[wp('n','List · vista Lista · Tools (Status = Experimental)', `<div class="wp-title"><h3>Emerging &amp; experimental</h3></div><div class="ql-list">${[['AI render assistant','Evaluation · AI Builders'],['Clash triage with Copilot','Pilot · VDC'],['Drone-to-mesh pipeline','Pilot · Reality Capture']].map(q=>`<a href="#/tools">${ic('bulb')}<span><b>${q[0]}</b><span>${q[1]}</span></span></a>`).join('')}</div>`),wp('n','Text + Button', `${kick('Missing a tool?')}<h3 class="t-h3">Suggest it to the COM funnel.</h3><p class="t-p muted" style="font-size:14px">Availability is reviewed every quarter.</p><a class="btn" href="#/request">Suggest a tool</a>`)]);
 }
@@ -2381,11 +2824,16 @@ function route(){
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
-  bindImpact();bindOnboarding();
+  bindImpact();bindOnboarding();bindMatrix();bindEco();
   /* estado inicial para capturas: imp=<id de métrica> selecciona su cluster y su stat; onb=<id de nodo> selecciona ese nodo del onboarding */
   const im=IMPACT.metrics.find(x=>x.id===q.get('imp'));
   if(im){const cl=im.cluster==='global'?'all':im.cluster;document.querySelector(`[data-impact-cluster="${cl}"]`)?.click();document.querySelector(`[data-impact-metric="${im.id}"]`)?.click()}
   if(q.get('onb'))document.querySelector(`button[data-onb-node="${q.get('onb')}"]`)?.click();
+  /* pm=<fila>-<columna> (índices desde 0) activa esa celda de la matriz; eco=<origen> y ecl=<cluster> filtran el ecosistema de Tools */
+  const pm=(q.get('pm')||'').split('-').map(Number);
+  if(pm.length===2){const r=PROJECT_MATRIX.rows[pm[0]],c=PROJECT_MATRIX.cols[pm[1]];if(r&&c)document.querySelector(`[data-matrix-cell][data-row="${CSS.escape(r)}"][data-col="${CSS.escape(c.name)}"]`)?.click()}
+  if(q.get('eco'))document.querySelector(`[data-eco-origin="${CSS.escape(q.get('eco'))}"]`)?.click();
+  if(q.get('ecl'))document.querySelector(`[data-eco-cluster="${CSS.escape(q.get('ecl'))}"]`)?.click();
   startCollab();
 }
 /* @personalizar: logos (inline desde maqueta/logos/*.svg; tinta = currentColor, acento = var(--accent)) */
@@ -2420,8 +2868,8 @@ function setStyle(s,rerender=true){s=/^[156]$/.test(s)?s:(/^[234]$/.test(s)?'5':
   const g=$('#accentGrp'),off=s==='5';g.classList.toggle('off',off);g.title=off?'El Estilo 5 usa azul fijo':'';g.setAttribute('aria-disabled',off);g.querySelectorAll('button').forEach(b=>b.disabled=off);
   /* Modo claro / oscuro: solo activo en el Estilo 5 (la elección guardada se conserva). El 6 es solo oscuro */
   const mg=$('#modeGrp'),moff=s!=='5';mg.classList.toggle('off',moff);mg.title=moff?(s==='6'?'El Estilo 6 es solo oscuro':'Solo en el Estilo 5'):'';mg.setAttribute('aria-disabled',moff);mg.querySelectorAll('button').forEach(b=>b.disabled=moff);
-  /* Imágenes Sí / No: solo en los Estilos 5 y 6 (los placeholders realistas son la opción No, por defecto) */
-  const ioff=!(s==='5'||s==='6'),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 5 y 6':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
+  /* Imágenes Sí / No: en los 3 estilos vigentes desde la ronda 9 (los placeholders son la opción No, por defecto) */
+  const ioff=!/^[156]$/.test(s),ig=$('#imgGrp');ig.classList.toggle('off',ioff);ig.title=ioff?'Solo en los Estilos 1, 5 y 6':'';ig.setAttribute('aria-disabled',ioff);ig.querySelectorAll('button').forEach(b=>b.disabled=ioff);
   if(rerender)route()}
 function setImg(v){v=v==='1'?'1':'0';document.documentElement.dataset.img=v;document.querySelectorAll('[data-set-img]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setImg===v));store('img',v)}
 function setMode(m){m=m==='dark'?'dark':'light';const s6=document.documentElement.dataset.skin==='6';if(s6)m='dark';document.documentElement.dataset.mode=m;document.querySelectorAll('[data-set-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setMode===m));if(!s6)store('mode',m)}
