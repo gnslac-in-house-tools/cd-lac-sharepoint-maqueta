@@ -864,21 +864,12 @@ html[data-style="5"] .chdr .c5-media.real{aspect-ratio:16/9}
    Color por pieza: --k (gráfico), --ki (texto AA), --kt (tinte). Fuera del 5/6 caen a --hl-* y a una mezcla con la superficie.
    ========================================================= */
 /* @personalizar: color por cluster de las piezas nuevas (onboarding y tarjetas de rama). Transversales (Productive AI, Community) = neutro + línea punteada */
-:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="vdc"],.onb-detail[data-cluster="vdc"]{--k:var(--hl-vdc);--ki:var(--ink-vdc,var(--hl-vdc));--kt:var(--tint-vdc,color-mix(in srgb,var(--hl-vdc) 9%,var(--surface)))}
-:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="rc"],.onb-detail[data-cluster="rc"]{--k:var(--hl-rc);--ki:var(--ink-rc,var(--hl-rc));--kt:var(--tint-rc,color-mix(in srgb,var(--hl-rc) 9%,var(--surface)))}
-:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="cd"],.onb-detail[data-cluster="cd"]{--k:var(--hl-cd);--ki:var(--ink-cd,var(--hl-cd));--kt:var(--tint-cd,color-mix(in srgb,var(--hl-cd) 9%,var(--surface)))}
-:is(.onb-map,.onb-cards,.onb-detail) [data-cluster="di"],.onb-detail[data-cluster="di"]{--k:var(--hl-di);--ki:var(--ink-di,var(--hl-di));--kt:var(--tint-di,color-mix(in srgb,var(--hl-di) 9%,var(--surface)))}
-:is(.onb-map,.onb-cards,.onb-detail) :is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]),.onb-detail:is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]){--k:var(--text-2);--ki:var(--text);--kt:var(--surface-2)}
+:is(.onb-map,.onb-detail) [data-cluster="vdc"],.onb-detail[data-cluster="vdc"]{--k:var(--hl-vdc);--ki:var(--ink-vdc,var(--hl-vdc));--kt:var(--tint-vdc,color-mix(in srgb,var(--hl-vdc) 9%,var(--surface)))}
+:is(.onb-map,.onb-detail) [data-cluster="rc"],.onb-detail[data-cluster="rc"]{--k:var(--hl-rc);--ki:var(--ink-rc,var(--hl-rc));--kt:var(--tint-rc,color-mix(in srgb,var(--hl-rc) 9%,var(--surface)))}
+:is(.onb-map,.onb-detail) [data-cluster="cd"],.onb-detail[data-cluster="cd"]{--k:var(--hl-cd);--ki:var(--ink-cd,var(--hl-cd));--kt:var(--tint-cd,color-mix(in srgb,var(--hl-cd) 9%,var(--surface)))}
+:is(.onb-map,.onb-detail) [data-cluster="di"],.onb-detail[data-cluster="di"]{--k:var(--hl-di);--ki:var(--ink-di,var(--hl-di));--kt:var(--tint-di,color-mix(in srgb,var(--hl-di) 9%,var(--surface)))}
+:is(.onb-map,.onb-detail) :is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]),.onb-detail:is([data-cluster="ai"],[data-cluster="comm"],[data-cluster="all"]){--k:var(--text-2);--ki:var(--text);--kt:var(--surface-2)}
 
-/* ---------- fila de 4 accesos bajo el hero (Quick links · Button, 1 fila compacta) ---------- */
-.ql-buttons.cols4{grid-template-columns:repeat(4,1fr)}
-.sp-sec:has(> .sp-canvas [data-quick-row]){padding:24px 0 20px}
-.ql-buttons.ql-row{gap:12px}
-.ql-buttons.ql-row .ql-btn{min-height:48px;padding:7px 14px 7px 7px;gap:12px;font-size:14px;font-weight:500;letter-spacing:-.005em;transition:background .15s,box-shadow .15s}
-.ql-buttons.ql-row .ql-btn > svg:first-child{width:34px;height:34px;padding:8px;border-radius:var(--r-native);color:var(--accent-text,var(--text));background:color-mix(in srgb,var(--accent-text,var(--text)) 11%,transparent)}
-.ql-buttons.ql-row .ql-btn .arr{width:16px;height:16px;transition:transform .18s ease,color .15s}
-.ql-buttons.ql-row .ql-btn:hover{box-shadow:inset 0 0 0 1px var(--accent-text,var(--text))}
-.ql-buttons.ql-row .ql-btn:hover .arr{transform:translateX(3px);color:var(--text)}
 
 /* ---------- tablero de impacto ("LAC at a glance"): pestañas, stats seleccionables y mapa de burbujas ---------- */
 .impact{margin-top:18px}
@@ -1066,18 +1057,8 @@ button.onb-node:hover{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k,var(-
 .onb-agenda b{grid-column:2;font-size:15px;font-weight:600;line-height:1.35}
 .onb-agenda span{grid-column:2;font-size:13px;line-height:1.4;color:var(--text-2)}
 .onb-agenda small{grid-column:3;grid-row:1;font:500 11px/1 var(--f-mono);letter-spacing:.08em;color:var(--text-2);padding:4px 8px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--rule);white-space:nowrap}
-/* Choose your branch: una tarjeta por rama, filete del color del pilar */
-.onb-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.onb-card{display:flex;flex-direction:column;gap:12px;padding:18px 18px 16px;border-radius:var(--r-native);background:var(--surface);box-shadow:var(--card-shadow),inset 0 3px 0 var(--k);transition:box-shadow .2s,transform .2s}
-.onb-card h4{margin:0;display:flex;align-items:center;gap:8px;font-size:17px;font-weight:600;letter-spacing:-.01em}
-.onb-card h4::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--k);flex:none}
-.onb-card .person .av{background:var(--kt);color:var(--ki);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--k) 45%,transparent)}
-.onb-card .onb-res{list-style:none;margin:0;padding:0}
-.onb-card .onb-res li{display:flex;gap:8px;font-size:13px;line-height:1.35;color:var(--text)}
-.onb-card .onb-res li::before{content:"";flex:none;width:9px;height:9px;margin-top:3px;border-radius:0 60% 0 60%;background:color-mix(in srgb,var(--k) 75%,transparent)}
 .onb-next{margin:auto 0 0;padding:10px 12px;border-radius:var(--r-native);background:var(--kt);font-size:13px;line-height:1.35}
 .onb-next small{display:block;margin-bottom:2px;font:600 10px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ki)}
-.onb-card[data-active]{box-shadow:0 0 0 1.5px var(--k),inset 0 4px 0 var(--k),0 10px 24px rgba(0,0,0,.12);transform:translateY(-2px)}
 
 /* =========================================================
    5f · ESTILO 6 · TERRENO VIVO (solo diferencias con el 5 oscuro)
@@ -1267,23 +1248,21 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .site-footer .inner{grid-template-columns:1fr 1fr}
   .suite .search{display:none}
   .band4 .in{grid-template-columns:1fr;gap:32px}
-  .ql-buttons.cols4{grid-template-columns:repeat(2,1fr)}
   .spotlight{gap:32px}.spot-title{font-size:40px}
   .expert{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:20px}
   .people.row4.lead-line{flex-wrap:wrap}.people.row4.lead-line .person{flex:1 1 45%}
   /* onboarding: el tronco pasa arriba en fila y las ramas a 2 columnas; sin curvas */
   .onb-map{display:block;padding:20px}.onb-links{display:none}
   .onb-trunk{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
-  .onb-trunk li{padding-left:0;margin:0!important}
+  .onb-trunk li{padding-left:0;margin:0!important;grid-column:auto!important;grid-row:auto!important;align-self:stretch!important}   /* (13b) sin esto «Day 1» y «Week 1» se encimaban en la misma celda */
   .onb-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .onb-branch,.onb-branch:nth-child(-n+4),.onb-branch:nth-child(n+5){grid-row:auto;grid-column:auto;display:flex;flex-direction:column}
   .onb-detail{margin-top:20px}
-  .onb-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:639px){.people.team4{grid-template-columns:1fr}
   .cols.l2,.cols.l3,.cols.l13,.cols.l31{grid-template-columns:1fr}
   .shots5 .w2{grid-column:auto}.shots5 .w2 .fr{aspect-ratio:16/10}
-  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.news,.ql-buttons.cols2,.ql-buttons.cols3,.ql-buttons.cols4,.band4 .nums{grid-template-columns:1fr}
+  .hc,.ql-film,.ql-film.c3,.gallery,.gallery.c3,.shots5,.news,.ql-buttons.cols2,.ql-buttons.cols3,.band4 .nums{grid-template-columns:1fr}
   .sp-canvas{padding:0 16px}
   .t-h1{font-size:34px}.t-h2{font-size:26px}
   .site-actions,.suite .org{display:none}
@@ -1292,7 +1271,7 @@ html.show-wp .legend-wp{display:flex;gap:8px}
   .ctl{left:10px;right:10px;bottom:10px;transform:none;width:auto}
   .news .item{grid-template-columns:110px 1fr}
   .spotlight,.expert{grid-template-columns:1fr}.spot-title{font-size:34px}
-  .onb-trunk,.onb-branches,.onb-cards{grid-template-columns:1fr}
+  .onb-trunk,.onb-branches{grid-template-columns:1fr}
   .impact-stat b{font-size:26px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -1742,6 +1721,190 @@ html[data-skin="7"] .impact-map .imp-leg{transform:translate(14px,-16px)}   /* l
 html[data-skin="7"] .impact-map .imp-leg .box{rx:0;stroke:var(--s7-line-2)}
 /* pipeline: panel de figura */
 html[data-skin="7"] :is(.pipe,.pipe-live){--pp-ink:#F2F2F0;--pp-panel:var(--s7-panel);--pp-line:var(--s7-line);background:var(--s7-panel-bg);border-radius:0;box-shadow:none}
+/* =========================================================
+   13 · RONDA 13 (diseño): contraste de secciones, carrusel (Highlighted content · Carousel), carril del equipo,
+   servicios del cluster, How we work, enlace Learn por tool y grafo de personas de Community
+   ========================================================= */
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.mega h3 a .mega-plain{display:block;margin-top:2px;font-size:12px;font-weight:400;color:var(--text-2)}
+
+/* @personalizar: 13 · CONTRASTE DE SECCIONES (Estilos 1, 7 y 6). Hash ctr=0 (ronda 12) · 1 suave · 2 medio (por defecto, CTR_DEFAULT) · 3 alto.
+   --bg-neutral = gris de la sección «Neutral»; --sec-line = filete de borde a borde de la sección gris y filete entre secciones; --sec-x = cruces;
+   --n-surf / --n-surf-2 / --n-rule = tarjetas y filetes DENTRO de la sección gris (suben un paso para no fundirse con el fondo) */
+html:is([data-style="1"],[data-skin="6"])[data-ctr="1"]{--bg-neutral:#16191C;--sec-line:rgba(242,242,240,.08);--sec-x:rgba(242,242,240,.32);--n-surf:#1F2226;--n-surf-2:#272A2F;--n-rule:#34383D}
+html:is([data-style="1"],[data-skin="6"])[data-ctr="2"]{--bg-neutral:#1A1D21;--sec-line:rgba(242,242,240,.12);--sec-x:rgba(242,242,240,.48);--n-surf:#23272C;--n-surf-2:#2B2F35;--n-rule:#3A3F45}
+html:is([data-style="1"],[data-skin="6"])[data-ctr="3"]{--bg-neutral:#202429;--sec-line:rgba(242,242,240,.17);--sec-x:rgba(242,242,240,.6);--n-surf:#2A2E34;--n-surf-2:#32363D;--n-rule:#454A51}
+html:is([data-style="1"],[data-skin="6"]):is([data-ctr="1"],[data-ctr="2"],[data-ctr="3"]) .sp-sec.bg-neutral{
+  box-shadow:inset 0 1px 0 var(--sec-line),inset 0 -1px 0 var(--sec-line);
+  --surface:var(--n-surf);--surface-2:var(--n-surf-2);--rule:var(--n-rule);--card-shadow:0 0 0 1px var(--n-rule)}
+/* filete + cruces de registro en el borde superior de cada sección (a lo ancho del lienzo); entre dos secciones sin fondo, más aire arriba */
+html:is([data-style="1"],[data-skin="6"]):is([data-ctr="1"],[data-ctr="2"],[data-ctr="3"]) .sp-sec:not(.full) + .sp-sec:not(.full):not(.bg-hv7)::after{content:"";position:absolute;z-index:1;top:-5px;height:11px;pointer-events:none;
+  left:calc(max(24px,(100% - var(--canvas))/2) - 5px);right:calc(max(24px,(100% - var(--canvas))/2) - 5px);
+  background:linear-gradient(var(--sec-x),var(--sec-x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--sec-x),var(--sec-x)) 5px 0/1px 11px no-repeat,
+    linear-gradient(var(--sec-x),var(--sec-x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--sec-x),var(--sec-x)) calc(100% - 5px) 0/1px 11px no-repeat,
+    linear-gradient(var(--sec-line),var(--sec-line)) 0 5px/100% 1px no-repeat}
+html:is([data-style="1"],[data-skin="6"]):is([data-ctr="1"],[data-ctr="2"],[data-ctr="3"]) .sp-sec.bg-none:not(.full) + .sp-sec.bg-none{padding-top:var(--sec-pad)}
+/* «How we work» continúa la sección de servicios: sin filete y pegada */
+.sp-sec:has([data-howwework])::after{display:none!important}
+.sp-sec.sp-sec:has([data-howwework]){padding-top:4px!important}
+
+/* ---------- Carrusel (Highlighted content · layout Carousel): flechas en el título, carril con scroll-snap, puntos y posición ---------- */
+.wp-title-r{display:flex;align-items:center;gap:18px}
+.car-nav{display:inline-flex;gap:6px;align-self:center}
+.car-btn{width:34px;height:34px;display:grid;place-items:center;padding:0;border:0;border-radius:var(--r-native);background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--rule);cursor:pointer;transition:box-shadow .15s,color .15s,opacity .15s}
+.car-btn svg{width:16px;height:16px}
+.car-btn[data-car-prev] svg{transform:scaleX(-1)}
+.car-btn:hover:not(:disabled){box-shadow:inset 0 0 0 1px var(--accent-text,var(--text));color:var(--accent-text,var(--text))}
+.car-btn:disabled{opacity:.32;cursor:default}
+:is(.car-btn,.car-track,.car-dots button,.tm,.pg-chip,.pg-join,.pg-x):focus-visible{outline:2px solid var(--accent-text,var(--accent));outline-offset:2px}
+.car-track{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:calc((100% - 32px)/3);gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:1px;margin:-1px}
+.car-track::-webkit-scrollbar{display:none}
+.car-track > *{scroll-snap-align:start;min-width:0}
+.car-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;min-height:14px}
+.car-dots{display:flex;gap:4px}
+.car-dots button{width:24px;height:14px;padding:0;border:0;background:transparent;cursor:pointer;position:relative}
+.car-dots button::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--rule);transition:background .2s}
+.car-dots button[aria-current="true"]::before{background:var(--accent-text,var(--text))}
+.car-dots button:hover::before{background:var(--text-2)}
+.car-pos{font:500 11px/1 var(--f-mono);letter-spacing:.1em;color:var(--text-2)}
+html[data-style="5"]:not([data-skin="6"]) .car-dots button::before{left:8px;right:8px;top:3px;height:8px;border-radius:50%}   /* en el 5, puntos redondos como el nativo */
+
+/* ---------- Meet our team: UNA fila (carril) con foto, nombre y puesto; el Spotlight queda debajo ---------- */
+.car.team-rail .car-track{grid-auto-columns:calc((100% - 8*12px)/9);gap:12px}
+.tm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:14px 4px 12px;text-decoration:none;color:var(--text);border-radius:var(--r-native);transition:background .15s}
+.tm-av{width:76px;height:76px;margin-bottom:9px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--surface-2);box-shadow:0 0 0 1px var(--rule);font-weight:600;font-size:22px;color:var(--text);transition:box-shadow .15s}
+.tm-av img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92)}
+.tm b{font-size:13px;line-height:1.25;font-weight:600;letter-spacing:-.005em}
+.tm span:last-child{font-size:11.5px;line-height:1.3;color:var(--text-2)}
+.tm:hover{background:var(--surface)}
+.tm:is(:hover,:focus-visible) .tm-av{box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--accent-text,var(--text))}
+
+/* ---------- Mini-página de cluster: «What can we do for you?» protagonista ---------- */
+.page[data-cluster="vdc"]{--kc:var(--hl-vdc)}.page[data-cluster="rc"]{--kc:var(--hl-rc)}.page[data-cluster="cd"]{--kc:var(--hl-cd)}.page[data-cluster="di"]{--kc:var(--hl-di)}
+.svc-intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 56px;align-items:end;margin-bottom:8px}
+[data-services-intro] .t-h2{font-size:60px;line-height:1;letter-spacing:-.045em;margin:0}
+.svc-lede{padding-bottom:6px}
+.svc-lede .t-p{font-size:17px;line-height:1.5;color:var(--text-2);margin:0 0 10px;max-width:44ch}
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.svc{position:relative;display:flex;flex-direction:column;gap:10px;padding:24px 28px 22px;border-radius:var(--r-native);background:var(--surface);box-shadow:var(--card-shadow);text-decoration:none;color:var(--text);transition:background .15s,box-shadow .15s}
+.svc::before{content:"";position:absolute;left:0;top:0;width:48px;height:2px;background:var(--t,var(--accent))}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.svc-n{font:500 13px/1 var(--f-mono);letter-spacing:.08em;color:var(--t,var(--accent))}
+.svc-n i{font-style:normal;color:var(--text-tail);margin-left:3px}
+.svc-g{width:76px;height:50px;color:var(--t,var(--accent));fill:none;stroke:currentColor;stroke-width:1;stroke-linejoin:round;stroke-linecap:round}
+.svc-g .g2{opacity:.45}.svc-g .g3{opacity:.28}.svc-g .ga{opacity:.95}.svc-g .gd{fill:currentColor;stroke:none;opacity:.32}.svc-g .gf{fill:currentColor;stroke:none;opacity:.95}
+.svc h4{margin:0;font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-.015em}
+.svc p{margin:0;font-size:15px;line-height:1.5;color:var(--text-2);max-width:46ch}
+.svc-out{display:block;margin-top:auto;padding-top:14px;border-top:1px dashed var(--rule);font-size:15px;font-weight:500;line-height:1.4}
+.svc p + .svc-out{margin-top:8px}
+.svc-out small{display:block;margin-bottom:5px;font:500 10.5px/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
+.svc-go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text-2);transition:color .15s}
+.svc-go svg{width:14px;height:14px;transition:transform .18s}
+.svc:hover{background:var(--surface-2);box-shadow:var(--card-shadow),inset 0 0 0 1px color-mix(in srgb,var(--t,var(--accent)) 50%,transparent)}
+.svc:is(:hover,:focus-visible) .svc-go{color:var(--t,var(--accent))}
+.svc:hover .svc-go svg{transform:translateX(3px)}
+.svc:focus-visible{outline:2px solid var(--t,var(--accent));outline-offset:2px}
+/* How we work: compacto, una línea de título con filete y dos columnas de filas finas */
+[data-howwework-title]{display:flex;align-items:center;gap:18px;margin:40px 0 0}
+[data-howwework-title]::after{content:"";flex:1;height:1px;background:var(--rule)}
+[data-howwework] .t-kicker{margin:0 0 8px;color:var(--text-2);font-size:11px}
+[data-howwework] .t-list{list-style:none;padding:0;gap:0}
+[data-howwework] .t-list li{position:relative;padding:10px 0 10px 18px;border-top:1px solid var(--rule);font-size:14px;line-height:1.4}
+[data-howwework] .t-list li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--kc,var(--accent))}
+
+/* ---------- Tools → aprendizaje: en el tile, «Learn ↗» (el ancho no da para «Start learning ↗», que va en title y aria-label); se enciende como chip del acento al pasar o enfocar ---------- */
+.eco-learn{display:inline-block;margin-top:4px;padding:2px 5px;border-radius:2px;font:500 9.5px/1.2 var(--f-mono);letter-spacing:.04em;color:var(--text-tail);white-space:nowrap;transition:color .15s,background .15s}
+.eco-tile a:is(:hover,:focus-visible) .eco-learn{color:var(--accent-text,var(--accent));background:color-mix(in srgb,var(--accent-text,var(--accent)) 14%,transparent)}
+.eco-tile a:is(:hover,:focus-visible) .eco-logo{outline:1px solid var(--accent-text,var(--accent));outline-offset:6px}
+.eco-tile a:focus-visible{outline:none}
+.ql-list a[data-learn]{position:relative;padding-right:30px}
+.ql-list a[data-learn] > span > span{display:inline-block;margin-top:3px;padding:1px 0;font:500 11px/1.3 var(--f-mono);letter-spacing:.04em;color:var(--text-tail);transition:color .15s}
+.ql-list a[data-learn]::after{content:"↗";position:absolute;right:8px;top:50%;transform:translate(-4px,-50%);font:500 15px/1 var(--f-mono);color:var(--accent-text,var(--accent));opacity:0;transition:opacity .15s,transform .18s}
+.ql-list a[data-learn]:is(:hover,:focus-visible) > span > span{color:var(--accent-text,var(--accent));text-decoration:underline;text-underline-offset:3px}
+.ql-list a[data-learn]:is(:hover,:focus-visible)::after{opacity:1;transform:translate(0,-50%)}
+.ql-list a[data-learn="int"]::after{content:"→"}
+
+/* ---------- Community · grafo de personas ---------- */
+.pg{position:relative}
+.pg-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:0 0 14px}
+.pg-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pg-chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px;border:0;border-radius:999px;background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:500;box-shadow:inset 0 0 0 1px var(--rule);cursor:pointer;transition:background .15s,box-shadow .15s,color .15s}
+.pg-chip span{font:500 10.5px/1 var(--f-mono);color:var(--text-2)}
+.pg-chip:hover{box-shadow:inset 0 0 0 1px var(--text-2)}
+.pg-chip[aria-pressed="true"]{background:var(--text);color:var(--bg);box-shadow:none}
+.pg-chip[aria-pressed="true"] span{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.pg-join{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:var(--r-native);background:var(--accent);color:var(--accent-ink,var(--on-accent));font-size:14px;font-weight:600;text-decoration:none}
+.pg-join svg{width:15px;height:15px}
+.pg-stage{position:relative;overflow:hidden;border-radius:var(--r-native);background:var(--bg-neutral);box-shadow:var(--card-shadow)}
+html[data-skin="7"] .pg-stage{border-radius:0;box-shadow:none;background:var(--s7-panel-bg)}
+html[data-skin="7"] .pg-stage::before{content:"";position:absolute;inset:var(--x7-in);z-index:2;pointer-events:none;opacity:.5;--x:rgba(242,242,240,.9);
+  background:linear-gradient(var(--x),var(--x)) 0 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% 5px/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 0/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 0 calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) 5px 100%/1px 11px no-repeat,
+    linear-gradient(var(--x),var(--x)) 100% calc(100% - 5px)/11px 1px no-repeat,linear-gradient(var(--x),var(--x)) calc(100% - 5px) 100%/1px 11px no-repeat}
+.pg-svg{display:block;width:100%;user-select:none;-webkit-user-select:none}
+.pg-links line{stroke:var(--text);stroke-opacity:.15;stroke-width:1;transition:stroke-opacity .2s}
+.pg-svg.has-hi .pg-links line{stroke-opacity:.035}
+.pg-svg.has-hi .pg-links line.is-on{stroke:var(--k);stroke-opacity:.9;stroke-width:1.3}
+.pg-links line.is-out{stroke-opacity:0!important}
+.pg-n{cursor:grab;outline:none;touch-action:none;transition:opacity .2s}
+.pg-n.is-drag{cursor:grabbing}
+.pg-ring{fill:none;stroke:var(--k);stroke-opacity:.5;stroke-width:1;transition:stroke-opacity .15s}
+.pg-disc{fill:var(--surface-2);stroke:var(--bg);stroke-width:1}
+.pg-ini{fill:var(--text);fill-opacity:.85;font-weight:600;letter-spacing:.02em}
+.pg-name{fill:var(--text-2);font-size:11px;font-weight:500;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-opacity:.7;stroke-linejoin:round}
+.pg-n.lg .pg-name{fill:var(--text);font-weight:600}
+.pg-svg.has-hi .pg-n:not(.is-me):not(.is-nb){opacity:.2}
+.pg-n:is(.is-me,:focus-visible) .pg-ring{stroke-opacity:1;stroke-width:2}
+.pg-n.is-nb .pg-ring{stroke-opacity:.95}
+.pg-n:is(.is-me,.is-nb) .pg-name{fill:var(--text)}
+.pg-n.is-out{opacity:.09!important}
+.pg-fig,.pg-hint{position:absolute;bottom:13px;margin:0;font:500 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--text-2);opacity:.7;pointer-events:none}
+.pg-fig{right:36px}
+.pg-leg{position:absolute;left:36px;top:13px;margin:0;display:flex;flex-wrap:wrap;gap:6px 16px;font:500 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);pointer-events:none}
+.pg-leg span{display:inline-flex;align-items:center;gap:6px}.pg-leg i{width:7px;height:7px;border-radius:50%;opacity:.85}.pg-hint{left:36px;letter-spacing:.06em}
+.pg-card{position:absolute;z-index:3;top:20px;right:20px;width:248px;padding:18px 18px 16px;background:var(--surface);border-radius:var(--r-native);box-shadow:0 0 0 1px var(--rule),0 14px 32px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:2px}
+html[data-skin="7"] .pg-card{border-radius:0;border-top:2px solid var(--accent)}
+.pg-card[hidden]{display:none}
+.pg-cav{width:56px;height:56px;margin-bottom:10px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--surface-2);box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--k);font-weight:600;font-size:18px}
+.pg-cav img{width:100%;height:100%;object-fit:cover}
+.pg-card > b{font-size:16px;line-height:1.25}
+.pg-card > span{font-size:13px;color:var(--text-2)}
+.pg-card dl{display:grid;grid-template-columns:62px 1fr;gap:7px 10px;margin:12px 0 12px;padding-top:12px;border-top:1px solid var(--rule);font-size:13px}
+.pg-card dt{font:500 10px/1.6 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+.pg-card dd{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.pg-card dd i{width:8px;height:8px;border-radius:50%}
+.pg-gs span{padding:2px 7px;border-radius:999px;font-size:11.5px;box-shadow:inset 0 0 0 1px var(--rule)}
+.pg-x{position:absolute;top:8px;right:8px;width:30px;height:30px;padding:0;border:0;background:transparent;color:var(--text-2);font-size:20px;line-height:1;cursor:pointer;border-radius:var(--r-native)}
+.pg-x:hover{color:var(--text);background:var(--surface-2)}
+
+@media (max-width:1023px){.car-track{grid-auto-columns:calc((100% - 16px)/2)}.car.team-rail .car-track{grid-auto-columns:calc((100% - 4*12px)/5)}
+  .svc-intro{grid-template-columns:1fr}[data-services-intro] .t-h2{font-size:46px}}
+@media (max-width:639px){.car-track{grid-auto-columns:88%}.car.team-rail .car-track{grid-auto-columns:calc((100% - 2*12px)/2.6)}
+  .svc-grid{grid-template-columns:1fr}.svc{padding:20px}[data-services-intro] .t-h2{font-size:38px}
+  [data-howwework] .t-list{grid-template-columns:1fr}
+  .wp-title-r{gap:10px}.pg-join{margin-left:0}.pg-hint{display:none}
+  .pg-card{left:12px;right:12px;width:auto;top:auto;bottom:36px}}
+/* =========================================================
+   13b · MODO EMBED (?embed=<pieza>): solo la pieza, a ancho completo del iframe, sobre #0B0C0D, sin chrome ni simulador
+   ========================================================= */
+html.embed,html.embed body{background:#0B0C0D;overflow-x:hidden}
+html.embed body > :not(#main):not(script):not(style):not(#g4-defs){display:none!important}
+html.embed .emb-x{display:none!important}
+html.embed #main{display:flow-root;min-height:0;padding:0;margin:0;outline:0}
+html.embed .page{padding:0;margin:0}
+html.embed .sp-sec{padding:20px 0!important;background:transparent!important;margin:0!important}
+html.embed .sp-sec::before,html.embed .sp-sec::after,html.embed .wp::after{display:none!important}
+html.embed .sp-sec.full{padding:0!important}
+html.embed .sp-canvas{max-width:none;padding:0 20px}
+html.embed .cols{gap:20px}
+html.embed .col{gap:0}
+html.embed .wp{margin:0}
+html.embed .wp-title{margin-top:0}
+html.embed .sp-sec.bg-hv7{padding:20px 0!important}
+@media (max-width:820px){html.embed .sp-canvas{padding:0 16px}html.embed .sp-sec{padding:16px 0!important}}
+@media (max-width:1100px){html.embed .pmh{--pm-cols:120px repeat(var(--pm-n,10),minmax(100px,1fr))}html.embed .pmh .pm-head,html.embed .pmh .pm-row{min-width:1120px}}
+html.embed .onb-map{padding-bottom:40px}
 </style>
 </head>
 <body>
@@ -1835,6 +1998,43 @@ html[data-skin="7"] :is(.pipe,.pipe-live){--pp-ink:#F2F2F0;--pp-panel:var(--s7-p
 /* =========================================================
    UTILIDADES
    ========================================================= */
+/* =========================================================
+   MODO EMBED (ronda 13b) · ?embed=<pieza>
+   Renderiza SOLO una pieza (interactiva y animada) a ancho completo, sin chrome de SharePoint ni simulador, para el web part Embed de SharePoint
+   (iframe a GitHub Pages). Envía su alto al padre con postMessage {type:'dt-embed-height',piece,height}. Ver PERSONALIZAR.md §16.
+   ========================================================= */
+const EMBED=(()=>{const m=location.search.match(/[?&]embed=([\w-]+)/)||location.hash.match(/[?&]embed=([\w-]+)/);return m?m[1]:''})();
+const EMBED_PIECES={
+  header:{r:'#/home',el:()=>document.querySelector('#main .page > section.sp-sec')},
+  impact:{r:'#/home',el:()=>document.querySelector('[data-impact]')?.closest('.sp-sec')},
+  clusters:{r:'#/home',el:()=>document.querySelector('#main .dia')?.closest('.wp')},
+  graph:{r:'#/community',el:()=>document.querySelector('[data-people-graph]')?.closest('.wp')},
+  onboarding:{r:'#/learning',el:()=>document.querySelector('[data-onb-map]')?.closest('.wp')},
+  matrix:{r:'#/projects',el:()=>document.querySelector('[data-matrix-block]')},
+  'banner-vdc':{r:'#/clusters/vdc',el:()=>document.querySelector('#main .page > section.sp-sec')},
+  'banner-rc':{r:'#/clusters/rc',el:()=>document.querySelector('#main .page > section.sp-sec')},
+  'banner-cd':{r:'#/clusters/cd',el:()=>document.querySelector('#main .page > section.sp-sec')},
+  'banner-di':{r:'#/clusters/di',el:()=>document.querySelector('#main .page > section.sp-sec')},
+  team:{r:'#/home',el:()=>document.querySelector('[data-team-row]')?.closest('.wp')}
+};
+if(EMBED&&!EMBED_PIECES[EMBED]){console.warn('embed desconocido:',EMBED)}
+if(EMBED_PIECES[EMBED]){document.documentElement.classList.add('embed');document.documentElement.dataset.embed=EMBED}
+/* deja visible solo la cadena de ancestros de la pieza (conserva los selectores CSS por ancestro) y avisa el alto al padre */
+function embedMount(){
+  const EP=EMBED_PIECES[EMBED]; if(!EP)return;
+  const el=EP.el(); if(!el)return;
+  document.documentElement.classList.remove('show-wp');
+  document.querySelectorAll('.emb-x').forEach(x=>x.classList.remove('emb-x'));
+  for(let n=el;n&&n!==document.body;n=n.parentNode){
+    [...n.parentNode.children].forEach(sb=>{if(sb!==n&&!/^(SCRIPT|STYLE|LINK)$/.test(sb.tagName)&&sb.id!=='g4-defs')sb.classList.add('emb-x')});
+  }
+  const main=document.getElementById('main');
+  const post=()=>{const h=Math.ceil(main.getBoundingClientRect().height);if(h>0&&h!==embedMount.last){embedMount.last=h;try{parent.postMessage({type:'dt-embed-height',piece:EMBED,height:h},'*')}catch(e){}}};
+  if(!embedMount.ro&&'ResizeObserver' in window){embedMount.ro=new ResizeObserver(post);embedMount.ro.observe(main)}
+  window.addEventListener('resize',post);window.addEventListener('load',post);
+  [60,300,900,2000,4000].forEach(t=>setTimeout(post,t));
+  post();
+}
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function R(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
@@ -2529,7 +2729,7 @@ function pageBanner7(inner,s7){
 function clusterBanner7(c){
   const copy=`<div class="copy"><div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
       <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
-      <div class="sub">${esc(c.services.join('  ·  '))}</div></div>`;
+      <div class="sub">${esc(c.services.map(s=>s.t).join('  ·  '))}</div></div>`;
   return hv7Art('cl',copy,{alt:`${c.name}. LAC cluster ${c.n} of 04. Header image on the animated blue gradient (variant ${hv7Name(hv7Cur())}), with the schematic diagram of the cluster and three figures of its featured project.`,svg:`<svg class="hv7-scene" viewBox="904 30 696 452" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">${hdr7(c,{fs:14.5,gap:58,ffs:13})}</svg>`});
 }
 
@@ -2641,65 +2841,71 @@ const ini = n => n.split(' ').map(x=>x[0]).join('').slice(0,2);
 /* @personalizar: datos semilla de los clusters (texto, herramientas, proyecto, metodología, líderes, contacto) */
 const CL = {
   vdc:{key:'vdc',n:'01',code:'VDC',name:'Virtual Design & Construction',motif:'iso',page:'VDC',
+    plain:'Model Coordination',plainLine:'We check the building fits before it is built.',
     h1:'Coordinated models.',tail:'Fewer surprises on site.',
     vp:'Federated models and clash cycles, from SD to handover.',
-    tools:[['cube','Revit + Navisworks'],['nodes','Autodesk Construction Cloud'],['chart','Speckle'],['tool','Dynamo for Revit']],
+    /* @personalizar: tools = [ícono, nombre, URL de aprendizaje (learn)] */
+    tools:[['cube','Revit + Navisworks','https://help.autodesk.com/view/RVT/2025/ENU/'],['nodes','Autodesk Construction Cloud','https://help.autodesk.com/view/BUILD/ENU/'],['chart','Speckle','https://speckle.guide/'],['tool','Dynamo for Revit','https://primer2.dynamobim.org/']],
     proj:{t:'Monterrey tower: one federated model',office:'Monterrey',ph:'tower',
       ch:'Nine consultants and a fast-track schedule.',
       so:'BEP, ACC model hub and weekly automated clash reports.',
       st:[['1,240','clashes resolved before IFC'],['−18','% RFIs vs. last tower','%'],['9','disciplines federated'],['6','weeks saved in CDs']],
       who:[P.diego.n,P.andres.n,P.ivan.n],status:'Published · Case study'},
-    cards:[['Model QA dashboards for Santo Domingo hotel fit-outs','hub','Santo Domingo'],['4D sequencing for a Buenos Aires HQ','city','Buenos Aires'],['ACC rollout playbook for LAC offices','screen','Regional']],
+    cards:[['Model QA dashboards for Santo Domingo hotel fit-outs','hub','Santo Domingo'],['4D sequencing for a Buenos Aires HQ','city','Buenos Aires'],['ACC rollout playbook for LAC offices','screen','Regional'],['Clash triage for a Lima mixed-use tower','tower','Lima'],['Facade panel coordination in Panama City','facade','Panama City'],['Model health checks for a Bogotá airport','city','Bogotá']],
     steps:[['Model audit','Health check of templates, levels and naming.'],['BEP & setup','Execution plan, ACC hub, federation rules.'],['Clash cycles','Weekly federated runs with tracked issues.'],['4D & handover','Sequencing, COBie data and as-built model.']],
-    services:['BIM Execution Plans','Federated coordination','Clash detection & issue tracking','4D sequencing'],
+    /* @personalizar: services = tarjetas "What can we do for you?" {t título, d qué hacemos por el equipo de diseño (1 línea), out qué entregamos} */
+    services:[{t:'BIM Execution Plans',d:'We write the rules so every team models the same way.',out:'You get: one plan everyone signs'},{t:'Federated coordination',d:'We merge all consultant models into one place you can open.',out:'You get: one model, always up to date'},{t:'Clash detection',d:'We find where systems collide and track each fix.',out:'You get: a clash report every week'},{t:'4D sequencing',d:'We link the model to the schedule to see the build in time.',out:'You get: a video of the construction sequence'}],
     skills:['Revit, Navisworks, ACC','Dynamo automation','Speckle data exchange','Model QA scripting'],
     value:['Fewer RFIs and change orders','Predictable CD milestones','A model the client can operate'],
     leaders:[P.diego,P.andres,P.ivan,P.tomas],
     contact:{ch:'#dt-lac-vdc',mail:'vdc.lac@example.com',hours:'Office hours · Tuesdays 10:00 CST'}},
   rc:{key:'rc',n:'02',code:'RC',name:'Reality Capture',motif:'cloud',page:'Reality Capture',
+    plain:'Site Scanning',plainLine:'We measure what already exists, in 3D.',
     h1:'The existing world,',tail:'measured before we draw.',
     vp:'Scans and drone data for reliable existing conditions.',
-    tools:[['scan','Leica BLK360 + ReCap'],['globe','Drone photogrammetry'],['cube','Point cloud to Revit'],['chart','CloudCompare']],
+    tools:[['scan','Leica BLK360 + ReCap','https://help.autodesk.com/view/RECAP/ENU/'],['globe','Drone photogrammetry','#/learning'],['cube','Point cloud to Revit','https://help.autodesk.com/view/RVT/2025/ENU/'],['chart','CloudCompare','https://www.cloudcompare.org/doc/']],
     proj:{t:'Santo Domingo colonial façade: scan-to-BIM',office:'Santo Domingo',ph:'facade',
       ch:'A heritage façade with no reliable drawings.',
       so:'Terrestrial scans plus a drone flight, modeled at LOD 300.',
       st:[['±4','mm registration accuracy','mm'],['2','days on site'],['38','façade elements modeled'],['0','surveys repeated']],
       who:[P.camila.n,P.julian.n,P.renata.n],status:'Published · Case study'},
-    cards:[['Terrain Analysis for a hillside campus','hill','San José'],['Construction progress scans, monthly','city','Mexico City'],['Drone survey checklist for site visits','screen','Regional']],
+    cards:[['Terrain Analysis for a hillside campus','hill','San José'],['Construction progress scans, monthly','city','Mexico City'],['Drone survey checklist for site visits','screen','Regional'],['As-built scan of a heritage facade','facade','Buenos Aires'],['Point cloud to Revit for a retrofit','tower','Monterrey'],['Site scan of a coastal resort','hill','Santo Domingo']],
     steps:[['Plan the capture','Targets, accuracy, scan stations, flight plan.'],['Capture','Terrestrial scans and drone imagery.'],['Register & clean','One coordinated point cloud.'],['Model & verify','Scan-to-BIM and deviation reports.']],
-    services:['Existing conditions surveys','Drone photogrammetry','Terrain Analysis','As-built verification'],
+    services:[{t:'Existing conditions surveys',d:'We scan the site so you design on what is really there.',out:'You get: a clean point cloud and base model'},{t:'Drone photogrammetry',d:'We fly the site and turn photos into a 3D surface.',out:'You get: a mesh and an aerial map'},{t:'Terrain Analysis',d:'We read slopes and drainage from real terrain data.',out:'You get: terrain maps for early design'},{t:'As-built verification',d:'We compare what was built against the model.',out:'You get: a deviation report'}],
     skills:['BLK360, ReCap, CloudCompare','Photogrammetry pipelines','Scan-to-BIM in Revit','GIS terrain models'],
     value:['Design on real geometry','Fewer surprises in demolition','Evidence for construction QA'],
     leaders:[P.camila,P.julian,P.ivan,P.paula],
     contact:{ch:'#dt-lac-reality-capture',mail:'rc.lac@example.com',hours:'Scan requests · 2 weeks lead time'}},
   cd:{key:'cd',n:'03',code:'CD',name:'Computational Design',motif:'flow',page:'Computational Design',
+    plain:'Design Options',plainLine:'Many options, compared with real criteria.',
     h1:'Parametric options,',tail:'decided with evidence.',
     vp:'Scripts and analyses to explore more options early.',
-    tools:[['nodes','Rhino + Grasshopper'],['tool','Dynamo'],['cube','Rhino.Inside.Revit'],['compass','gBlox']],
+    tools:[['nodes','Rhino + Grasshopper','https://www.rhino3d.com/learn/?keyword=kind:%20grasshopper'],['tool','Dynamo','https://primer2.dynamobim.org/'],['cube','Rhino.Inside.Revit','https://www.rhino3d.com/inside/revit/'],['compass','gBlox','#/learning']],
     proj:{t:'Pedestrian Flows for the Bogotá transit hub',office:'Bogotá',ph:'hub',
       ch:'Peak-hour crowding and three competing layouts.',
       so:'Agent-based simulation in Grasshopper, reviewed live.',
       st:[['3','layouts simulated'],['−27','% peak congestion','%'],['14k','agents per run'],['2','client workshops']],
       who:[P.sofia.n,P.valeria.n,P.renata.n],status:'Published · Case study'},
-    cards:[['Climate analysis toolkit for early massing','city','Santo Domingo'],['Rhino-Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional']],
+    cards:[['Climate analysis toolkit for early massing','city','Santo Domingo'],['Rhino-Revit interoperability workflow','tower','Mexico City'],['gBlox for test-fit studies','screen','Regional'],['Facade fin study for a Lima office','facade','Lima'],['Massing options for a hillside school','hill','San José'],['Crowd flow for a stadium concourse','hub','Monterrey']],
     steps:[['Frame the question','Which decision, which metric, which data.'],['Script & simulate','Grasshopper, Dynamo or Python.'],['Compare options','Dashboards the team can read.'],['Hand over','Clean geometry and reusable scripts.']],
-    services:['Massing & optioneering','Climate and daylight analysis','Pedestrian Flows','Design automation'],
+    services:[{t:'Massing & optioneering',d:'We generate and compare many massing options fast.',out:'You get: a ranked list of options'},{t:'Climate and daylight analysis',d:'We test sun, daylight and wind on your early design.',out:'You get: simple maps of what works'},{t:'Pedestrian Flows',d:'We simulate how people move through your plan.',out:'You get: heat maps of crowding'},{t:'Design automation',d:'We turn repetitive tasks into one-click scripts.',out:'You get: a script your team can reuse'}],
     skills:['Grasshopper, Dynamo, Python','Ladybug tools','Rhino.Inside.Revit','gBlox test-fits'],
     value:['More options in the same time','Decisions backed by metrics','Scripts reused across offices'],
     leaders:[P.sofia,P.valeria,P.tomas,P.renata],
     contact:{ch:'#dt-lac-computational',mail:'cd.lac@example.com',hours:'Script clinic · Thursdays 16:00 CST'}},
   di:{key:'di',n:'04',code:'DI',name:'Data Intelligence',motif:'bars',page:'Data Intelligence',
+    plain:'Project Insights',plainLine:'Your project data, turned into clear answers.',
     h1:'From project data',tail:'to better decisions.',
     vp:'Dashboards and spatial analytics that turn data into evidence.',
-    tools:[['chart','Power BI'],['nodes','Speckle'],['globe','GIS (ArcGIS / QGIS)'],['chat','Microsoft Copilot']],
+    tools:[['chart','Power BI','https://learn.microsoft.com/power-bi/'],['nodes','Speckle','https://speckle.guide/'],['globe','GIS (ArcGIS / QGIS)','https://learn.arcgis.com/'],['chat','Microsoft Copilot','https://learn.microsoft.com/copilot/']],
     proj:{t:'Urban Vitality Index for Mexico City corridors',office:'Mexico City',ph:'city',
       ch:'Prioritizing investment across 38 blocks of scattered data.',
       so:'A GIS model and Power BI index the client can update.',
       st:[['38','blocks analyzed'],['12','urban indicators'],['6','days, down from 4 weeks'],['1','index the client owns']],
       who:[P.mateo.n,P.renata.n,P.lucia.n],status:'Published · Impact story'},
-    cards:[['Speckle → Power BI project dashboards','screen','Bogotá'],['Spatial analytics for retail network','city','Buenos Aires'],['Copilot prompts for data teams','people','Regional']],
+    cards:[['Speckle → Power BI project dashboards','screen','Bogotá'],['Spatial analytics for retail network','city','Buenos Aires'],['Copilot prompts for data teams','people','Regional'],['Occupancy insights for a hybrid office','screen','Mexico City'],['Site selection map for a retail chain','city','Bogotá'],['Energy dashboard for a tower portfolio','tower','San José']],
     steps:[['Find the data','Models, GIS, surveys, client sources.'],['Connect','Speckle streams and clean pipelines.'],['Visualize','Power BI built for decisions.'],['Hand over','Dashboards the client can maintain.']],
-    services:['Project dashboards','Spatial analytics & GIS','Urban Vitality Index','Productive AI adoption'],
+    services:[{t:'Project dashboards',d:'We connect your model and project data to live charts.',out:'You get: one dashboard that updates itself'},{t:'Spatial analytics & GIS',d:'We map your site and its surroundings with real data.',out:'You get: maps and indicators of the context'},{t:'Urban Vitality Index',d:'We score neighborhoods with a few clear indicators.',out:'You get: an index your client can update'},{t:'Productive AI adoption',d:'We show your team where AI saves time, with guardrails.',out:'You get: tested prompts and a short guide'}],
     skills:['Power BI, DAX','Speckle, Python','ArcGIS, QGIS','Copilot workflows'],
     value:['Evidence for design decisions','Clients see progress clearly','One source of truth per project'],
     leaders:[P.mateo,P.renata,P.lucia,P.paula],
@@ -2842,7 +3048,7 @@ function clusterHeader(c){
     <div class="copy">
       <div class="num"><span class="sw"></span>LAC cluster ${c.n} / 04<span style="opacity:.55">Design Technology</span></div>
       <h1 class="big">${c.code==='CD'?'Computational<br>Design':c.code==='DI'?'Data<br>Intelligence':c.code==='RC'?'Reality<br>Capture':'Virtual Design<br>&amp; Construction'}<span class="sdot"></span></h1>
-      <div class="sub">${esc(c.services.join('  ·  '))}</div>
+      <div class="sub">${esc(c.services.map(s=>s.t).join('  ·  '))}</div>
     </div>
   </div>`;
 }
@@ -3054,7 +3260,6 @@ const FIRST_SESSION = [
 ];
 
 /* ---------- Home: Quick links en fila, tablero de impacto, Spotlight, Community ---------- */
-const quickRow = () => sec('l1','none',[wp('n','Quick links · Button o Compact en 1 columna (fila horizontal compacta, 4 accesos)', `<div class="ql-buttons cols4 ql-row" data-quick-row>${[['compass','Explore capabilities','#/clusters/vdc'],['tool','Find a tool','#/tools'],['book','Start learning','#/learning'],['bulb','Build with COM','#/request']].map(a=>`<a class="ql-btn" href="${a[2]}">${ic(a[0])}<span>${a[1]}</span>${ic('arrow','arr')}</a>`).join('')}</div>`)]);
 
 /* tablero de impacto: esqueleto con ganchos data-impact-*. Pestañas por cluster, lista de stats del cluster activo y mapa.
    bindImpact() pinta la lista, llena [data-impact-map-data] con el valor por oficina/país de la stat activa y despacha "impact:change" ({metricId, cluster}) en document */
@@ -3177,10 +3382,13 @@ const spotlightSection = () => { const s=SPOTLIGHT; return sec('l1','none',[wp('
 
 /* Community en Home (ronda 10): solo liderazgo regional (2/3) + próximo evento (1/3) en una fila, con la misma línea de título.
    En SharePoint: sección de 2 columnas 2/3–1/3 con People (Compact) a la izquierda y Events (Compact) a la derecha. Sin Featured expert. */
-const communityHome = () => sec('l31','none',[
-  wp('n','People · Compact ×4 en una línea (liderazgo regional: avatar pequeño, nombre y área) · columna 2/3', `<div class="wp-title"><h3>Regional leadership</h3><a href="#/community">See all</a></div><div class="people row4 lead-line" data-lead-line>${[[P.lucia,'Direction'],[P.diego,'VDC'],[P.camila,'Reality Capture'],[P.sofia,'Computational Design']].map(x=>`<div class="person sm lead-chip"><span class="av" aria-hidden="true">${ini(x[0].n)}</span><a href="#/community"><b>${esc(x[0].n)}</b><span>${x[1]}</span></a></div>`).join('')}</div>`),
-  wp('n','Events · Compact · columna 1/3', `<div class="wp-title"><h3>Upcoming event</h3></div><div class="events">${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
-],'Sección 2/3–1/3: People + Events (misma línea de título)');
+/* (ronda 13) «Meet our team»: último bloque de Home. Arriba la fila del equipo real (DT_TEAM, con foto de M365), debajo el Spotlight.
+   El «Upcoming event» que iba aquí pasó a Events (Featured learning). En SharePoint: una sección de 1 columna con People (Compact) y otra con el Spotlight. */
+/* tarjeta del carril del equipo: foto circular (o iniciales), nombre y puesto; hook data-team-row en el carril */
+const teamCard = p => `<a class="tm" href="#/community"><span class="tm-av" aria-hidden="true">${p.img?`<img src="img/people/${p.img}.jpg" alt="" loading="lazy">`:esc(ini(p.n))}</span><b>${esc(p.n)}</b><span>${esc(p.r)}</span></a>`;
+const meetTeam = () => sec('l1','none',[
+  wp('n','People · Compact (Design Technology Core Team LATAM · 20 personas con foto de perfil de M365) · título «Meet our team» · OJO: el People nativo NO tiene carril con flechas; en SharePoint hace wrap en 2–3 filas. El carril de una fila es de la maqueta (si se quiere tal cual: Power Apps · galería horizontal)', `<div class="wp-title"><h3>Meet our team</h3><span class="wp-title-r"><a href="#/community">See all</a>${carNav('team members')}</span></div>${carousel('Meet our team',DT_TEAM.map(teamCard).join(''),'team-rail','data-team-row')}`)
+],'Meet our team: People arriba, Spotlight abajo') + spotlightSection();
 
 /* ---------- Learning: Onboarding ---------- */
 /* nodo del mapa: tronco y rama son botones (se seleccionan); la hoja es la punta de la rama.
@@ -3215,8 +3423,7 @@ const onboardingSections = () => [
   sec('l31','none',[
     wp('n','Text · Fixed width + Heading 2 + Normal (agenda numerada, 5 puntos)', `${kick('Week 1')}${h2('Your first','DT session.')}<div class="onb-time" aria-hidden="true">${FIRST_SESSION.map((a,i)=>`<i style="flex:${parseInt(a[2])||1} 1 0;--o:${92-i*15}%"></i>`).join('')}</div><ol class="onb-agenda" data-onb-agenda>${FIRST_SESSION.map(a=>`<li><b>${esc(a[0])}</b><span>${esc(a[1])}</span><small>${esc(a[2])}</small></li>`).join('')}</ol>`),
     wp('n','Quick links · List', `<div class="wp-title"><h3>Before the session</h3></div><div class="ql-list">${[['cal','Book your session','#/request','Pick a Week 1 slot'],['book','Welcome checklist','#/learning','IT, accesses, Teams'],['people','Who to ask, by area','#/community','Leaders and champions']].map(q=>`<a href="${q[2]}">${ic(q[0])}<span><b>${q[1]}</b><span>${q[3]}</span></span></a>`).join('')}</div>`)
-  ]),
-  sec('l1','neutral',[wp('n','Quick links · Grid / People · Compact (una tarjeta por rama: contacto, recursos y próximo paso)', `<div class="wp-title"><h3>Choose your branch</h3></div><div class="onb-cards" data-onb-cards>${ONBOARDING.nodes.filter(n=>n.tipo==='branch').map(b=>{const l=ONBOARDING.nodes.find(x=>x.parent===b.id);return `<article class="onb-card" data-onb-card="${b.id}" data-cluster="${b.cluster}"><h4>${esc(b.titulo)}</h4>${person({n:b.contacto.n,r:b.contacto.r,o:b.contacto.o},false,true)}<ul class="onb-res">${b.recursos.map(r=>`<li>${esc(r)}</li>`).join('')}</ul><p class="onb-next"><small>Next step</small> ${esc(l.titulo)}</p><a class="t-link" href="${b.href}">Open ${esc(b.titulo)}</a></article>`}).join('')}</div>`)])
+  ])
 ].join('');
 /* curvas del mapa de onboarding: se miden los nodos ya maquetados (por eso funciona con cualquier texto) y se trazan en el SVG de fondo.
    Tronco = línea vertical con estaciones. Desde «Core tools» salen 6 fibras que se abren en carriles (uno por rama, sin cruces:
@@ -3264,7 +3471,6 @@ function bindOnboarding(){
     map.querySelectorAll('button[data-onb-node]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.onbNode===id));
     map.dataset.active=id;
     const d=onbDetail(id||'t-day1'); if(det){det.dataset.cluster=d.cluster;det.innerHTML=d.html}
-    document.querySelectorAll('[data-onb-card]').forEach(c=>c.toggleAttribute('data-active',c.dataset.onbCard===id));
     onbPaint(map);
     if(fire)document.dispatchEvent(new CustomEvent('onboarding:select',{detail:{nodeId:id}}));
   };
@@ -3277,11 +3483,136 @@ function bindOnboarding(){
 }
 
 
+/* @personalizar: nivel de contraste de secciones por defecto (ronda 13). ctr= en el hash lo cambia: 0 = como en la ronda 12 */
+const CTR_DEFAULT='2';
+/* =========================================================
+   13 · RONDA 13 (diseño): carrusel de Highlighted content, carril del equipo, glifos de servicios y grafo de personas de Community
+   ========================================================= */
+/* @personalizar: proyectos del carrusel «More projects» de Home (título, ilustración, cluster, meta, pie, vínculo). 3 visibles en escritorio, 1 en móvil */
+const HOME_MORE = [
+  ['Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd'],
+  ['Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc'],
+  ['Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc'],
+  ['Occupancy insights for a hybrid office','screen','di','Data Intelligence · Mexico City','Case study · Updated Jul 2026','#/clusters/di'],
+  ['As-built scan of a heritage facade','facade','rc','Reality Capture · Buenos Aires','Case study · Updated Jun 2026','#/clusters/rc'],
+  ['Facade fin study for a Lima office','facade','cd','Computational Design · Lima','Case study · Updated May 2026','#/clusters/cd']
+];
+/* carril con flechas. En SharePoint = Highlighted content con layout «Carousel» (flechas y puntos nativos); la fila del equipo NO es nativa (ver su etiqueta).
+   carNav() va en el título del web part (junto a «See all»); carousel() es el carril + puntos + posición «01–03 / 06». Lo conecta bindCarousels() */
+const carNav = label => `<span class="car-nav"><button type="button" class="car-btn" data-car-prev aria-label="Previous ${esc(label)}">${ic('arrow')}</button><button type="button" class="car-btn" data-car-next aria-label="Next ${esc(label)}">${ic('arrow')}</button></span>`;
+const carousel = (label, items, cls='', attr='') => `<div class="car ${cls}" data-carousel><div class="car-track" data-car-track ${attr} tabindex="0" role="group" aria-roledescription="carousel" aria-label="${esc(label)}">${items}</div><div class="car-foot"><span class="car-dots" data-car-dots></span><span class="car-pos" data-car-pos aria-live="polite"></span></div></div>`;
+function bindCarousels(){
+  const reduce=()=>!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  document.querySelectorAll('[data-carousel]').forEach(car=>{
+    const tr=car.querySelector('[data-car-track]'),root=car.closest('.wp')||car,items=[...tr.children],n=items.length;
+    const prev=root.querySelector('[data-car-prev]'),next=root.querySelector('[data-car-next]'),dots=car.querySelector('[data-car-dots]'),pos=car.querySelector('[data-car-pos]');
+    const step=()=>items[1]?items[1].offsetLeft-items[0].offsetLeft:tr.clientWidth||1;
+    const per=()=>Math.max(1,Math.min(n,Math.round((tr.clientWidth+16)/step())));
+    const cur=()=>Math.round(tr.scrollLeft/step());
+    const go=i=>{i=Math.max(0,Math.min(i,n-per()));tr.scrollTo({left:i*step(),behavior:reduce()?'auto':'smooth'})};
+    const p2=x=>String(x).padStart(2,'0');
+    let pages=-1;
+    const paint=()=>{const p=per(),i=Math.min(cur(),n-p),pg=Math.ceil(n/p),on=i>=n-p?pg-1:Math.round(i/p);
+      if(pg!==pages){pages=pg;dots.innerHTML=pg>1?Array.from({length:pg},(_,k)=>`<button type="button" data-car-dot="${k}" aria-label="Page ${k+1} of ${pg}"></button>`).join(''):''}
+      dots.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-current',k===on?'true':'false'));
+      pos.textContent=`${p2(i+1)}${p>1?'–'+p2(Math.min(n,i+p)):''} / ${p2(n)}`;
+      if(prev)prev.disabled=i<=0; if(next)next.disabled=i>=n-p;
+      car.classList.toggle('at-start',i<=0);car.classList.toggle('at-end',i>=n-p)};
+    prev&&prev.addEventListener('click',()=>go(cur()-per()));
+    next&&next.addEventListener('click',()=>go(cur()+per()));
+    dots.addEventListener('click',e=>{const b=e.target.closest('[data-car-dot]');if(b)go(+b.dataset.carDot*per())});
+    tr.addEventListener('keydown',e=>{const m={ArrowRight:1,ArrowLeft:-1}[e.key];
+      if(m){e.preventDefault();go(cur()+m)}else if(e.key==='Home'){e.preventDefault();go(0)}else if(e.key==='End'){e.preventDefault();go(n)}});
+    let raf=0;tr.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(paint)},{passive:true});
+    if(window.ResizeObserver)new ResizeObserver(()=>{pages=-1;paint()}).observe(tr);
+    paint();
+  });
+}
+/* glifo esquemático de cada servicio (01 capas · 02 nube de puntos · 03 red · 04 barras). Trazo de 1 px en el color del cluster (--t); en SharePoint = ícono PNG de la tarjeta */
+function svcGlyph(i){
+  const G=[
+    '<path class="g2" d="M8 30 32 38 56 30 32 22Z"/><path class="g2" d="M8 22 32 30 56 22 32 14Z"/><path class="ga" d="M8 14 32 22 56 14 32 6Z"/>',
+    Array.from({length:7*4},(_,k)=>{const x=10+(k%7)*7.3,y=10+Math.floor(k/7)*7,v=(Math.sin(k*1.7)+1)/2;return `<circle cx="${x.toFixed(1)}" cy="${y}" r="${(0.8+v*1.3).toFixed(2)}" class="${v>.8?'gf':'gd'}"/>`}).join(''),
+    '<path class="g2" d="M12 30 26 12 42 26 54 10M26 12 54 10M12 30 42 26"/><circle cx="12" cy="30" r="2.6" class="gd"/><circle cx="26" cy="12" r="2.6" class="gd"/><circle cx="42" cy="26" r="3.2" class="gf"/><circle cx="54" cy="10" r="2.6" class="gd"/>',
+    '<path class="g3" d="M6 36H58"/><path class="g2" d="M12 36V26M22 36V20M32 36V24M42 36V14"/><path class="ga" d="M52 36V8"/><path class="g3" d="M12 22 22 16 32 20 42 10 52 4" stroke-dasharray="2 3"/>'
+  ];
+  return `<svg class="svc-g" viewBox="0 0 64 42" aria-hidden="true">${G[i%4]}</svg>`;
+}
+/* ---------- grafo de personas de Community (COMMUNITY_GRAPH). SVG + JS propio: layout de fuerzas precalculado (sin animación),
+   halo suave por cluster, filtro por grupo (atenúa), hover/foco resalta las conexiones, arrastrar nodos, panel al hacer clic.
+   En SharePoint: Power Apps (galería de fotos + chips de grupo + Join) sobre la lista People */
+const PG_K={VDC:'vdc',RC:'rc',CD:'cd',DI:'di'};
+function mountPeopleGraph(el){
+  const G=COMMUNITY_GRAPH,P=G.people.map(p=>({...p,k:PG_K[p.cl]||'vdc'})),by=Object.fromEntries(P.map(p=>[p.id,p]));
+  const L=G.links.filter(l=>by[l[0]]&&by[l[1]]&&l[0]!==l[1]).map(l=>({s:by[l[0]],t:by[l[1]]}));
+  const gName=id=>(G.groups.find(g=>g.id===id)||{}).n||id, cnt=id=>id==='all'?P.length:P.filter(p=>p.g.includes(id)).length;
+  el.innerHTML=`<div class="pg"><div class="pg-bar"><div class="pg-chips" role="group" aria-label="Filter people by group">${G.groups.map((g,i)=>`<button type="button" class="pg-chip" data-pg-g="${g.id}" aria-pressed="${i===0}">${esc(g.n)}<span>${cnt(g.id)}</span></button>`).join('')}</div><a class="pg-join" href="#/community">Join a group ${ic('arrow')}</a></div>`
+   +`<div class="pg-stage" data-pg-stage><svg class="pg-svg" role="img" aria-label="Network of ${P.length} community members linked by shared groups. The full list follows."></svg><aside class="pg-card" data-pg-card hidden aria-live="polite"></aside><p class="pg-leg" aria-hidden="true">${Object.keys(PG_K).map(c=>`<span><i style="background:var(--hl-${PG_K[c]})"></i>${esc(CL[PG_K[c]].plain||c)}</span>`).join('')}</p><p class="pg-fig" aria-hidden="true">FIG. 06 · COMMUNITY GRAPH · <span data-pg-n>${P.length}</span> PEOPLE</p><p class="pg-hint" aria-hidden="true">Hover to trace links · drag to move · click for details</p></div>`
+   +`<ul class="vh">${P.map(p=>`<li>${esc(p.n)}, ${esc(p.r)}, ${esc(p.o)}. Groups: ${p.g.map(gName).map(esc).join(', ')}.</li>`).join('')}</ul></div>`;
+  const stage=el.querySelector('[data-pg-stage]'),svg=stage.querySelector('svg'),card=stage.querySelector('[data-pg-card]');
+  const W=Math.max(320,Math.round(stage.clientWidth||1150)),mob=W<700,H=mob?Math.round(W*3.1):Math.round(Math.min(660,Math.max(540,W*.54)));
+  const sc=mob?.78:1, rad=p=>(10+p.size*5)*sc;
+  const A=mob?{vdc:[.3,.14],rc:[.7,.37],cd:[.3,.62],di:[.7,.86]}:{vdc:[.2,.3],rc:[.76,.28],cd:[.27,.74],di:[.73,.74]};
+  const rnd=R(13);P.forEach(p=>{const a=A[p.k];p.x=a[0]*W+(rnd()-.5)*W*.22;p.y=a[1]*H+(rnd()-.5)*H*.22;p.vx=0;p.vy=0});
+  /* fuerzas: separación anisótropa (los nombres van debajo y son anchos), resortes por vínculo, atracción al halo del cluster y a los centros de grupo */
+  const AX=mob?1.25:2, mx=mob?34:64, my=mob?40:34;
+  for(let it=0;it<480;it++){const al=it<360?1-it/400:.1;
+    for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j];let dx=(b.x-a.x)/AX,dy=b.y-a.y,d=Math.hypot(dx,dy)||.01;
+      const need=(rad(a)+rad(b))*.6+(mob?32:36);
+      if(d<need){const f=(need-d)/d*.5;dx*=f*AX;dy*=f;a.x-=dx;a.y-=dy;b.x+=dx;b.y+=dy}
+      else if(d<need*2.4){const f=.6*al/(d*d)*need;a.x-=dx*f;a.y-=dy*f;b.x+=dx*f;b.y+=dy*f}}
+    if(it<360)L.forEach(l=>{const dx=l.t.x-l.s.x,dy=l.t.y-l.s.y,d=Math.hypot(dx,dy)||1,f=(d-(mob?80:120))/d*.02*al;l.s.x+=dx*f;l.s.y+=dy*f;l.t.x-=dx*f;l.t.y-=dy*f});
+    P.forEach(p=>{const a=A[p.k];const ka=(it<360?(mob?.018:.03):0)*al;p.x+=(a[0]*W-p.x)*ka;p.y+=(a[1]*H-p.y)*ka;
+      const r=rad(p);p.x=Math.max(mx+r*.2,Math.min(W-mx-r*.2,p.x));p.y=Math.max(r+my+14,Math.min(H-r-my-20,p.y))})}
+  const short=n=>{const w=n.split(' ');return w.length>1?w[0]+' '+w[w.length-1][0]+'.':n}, s=v=>v.toFixed(1), ini2=n=>esc(n.split(' ').filter(Boolean).map(x=>x[0]).join('').slice(0,2));
+  const halo=k=>{const a=A[k];return `<ellipse cx="${s(a[0]*W)}" cy="${s(a[1]*H)}" rx="${s(W*(mob?.48:.3))}" ry="${s(H*(mob?.2:.36))}" fill="url(#pgh-${k})"/>`
+    ''};
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.style.height=H+'px';
+  svg.innerHTML=`<defs><clipPath id="pg-clip" clipPathUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5"/></clipPath>${Object.keys(A).map(k=>`<radialGradient id="pgh-${k}"><stop offset="0" style="stop-color:var(--hl-${k});stop-opacity:.15"/><stop offset=".55" style="stop-color:var(--hl-${k});stop-opacity:.05"/><stop offset="1" style="stop-color:var(--hl-${k});stop-opacity:0"/></radialGradient>`).join('')}</defs>`
+    +`<g class="pg-halos" aria-hidden="true">${Object.keys(A).map(halo).join('')}</g>`
+    +`<g class="pg-links" aria-hidden="true">${L.map((l,i)=>`<line data-l="${i}" x1="${s(l.s.x)}" y1="${s(l.s.y)}" x2="${s(l.t.x)}" y2="${s(l.t.y)}" style="--k:var(--hl-${l.s.k})"/>`).join('')}</g>`
+    +`<g class="pg-nodes">${P.map((p,i)=>{const r=rad(p);return `<g class="pg-n${p.size>2?' lg':''}" data-i="${i}" transform="translate(${s(p.x)} ${s(p.y)})" style="--k:var(--hl-${p.k})" tabindex="0" role="button" aria-label="${esc(p.n)}, ${esc(p.r)}, ${esc(p.o)}">`
+      +`<circle class="pg-ring" r="${s(r+3)}"/><circle class="pg-disc" r="${s(r)}"/>`
+      +(p.img?`<image href="img/people/${p.img}.jpg" x="${s(-r)}" y="${s(-r)}" width="${s(2*r)}" height="${s(2*r)}" clip-path="url(#pg-clip)" preserveAspectRatio="xMidYMid slice"/>`:`<text class="pg-ini" dy=".35em" text-anchor="middle" style="font-size:${s(r*.72)}px">${ini2(p.n)}</text>`)
+      +`<text class="pg-name" y="${s(r+15)}" text-anchor="middle">${esc(mob?short(p.n):p.n)}</text></g>`}).join('')}</g>`;
+  const nodes=[...svg.querySelectorAll('.pg-n')],lines=[...svg.querySelectorAll('.pg-links line')];
+  const nb=P.map(()=>new Set());L.forEach((l,i)=>{const a=P.indexOf(l.s),b=P.indexOf(l.t);nb[a].add(b);nb[b].add(a)});
+  let grp='all',open=-1;
+  const inG=p=>grp==='all'||p.g.includes(grp);
+  const paint=()=>{nodes.forEach((g,i)=>g.classList.toggle('is-out',!inG(P[i])));lines.forEach((ln,i)=>ln.classList.toggle('is-out',!(inG(L[i].s)&&inG(L[i].t))));
+    stage.querySelector('[data-pg-n]').textContent=P.filter(inG).length};
+  const hi=i=>{svg.classList.toggle('has-hi',i>=0);nodes.forEach((g,j)=>{g.classList.toggle('is-me',j===i);g.classList.toggle('is-nb',i>=0&&nb[i].has(j))});
+    lines.forEach((ln,j)=>ln.classList.toggle('is-on',i>=0&&(L[j].s===P[i]||L[j].t===P[i])))};
+  const showCard=i=>{open=i;if(i<0){card.hidden=true;hi(-1);return}const p=P[i],c=CL[p.k];
+    card.innerHTML=`<button type="button" class="pg-x" data-pg-x aria-label="Close details">×</button><div class="pg-cav" style="--k:var(--hl-${p.k})">${p.img?`<img src="img/people/${p.img}.jpg" alt="">`:ini2(p.n)}</div><b>${esc(p.n)}</b><span>${esc(p.r)}</span>`
+      +`<dl><dt>Office</dt><dd>${esc(p.o)}</dd><dt>Cluster</dt><dd><i style="background:var(--hl-${p.k})"></i>${esc(c.plain||c.code)}</dd><dt>Groups</dt><dd class="pg-gs">${p.g.map(g=>`<span>${esc(gName(g))}</span>`).join('')}</dd><dt>Links</dt><dd>${nb[i].size} ${nb[i].size===1?'person':'people'}</dd></dl>`
+      +`<a class="t-link" href="#/community">View profile</a>`;card.hidden=false;hi(i)};
+  el.querySelectorAll('[data-pg-g]').forEach(b=>b.addEventListener('click',()=>{grp=b.dataset.pgG;el.querySelectorAll('[data-pg-g]').forEach(x=>x.setAttribute('aria-pressed',x===b));paint();if(open>=0&&!inG(P[open]))showCard(-1)}));
+  card.addEventListener('click',e=>{if(e.target.closest('[data-pg-x]')){const k=open;showCard(-1);nodes[k]&&nodes[k].focus()}});
+  el.addEventListener('keydown',e=>{if(e.key==='Escape'&&open>=0){const k=open;showCard(-1);nodes[k]&&nodes[k].focus()}});
+  const pt=e=>{const m=svg.getScreenCTM();return m?new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse()):{x:0,y:0}};
+  const move=(i,x,y)=>{const p=P[i],r=rad(p);p.x=Math.max(r,Math.min(W-r,x));p.y=Math.max(r,Math.min(H-r-16,y));nodes[i].setAttribute('transform',`translate(${s(p.x)} ${s(p.y)})`);
+    L.forEach((l,j)=>{if(l.s===p){lines[j].setAttribute('x1',s(p.x));lines[j].setAttribute('y1',s(p.y))}if(l.t===p){lines[j].setAttribute('x2',s(p.x));lines[j].setAttribute('y2',s(p.y))}})};
+  nodes.forEach((g,i)=>{
+    g.addEventListener('pointerenter',()=>{if(open<0)hi(i)});g.addEventListener('pointerleave',()=>{if(open<0)hi(-1)});
+    g.addEventListener('focus',()=>{if(open<0)hi(i)});g.addEventListener('blur',()=>{if(open<0)hi(-1)});
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showCard(open===i?-1:i)}});
+    g.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();g.setPointerCapture(e.pointerId);const a=pt(e),ox=P[i].x-a.x,oy=P[i].y-a.y;let moved=0;g.classList.add('is-drag');
+      const mv=ev=>{const b=pt(ev);moved=Math.max(moved,Math.hypot(b.x-a.x,b.y-a.y));move(i,b.x+ox,b.y+oy)};
+      const up=()=>{g.removeEventListener('pointermove',mv);g.removeEventListener('pointerup',up);g.removeEventListener('pointercancel',up);g.classList.remove('is-drag');if(moved<4)showCard(open===i?-1:i)};
+      g.addEventListener('pointermove',mv);g.addEventListener('pointerup',up);g.addEventListener('pointercancel',up)})});
+  paint();
+  /* estado inicial para capturas: pgg=<grupo> filtra; pgp=<id> abre el panel de esa persona */
+  const q=new URLSearchParams((location.hash.split('?')[1])||'');
+  if(q.get('pgg'))el.querySelector(`[data-pg-g="${CSS.escape(q.get('pgg'))}"]`)?.click();
+  if(q.get('pgp')){const k=P.findIndex(p=>p.id===q.get('pgp'));if(k>=0)showCard(k)}
+}
+function bindPeopleGraph(){document.querySelectorAll('[data-people-graph]').forEach(mountPeopleGraph)}
+
 function pageHome(){
-  const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}" style="--t:var(--hl-${k})"><div class="thumb">${capThumb(c)}</div><div class="cap">${esc(c.name)}<span>${esc(c.h1+' '+c.tail)}</span></div></a>`}).join('');
+  const caps = ORDER.map(k=>{const c=CL[k];return `<a class="ql-card" href="#/clusters/${k}" style="--t:var(--hl-${k})" data-plain="${esc(c.plain)}"><div class="thumb">${capThumb(c)}</div><div class="cap" data-plain-cap>${esc(c.plain)}<span>${esc(c.plainLine)}</span></div></a>`}).join('');
   return [
     sec('full','none',[wp('i',S7()?`Image (GIF ≤ 3 MB) o File and media (MP4 en bucle ≤ 3 MB, sin audio, 1920 px) · full-width · header generativo «${hv7Name(hv7Cur())}» (${HV7_NOTE[hv7Cur()]}) grabado del canvas · estático: Image PNG 2880 px (1 fotograma) · texto horneado y en el alt`:S5()?'Image (WebP 2880 px) o File and media (MP4) · full-width · hero azul pre-renderizado: degradado, grano, mapa y cursores horneados'+imgNote(' + foto real en multiply bajo el degradado'):'Image (GIF ≤3 MB) o File and media (MP4 en bucle, sin audio) · full-width · pieza pre-renderizada'+imgNote(' + foto real atenuada (negativo en screen al 15 %) detrás del titular'),homeHeader())]),
-    quickRow(),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Our capabilities')}${h2('Four clusters,','one way of working.')}`),
       wp('n',S5()?'Quick links · Filmstrip · miniatura 1:1 = foto de proyecto en bandeja blanca + código del cluster (PNG 600 px)':'Quick links · Filmstrip · miniaturas 1:1 pre-renderizadas', `<div class="ql-film" data-at="caps">${caps}</div>`)
@@ -3295,11 +3626,11 @@ function pageHome(){
       wp('i',S5()?'Image · 1 vínculo al caso de estudio · '+(IMG5()?'imagen real del proyecto':'foto de proyecto')+' en bandeja + gráfica de datos DI + pie mono (PNG 1584 px, fondo blanco)':'Image · 1 vínculo al caso de estudio', `<a href="#/clusters/di" aria-label="Read the case study: Urban Vitality Index">${(f=>IMG5()?f.replace('<span class="tag">',uviChart()+'<span class="tag">'):f.replace('</svg>','</svg>'+uviChart()))(ph('city','di','Data Intelligence · Mexico City','Urban Vitality Index for Mexico City corridors','feat').replace('class="ph grain"','class="ph ph-feat grain" style="--t:var(--hl-di);aspect-ratio:16/11;border-radius:var(--r-native)"'))}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + vínculo', `${kick('Featured project · Impact story')}${h2('Urban Vitality Index','for Mexico City corridors.')}<p class="t-p muted">38 blocks, 12 indicators, one index the client can update.</p><div class="stat-grid"><div class="stat"><b>6<small>days</small></b><span>down from 4 weeks</span></div><div class="stat"><b>12</b><span>indicators</span></div></div><p class="t-p"><a class="t-link" href="#/clusters/di">Read the case study</a></p>`)
     ]),
-    sec('l1','none',[wp('n',S5()?'Highlighted content · Cards · Lista Projects (Featured = Sí) · miniatura = '+(IMG5()?'imagen de miniatura de la página (imagen real 16:9)':'foto de proyecto 16:9 (fondo blanco)')+' · filete = color del cluster':'Highlighted content · Cards · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><a href="#/projects">See all</a></div><div class="hc proj">${hcCard('Pedestrian Flows for the Bogotá transit hub','hub','cd','Computational Design · Bogotá','Case study · Updated Oct 2026','#/clusters/cd','doc')}${hcCard('Terrain Analysis for a hillside campus','hill','rc','Reality Capture · San José','Case study · Updated Sep 2026','#/clusters/rc','doc')}${hcCard('Monterrey tower: one federated model','tower','vdc','VDC · Monterrey','Case study · Updated Aug 2026','#/clusters/vdc','doc')}</div>`)]),
-    sec('l31','none',[
+    sec('l1','none',[wp('n',S5()?'Highlighted content · Carousel · Lista Projects (Featured = Sí) · miniatura = '+(IMG5()?'imagen de miniatura de la página (imagen real 16:9)':'foto de proyecto 16:9 (fondo blanco)')+' · filete = color del cluster':'Highlighted content · Carousel · Lista Projects (Featured = Sí)', `<div class="wp-title"><h3>More projects</h3><span class="wp-title-r"><a href="#/projects">See all</a>${carNav('projects')}</span></div>${carousel('More projects',HOME_MORE.map(x=>hcCard(...x,'doc')).join(''),'proj')}`)]),
+    sec('l31','neutral',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Featured learning',true)}${h2('Computational Thinking,','a 6-module path.')}<p class="t-p muted">Self-paced capsules. A live clinic every month.</p><p class="t-p"><a class="t-link" href="#/learning">Start the path</a></p>`)
       + wp('n','Highlighted content · Cards · Videos de Stream (Learning)'+imgNote(' · miniatura = imagen de miniatura del video'), `<div class="wp-title"><h3>Recent workshops</h3><a href="#/learning">See all</a></div><div class="hc">${hcCard('Dynamo for repetitive documentation','screen','cd','Recording · 48 min','Workshop · Nov 6, 2026','#/learning','play')}${hcCard('Power BI for project dashboards','screen','di','Recording · 62 min','Workshop · Oct 23, 2026','#/learning','play')}${hcCard('Copilot prompts for design teams','people','di','Recording · 35 min','Workshop · Oct 9, 2026','#/learning','play')}</div>`),
-      wp('n','Events · Compact (próxima sesión)', `<div class="wp-title"><h3>Upcoming session</h3><a href="#/learning">See all</a></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}</div>`)
+      wp('n','Events · Compact (próximas sesiones; incluye el evento de comunidad que antes iba junto a Regional leadership)', `<div class="wp-title" data-upcoming><h3>Upcoming events</h3><a href="#/learning">See all</a></div><div class="events">${ev('Nov','27','Reality Capture live: drone to mesh','10:00 CST · Teams')}${ev('Dec','04','Speckle office hours','16:00 CST · Teams')}${ev('Dec','11','AI Builders meetup · LAC','17:00 CST · Mexico City + Teams')}</div>`)
       + wp('n','Quick links · List (quick-start)', `<div class="wp-title"><h3>Quick-start</h3></div><div class="ql-list">${[['book','Rhino-Revit in 15 minutes','Interoperability basics'],['nodes','Speckle: send your first model','Step-by-step guide'],['globe','GIS basics for site analysis','Firmwide resource · curated']].map(q=>`<a href="#/learning">${ic(q[0])}<span><b>${q[1]}</b><span>${q[2]}</span></span></a>`).join('')}</div>`)
     ]),
     /* Estilo 5: la banda en degradado es una imagen full-width (los fondos de sección son planos) y los 3 vínculos van debajo */
@@ -3313,10 +3644,9 @@ function pageHome(){
       wp('n','Text · Fixed width + Heading 2 + Normal (fondo Fuerte = themePrimary)', `${kick('Build with COM')}${h2('Have an idea?','Build it with us.')}<p class="t-p">From idea to launched LATAM solution.</p><div class="stat-grid" style="grid-template-columns:repeat(3,1fr);max-width:520px"><div class="stat"><b>14</b><span>in evaluation</span></div><div class="stat"><b>06</b><span>in development</span></div><div class="stat"><b>09</b><span>launched</span></div></div>`),
       wp('n','Quick links · Button (Forms / página)', `<div class="ql-buttons">${comBtns()}</div>`)
     ])]),
-    spotlightSection(),
-    communityHome(),
     sec('l1','neutral',[wp('n','News · Top story'+imgNote(' · thumbnail = imagen de miniatura de la noticia')+' (EXTRA: noticias del hub)', `<div class="wp-title"><h3>News</h3><a href="#/community">See all</a></div><div class="news"><a class="lead" href="#/community">${ph('tower','vdc','','Buenos Aires and Monterrey now share one ACC coordination standard')}<h4>Buenos Aires and Monterrey now share one ACC coordination standard</h4><p>Diego Ejemplo · Nov 10, 2026 · 4 min read</p></a><div>${[['Terrain Analysis is now a LATAM solution','hill','rc','Camila Ficticia · Nov 3'],['Copilot guardrails, curated for LAC teams','screen','di','Mateo Prueba · Oct 28'],['Bogotá hosts the first Grasshopper clinic','hub','cd','Sofía Muestra · Oct 20']].map(n=>`<a class="item" href="#/community">${ph(n[1],n[2],'',n[0])}<span><h4>${n[0]}</h4><p>${n[3]}</p></span></a>`).join('')}</div></div>`)],'EXTRA'),
     sec('l1','none',[wp('n','Quick links · Compact (EXTRA: curado de firmwide)', `<div class="wp-title"><h3>Curated from firmwide</h3></div><div class="ql-compact">${[['ext','Gensler DT firmwide'],['ext','Digital Capsules library'],['ext','BIM standards (firmwide)'],['ext','Productive AI hub'],['ext','Power BI template gallery'],['ext','Speckle at Gensler']].map(q=>`<a href="#/home">${ic(q[0])}${q[1]}</a>`).join('')}</div>`)],'EXTRA'),
+    meetTeam(),   /* (ronda 13) cierre de Home: Meet our team (fila del equipo) + Spotlight debajo */
   ].join('');
 }
 
@@ -3326,23 +3656,28 @@ function pageCluster(k){
   return [
     sec('full','none',[wp('i',S7()?`Image · full-width (2560 × 480) o GIF/MP4 ≤ 3 MB · banner derivado del header de Home (variante «${hv7Name(hv7Cur())}») + diagrama esquemático del cluster · texto horneado y alt completo`:'Image · full-width 16:5 (Banner borrado) · alt completo'+(media5('cluster:'+k)?' · degradado + imagen real del cluster horneados':''),clusterHeader(c))]),
     sec('l31','none',[
-      wp('n','Text · Fixed width + Heading 1 + Normal', `${kick(`LAC cluster ${c.n} · ${c.name}`,true)}<h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
-      wp('n','Quick links · Compact (herramientas núcleo → registros de Tools)', `<div class="wp-title"><h3>Core tools</h3><a href="#/tools">All tools</a></div><div class="ql-list">${c.tools.map(t=>`<a href="#/tools">${ic(t[0])}<span><b>${esc(t[1])}</b><span>Tool record · filtered by ${esc(c.code)}</span></span></a>`).join('')}</div>`)
+      wp('n','Text · Fixed width + Heading 1 + Normal', `<p class="t-kicker s5-hide" data-plain="${esc(c.plain)}">LAC cluster ${c.n} · ${esc(c.plain)}</p><h1 class="t-h1">${esc(c.h1)} ${tailFin(c.tail)}</h1><p class="t-p">${esc(c.vp)}</p>`),
+      wp('n','Quick links · Compact (herramientas núcleo → enlace de aprendizaje oficial del fabricante, se abre en otra pestaña)', `<div class="wp-title"><h3>Core tools</h3><a href="#/tools">All tools</a></div><div class="ql-list">${c.tools.map(t=>`<a ${learnAttrs(t[2])}>${ic(t[0])}<span><b>${esc(t[1])}</b><span>${learnTxt(t[2])}</span></span></a>`).join('')}</div>`)
     ]),
+    /* (ronda 13) orden: hero → Methodology → What can we do for you? (servicios + How we work) → proyectos → líderes → CTA */
+    sec('l1','none',[
+      wp('n','Text · Fixed width + Heading 2', `${kick('Methodology')}${h2('From brief,','to delivery.')}`),
+      wp('i','Image · proceso en 4 pasos (highlight del cluster) · alt completo', procArt(c))
+    ]),
+    sec('l1','none',[
+      wp('n','Text · Fixed width + Heading 1 (frase grande) + Normal + vínculo', `<div class="svc-intro" data-services-intro><div>${kick('Services')}${h2('What can we do','for you?')}</div><div class="svc-lede"><p class="t-p">${esc(c.plain)}: ${esc(c.plainLine)}</p><a class="t-link" href="#/request">Send your request</a></div></div>`),
+      wp('n','Quick links · Grid · 4 vínculos a Send your request (ícono = PNG pequeño del glifo; título + descripción: qué hacemos y, en segunda línea, «You get: …») · alternativa: Text en 2 columnas', `<div class="svc-grid" data-services style="--t:var(--hl-${k})">${c.services.map((v,i)=>`<a class="svc" href="#/request" data-service="${i+1}"><span class="svc-top"><span class="svc-n">0${i+1}<i>/0${c.services.length}</i></span>${svcGlyph(i)}</span><h4>${esc(v.t)}</h4><p>${esc(v.d)}</p><span class="svc-out"><small>You get</small>${esc(v.out.replace(/^you get:\s*/i,'').replace(/^./,m=>m.toUpperCase()))}</span><span class="svc-go">Request this ${ic('arrow')}</span></a>`).join('')}</div>`),
+      wp('n','Text · Heading 3 (título del bloque «How we work»)', `<h3 class="t-h3" data-howwework-title>How we work</h3>`)
+    ]),
+    sec('l2','none',[
+      wp('n','Text · Heading 3 + lista (columna 1 de 2)', `<div data-howwework="skills"><p class="t-kicker">Skills we bring</p><ul class="t-list">${c.skills.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`),
+      wp('n','Text · Heading 3 + lista (columna 2 de 2)', `<div data-howwework="value"><p class="t-kicker">Value to your team</p><ul class="t-list">${c.value.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`)
+    ],'How we work (compacto)'),
     sec('l31','neutral',[
       wp('i','Image · 1 vínculo al caso de estudio'+(media5(c.proj.t)?' · imagen real del proyecto':''), `<a href="#/projects" aria-label="Read the case study: ${esc(c.proj.t)}">${ph(c.proj.ph,k,c.name+' · '+c.proj.office,c.proj.t,'feat').replace('class="ph grain"','class="ph grain" style="--t:var(--hl-'+k+');aspect-ratio:16/11;border-radius:var(--r-native)"')}</a>`),
       wp('n','Text · Fixed width + Heading 2 + Normal + Heading 2 (cifras)', `${kick('Featured project · '+c.proj.status)}<h2 class="t-h2" style="font-size:26px">${esc(c.proj.t)}</h2><p class="t-p"><b>Challenge.</b> <span class="muted" style="color:var(--text-2)">${esc(c.proj.ch)}</span></p><p class="t-p"><b>Solution.</b> <span style="color:var(--text-2)">${esc(c.proj.so)}</span></p><div class="stat-grid">${c.proj.st.slice(0,4).map(s=>`<div class="stat"><b>${esc(s[0])}${s[2]?`<small>${s[2]}</small>`:''}</b><span>${esc(s[1].replace(/^% |^mm /,''))}</span></div>`).join('')}</div><p class="meta-line">CONTRIBUTORS · ${c.proj.who.map(esc).join(' · ').toUpperCase()}</p>`)
     ]),
-    sec('l1','none',[wp('n',`Highlighted content · Cards · Lista Projects (Cluster = ${c.code})`+imgNote(' · miniatura = imagen de miniatura de la página'), `<div class="wp-title"><h3>More ${esc(c.page)} projects</h3><a href="#/projects">See all</a></div><div class="hc">${c.cards.map(x=>hcCard(x[0],x[1],k,`${c.code} · ${x[2]}`,'Case study · Published','#/projects')).join('')}</div>`)]),
-    sec('l1','none',[
-      wp('n','Text · Fixed width + Heading 2', `${kick('Methodology')}${h2('How we work','with project teams.')}`),
-      wp('i','Image · proceso en 4 pasos (highlight del cluster) · alt completo', procArt(c))
-    ]),
-    sec('l3','none',[
-      wp('n','Text · Heading 3 + lista', `<h3 class="t-h3">Services</h3><ul class="t-list">${c.services.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`),
-      wp('n','Text · Heading 3 + lista', `<h3 class="t-h3">Skills</h3><ul class="t-list">${c.skills.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`),
-      wp('n','Text · Heading 3 + lista', `<h3 class="t-h3">Value to your team</h3><ul class="t-list">${c.value.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`)
-    ]),
+    sec('l1','none',[wp('n',`Highlighted content · Carousel · Lista Projects (Cluster = ${c.code})`+imgNote(' · miniatura = imagen de miniatura de la página'), `<div class="wp-title"><h3>More ${esc(c.page)} projects</h3><span class="wp-title-r"><a href="#/projects">See all</a>${carNav(c.page+' projects')}</span></div>${carousel('More '+c.page+' projects',c.cards.map(x=>hcCard(x[0],x[1],k,`${c.code} · ${x[2]}`,'Case study · Published','#/projects')).join(''))}`)]),
     sec('l1','neutral',[
       wp('n','Text · Fixed width + Heading 2', `${kick('Leaders')}${h2('Who to call','for '+c.page+'.')}`),
       wp('n','People · Descriptive (perfiles de Community)', `<div class="people desc">${c.leaders.map(p=>person({...p,d:p.d||`${c.code} contact for ${p.o} projects.`})).join('')}</div>`)
@@ -3350,7 +3685,7 @@ function pageCluster(k){
     sec('l31','none',[
       wp('n','Call to action · imagen de fondo pre-renderizada', `<div class="cta">${ctaBg(c)}<div class="cta-body"><p class="t-kicker" style="color:#fff">Contact · ${esc(c.name)}</p><h3>Need ${esc(c.page)}? Let’s talk early.</h3><a class="btn" href="#/request">Start a conversation ${ic('arrow').replace('<svg','<svg width="16" height="16"')}</a></div></div>`),
       wp('n','Text · Heading 3 + Normal + vínculos', `<h3 class="t-h3">Other ways to reach us</h3><p class="t-p muted" style="font-size:14px">Teams channel<br><a class="t-link" href="#/community">${esc(c.contact.ch)}</a></p><p class="t-p muted" style="font-size:14px">Email<br><a class="t-link" href="#/request">${esc(c.contact.mail)}</a></p><p class="t-p muted" style="font-size:14px">${esc(c.contact.hours)}</p>`)
-      + wp('n','Quick links · Compact (otros clusters)', `<div class="wp-title"><h3>Other clusters</h3></div><div class="ql-list">${others.map(o=>`<a href="#/clusters/${o}">${ic('arrow')}<span><b>${esc(CL[o].name)}</b></span></a>`).join('')}</div>`)
+      + wp('n','Quick links · Compact (otros clusters)', `<div class="wp-title"><h3>Other clusters</h3></div><div class="ql-list">${others.map(o=>`<a href="#/clusters/${o}" data-plain="${esc(CL[o].plain)}">${ic('arrow')}<span><b>${esc(CL[o].plain)}</b><span>${esc(CL[o].name)}</span></span></a>`).join('')}</div>`)
     ]),
   ].join('');
 }
@@ -3507,65 +3842,69 @@ const TOOLS_ECOSYSTEM = {
     {name:'Creative & AI',cats:['Creative Storytelling','AI']}
   ],
   tools:[
-    {id:'revit',nombre:'Revit',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'revit.png'},
-    {id:'bim360',nombre:'BIM360',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'bim360.png'},
-    {id:'especs',nombre:'eSpecs',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'especs.png'},
-    {id:'formit',nombre:'Formit',categoria:'BIM & Documentation',origen:'commercial',clusters:['RC','CD'],logo:'formit.png'},
-    {id:'hatchkit',nombre:'HatchKit',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'hatchkit.png'},
-    {id:'ideate',nombre:'Ideate',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'ideate.png'},
-    {id:'specsources',nombre:'Specsources',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'specsources.png'},
-    {id:'slingshot',nombre:'Slingshot',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'slingshot.png'},
-    {id:'navisworks',nombre:'Navisworks',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'navisworks.png'},
-    {id:'fenestrapro',nombre:'FenestraPro',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'fenestrapro.png'},
-    {id:'rhino',nombre:'Rhino',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'rhino.png'},
-    {id:'grasshopper',nombre:'Grasshopper',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'grasshopper.png'},
-    {id:'dynamo',nombre:'Dynamo',categoria:'Design & Computation',origen:'commercial',clusters:['VDC','CD'],logo:'dynamo.png'},
-    {id:'speckle',nombre:'Speckle',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'speckle.png'},
-    {id:'rhino-inside',nombre:'Rhino.Inside',categoria:'Interoperability',origen:'commercial',clusters:['VDC','CD'],logo:'rhino-inside.png'},
-    {id:'conveyor',nombre:'Conveyor',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'conveyor.png'},
-    {id:'run-diffusion',nombre:'Run Diffusion',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:null,mono:'RD'},
-    {id:'adobe-firefly',nombre:'Adobe Firefly',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:'adobe-firefly.png'},
-    {id:'gdiffusion',nombre:'gDiffusion',categoria:'Creative Storytelling',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gdiffusion.png'},
-    {id:'climatestudio',nombre:'ClimateStudio',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'climatestudio.png'},
-    {id:'ladybug',nombre:'Ladybug',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'ladybug.png'},
-    {id:'eddy3d',nombre:'Eddy3D',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'eddy3d.png'},
-    {id:'tally',nombre:'Tally',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'tally.png'},
-    {id:'enscape',nombre:'Enscape',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'enscape.png'},
-    {id:'sketchup',nombre:'Sketchup',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'sketchup.png'},
-    {id:'twinmotion',nombre:'Twinmotion',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'twinmotion.png'},
-    {id:'vray',nombre:'V-Ray',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'vray.png'},
-    {id:'yulio',nombre:'Yulio',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'yulio.png'},
-    {id:'miro',nombre:'Miro',categoria:'Collaboration',origen:'commercial',clusters:['DI','CD'],logo:'miro.png'},
-    {id:'bluebeam',nombre:'Bluebeam',categoria:'Collaboration',origen:'commercial',clusters:['VDC','CD'],logo:'bluebeam.png'},
-    {id:'avail',nombre:'Avail',categoria:'Collaboration',origen:'commercial',clusters:['CD'],logo:'avail.png'},
-    {id:'stacko',nombre:'Stacko',categoria:'Automation',origen:'commercial',clusters:['VDC','DI'],logo:'stacko.png'},
-    {id:'clarity',nombre:'Clarity',categoria:'Automation',origen:'commercial',clusters:['DI'],logo:'clarity.png'},
-    {id:'illustrator',nombre:'Illustrator',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'illustrator.png'},
-    {id:'after-effects',nombre:'After Effects',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC'],logo:'after-effects.png'},
-    {id:'photoshop',nombre:'Photoshop',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'photoshop.png'},
-    {id:'indesign',nombre:'InDesign',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'indesign.png'},
-    {id:'power-bi',nombre:'Power BI',categoria:'Data Intelligence',origen:'commercial',clusters:['DI'],logo:'power-bi.png'},
-    {id:'copilot',nombre:'Copilot',categoria:'AI',origen:'commercial',clusters:['DI'],logo:'copilot.png'},
-    {id:'gblox',nombre:'gBlox',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC','VDC'],logo:'gblox.png'},
-    {id:'gfloorz',nombre:'gFloorz',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gfloorz.png'},
-    {id:'gplanet',nombre:'GPlanet',categoria:'Analysis & Simulations',origen:'gensler',origen_confirmado:false,clusters:['RC','DI'],logo:'gplanet.png'},
-    {id:'terrain-analytics',nombre:'Terrain Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'TA'},
-    {id:'spatial-analytics',nombre:'Spatial Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'SA'},
-    {id:'testfit',nombre:'TestFit',categoria:'Feasibility',origen:'commercial',clusters:['RC'],logo:'testfit.png'},
-    {id:'autodesk-forma',nombre:'Autodesk Forma',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'autodesk-forma.png'},
-    {id:'flexsim',nombre:'FlexSim',categoria:'Analysis & Simulations',origen:'commercial',clusters:['VDC'],logo:'flexsim.png'},
-    {id:'terrain-analysis-tool',nombre:'Terrain Analysis Tool',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC'],logo:null,mono:'TAT'},
-    {id:'cyclops',nombre:'Cyclops',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'Cy'},
-    {id:'gblox-plugins',nombre:'gBlox plugins',categoria:'Design & Computation',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'gB+'}
+    {id:'revit',nombre:'Revit',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'revit.png',learn:'https://help.autodesk.com/view/RVT/2025/ENU/'},
+    {id:'bim360',nombre:'BIM360',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'bim360.png',learn:'https://help.autodesk.com/view/BIM360D/ENU/'},
+    {id:'especs',nombre:'eSpecs',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'especs.png',learn:'#/learning'},
+    {id:'formit',nombre:'Formit',categoria:'BIM & Documentation',origen:'commercial',clusters:['RC','CD'],logo:'formit.png',learn:'https://help.autodesk.com/view/FRMT/ENU/'},
+    {id:'hatchkit',nombre:'HatchKit',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'hatchkit.png',learn:'#/learning'},
+    {id:'ideate',nombre:'Ideate',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC','CD'],logo:'ideate.png',learn:'#/learning'},
+    {id:'specsources',nombre:'Specsources',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'specsources.png',learn:'#/learning'},
+    {id:'slingshot',nombre:'Slingshot',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'slingshot.png',learn:'#/learning'},
+    {id:'navisworks',nombre:'Navisworks',categoria:'BIM & Documentation',origen:'commercial',clusters:['VDC'],logo:'navisworks.png',learn:'https://help.autodesk.com/view/NAV/2025/ENU/'},
+    {id:'fenestrapro',nombre:'FenestraPro',categoria:'BIM & Documentation',origen:'commercial',clusters:['CD'],logo:'fenestrapro.png',learn:'#/learning'},
+    {id:'rhino',nombre:'Rhino',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'rhino.png',learn:'https://www.rhino3d.com/learn/'},
+    {id:'grasshopper',nombre:'Grasshopper',categoria:'Design & Computation',origen:'commercial',clusters:['RC','CD'],logo:'grasshopper.png',learn:'https://www.rhino3d.com/learn/?keyword=kind:%20grasshopper'},
+    {id:'dynamo',nombre:'Dynamo',categoria:'Design & Computation',origen:'commercial',clusters:['VDC','CD'],logo:'dynamo.png',learn:'https://primer2.dynamobim.org/'},
+    {id:'speckle',nombre:'Speckle',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'speckle.png',learn:'https://speckle.guide/'},
+    {id:'rhino-inside',nombre:'Rhino.Inside',categoria:'Interoperability',origen:'commercial',clusters:['VDC','CD'],logo:'rhino-inside.png',learn:'https://www.rhino3d.com/inside/'},
+    {id:'conveyor',nombre:'Conveyor',categoria:'Interoperability',origen:'commercial',clusters:['VDC','DI'],logo:'conveyor.png',learn:'#/learning'},
+    {id:'run-diffusion',nombre:'Run Diffusion',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:null,mono:'RD',learn:'#/learning'},
+    {id:'adobe-firefly',nombre:'Adobe Firefly',categoria:'Creative Storytelling',origen:'commercial',clusters:['RC'],logo:'adobe-firefly.png',learn:'#/learning'},
+    {id:'gdiffusion',nombre:'gDiffusion',categoria:'Creative Storytelling',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gdiffusion.png',learn:'#/learning'},
+    {id:'climatestudio',nombre:'ClimateStudio',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'climatestudio.png',learn:'#/learning'},
+    {id:'ladybug',nombre:'Ladybug',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'ladybug.png',learn:'https://docs.ladybug.tools/'},
+    {id:'eddy3d',nombre:'Eddy3D',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'eddy3d.png',learn:'#/learning'},
+    {id:'tally',nombre:'Tally',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC','CD'],logo:'tally.png',learn:'#/learning'},
+    {id:'enscape',nombre:'Enscape',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'enscape.png',learn:'https://learn.enscape3d.com/'},
+    {id:'sketchup',nombre:'Sketchup',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'sketchup.png',learn:'https://learn.sketchup.com/'},
+    {id:'twinmotion',nombre:'Twinmotion',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'twinmotion.png',learn:'#/learning'},
+    {id:'vray',nombre:'V-Ray',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'vray.png',learn:'#/learning'},
+    {id:'yulio',nombre:'Yulio',categoria:'Visualization',origen:'commercial',clusters:['RC'],logo:'yulio.png',learn:'#/learning'},
+    {id:'miro',nombre:'Miro',categoria:'Collaboration',origen:'commercial',clusters:['DI','CD'],logo:'miro.png',learn:'https://academy.miro.com/'},
+    {id:'bluebeam',nombre:'Bluebeam',categoria:'Collaboration',origen:'commercial',clusters:['VDC','CD'],logo:'bluebeam.png',learn:'https://support.bluebeam.com/'},
+    {id:'avail',nombre:'Avail',categoria:'Collaboration',origen:'commercial',clusters:['CD'],logo:'avail.png',learn:'#/learning'},
+    {id:'stacko',nombre:'Stacko',categoria:'Automation',origen:'commercial',clusters:['VDC','DI'],logo:'stacko.png',learn:'#/learning'},
+    {id:'clarity',nombre:'Clarity',categoria:'Automation',origen:'commercial',clusters:['DI'],logo:'clarity.png',learn:'#/learning'},
+    {id:'illustrator',nombre:'Illustrator',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'illustrator.png',learn:'https://helpx.adobe.com/illustrator/tutorials.html'},
+    {id:'after-effects',nombre:'After Effects',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC'],logo:'after-effects.png',learn:'https://helpx.adobe.com/after-effects/tutorials.html'},
+    {id:'photoshop',nombre:'Photoshop',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'photoshop.png',learn:'https://helpx.adobe.com/photoshop/tutorials.html'},
+    {id:'indesign',nombre:'InDesign',categoria:'Graphics & Publishing',origen:'commercial',clusters:['RC','CD'],logo:'indesign.png',learn:'https://helpx.adobe.com/indesign/tutorials.html'},
+    {id:'power-bi',nombre:'Power BI',categoria:'Data Intelligence',origen:'commercial',clusters:['DI'],logo:'power-bi.png',learn:'https://learn.microsoft.com/power-bi/'},
+    {id:'copilot',nombre:'Copilot',categoria:'AI',origen:'commercial',clusters:['DI'],logo:'copilot.png',learn:'https://learn.microsoft.com/copilot/'},
+    {id:'gblox',nombre:'gBlox',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC','VDC'],logo:'gblox.png',learn:'#/learning'},
+    {id:'gfloorz',nombre:'gFloorz',categoria:'Design & Computation',origen:'gensler',origen_confirmado:false,clusters:['RC'],logo:'gfloorz.png',learn:'#/learning'},
+    {id:'gplanet',nombre:'GPlanet',categoria:'Analysis & Simulations',origen:'gensler',origen_confirmado:false,clusters:['RC','DI'],logo:'gplanet.png',learn:'#/learning'},
+    {id:'terrain-analytics',nombre:'Terrain Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'TA',learn:'#/learning'},
+    {id:'spatial-analytics',nombre:'Spatial Analytics',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','DI'],logo:null,mono:'SA',learn:'#/learning'},
+    {id:'testfit',nombre:'TestFit',categoria:'Feasibility',origen:'commercial',clusters:['RC'],logo:'testfit.png',learn:'#/learning'},
+    {id:'autodesk-forma',nombre:'Autodesk Forma',categoria:'Analysis & Simulations',origen:'commercial',clusters:['RC'],logo:'autodesk-forma.png',learn:'https://help.autodesk.com/view/FORMA/ENU/'},
+    {id:'flexsim',nombre:'FlexSim',categoria:'Analysis & Simulations',origen:'commercial',clusters:['VDC'],logo:'flexsim.png',learn:'https://docs.flexsim.com/'},
+    {id:'terrain-analysis-tool',nombre:'Terrain Analysis Tool',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC'],logo:null,mono:'TAT',learn:'#/learning'},
+    {id:'cyclops',nombre:'Cyclops',categoria:'Analysis & Simulations',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'Cy',learn:'#/learning'},
+    {id:'gblox-plugins',nombre:'gBlox plugins',categoria:'Design & Computation',origen:'com-latam',origen_confirmado:false,clusters:['RC','CD'],logo:null,mono:'gB+',learn:'#/learning'}
   ]
 };
+/* (ronda 13) enlace de aprendizaje por tool (campo learn): URL oficial del fabricante (se abre en otra pestaña) o #/learning si no hay una confirmada. Hook data-learn */
+const isExt = u => /^https?:/.test(u||'');
+const learnAttrs = u => isExt(u) ? `href="${esc(u)}" target="_blank" rel="noopener" data-learn="ext"` : `href="${esc(u||'#/learning')}" data-learn="int"`;
+const learnTxt = u => isExt(u) ? 'Start learning ↗' : 'Start learning';
 const ECO_ORD={gensler:0,'com-latam':1,commercial:2};
 function ecoTile(t){
   const O=TOOLS_ECOSYSTEM.origins.find(o=>o.k===t.origen)||{}, tbc=t.origen_confirmado===false;
   const lab=t.nombre+(O.seal?', '+O.name+' tool':'')+(tbc?', origin to confirm':'');
-  return `<li class="eco-tile" data-origen="${t.origen}" data-clusters="${t.clusters.join(' ')}"${tbc?' data-tbc':''}><a href="#/tools" aria-label="${esc(lab)}">`
+  return `<li class="eco-tile" data-origen="${t.origen}" data-clusters="${t.clusters.join(' ')}"${tbc?' data-tbc':''}><a ${learnAttrs(t.learn)} title="${esc(t.nombre)} · ${learnTxt(t.learn)}" aria-label="${esc(lab+', '+learnTxt(t.learn))}">`
    + `<span class="eco-logo${t.logo?'':' mono'}">${t.logo?`<img src="img/logos/${t.logo}" alt="" width="128" height="128" loading="lazy">`:`<b class="eco-mono" aria-hidden="true">${esc(t.mono||pmIni(t.nombre))}</b>`}${O.seal?`<span class="eco-seal" aria-hidden="true">${esc(O.seal)}</span>`:''}</span>`
-   + `<span class="eco-name" aria-hidden="true">${esc(t.nombre)}</span>${tbc?'<small class="eco-tbc" aria-hidden="true">to confirm</small>':''}</a></li>`;
+   + `<span class="eco-name" aria-hidden="true">${esc(t.nombre)}</span><small class="eco-learn" aria-hidden="true">${isExt(t.learn)?'Learn ↗':'Learn →'}</small>${tbc?'<small class="eco-tbc" aria-hidden="true">to confirm</small>':''}</a></li>`;
 }
 function ecosystemHTML(){
   const E=TOOLS_ECOSYSTEM, n=k=>E.tools.filter(t=>k==='all'||t.origen===k).length;
@@ -3607,8 +3946,61 @@ function pageLearning(){
 }
 /* Design Technology Core Team LATAM (nombres, puestos y fotos del sitio LATAM Design Technology; Isaura sin foto en SP = iniciales) */
 const DT_TEAM = [{n:'Pablo Lezama',r:'Senior Associate',img:'pablo-lezama'},{n:'Javier Tenorio',r:'CR-Cities Flex',img:'javier-tenorio'},{n:'Gabriela Sanchez',r:'Associate',img:'gabriela-sanchez'},{n:'Silvia Gomez',r:'Associate',img:'silvia-gomez'},{n:'Jeimy Almonte',r:'DR-Cities Flex 1',img:'jeimy-almonte'},{n:'Jeiner Guillen',r:'CR-Cities Flex',img:'jeiner-guillen'},{n:'Emanuel Ramirez',r:'CR-Cities Flex',img:'emanuel-ramirez'},{n:'Araceli Castro',r:'MX-Lifestyle Flex 1',img:'araceli-castro'},{n:'Nilda Ventura',r:'MO-Monterrey',img:'nilda-ventura'},{n:'Daniel Garro',r:'Senior Associate',img:'daniel-garro'},{n:'Roberto Castillo',r:'CR-Cities Flex',img:'roberto-castillo'},{n:'Alejandra Diaz de Leon',r:'Associate',img:'alejandra-diaz-de-leon'},{n:'Gabriel Alvarez',r:'CR-Cities Flex',img:'gabriel-alvarez'},{n:'Mauricio Pieschacon',r:'BO-Cities Flex',img:'mauricio-pieschacon'},{n:'Isaura Castillo',r:'Associate'},{n:'Samuel Corona',r:'MX-Cities Flex',img:'samuel-corona'},{n:'Yanina Calvete',r:'BA-Buenos Aires',img:'yanina-calvete'},{n:'Ramon Garcia',r:'CR-Cities Flex',img:'ramon-garcia'},{n:'Pablo Orozco Campos',r:'CR-Cities Flex',img:'pablo-orozco-campos'},{n:'Jenny Guarnizo',r:'BO-Cities Flex',img:'jenny-guarnizo'}];
+/* @personalizar: datos del grafo de personas de Community (el agente de diseño lo dibuja en [data-people-graph]).
+   groups = filtros (id, nombre); people = id, n nombre, r puesto, o oficina, cl cluster, g grupos (ids), size 1–3 (tamaño del nodo), img = foto de maqueta/img/people (sin img = iniciales), fict:1 = persona ficticia;
+   links = pares de ids que comparten grupo o colaboran. Las 20 personas con foto son el DT_TEAM real (su oficina y grupos son provisionales: confirmar); el resto es ficticio.
+   En SharePoint: lista People (Microsoft Lists) con columnas Office, Cluster y Community groups (opción múltiple); el grafo sale de esa lista. */
+const COMMUNITY_GRAPH = {
+  groups:[{id:'all',n:'All'},{id:'ai',n:'AI Builders'},{id:'champ',n:'Office Champions'},{id:'dgh',n:'Dynamo & Grasshopper'},{id:'rc',n:'Reality Capture Crew'},{id:'pbi',n:'Power BI Guild'},{id:'core',n:'DT Core Team'}],
+  people:[
+    {id:'pablo-lezama',n:'Pablo Lezama',r:'Senior Associate',o:'Mexico City',cl:'CD',g:['core','dgh','ai'],size:3,img:'pablo-lezama'},
+    {id:'javier-tenorio',n:'Javier Tenorio',r:'CR-Cities Flex',o:'San José',cl:'CD',g:['core','dgh'],size:2,img:'javier-tenorio'},
+    {id:'gabriela-sanchez',n:'Gabriela Sanchez',r:'Associate',o:'Mexico City',cl:'DI',g:['core','pbi'],size:2,img:'gabriela-sanchez'},
+    {id:'silvia-gomez',n:'Silvia Gomez',r:'Associate',o:'Monterrey',cl:'VDC',g:['core','champ'],size:2,img:'silvia-gomez'},
+    {id:'jeimy-almonte',n:'Jeimy Almonte',r:'DR-Cities Flex 1',o:'Santo Domingo',cl:'DI',g:['core','pbi','ai'],size:2,img:'jeimy-almonte'},
+    {id:'jeiner-guillen',n:'Jeiner Guillen',r:'CR-Cities Flex',o:'San José',cl:'RC',g:['core','rc'],size:2,img:'jeiner-guillen'},
+    {id:'emanuel-ramirez',n:'Emanuel Ramirez',r:'CR-Cities Flex',o:'San José',cl:'CD',g:['core','dgh','ai'],size:2,img:'emanuel-ramirez'},
+    {id:'araceli-castro',n:'Araceli Castro',r:'MX-Lifestyle Flex 1',o:'Mexico City',cl:'VDC',g:['core','champ'],size:2,img:'araceli-castro'},
+    {id:'nilda-ventura',n:'Nilda Ventura',r:'MO-Monterrey',o:'Monterrey',cl:'RC',g:['core','rc','champ'],size:2,img:'nilda-ventura'},
+    {id:'daniel-garro',n:'Daniel Garro',r:'Senior Associate',o:'San José',cl:'DI',g:['core','ai','pbi'],size:3,img:'daniel-garro'},
+    {id:'roberto-castillo',n:'Roberto Castillo',r:'CR-Cities Flex',o:'San José',cl:'VDC',g:['core','champ'],size:2,img:'roberto-castillo'},
+    {id:'alejandra-diaz-de-leon',n:'Alejandra Diaz de Leon',r:'Associate',o:'Mexico City',cl:'CD',g:['core','dgh'],size:2,img:'alejandra-diaz-de-leon'},
+    {id:'gabriel-alvarez',n:'Gabriel Alvarez',r:'CR-Cities Flex',o:'San José',cl:'DI',g:['core','pbi'],size:2,img:'gabriel-alvarez'},
+    {id:'mauricio-pieschacon',n:'Mauricio Pieschacon',r:'BO-Cities Flex',o:'Bogotá',cl:'RC',g:['core','rc'],size:2,img:'mauricio-pieschacon'},
+    {id:'isaura-castillo',n:'Isaura Castillo',r:'Associate',o:'Santo Domingo',cl:'VDC',g:['core','champ'],size:2},
+    {id:'samuel-corona',n:'Samuel Corona',r:'MX-Cities Flex',o:'Mexico City',cl:'CD',g:['core','dgh','ai'],size:2,img:'samuel-corona'},
+    {id:'yanina-calvete',n:'Yanina Calvete',r:'BA-Buenos Aires',o:'Buenos Aires',cl:'DI',g:['core','pbi','champ'],size:2,img:'yanina-calvete'},
+    {id:'ramon-garcia',n:'Ramon Garcia',r:'CR-Cities Flex',o:'San José',cl:'CD',g:['core','dgh','ai'],size:2,img:'ramon-garcia'},
+    {id:'pablo-orozco-campos',n:'Pablo Orozco Campos',r:'CR-Cities Flex',o:'San José',cl:'RC',g:['core','rc'],size:2,img:'pablo-orozco-campos'},
+    {id:'jenny-guarnizo',n:'Jenny Guarnizo',r:'BO-Cities Flex',o:'Bogotá',cl:'DI',g:['core','ai'],size:2,img:'jenny-guarnizo'},
+    {id:'lucia-demo',n:'Lucía Demo',r:'Design Technology Director, LAC',o:'Mexico City',cl:'DI',g:['ai','champ'],size:3,fict:1},
+    {id:'diego-ejemplo',n:'Diego Ejemplo',r:'Regional VDC Lead',o:'Buenos Aires',cl:'VDC',g:['champ'],size:3,fict:1},
+    {id:'sofia-muestra',n:'Sofía Muestra',r:'Computational Design Lead',o:'Bogotá',cl:'CD',g:['dgh','ai'],size:3,fict:1},
+    {id:'mateo-prueba',n:'Mateo Prueba',r:'Data Intelligence Lead',o:'Santo Domingo',cl:'DI',g:['pbi','ai'],size:3,fict:1},
+    {id:'camila-ficticia',n:'Camila Ficticia',r:'Reality Capture Lead',o:'San José',cl:'RC',g:['rc'],size:3,fict:1},
+    {id:'carlos-simulado',n:'Carlos Simulado',r:'VDC Champion',o:'Monterrey',cl:'VDC',g:['champ'],size:1,fict:1},
+    {id:'ximena-inventada',n:'Ximena Inventada',r:'Computational Design Champion',o:'Bogotá',cl:'CD',g:['dgh','champ'],size:1,fict:1},
+    {id:'rodrigo-supuesto',n:'Rodrigo Supuesto',r:'Data Champion',o:'Buenos Aires',cl:'DI',g:['pbi'],size:1,fict:1},
+    {id:'luz-imaginaria',n:'Luz Imaginaria',r:'Reality Capture Specialist',o:'San José',cl:'RC',g:['rc'],size:1,fict:1},
+    {id:'fabian-hipotetico',n:'Fabián Hipotético',r:'VDC Specialist',o:'Santo Domingo',cl:'VDC',g:['champ','ai'],size:1,fict:1},
+    {id:'marisol-aparente',n:'Marisol Aparente',r:'Computational Design Specialist',o:'Mexico City',cl:'CD',g:['dgh'],size:2,fict:1},
+    {id:'gael-probable',n:'Gael Probable',r:'Data Specialist',o:'Mexico City',cl:'DI',g:['pbi','ai'],size:1,fict:1},
+    {id:'daniela-tentativa',n:'Daniela Tentativa',r:'Reality Capture Champion',o:'Bogotá',cl:'RC',g:['rc','champ'],size:2,fict:1},
+    {id:'esteban-sintetico',n:'Esteban Sintético',r:'Computational Design Specialist',o:'Buenos Aires',cl:'CD',g:['dgh'],size:1,fict:1},
+    {id:'alma-provisoria',n:'Alma Provisoria',r:'Data Champion',o:'Monterrey',cl:'DI',g:['pbi','champ'],size:1,fict:1},
+    {id:'joaquin-teorico',n:'Joaquín Teórico',r:'Reality Capture Specialist',o:'Santo Domingo',cl:'RC',g:['rc'],size:1,fict:1},
+    {id:'fernanda-aproximada',n:'Fernanda Aproximada',r:'AI Builder',o:'San José',cl:'CD',g:['ai','dgh'],size:1,fict:1},
+    {id:'bruno-figurado',n:'Bruno Figurado',r:'AI Builder',o:'Bogotá',cl:'VDC',g:['ai'],size:1,fict:1}
+  ],
+  links:[['pablo-lezama','sofia-muestra'],['javier-tenorio','marisol-aparente'],['gabriela-sanchez','jeimy-almonte'],['silvia-gomez','araceli-castro'],['gael-probable','jeimy-almonte'],['camila-ficticia','jeiner-guillen'],['emanuel-ramirez','pablo-lezama'],['araceli-castro','nilda-ventura'],['nilda-ventura','daniela-tentativa'],['daniel-garro','gael-probable'],['roberto-castillo','silvia-gomez'],['alejandra-diaz-de-leon','esteban-sintetico'],['gabriel-alvarez','alma-provisoria'],['mauricio-pieschacon','jeiner-guillen'],['carlos-simulado','isaura-castillo'],['samuel-corona','pablo-lezama'],['alma-provisoria','yanina-calvete'],['ramon-garcia','emanuel-ramirez'],['pablo-orozco-campos','joaquin-teorico'],['jenny-guarnizo','lucia-demo'],['fabian-hipotetico','lucia-demo'],['diego-ejemplo','nilda-ventura'],['sofia-muestra','samuel-corona'],['mateo-prueba','pablo-lezama'],['ximena-inventada','araceli-castro'],['rodrigo-supuesto','gabriela-sanchez'],['luz-imaginaria','daniela-tentativa'],['marisol-aparente','sofia-muestra'],['daniela-tentativa','silvia-gomez'],['esteban-sintetico','ximena-inventada'],['joaquin-teorico','luz-imaginaria'],['fernanda-aproximada','samuel-corona'],['bruno-figurado','jenny-guarnizo'],['pablo-lezama','daniel-garro'],['daniel-garro','lucia-demo'],['lucia-demo','diego-ejemplo'],['diego-ejemplo','sofia-muestra'],['sofia-muestra','mateo-prueba'],['mateo-prueba','camila-ficticia'],['camila-ficticia','pablo-lezama'],['fernanda-aproximada','jeimy-almonte'],['mauricio-pieschacon','joaquin-teorico'],['nilda-ventura','fabian-hipotetico'],['yanina-calvete','nilda-ventura'],['ximena-inventada','rodrigo-supuesto'],['alma-provisoria','daniela-tentativa']]
+};
 function pageCommunity(){
   return banner('Community','Who can help me?','Leaders, champions, experts.','Find people by office, capability and tool.')
+  /* (ronda 13) grafo de red de personas (datos en COMMUNITY_GRAPH; lo dibuja el agente de diseño dentro de [data-people-graph]) */
+  + sec('l1','none',[
+      wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Communities')}${h2('Everyone who takes part.')}<p class="t-p muted">Filter by group. Hover to see who works with whom.</p>`),
+      wp('p','Power Apps · galería de participantes con filtro por grupo y botón Join (lista People) · en la maqueta se muestra como grafo de red (fotos, conexiones, chips de grupo, panel al hacer clic); en SharePoint: cuadrícula de fotos + chips + Join', `<div data-people-graph></div>`)
+    ])
   + sec('l1','none',[wp('n','People · Compact ×4 (Design Technology Core Team LATAM · foto de perfil de M365)', `<div class="wp-title"><h3>Regional leadership</h3></div><div class="people team4">${DT_TEAM.map(p=>person(p,false)).join('')}</div>`)])
   + sec('l1','neutral',[wp('n','Quick links · Grid · miniaturas pre-renderizadas', `<div class="wp-title"><h3>Mini-communities</h3></div><div class="ql-film">${[['Digital Innovation','cd','Monthly showcase'],['AI Builders','di','Prompt & agent lab'],['Reality Capture','rc','Scan clinic'],['Data & BI','di','Dashboard review']].map(m=>`<a class="ql-card" href="#/community"><div class="thumb" style="aspect-ratio:16/10">${capThumb(CL[m[1]],{fit:[.72,62],fade:[170,188]}).replace(/<span class="nm">[\s\S]*?<\/small><\/span>/,`<span class="nm" style="font-size:10cqw">${esc(m[0])}</span>`).replace(/<span class="n">[^<]*<\/span>/,'')}</div><div class="cap">${esc(m[0])}<span>${esc(m[2])} · Join on Teams</span></div></a>`).join('')}</div>`)])
   + sec('l1','none',[wp('n','People · Compact ×4 (champions por oficina · 8 en 2 filas de 4)', `<div class="wp-title"><h3>Office champions</h3></div><div class="people team4">${[P.andres,P.valeria,P.tomas,P.renata,P.julian,P.paula,P.ivan,P.ines].map(p=>person(p,false,true)).join('')}</div>`)]);
@@ -3697,7 +4089,7 @@ function buildNav(){
   $('#topnav').innerHTML=NAV.map(([k,l])=>k==='clusters'
     ?`<button type="button" id="megaBtn" aria-expanded="false" aria-controls="mega" data-k="clusters">${l}<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3.5l3 3 3-3"/></svg></button>`
     :`<a href="#/${k}" data-k="${k}">${l}</a>`).join('');
-  $('#megaInner').innerHTML=ORDER.map(k=>`<div><h3><a href="#/clusters/${k}">${esc(CL[k].name)}</a></h3><ul><li><a href="#/clusters/${k}">Featured projects</a></li><li><a href="#/clusters/${k}">Methodology</a></li><li><a href="#/clusters/${k}">Leaders</a></li><li><a href="#/clusters/${k}">Contact</a></li></ul></div>`).join('');
+  $('#megaInner').innerHTML=ORDER.map(k=>`<div><h3><a href="#/clusters/${k}">${esc(CL[k].name)}<span class="mega-plain" data-plain>${esc(CL[k].plain)}</span></a></h3><ul><li><a href="#/clusters/${k}">Featured projects</a></li><li><a href="#/clusters/${k}">Methodology</a></li><li><a href="#/clusters/${k}">Leaders</a></li><li><a href="#/clusters/${k}">Contact</a></li></ul></div>`).join('');
   const btn=$('#megaBtn'),mega=$('#mega');
   const set=o=>{mega.classList.toggle('open',o);btn.setAttribute('aria-expanded',o)};
   btn.addEventListener('click',()=>set(!mega.classList.contains('open')));
@@ -3707,15 +4099,22 @@ function buildNav(){
   mega.addEventListener('click',e=>{if(e.target.closest('a'))set(false)});
 }
 function route(){
-  const h=(location.hash||'#/home').slice(2).split('?');
+  const EP=EMBED_PIECES[EMBED];
+  const h=(EP?EP.r:(location.hash||'#/home')).slice(2).split('?');
   const parts=h[0].split('/');
   const q=new URLSearchParams(h[1]||'');
+  if(EP){   /* embed: los parámetros del hash y de la query (imp=, onb=, pm=, hv=, a=…) se aplican; por defecto Estilo 7 cobalt sin controles */
+    const add=(v,k)=>{if(k!=='embed'&&!q.has(k))q.set(k,v)};
+    new URLSearchParams((location.hash.split('?')[1]||'')).forEach(add);new URLSearchParams(location.search).forEach(add);
+    if(!q.has('a'))q.set('a','cobalt');
+  }
   if(q.get('s'))setStyle(q.get('s'),false);
   if(q.get('m'))setMode(q.get('m'));
   if(q.get('img'))setImg(q.get('img'));
   if(q.get('wp'))setWp(q.get('wp')==='1');
   if(q.get('f'))setFont(q.get('f'));
   if(q.get('a'))setAccent(q.get('a'));
+  if(q.get('ctr'))document.documentElement.dataset.ctr=/^[0-3]$/.test(q.get('ctr'))?q.get('ctr'):CTR_DEFAULT;   /* (ronda 13) contraste de secciones: 0 = anterior (ronda 12), 1 suave, 2 medio, 3 alto */
   if(q.get('hv'))setHv(q.get('hv'));   /* (ronda 11) variante del header generativo del Estilo 7 */
   if(q.get('ccb'))setCC('ban',q.get('ccb')!=='0');if(q.get('cct'))setCC('txt',q.get('cct')!=='0');   /* Cluster colors · banners / text */
   window.HERO_FF=+(q.get('ff')||0);
@@ -3738,7 +4137,7 @@ function route(){
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
-  bindImpact();bindOnboarding();bindMatrix();bindEco();
+  bindImpact();bindOnboarding();bindMatrix();bindEco();bindCarousels();bindPeopleGraph();
   /* estado inicial para capturas: imp=<id de métrica> selecciona su cluster y su stat; onb=<id de nodo> selecciona ese nodo del onboarding */
   const im=IMPACT.metrics.find(x=>x.id===q.get('imp'));
   if(im){const cl=im.cluster==='global'?'all':im.cluster;document.querySelector(`[data-impact-cluster="${cl}"]`)?.click();document.querySelector(`[data-impact-metric="${im.id}"]`)?.click()}
@@ -3749,6 +4148,7 @@ function route(){
   if(q.get('eco'))document.querySelector(`[data-eco-origin="${CSS.escape(q.get('eco'))}"]`)?.click();
   if(q.get('ecl'))document.querySelector(`[data-eco-cluster="${CSS.escape(q.get('ecl'))}"]`)?.click();
   startCollab();hv7Init();pipeInit();
+  if(EP){embedMount();return}
   /* at=<id> lleva la vista a una pieza (capturas): matrix, onb… (elementos con data-at) */
   /* shot=1 (capturas headless, que ignoran el scroll): en vez de desplazar la ventana, sube la página con un margen negativo en la barra de M365 */
   const at=q.get('at')&&document.querySelector(`[data-at="${CSS.escape(q.get('at'))}"]`);
@@ -3827,6 +4227,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#logosDrawer').c
 setHv(load('hv')||'halftone');setCtlMin(load('ctlmin')==='1');setCC('ban',load('ccban')!=='0');setCC('txt',load('cctxt')!=='0');
 setStyle('7',false);   /* (ronda 12) sin hash: SIEMPRE Estilo 7 + header Halftone + acento cobalt (no se lee el localStorage; s= y a= en el hash lo cambian) */setMode(load('mode')||'light');setImg('0');   /* (ronda 11) sin hash: Imágenes No en todos los estilos (no se lee el localStorage; img=1 en el hash lo enciende) */setFont(load('font')||'brand');setWp(load('wp')==='1');setAccent('cobalt');
 buildLogos();applyLogo(load('logo3')||'L00');
+document.documentElement.dataset.ctr=CTR_DEFAULT;
 buildNav();route();
 window.addEventListener('hashchange',route);
 </script>
