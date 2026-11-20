@@ -2015,7 +2015,8 @@ const EMBED_PIECES={
   'banner-rc':{r:'#/clusters/rc',el:()=>document.querySelector('#main .page > section.sp-sec')},
   'banner-cd':{r:'#/clusters/cd',el:()=>document.querySelector('#main .page > section.sp-sec')},
   'banner-di':{r:'#/clusters/di',el:()=>document.querySelector('#main .page > section.sp-sec')},
-  team:{r:'#/home',el:()=>document.querySelector('[data-team-row]')?.closest('.wp')}
+  team:{r:'#/home',el:()=>document.querySelector('[data-team-row]')?.closest('.wp')},
+  tools:{r:'#/tools',el:()=>document.querySelector('[data-eco]')?.closest('.sp-sec')}   /* panel «Tools ecosystem» con filtros por origen y cluster (intro + tablero) */
 };
 if(EMBED&&!EMBED_PIECES[EMBED]){console.warn('embed desconocido:',EMBED)}
 if(EMBED_PIECES[EMBED]){document.documentElement.classList.add('embed');document.documentElement.dataset.embed=EMBED}
