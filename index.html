@@ -618,6 +618,16 @@ html[data-style="5"] .dia .lab i{width:.55cqw;height:.55cqw;border-radius:50%}
 .dia .ttl{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.4cqw}
 .dia .ttl h4{margin:0;font-size:2.6cqw;line-height:1;font-weight:var(--h-weight);letter-spacing:-.035em}
 .dia .ttl h4 em{font-style:normal;color:var(--art-tail)}
+.dia :is(.grid[data-dia-row],.bar,.stage){transition:opacity .2s,filter .2s}
+.dia[data-hi-row] .grid[data-dia-row]:not([data-hi]){opacity:.25}
+.dia[data-hi-stage] .bar:not(.on){opacity:.18}
+.dia[data-hi-stage] .stage:not(.on){opacity:.45}
+.dia .bar.on,.dia .grid[data-hi] .bar{filter:brightness(1.3) saturate(1.15)}
+.dia .stage.on b{color:var(--art-text,currentColor)}
+.dia .grid[data-dia-row],.dia .stage[data-dia-stage]{cursor:default;outline:none}
+.dia .grid[data-dia-row]:focus-visible .lab,.dia .stage:focus-visible{box-shadow:inset 3px 0 0 var(--accent)}
+.dia .dia-ro{margin:1.2cqw 0 0;min-height:1.4em;font-size:max(12px,.95cqw);color:var(--art-tail)}
+.dia .dia-ro b{color:var(--art-text,inherit);font-weight:500}
 .dia .ttl > span{font-family:var(--f-art-mono);font-size:.8cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--art-tail)}   /* (brand kit) solo el subtítulo: antes también encogía la última palabra del titular (.nw) y su punto */
 /* miniaturas de capacidades */
 .capthumb{position:absolute;inset:0;container-type:inline-size}
@@ -3078,18 +3088,36 @@ function diagram(){
     {k:'rc',l:'Reality Capture',bars:[[1,2,'Existing conditions scans · Terrain Analysis'],[7,8,'Progress scans · As-built verification']]},
     {k:'vdc',l:'VDC',bars:[[4,7,'BEP · Federated coordination · Clash detection · 4D sequencing · Model QA']]},
   ];
-  const head=`<div></div>`+stages.map(s=>`<div class="stage"><b>${s[0]}</b>${esc(s[1])}</div>`).join('');
+  const head=`<div></div>`+stages.map((s,i)=>`<div class="stage" tabindex="0" data-dia-stage="${i+1}"><b>${s[0]}</b>${esc(s[1])}</div>`).join('');
   // filas con barras posicionadas por fila
   const rowsHtml=rows.map(r=>{
-    const bars=r.bars.map(b=>`<div class="bar" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'-'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
-    return `<div class="grid" style="grid-template-columns:13cqw 1fr;--ci:var(--ink-${r.k})"><div class="lab">${S7()?`<i class="g7i" style="color:var(--hl-${r.k})">${glyph7(r.k)}</i>`:`<i style="background:var(--hl-${r.k})"></i>`}${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
+    const bars=r.bars.map(b=>`<div class="bar" data-from="${b[0]}" data-to="${b[1]}" style="--c:var(--hl-${r.k});left:calc(${(b[0]-1)/8*100}% + 4px);width:calc(${(b[1]-b[0]+1)/8*100}% - 8px)"><b>${esc(CL[r.k].code)} · stage ${b[0]}${b[1]!==b[0]?'-'+b[1]:''}</b>${esc(b[2])}</div>`).join('');
+    return `<div class="grid" data-dia-row="${r.k}" tabindex="0" style="grid-template-columns:13cqw 1fr;--ci:var(--ink-${r.k})"><div class="lab">${S7()?`<i class="g7i" style="color:var(--hl-${r.k})">${glyph7(r.k)}</i>`:`<i style="background:var(--hl-${r.k})"></i>`}${esc(r.l)}</div><div style="position:relative;display:grid;grid-template-columns:repeat(8,1fr)">${stages.map(()=>'<div class="cell"></div>').join('')}${bars}</div></div>`;
   }).join('');
   return `<div class="art dia grain" role="img" aria-label="Clusters diagram. Eight stages of an architecture project from pursuit and client contact to handover and operations. Data Intelligence enters at stages 1 to 3 (site and market analytics, Urban Vitality Index, GIS) and 8 (post-occupancy dashboards). Computational Design at stages 2 to 5 (massing optioneering, climate analysis, Pedestrian Flows, Rhino-Revit). Reality Capture at stages 1 to 2 (existing conditions scans, Terrain Analysis) and 7 to 8 (progress scans, as-built verification). VDC at stages 4 to 7 (BEP, federated coordination, clash detection, 4D sequencing, model QA).">
     <div class="ttl"><h4>Where each cluster enters <em>your project</em><span class="sdot"></span></h4><span>Design Technology LAC · 4 clusters × 8 stages</span></div>
     <div class="grid">${head}</div>
     ${rowsHtml}
     <div class="axis"><span>First client contact</span><span></span><span>Building in operation</span></div>
+    <p class="dia-ro" aria-live="polite" data-dia-ro>Hover a cluster or a stage.</p>
   </div>`;
+}
+/* (ronda 14) diagrama de clusters interactivo: al pasar o enfocar un cluster se atenúan los demás; al pasar una etapa se encienden los clusters que entran en ella. En SharePoint: Embed ?embed=clusters */
+function bindDia(){
+  document.querySelectorAll('.dia').forEach(d=>{
+    if(d.dataset.bound)return;d.dataset.bound='1';
+    const ro=d.querySelector('[data-dia-ro]'),rows=[...d.querySelectorAll('[data-dia-row]')],stg=[...d.querySelectorAll('[data-dia-stage]')],bars=[...d.querySelectorAll('.bar')];
+    const idle='Hover a cluster or a stage.';
+    const clear=()=>{delete d.dataset.hiRow;delete d.dataset.hiStage;rows.forEach(r=>r.removeAttribute('data-hi'));stg.forEach(s=>s.classList.remove('on'));bars.forEach(b=>b.classList.remove('on'));if(ro)ro.textContent=idle};
+    const row=r=>{clear();d.dataset.hiRow=r.dataset.diaRow;r.setAttribute('data-hi','');const c=CL[r.dataset.diaRow];
+      const st=[...r.querySelectorAll('.bar')].map(b=>+b.dataset.from===+b.dataset.to?'stage '+b.dataset.from:'stages '+b.dataset.from+'-'+b.dataset.to).join(' and ');
+      if(ro)ro.innerHTML=`<b>${esc(c.plain||c.name)}</b> (${esc(c.code)}) joins at ${st}.`};
+    const stage=s=>{clear();const i=+s.dataset.diaStage;d.dataset.hiStage=i;s.classList.add('on');const on=[];
+      bars.forEach(b=>{if(+b.dataset.from<=i&&i<=+b.dataset.to){b.classList.add('on');on.push(b.closest('[data-dia-row]').dataset.diaRow)}});
+      if(ro)ro.innerHTML=`<b>Stage ${String(i).padStart(2,'0')}</b>: `+(on.length?[...new Set(on)].map(k=>esc(CL[k].plain||CL[k].name)).join(', '):'no cluster on this stage')+'.'};
+    rows.forEach(r=>{['pointerenter','focus'].forEach(e=>r.addEventListener(e,()=>row(r)));['pointerleave','blur'].forEach(e=>r.addEventListener(e,clear))});
+    stg.forEach(s=>{['pointerenter','focus'].forEach(e=>s.addEventListener(e,()=>stage(s)));['pointerleave','blur'].forEach(e=>s.addEventListener(e,clear))});
+  });
 }
 /* mapa de "LAC at a glance" (tablero de impacto). Capas: puntos → burbujas (data-impact-bubbles) → oficinas y etiquetas → valores y leyenda.
    IMPM guarda la proyección, la tierra y las cajas de etiqueta para colocar los valores con la misma regla de la ronda 4. */
@@ -3620,7 +3648,7 @@ function pageHome(){
     ]),
     sec('l1','none',[
       wp('n','Text · Fixed width + Heading 2 + Normal', `${kick('Clusters diagram',true)}${h2('Where we join','your project.')}<p class="t-p muted">Know who to call, and when.</p>`),
-      wp('i','Image · 1 columna (2408 px) · alt completo · sin vínculo', diagram())
+      wp('i','Embed ?embed=clusters (interactivo: resalta cluster y etapa) · o Image 1 columna (2408 px) con alt completo', diagram())
     ]),
     impactSection(),
     sec('l31','none',[
@@ -4138,7 +4166,7 @@ function route(){
   document.querySelectorAll('#topnav [data-k]').forEach(a=>a.classList.toggle('active',a.dataset.k===(parts[0]||'home')||(a.dataset.k==='home'&&!NAV.some(n=>n[0]===parts[0]))));
   document.documentElement.style.setProperty('--page-accent','');
   window.scrollTo(0,0);
-  bindImpact();bindOnboarding();bindMatrix();bindEco();bindCarousels();bindPeopleGraph();
+  bindImpact();bindOnboarding();bindMatrix();bindEco();bindCarousels();bindPeopleGraph();bindDia();
   /* estado inicial para capturas: imp=<id de métrica> selecciona su cluster y su stat; onb=<id de nodo> selecciona ese nodo del onboarding */
   const im=IMPACT.metrics.find(x=>x.id===q.get('imp'));
   if(im){const cl=im.cluster==='global'?'all':im.cluster;document.querySelector(`[data-impact-cluster="${cl}"]`)?.click();document.querySelector(`[data-impact-metric="${im.id}"]`)?.click()}
